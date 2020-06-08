@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>iconspace_Pencil</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Antarmuka_Two-Color-UI-element-1" transform="translate(-630.000000, -244.000000)">
+            <g id="iconspace_Pencil" transform="translate(624.000000, 240.000000)">
+                <polygon id="Shape" points="0 0 48 0 48 48 0 48"></polygon>
+                <polygon id="Shape" fill="#697D99" fill-rule="nonzero" points="28 12.8284271 30.8284271 10 40.0097773 19.1715729 37.1813502 22"></polygon>
+                <path d="M34.9440346,9.5279827 L13.2148944,31.2571229 L11.3722335,38.6277665 L18.7428771,36.7851056 L40.4720173,15.0559654 L34.9440346,9.5279827 Z M46,15.0559654 L20.7412872,40.3146782 L6,44 L9.6853218,29.2587128 L34.9440346,4 L46,15.0559654 Z" id="Shape" fill="#77838F" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,12 @@
+<svg id="Edit" xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31">
+  <circle id="Ellipse_1" data-name="Ellipse 1" cx="15.5" cy="15.5" r="15.5" fill="#5d5aa4"/>
+  <g id="Page-1" transform="translate(12 9.5)">
+    <g id="Antarmuka_Two-Color-UI-element-1" transform="translate(-6 -4)">
+      <g id="iconspace_Pencil">
+        <path id="Shape" d="M0,0H19.5V19.5H0Z" fill="none" fill-rule="evenodd"/>
+        <path id="Shape-2" data-name="Shape" d="M28,11.149,29.149,10l3.73,3.726L31.73,14.875Z" transform="translate(-16.625 -5.938)" fill="#fff"/>
+        <path id="Shape-3" data-name="Shape" d="M17.759,6.246,8.931,15.073l-.749,2.994,2.994-.749L20,8.491ZM22.25,8.491,11.989,18.753,6,20.25l1.5-5.989L17.759,4Z" transform="translate(-3.563 -2.375)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>
