@@ -1,0 +1,43 @@
+/* LANDING PAGE */
+.LandingPage {
+    display: flex;
+    justify-content: flex-end;
+    flex-flow: column nowrap;
+    align-items: center;
+    margin-top: 20rem;
+    padding: 1rem;
+}
+
+.CavalCloudLogo {
+    width: 7rem ;
+}
+
+p {
+    font-size: 1.1rem;
+    font-weight: 200;
+    font-family: 'Open-sans', sans-serif;
+}
+
+.create, .login {
+    padding : 0.6rem;
+    font-size: 1.1rem;
+}
+
+#createBtn {
+    background-color: #59A080;
+    color: white;
+    width: 9rem ;
+    height: 2rem ;
+}
+button {
+    border : none;
+}
+#loginBtn {
+    background-color: white;
+    color : #59A080;
+    width: 9rem ;
+    height: 2rem ;
+    border-style: solid  1px#59A080;
+    border-radius: 2%;
+}
+
