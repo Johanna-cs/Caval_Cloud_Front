@@ -1,4 +1,83 @@
 /* Home Page : ACCEUIL */
 .HomePage {
   display: flex;
+  align-items: center;
+  flex-flow: column nowrap;
 }
+.welcome {
+  font-size: 1.3em;
+  color: #77838F;
+}
+.welcomeText {
+  color: #77838F;
+  font-weight: 300;
+}
+
+    /* logos de la HOME PAGE */
+.logoHorse {
+  width: 2.2em;
+  padding: 1em;
+}
+.logoHelmet {
+  width: 2.4em;
+  padding: 1em;
+}
+.logoboot {
+  width: 1.8em;
+  padding: 1em;
+  margin-right: 0.7em;
+}
+.logoHorseframe {
+  width: 2.4em;
+  padding: 1em;
+}
+.logoCaval {
+  width: 3.5em;
+  border-radius: 10px;
+  margin-right: 0.7em;
+  background-color: #ffffff;
+}
+    /* menu button */
+.homeBtn {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-flow: row nowrap;
+  padding: 1em;
+  margin: 1em;
+  width: 25em;
+  height: 5em;
+  border-radius: 20px;
+  box-shadow: 1px 3px 3px 2px #77838F65;
+}
+
+.textBtn {
+  font-family: 'Montserrat' sans-serif;
+  font-weight: 500;
+  font-size: 1.3em;
+  color : #77838F;
+  margin-left: 0.6em;
+}
+    /* about us button*/
+.textUs {
+  font-family: 'Montserrat' sans-serif;
+  font-weight: 500;
+  font-size: 1.3em;
+  color : #ffffff;
+  margin-left: 0.6em;
+}
+.AboutUSBtn {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-flow: row nowrap;
+  padding: 1em;
+  margin: 1em;
+  width: 25em;
+  height: 5em;
+  border-radius: 20px;
+  box-shadow: 1px 3px 3px 2px #77838F65;
+  background-color: #5D5AA4;
+  
+}
+
