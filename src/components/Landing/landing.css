@@ -9,12 +9,13 @@
 }
 
 .CavalCloudLogo {
-    width: 7em ;
+    width: 9em ;
 }
 
 p {
     font-weight: 200;
     font-family: 'Open-sans', sans-serif;
+    font-size: 1em;
 }
 .slogan {
     color: #77838F;
@@ -48,7 +49,7 @@ button  {
 }
 
 #invite {
-    font-size: 0.7em;
+    font-size: 0.8em;
     font-weight: 750;
     color: #5D5AA4;
 }
