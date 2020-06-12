@@ -9,7 +9,9 @@
 }
 
 .CavalCloudLogo {
-    width: 9em ;
+    height: 9em;
+    width: 9em;
+    padding: 0.5em;
 }
 
 p {
@@ -32,7 +34,6 @@ p {
     height: 3em ;
     border-radius: 20px;
     border : none;
-    
 }
 
 #loginBtn {
@@ -151,6 +152,7 @@ body {
 .register_checkbox {
   font-size: 14px;
   padding: 1em;
+  
 }
 /* #register_checkbox_inp:checked{
   background-color: #5d5aa4 !important;

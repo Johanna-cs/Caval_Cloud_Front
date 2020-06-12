@@ -32,7 +32,7 @@ const Login = () => {
       <button className="login_button">SE CONNECTER</button>
       <div>
         <p>Pas encore de compte ?</p>
-        <Link to="/Register" style={{ textDecoration: "none" }}>
+        <Link to="/register" style={{ textDecoration: "none" }}>
           <p className="login_low_text">S'inscrire</p>
         </Link>
       </div>
