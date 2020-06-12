@@ -3,7 +3,7 @@ import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../App.css'
 import horse from './SVG-icons/horse-icon.svg'
-import helmet from './SVG-icons/bombe-icon.svg'
+import helmet from './SVG-icons/bombe-icon.svg' 
 import boot from './SVG-icons/botte-icon.svg'
 import horseFrame from './SVG-icons/horse-in-cadre-icon.svg'
 import cavalCloudLogo from './SVG-icons/cavalcloud-logoTest.jpg'
