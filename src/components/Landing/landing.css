@@ -1,4 +1,3 @@
-
 /* login page */
 
 body {
@@ -25,7 +24,7 @@ body {
   color: white;
   height: 3em;
   width: 18em;
-  outline:none;
+  outline: none;
 }
 .login_forms input {
   background: #b0b9d380;
@@ -45,7 +44,7 @@ body {
   text-decoration: underline;
   padding: 0.7em;
 }
-.login_low_text{
+.login_low_text {
   color: #5d5aa4;
   font-weight: bold;
 }
@@ -60,7 +59,7 @@ body {
   padding: 0.5em;
 }
 
-.register_button{
+.register_button {
   background-color: #59a080;
   border: none;
   border-style: none;
@@ -70,9 +69,12 @@ body {
   color: white;
   height: 3em;
   width: 18em;
-  outline:none;
+  outline: none;
 }
 
+.register_forms {
+  padding: 0.5em;
+}
 .register_forms input {
   background: #b0b9d380;
   border: none;
@@ -80,23 +82,22 @@ body {
   height: 3em;
   width: 18em;
 }
-.register_forms form {
-  padding: 0.3em;
-}
-.register_forms p {
-  font-size: 12px;
-  display: flex;
-  justify-content: flex-start;
-  margin-top: -0.2em;
-  padding: 0.7em;
-}
-.register_low_text{
+
+.register_low_text {
   color: #5d5aa4;
   font-weight: bold;
 }
-.register_mdp{
+.register_mdp {
   background-image: url(../SVG-icons/open-eye.svg);
   background-repeat: no-repeat;
   background-size: 1.4em;
   background-position: right;
 }
+.register_checkbox {
+  font-size: 14px;
+  padding: 1em;
+}
+/* #register_checkbox_inp:checked{
+  background-color: #5d5aa4 !important;
+
+} */

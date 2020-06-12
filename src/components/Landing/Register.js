@@ -2,13 +2,14 @@ import React from "react";
 import "./landing.css";
 import { Link } from "react-router-dom";
 import logo from "../SVG-icons/cavalcloud-logo.png";
+import { Form, FormGroup, Label, Input } from "reactstrap";
 
 const Register = () => {
   return (
     <div className="register_page">
       <img className="register_logo" src={logo} alt="logo" />
-      <div className="register_forms">
-        <form>
+      <div>
+        <form className="register_forms">
           <label>
             <input
               className="register_input_text"
@@ -18,7 +19,7 @@ const Register = () => {
             />
           </label>
         </form>
-        <form>
+        <form className="register_forms">
           <label>
             <input
               className="register_input_text"
@@ -27,7 +28,7 @@ const Register = () => {
             />
           </label>
         </form>
-        <form>
+        <form className="register_forms">
           <label>
             <input
               className="register_input_text"
@@ -36,7 +37,7 @@ const Register = () => {
             />
           </label>
         </form>
-        <form>
+        <form className="register_forms">
           <label className="register_mdp">
             <input
               className="register_input_text"
@@ -45,7 +46,14 @@ const Register = () => {
             />
           </label>
         </form>
-        <p>J'accepte les conditions d'utilisation</p>
+        <Form className="register_checkbox">
+          <FormGroup check inline>
+            <Label check>
+              <Input type="checkbox" id="register_checkbox_inp" /> J'accepte les
+              conditions d'utilisation
+            </Label>
+          </FormGroup>
+        </Form>
       </div>
       <button className="register_button">CREER UN COMPTE</button>
       <div>
