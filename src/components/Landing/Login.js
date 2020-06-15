@@ -1,7 +1,7 @@
 import React from "react";
 import "./landing.css";
 import { Link } from "react-router-dom";
-import logo from "../SVG-icons/cavalcloud-logo-OK copie.svg";
+import logo from "../SVG-icons/cavalcloud-logo.png";
 
 const Login = () => {
   return (
@@ -32,7 +32,7 @@ const Login = () => {
       <button className="login_button">SE CONNECTER</button>
       <div>
         <p>Pas encore de compte ?</p>
-        <Link to="/Register" style={{ textDecoration: "none" }}>
+        <Link to="/register" style={{ textDecoration: "none" }}>
           <p className="login_low_text">S'inscrire</p>
         </Link>
       </div>

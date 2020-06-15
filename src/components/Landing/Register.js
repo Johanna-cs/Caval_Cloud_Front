@@ -1,7 +1,7 @@
 import React from "react";
 import "./landing.css";
 import { Link } from "react-router-dom";
-import logo from "../SVG-icons/cavalcloud-logo-OK copie.svg";
+import logo from "../SVG-icons/cavalcloud-logo.png";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 
 const Register = () => {
@@ -58,7 +58,7 @@ const Register = () => {
       <button className="register_button">CREER UN COMPTE</button>
       <div>
         <p>Vous avez déjà un compte ?</p>
-        <Link to="/Login" style={{ textDecoration: "none" }}>
+        <Link to="/login" style={{ textDecoration: "none" }}>
           <p className="register_low_text">Se connecter</p>
         </Link>
       </div>
