@@ -1,6 +1,7 @@
 /* Search page  */
 .searchHorse_page {
     display: flex;
+    flex-flow: column nowrap;
     
 }
 .searchHorse_loc {
@@ -10,9 +11,13 @@
 #locInput {
     width: 18em;
 }
+#toggle_btn_chev {
+    width: 5em;
+    margin: 1em;
+}
 
 .searchHorse_loc2 {
-    display: block;
+    display: flex;
 }
 #toggle_btn_chev {
     margin: 1em;
@@ -31,4 +36,8 @@
 }
 .loc_map {
     width: 1em;
+}
+
+.searchHorse_price2 {
+    display: flex;
 }
