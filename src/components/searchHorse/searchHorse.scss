@@ -1,0 +1,107 @@
+/* Search page  */
+.searchHorse_page {
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 1.5em;
+    width: 100%;
+}
+/* common css btn etc */
+#toggle_btn_chev {
+    width: 5em;
+    margin: 1em;
+}
+.mainInput {
+    width: 18em;
+    background-color: #b0b9d370;
+    border : none ;
+    border-radius: 2px;
+    height: 2em;
+    padding: 1em;
+}
+/* Localisation */
+.searchHorse_loc {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.searchHorse_loc2 {
+    display: flex;
+}
+
+.rayon_loc {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em;
+}
+.rayon_loc span {
+    margin: 1em;
+}
+.last_loc {
+    display: flex;
+    flex-direction: column;
+}
+.lastLoc{
+    display: flex;
+    flex-flow: row nowrap;
+}
+.aroundMe {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.loc_map {
+    width: 1.5em;
+    padding: 0.3em;
+}
+/* Price */
+.searchHorse_price {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+.searchHorse_price2 {
+    display: flex;
+}
+.selectDevise {
+    padding: 0.5em;
+    text-align: left;
+    
+}
+.deviseLabel {
+    font-weight: 300;
+}
+
+.deviseForm {
+    display: flex;
+    justify-content: space-between; 
+}
+.deviseInput input{
+    margin-left: auto;
+}
+
+/* Disciplines */
+.searchHorse_disc {
+    text-align: left;
+}
+.disciplineList {
+    display: flex;
+    flex-direction: column;
+
+}
+.discipline {
+    background-color: #5D5AA4;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    color : white;
+    padding: 1em;
+    margin-bottom: 0.5em;
+    border-radius: 10px;
+}
+.discipline label {
+    font-weight: 400;
+}
+.discipline input :checked {
+    color: #5D5AA4;
+}
