@@ -5,6 +5,12 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+<<<<<<< HEAD
+=======
+import 'bootstrap-toggle/css/bootstrap-toggle.min.css';
+
+
+>>>>>>> a78afa3ee7d49e52a8f727cb4c004e71ec8c2e77
 ReactDOM.render(
   <BrowserRouter>
     <App />
