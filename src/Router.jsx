@@ -4,6 +4,7 @@ import Landing from "./components/Landing/Landing";
 import Home from "./components/Home"
 import Login from "./components/Landing/Login";
 import Register from "./components/Landing/Register";
+import SearchHorse from "./components/searchHorse/SearchHorse"
 
 
 const Router = () => {
@@ -14,6 +15,7 @@ const Router = () => {
         <Route exact path="/home" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
+        <Route exact path="/search-horse" component={SearchHorse} />
       </Switch>
     </>
   );

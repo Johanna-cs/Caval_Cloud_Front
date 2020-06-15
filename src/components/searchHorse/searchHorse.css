@@ -1,0 +1,7 @@
+/* Search page  */
+.searchHorse_page {
+    display: flex;
+}
+#loc_title {
+    font-weight: 400;
+}
