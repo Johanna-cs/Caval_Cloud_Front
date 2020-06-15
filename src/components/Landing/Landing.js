@@ -4,11 +4,8 @@ import Axios from 'axios'
 import './landing.css'
 import logoCavalCloud from '../SVG-icons/cavalcloud-logo.png'
 
-function Landing(props) {
-    // const [createProfile, setCreateProfile] = useState(props.Register)
-    // const [loginProfile, setLoginProfile] = useState(props.Login)
+const Landing = () => {
 
-    
         return (
             <div className='LandingPage'>
                 <div>
@@ -40,4 +37,4 @@ function Landing(props) {
         )
     
 }
-export default Landing ;
+export default Landing 

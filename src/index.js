@@ -4,9 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-toggle/css/bootstrap-toggle.min.css';
-
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 ReactDOM.render(
   <BrowserRouter>

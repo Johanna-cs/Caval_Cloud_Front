@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
-import '../App.css'
+import './Home.css'
 import horse from './SVG-icons/horse-icon.svg'
 import helmet from './SVG-icons/bombe-icon.svg' 
 import boot from './SVG-icons/botte-icon.svg'

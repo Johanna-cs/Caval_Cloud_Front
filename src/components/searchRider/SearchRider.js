@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import { Collapse, Button } from 'reactstrap';
-import Position from './Position';
+// import Position from '../Position';
+import Header from '../Header_footer/Header'
 import './SearchRider.css';
+
 
 const SearchRider = () => {
 
@@ -10,14 +12,16 @@ const SearchRider = () => {
     const toggle = () => setIsOpen(!isOpen);
 
     return (
-        <div className="main">
+        <>
 
-            <h3>CHERCHER UN CAVALIER</h3>
+        <Header title='CHERCHER UN CAVALIER'/>
+
+        <div className="main">
 
             <div className="localisation">            
                 <h4>Localisation</h4>
                 <input name='localisation' id='localisation' type='number' placeholder='  Saisissez une ville et un rayon'></input>
-                <Position />
+                {/* <Position /> */}
 
                 <Button onClick={toggle} id="btn-discipline" style={{ marginBottom: '1rem', border : 'none'}}>
                     <svg class="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -128,6 +132,9 @@ const SearchRider = () => {
                 
 
         </div>
+
+
+        </>
     )
 
 }
