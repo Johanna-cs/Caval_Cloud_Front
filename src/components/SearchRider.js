@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import { Collapse, Button, Card } from 'reactstrap';
+import { Collapse, Button } from 'reactstrap';
+import Position from './Position';
 import './SearchRider.css';
 
 const SearchRider = () => {
@@ -9,13 +10,14 @@ const SearchRider = () => {
     const toggle = () => setIsOpen(!isOpen);
 
     return (
-        <>
+        <div className="main">
 
             <h3>CHERCHER UN CAVALIER</h3>
 
             <div className="localisation">            
-                <h5>Localisation : </h5>
+                <h4>Localisation</h4>
                 <input name='localisation' id='localisation' type='number' placeholder='  Saisissez une ville et un rayon'></input>
+                <Position />
 
                 <Button onClick={toggle} id="btn-discipline" style={{ marginBottom: '1rem', border : 'none'}}>
                     <svg class="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -31,7 +33,7 @@ const SearchRider = () => {
 
             <div className='list-disciplines'>
 
-                <h5>Disciplines : </h5>
+                <h4>Disciplines</h4>
                 <div className='discipline'>
                     <label for="obstacle">Obstacle</label>
                     <input type="checkbox" id="obstacle" name="obstacle"></input>
@@ -64,16 +66,68 @@ const SearchRider = () => {
 
             </div>
 
-            {/* <!-- Rounded switch --> */}
-            <label class="switch">
-                <input type="checkbox"></input>
-                <span class="slider round"></span>
-            </label>
+            <div className='section'>
 
-            <input type="checkbox" checked data-toggle="toggle"></input>
-            
+                <h4>Balade</h4>
+                <div className='btn-on-off'>
+                    
+                    <p>J'aimerais pouvoir partir en balade</p>
+                    <label class="switch">
+                        <input type="checkbox"></input>
+                        <span class="slider round"></span>
+                    </label>
 
-        </>
+                </div>
+
+            </div>
+
+            <div className='section'>
+
+                <h4>Concours</h4>
+                <div className='btn-on-off'>
+                    
+                    <p>J'aimerais pouvoir sortir en concours</p>
+                    <label class="switch">
+                        <input type="checkbox"></input>
+                        <span class="slider round"></span>
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div className='search-button'>
+                <button id="search-button">LANCER MA RECHERCHE</button>
+            </div>
+
+            <div className='section'>
+
+                <h4>Autonomie</h4>
+
+                <div className='btn-on-off'>
+                
+                    <p>Je suis véhiculé</p>
+                    <label class="switch">
+                        <input type="checkbox"></input>
+                        <span class="slider round"></span>
+                    </label>
+
+                </div>
+
+                <div className='btn-on-off'>
+
+                    <p>J'ai déjà eu un cheval sous ma responsabilité</p>
+                    <label class="switch">
+                        <input type="checkbox"></input>
+                        <span class="slider round"></span>
+                    </label>
+
+                </div>
+
+            </div>
+                
+
+        </div>
     )
 
 }
