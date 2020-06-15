@@ -1,7 +1,34 @@
 /* Search page  */
 .searchHorse_page {
     display: flex;
+    
 }
-#loc_title {
-    font-weight: 400;
+.searchHorse_loc {
+    display: flex;
+    flex-direction: column;
+}
+#locInput {
+    width: 18em;
+}
+
+.searchHorse_loc2 {
+    display: block;
+}
+#toggle_btn_chev {
+    margin: 1em;
+}
+.rayon_loc {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em;
+}
+.rayon_loc span {
+    margin: 1em;
+}
+.last_loc {
+    display: flex;
+    flex-direction: column;
+}
+.loc_map {
+    width: 1em;
 }
