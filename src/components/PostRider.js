@@ -128,46 +128,43 @@ const PostRider = () => {
                     </label>
                   </form>
                   <h4>Devise:</h4>
-                  <div className="form-check">
+                  <div className="postRider_radio-devise">
+                    Euros - €
                     <input
-                      className="form-check-input"
+                      className="form-check-input-devise"
                       type="radio"
-                      name="exampleRadios"
-                      id="exampleRadios1"
+                      name="devise"
+                      id="devise1"
                       value="option1"
-                      checked
                     />
-                    <label className="form-check-label" for="exampleRadios1">
-                      Euros - €
-                    </label>
+                    <label
+                      className="postRider_radio-devise"
+                      for="devise1"
+                    ></label>
                   </div>
                   <hr />
-                  <div className="form-check">
+                  <div className="postRider_radio-devise">
+                    Livre sterling - £
                     <input
-                      className="form-check-input"
+                      className="form-check-input-devise"
                       type="radio"
-                      name="exampleRadios"
-                      id="exampleRadios1"
-                      value="option1"
-                      checked
+                      name="devise"
+                      id="devise2"
+                      value="option2"
                     />
-                    <label className="form-check-label" for="exampleRadios1">
-                      Livre sterling - £
-                    </label>
+                    <label className="form-check-label" for="devise2"></label>
                   </div>
                   <hr />
-                  <div className="form-check">
+                  <div className="postRider_radio-devise">
+                    Dollar - $
                     <input
-                      className="form-check-input"
+                      className="form-check-input-devise"
                       type="radio"
-                      name="exampleRadios"
-                      id="exampleRadios1"
-                      value="option1"
-                      checked
+                      name="devise"
+                      id="devise3"
+                      value="option3"
                     />
-                    <label className="form-check-label" for="exampleRadios1">
-                      Dollar - $
-                    </label>
+                    <label className="form-check-label" for="devise3"></label>
                   </div>
                 </div>
               </CardBody>
@@ -188,11 +185,88 @@ const PostRider = () => {
         <p>Galop</p>
       </div>
       <hr />
-      <div>
-        <h4>Discipline</h4>
-        <p>Obstacle</p>
-        <p>Dressage</p>
-        <p>voir plus</p>
+
+      <div className="searchHorse_disc">
+        <h4>Disciplines</h4>
+        <div className="disciplineList">
+          <div className="discipline">
+            <label className="container" for="obstacle">
+              Obstacle
+              <input
+                className="discipline-check"
+                type="checkbox"
+                id="obstacle"
+                name="obstacle"
+              />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+
+          <div className="discipline">
+            <label class="container" for="dressage">
+              Dressage
+              <input
+                className="discipline-check"
+                type="checkbox"
+                id="dressage"
+                name="dressage"
+              />
+              <span className="checkmark"></span>
+            </label>
+          </div>
+
+          <div className="discipline">
+            <label class="container" for="cce">
+              CCE
+              <input
+                className="discipline-check"
+                type="checkbox"
+                id="cce"
+                name="cce"
+              />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+
+          <div className="discipline">
+            <label class="container" for="ethologie">
+              Ethologie
+              <input
+                className="discipline-check"
+                type="checkbox"
+                id="ethologie"
+                name="ethologie"
+              />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+
+          <div className="discipline">
+            <label class="container" for="attelage">
+              Attelage
+              <input
+                className="discipline-check"
+                type="checkbox"
+                id="attelage"
+                name="attelage"
+              />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+
+          <div className="discipline">
+            <label class="container" for="trec">
+              TREC
+              <input
+                className="discipline-check"
+                type="checkbox"
+                id="trec"
+                name="trec"
+              />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
       </div>
       <hr />
       <div>
@@ -233,14 +307,14 @@ const PostRider = () => {
                     <input
                       className="postRider-form-check-input"
                       type="radio"
-                      name="exampleRadios"
-                      id="exampleRadios1"
+                      name="frequency"
+                      id="frequency1"
                       value="option1"
                       checked
                     />
                     <label
                       className="postRider-form-check-label"
-                      for="exampleRadios1"
+                      for="frequency1"
                     ></label>
                   </div>
                   <hr />
@@ -249,14 +323,14 @@ const PostRider = () => {
                     <input
                       className="postRider-form-check-input"
                       type="radio"
-                      name="exampleRadios"
-                      id="exampleRadios1"
-                      value="option1"
+                      name="frequency"
+                      id="frequency2"
+                      value="option2"
                       checked
                     />
                     <label
                       className="postRider-form-check-label"
-                      for="exampleRadios1"
+                      for="frequency2"
                     ></label>
                   </div>
                   <hr />
@@ -265,14 +339,14 @@ const PostRider = () => {
                     <input
                       className="postRider-form-check-input"
                       type="radio"
-                      name="exampleRadios"
-                      id="exampleRadios1"
-                      value="option1"
+                      name="frequency"
+                      id="frequency3"
+                      value="option3"
                       checked
                     />
                     <label
                       className="postRider-form-check-label"
-                      for="exampleRadios1"
+                      for="frequency3"
                     ></label>
                   </div>
                   <hr />
@@ -281,32 +355,30 @@ const PostRider = () => {
                     <input
                       className="postRider-form-check-input"
                       type="radio"
-                      name="exampleRadios"
-                      id="exampleRadios1"
-                      value="option1"
+                      name="frequency"
+                      id="frequency4"
+                      value="option4"
                       checked
                     />
                     <label
                       className="postRider-form-check-label"
-                      for="exampleRadios1"
+                      for="frequency4"
                     ></label>
                   </div>
                   <hr />
                   <h4>Régularité:</h4>
                   <div className="postRider-form-check">
                     Jours fixes
-                    <div className="custom-control custom-switch">
-                      <div className="postRider-form-check">
-                        <input
-                          type="checkbox"
-                          className="custom-control-input"
-                          id="customSwitch1"
-                        />
-                        <label
-                          className="custom-control-label"
-                          for="customSwitch1"
-                        ></label>
-                      </div>
+                    <div className="postRider-form-check">
+                      <input
+                        type="checkbox"
+                        className="custom-control-input"
+                        id="customSwitch1"
+                      />
+                      <label
+                        className="custom-control-label"
+                        for="customSwitch1"
+                      ></label>
                     </div>
                   </div>
                 </div>
