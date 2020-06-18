@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import './searchHorse.scss'
-import { Collapse, Button } from 'reactstrap'
+import './searchHorse.css'
+import { Collapse, Button, Input } from 'reactstrap'
 import geoloc from '../SVG-icons/geolocalisation.svg'
 import loc from '../SVG-icons/geolocation-icon2.svg'
 import locmap from '../SVG-icons/map-marker-alt-solid.svg'
@@ -16,7 +16,6 @@ const SearchHorse = () => {
       
     return (
         <div className='searchHorse_page'>
-
             <div className='searchHorse_loc'>
                 <h4>Localisation </h4>
                 <input className='mainInput' placeholder='Localisation'/>
@@ -63,17 +62,17 @@ const SearchHorse = () => {
                             <div className='selectDevise'> 
                                 <div className='deviseForm'> 
                                     <label className='deviseLabel' for='selectEur'> Euros - € </label>
-                                    <input className='deviseInput' name='selectEur' type="radio" value="option1" checked/>
+                                    <input className='selectEur' id='selectEur' type="radio" value="euros"/>
                                 </div>
                                 <hr />
                                 <div className='deviseForm'>
                                     <label className='deviseLabel' for='selectLiv'> Livre Sterling - £ </label>
-                                    <input className='deviseInput' name='selectLiv' type="radio" value="option2" />
+                                    <input className='selectLiv' id='selectLiv' type="radio" value="livre" />
                                 </div>
                                 <hr />
                                 <div className='deviseForm'>
                                     <label className='deviseLabel' for='selectDol'> Dollar - $ </label>
-                                    <input className='deviseInput' name='selectDol' type="radio" value="option3" />
+                                    <input className='selectDol' id='selectDol' type="radio" value="dollar" />
                                 </div>
                                 <hr />
                             </div>
@@ -81,42 +80,157 @@ const SearchHorse = () => {
                 </div>
             </div>
             <hr />
-            <div className='searchHorse_disc'>
-
+            <div className="searchHorse_disc">
                 <h4>Disciplines</h4>
-                <div className='disciplineList'>
-                    <div className='discipline'>
-                        <label for="obstacle">Obstacle</label>
-                        <input type="checkbox" id="obstacle" name="obstacle"></input>
-                    </div>
+                <div className="disciplineList">
+                <div className="discipline">
+                    <label className="container" for="obstacle">
+                        Obstacle
+                    <input className="discipline-check" type="checkbox" id="obstacle" name="obstacle"/>
+                    <span class="checkmark"></span>
+                    </label>
+                </div>
 
-                    <div className='discipline'>
-                        <label for="dressage">Dressage</label>
-                        <input type="checkbox" id="dressage" name="dressage" checked></input>
-                    </div>
+                <div className="discipline">
+                    <label class="container" for="dressage">
+                        Dressage
+                    <input className="discipline-check" type="checkbox" id="dressage" name="dressage"/>
+                    <span className="checkmark"></span>
+                    </label>
+                </div>
 
-                    <div className='discipline'>
-                        <label for="cce">CCE</label>
-                        <input type="checkbox" id="cce" name="cce"></input>
-                    </div>
+                <div className="discipline">
+                    <label class="container" for="cce">
+                        CCE
+                    <input className="discipline-check" type="checkbox" id="cce" name="cce"/>
+                    <span class="checkmark"></span>
+                    </label>
+                </div>
 
-                    <div className='discipline'>
-                        <label for="ethologie">Ethologie</label>
-                        <input type="checkbox" id="ethologie" name="ethologie"></input>
-                    </div>
+                <div className="discipline">
+                    <label class="container" for="ethologie">
+                        Ethologie
+                    <input className="discipline-check" type="checkbox" id="ethologie" name="ethologie"/>
+                    <span class="checkmark"></span>
+                    </label>
+                </div>
 
-                    <div className='discipline'>
-                        <label for="attelage">Attelage</label>
-                        <input type="checkbox" id="attelage" name="attelage"></input>
-                    </div>
+                <div className="discipline">
+                    <label class="container" for="attelage">
+                        Attelage
+                    <input className="discipline-check" type="checkbox" id="attelage" name="attelage"/>
+                    <span class="checkmark"></span>
+                    </label>
+                </div>
 
-                    <div className='discipline'>
-                        <label for="trec">TREC</label>
-                        <input type="checkbox" id="trec" name="trec"></input>
+                <div className="discipline">
+                    <label class="container" for="trec">
+                        TREC
+                    <input className="discipline-check" type="checkbox" id="trec" name="trec"/>
+                    <span class="checkmark"></span>
+                    </label>
+                </div>
+        </div>
+      </div>
+            <hr />
+            <div className='searchHorse_struc'>
+                <h4>Structure à disposition </h4>
+                <div className='structureList'>
+                    <div className='structure'>
+                            <label class="container"  for="longe">
+                                Rond de longe
+                            <input className="structure-check" type="checkbox" id="longe" name="longe" />
+                            <span class="checkmark"></span>
+                            </label>
+                    </div>
+                    <div className='structure'>
+                            <label class="container"  for="carriere">
+                                Carrière
+                            <input className="structure-check" type="checkbox" id="carriere" name="carriere"/>
+                            <span class="checkmark"></span>
+                            </label>
+                    </div>
+                    <div className='structure'>
+                            <label class="container" for="manege">
+                                Manège couvert
+                            <input className="structure-check" type="checkbox" id="manege" name="manege"/>
+                            <span class="checkmark"></span>
+                            </label>
+                    </div>
+                    <div className='structure'>
+                            <label class="container" for="champs">
+                                Champs
+                            <input className="structure-check" type="checkbox" id="champs" name="champs"/>
+                            <span class="checkmark"></span>
+                            </label>
+                    </div>
+                    <div className='structure'>
+                            <label class="container" for="piste">
+                                Piste de trotting
+                            <input className="structure-check" type="checkbox" id="piste" name="piste"/>
+                            <span class="checkmark"></span>
+                            </label>
+                    </div>
+                    <div className='structure'>
+                        <label class="container" for="check">
+                            Chemins de balade
+                        <input className="structure-check" type="checkbox" className="check" id="check" />
+                        <span class="checkmark"></span>
+                            </label>
                     </div>
                 </div>
             </div>
-
+            <hr />
+            <div className='searchHorse_bal'>
+                <h4>Balade</h4>
+                    <div className='balade'>
+                    <p>J'aimerais pouvoir partir en balade</p>
+                    <label class="switch">
+                        <input type="checkbox"></input>
+                        <span class="slider round"></span>
+                    </label>
+                    </div>
+                </div>
+            <hr />
+            <div className='searchHorse_idealHorse'>
+                <div className='horse_size'>
+                    <h4> Taille :</h4>
+                    <input type="range" min="1" max="2,2" />
+                </div>
+                <hr />
+                <div className='horse_temper'>
+                    <h4> Tempérament :</h4>
+                    <div className='select_temper'>
+                        <Button className='selectBtn' size='lg'>Calme</Button>
+                        <Button className='selectBtn' size='lg'>Dynamique</Button>
+                        <Button className='selectBtn' size='lg'>Speed</Button>
+                        <Button className='selectBtn' size='lg'>A canaliser</Button>
+                    </div>
+                </div>
+                <hr />
+                <div className='horse_caracter'>
+                    <h4> Caractère :</h4>
+                    <div className='select_caracter'>
+                        <Button className='selectBtn' size='lg'>Affectueux</Button>
+                        <Button className='selectBtn' size='lg'>Froid</Button>
+                        <Button className='selectBtn' size='lg'>Joueur</Button>
+                        <Button className='selectBtn' size='lg'>Sensible</Button>
+                    </div>
+                </div>
+                <hr />
+                <div className='horse_body'>
+                    <h4> Physique :</h4>
+                    <div className='select_body'>
+                        <Button className='selectBtn' size='lg'>Fin</Button>
+                        <Button className='selectBtn' size='lg'>Classique</Button>
+                        <Button className='selectBtn' size='lg'>Porteur</Button>
+                        <Button className='selectBtn' size='lg'>Lourd</Button>
+                    </div>
+                </div>
+            </div>
+            <div className='search-button'>
+                <button id="search-button">LANCER MA RECHERCHE</button>
+            </div>
         </div>
     )
 }
