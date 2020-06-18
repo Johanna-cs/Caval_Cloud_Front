@@ -41,7 +41,7 @@ const PostRiderPresentation = () => {
         <h4>Message:</h4>
         <form className="postRider_message">
           <label>
-            <input
+            <textarea
               className="postRider_input"
               type="text"
               placeholder="Ajoutez quelques mots"

@@ -35,10 +35,10 @@
   padding: 1em;
   border-radius: 2%;
 }
-.postRider_message input {
+.postRider_message textarea{
   display: flex;
   flex-wrap: wrap;
-  height: 15em;
+  height: 12em;
 }
 .postRider_edit-button {
   background-color: white;
