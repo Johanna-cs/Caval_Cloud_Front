@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./postRider.css";
 import { Collapse, Button, CardBody, Card } from "reactstrap";
+import { Link } from "react-router-dom";
 
 import logo from "./SVG-icons/cavalcloud-logo.png";
 
@@ -85,9 +86,11 @@ const PostRider = () => {
           since the 1500s, when an unknown printer took a galley of type and
           scrambled it to make a type specimen book.
         </p>
-        <button className="postRider_edit-button">
-          Editer votre présentation
-        </button>
+        <Link to="/PostRiderPresentation" style={{ textDecoration: "none" }}>
+          <button className="postRider_edit-button">
+            Editer votre présentation
+          </button>
+        </Link>
       </div>
       <hr />
       <div>
@@ -120,7 +123,7 @@ const PostRider = () => {
                   <form className="postRider_price-form">
                     <label>
                       <input
-                        className="postRider_input_price"
+                        className="postRider_input"
                         type="number"
                         placeholder=" Budget"
                         autoFocus
@@ -175,8 +178,36 @@ const PostRider = () => {
       <hr />
       <div>
         <h4>Autonomie</h4>
-        <p>Je suis véhiculé</p>
-        <p>J'ai déjà eu un cheval sous ma responsabilité</p>
+        <div className="postRider-autonomy">
+          <div className="postRider-form-check">
+            Je suis véhiculé
+            <div className="postRider-form-check">
+              <input
+                type="checkbox"
+                className="custom-control-input"
+                id="vehicledSwitch"
+              />
+              <label
+                className="custom-control-label"
+                for="vehicledSwitch"
+              ></label>
+            </div>
+          </div>
+          <div className="postRider-form-check">
+            J'ai déjà eu un cheval sous ma responsabilité
+            <div className="postRider-form-check">
+              <input
+                type="checkbox"
+                className="custom-control-input"
+                id="responsabilitySwitch"
+              />
+              <label
+                className="custom-control-label"
+                for="responsabilitySwitch"
+              ></label>
+            </div>
+          </div>
+        </div>
       </div>
       <hr />
       <div>
@@ -186,14 +217,14 @@ const PostRider = () => {
       </div>
       <hr />
 
-      <div className="searchHorse_disc">
+      <div className="postRider-disc">
         <h4>Disciplines</h4>
-        <div className="disciplineList">
-          <div className="discipline">
+        <div className="postRider-disciplineList">
+          <div className="postRider-discipline">
             <label className="container" for="obstacle">
               Obstacle
               <input
-                className="discipline-check"
+                className="postRider-discipline-check"
                 type="checkbox"
                 id="obstacle"
                 name="obstacle"
@@ -202,11 +233,11 @@ const PostRider = () => {
             </label>
           </div>
 
-          <div className="discipline">
+          <div className="postRider-discipline">
             <label class="container" for="dressage">
               Dressage
               <input
-                className="discipline-check"
+                className="postRider-discipline-check"
                 type="checkbox"
                 id="dressage"
                 name="dressage"
@@ -215,11 +246,11 @@ const PostRider = () => {
             </label>
           </div>
 
-          <div className="discipline">
+          <div className="postRider-discipline">
             <label class="container" for="cce">
               CCE
               <input
-                className="discipline-check"
+                className="postRider-discipline-check"
                 type="checkbox"
                 id="cce"
                 name="cce"
@@ -228,11 +259,11 @@ const PostRider = () => {
             </label>
           </div>
 
-          <div className="discipline">
+          <div className="postRider-discipline">
             <label class="container" for="ethologie">
               Ethologie
               <input
-                className="discipline-check"
+                className="postRider-discipline-check"
                 type="checkbox"
                 id="ethologie"
                 name="ethologie"
@@ -241,11 +272,11 @@ const PostRider = () => {
             </label>
           </div>
 
-          <div className="discipline">
+          <div className="postRider-discipline">
             <label class="container" for="attelage">
               Attelage
               <input
-                className="discipline-check"
+                className="postRider-discipline-check"
                 type="checkbox"
                 id="attelage"
                 name="attelage"
@@ -254,11 +285,11 @@ const PostRider = () => {
             </label>
           </div>
 
-          <div className="discipline">
+          <div className="postRider-discipline">
             <label class="container" for="trec">
               TREC
               <input
-                className="discipline-check"
+                className="postRider-discipline-check"
                 type="checkbox"
                 id="trec"
                 name="trec"
@@ -271,9 +302,20 @@ const PostRider = () => {
       <hr />
       <div>
         <h4>Autre</h4>
-        <p>Je suis ouvert à pratiquer d'autres disciplines</p>
+        <div className="postRider-form-check">
+          Je suis ouvert à pratiquer d'autres disciplines
+          <div className="postRider-form-check">
+            <input
+              type="checkbox"
+              className="custom-control-input"
+              id="otherSwitch"
+            />
+            <label className="custom-control-label" for="otherSwitch"></label>
+          </div>
+        </div>
       </div>
       <hr />
+
       <div>
         <h4>Rythme de venue</h4>
         <p>Fréquence : 5 à 7 fois / semaine</p>
@@ -398,13 +440,54 @@ const PostRider = () => {
       <hr />
       <div>
         <h4>Coaching</h4>
-        <p>J'aimerais avoir accès à des cours</p>
-        <p>J'aimerais faire intervenir un coach de l'extérieur</p>
+        <div className="postRider-coaching">
+          <div className="postRider-form-check">
+            J'aimerais avoir accès à des cours
+            <div className="postRider-form-check">
+              <input
+                type="checkbox"
+                className="custom-control-input"
+                id="coaching1Switch"
+              />
+              <label
+                className="custom-control-label"
+                for="coaching1Switch"
+              ></label>
+            </div>
+          </div>
+          <div className="postRider-form-check">
+            J'aimerais faire intervenir un coach extérieur
+            <div className="postRider-form-check">
+              <input
+                type="checkbox"
+                className="custom-control-input"
+                id="coaching2Switch"
+              />
+              <label
+                className="custom-control-label"
+                for="coaching2Switch"
+              ></label>
+            </div>
+          </div>
+        </div>
       </div>
       <hr />
       <div>
         <h4>Concours</h4>
-        <p>J'aimerais pouvoir sortir en concours</p>
+        <div className="postRider-form-check">
+          J'aimerais pouvoir sortir en concours
+          <div className="postRider-form-check">
+            <input
+              type="checkbox"
+              className="custom-control-input"
+              id="competeSwitch"
+            />
+            <label className="custom-control-label" for="competeSwitch"></label>
+          </div>
+        </div>
+      </div>
+      <div className="search-button">
+        <button id="search-button">LANCER MA RECHERCHE</button>
       </div>
     </div>
   );

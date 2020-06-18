@@ -2,6 +2,7 @@
   display: flex;
   flex-flow: column wrap;
   padding: 1.5em;
+  padding-bottom: 5em;
 }
 
 .postRider_page hr {
@@ -34,6 +35,11 @@
   padding: 1em;
   border-radius: 2%;
 }
+.postRider_message input {
+  display: flex;
+  flex-wrap: wrap;
+  height: 15em;
+}
 .postRider_edit-button {
   background-color: white;
   border: solid #5d5aa4 1px;
@@ -45,7 +51,13 @@
   width: 20.2em;
   outline: none;
 }
-.postRider_input_price {
+
+.postRider_price-form .postRider_forms {
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+}
+
+.postRider_input {
   background: #b0b9d380;
   border: none;
   border-radius: 3px;
@@ -56,6 +68,8 @@
 .postRider-form-check {
   display: flex;
   justify-content: space-between;
+  padding: 0.2em;
+  padding-top: 0.5em;
 }
 
 .postRider-form-check input {
@@ -112,25 +126,23 @@ input[type="radio"].form-check-input-devise:checked + label::after {
 
 /* Disciplines */
 
-.searchHorse_disc {
+.postRider-disc {
   text-align: left;
 }
-.disciplineList {
+.postRider-disciplineList {
   margin-top: 1em;
   display: flex;
   flex-direction: column;
 }
-.discipline {
+.postRider-discipline {
   background-color: #5d5aa4;
-  display: flex;
-  justify-content: space-between;
   align-items: baseline;
   color: white;
   padding: 1em;
   margin-bottom: 0.5em;
   border-radius: 10px;
 }
-.discipline label {
+.postRider-discipline label {
   font-weight: 400;
   font-size: 14px;
   background-color: #5d5aa4;
@@ -172,7 +184,7 @@ input[type="radio"].form-check-input-devise:checked + label::after {
 }
 
 .container input:checked ~ .checkmark {
-background-color: white;
+  background-color: white;
 }
 
 .checkmark:after {
@@ -190,7 +202,7 @@ background-color: white;
   top: 4px;
   width: 5px;
   height: 10px;
-  border: solid  #5d5aa4 ;
+  border: solid #5d5aa4;
   border-width: 0 2px 2px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
@@ -268,5 +280,28 @@ input[type="checkbox"].custom-control-input:checked + label::before {
   margin-left: 3.1em;
   background-color: #fff;
   border: #5d5aa4 solid 1px;
-  margin-top: -0.2em;
+  margin-top: -0.19em;
+}
+
+/* floating search button*/
+
+.search-button {
+  display: flex;
+  justify-content: center;
+}
+
+#search-button {
+  position: fixed;
+  background-color: #59a080;
+  border: none;
+  border-style: none;
+  border-radius: 20px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  color: white;
+  height: 3em;
+  width: 19em;
+  bottom: 1.5em;
+  outline: none;
+  z-index: 1;
 }
