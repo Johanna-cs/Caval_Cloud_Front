@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import "./postHorse.css";
 import { Collapse, Button, CardBody, Card } from "reactstrap";
@@ -493,3 +494,27 @@ const PostHorse = () => {
   );
 };
 export default PostHorse;
+=======
+import React from "react";
+import "./posthorse.css";
+import { Link } from "react-router-dom";
+import logo from "../SVG-icons/cavalcloud-logo.png";
+
+const Login = () => {
+  return (
+    <div >
+        <h2>Poster une Annonce Cheval</h2>
+        <p>Localisation</p>
+        <hr/>
+        <p>Prix</p>
+        <hr/>
+
+        <hr/>
+        <hr/>
+
+     
+    </div>
+  );
+};
+export default Login;
+>>>>>>> 2b3529eb5390b1ca65253779df5d356f3c438fc1
