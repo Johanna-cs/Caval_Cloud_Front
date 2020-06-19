@@ -2,8 +2,8 @@
 .searchHorse_page {
     display: flex;
     flex-flow: column nowrap;
-    margin-left: 2em;
-    margin-right: 2em;
+    margin-left: 3em;
+    margin-right: 3em;
     padding-bottom: 5em;
 }
 /* common css btn etc */
@@ -118,6 +118,7 @@ input[type="radio"].searchHorse_form-check-input {
     margin-bottom: 0.5em;
     border-radius: 10px;
     }
+
 .discipline label, .structure label, .ecurie label {
     font-size: 14px;
     background-color: #5d5aa4;

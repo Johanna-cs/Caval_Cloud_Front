@@ -6,8 +6,8 @@ import Login from "./components/Landing/Login";
 import Register from "./components/Landing/Register";
 import SearchRider from './components/searchRider/SearchRider'
 import SearchHorse from "./components/searchHorse/SearchHorse"
-import PostRider from "./components/PostRider";
-import PostRiderPresentation from "./components/PostRiderPresentation";
+import PostRider from "./components/postRider/PostRider";
+import PostRiderPresentation from "./components/postRider/PostRiderPresentation";
 
 const Router = () => {
   return (

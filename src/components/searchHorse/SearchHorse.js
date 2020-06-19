@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import './searchHorse.css'
 import { Collapse, Button, Input } from 'reactstrap'
 import geoloc from '../SVG-icons/geolocalisation.svg'
-import loc from '../SVG-icons/geolocation-icon2.svg'
 import locmap from '../SVG-icons/map-marker-alt-solid.svg'
 
 

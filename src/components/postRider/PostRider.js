@@ -3,7 +3,7 @@ import "./postRider.css";
 import { Collapse, Button, CardBody, Card } from "reactstrap";
 import { Link } from "react-router-dom";
 
-import logo from "./SVG-icons/cavalcloud-logo.png";
+import logo from "../SVG-icons/cavalcloud-logo.png";
 
 const PostRider = () => {
   const [isOpen, setIsOpen] = useState(true);

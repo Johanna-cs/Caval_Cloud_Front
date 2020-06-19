@@ -14,7 +14,8 @@ code {
 h4 {
   font-size: 15em;
   font-family: 'open-sans' sans-serif;
-  font-weight: 400 ;
+  font-weight: 400 !important;
+  text-align: left;
 }
 
 p {
