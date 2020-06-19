@@ -1,26 +1,54 @@
 import React, {useState, useEffect} from 'react'
 import { Collapse, Button } from 'reactstrap';
-// import Position from '../Position';
-import Header from '../Header_footer/Header'
+import Header from '../Header_footer/Header';
+import Axios from 'axios'
+import usePosition from '../usePosition';
 import './SearchRider.css';
 
+const latitudes = 43.620761599999994
+const longitudes = 5.305139200000001
 
 const SearchRider = () => {
 
     const [isOpen, setIsOpen] = useState(false);
+    const {latitude, longitude, error} = usePosition();
     
+    const [location, setLocation] = useState(null);
+    const [cityLocalisation, setCityLocalisation] = useState('')
+
     const toggle = () => setIsOpen(!isOpen);
+
+
+    const getLocation = () => {
+        Axios
+        .get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
+        .then(res => setCityLocalisation(res.data.address.municipality))
+        .catch(err => console.log(err))
+
+
+    }
+
+    useEffect(() => {
+        getLocation()
+    }, )
+
 
     return (
         <>
 
         <Header title='CHERCHER UN CAVALIER'/>
 
+        {/* <code>
+            latitude: {latitude}<br/>
+            longitude: {longitude}<br/>
+            error: {error}
+        </code> */}
+
         <div className="main">
 
             <div className="localisation">            
                 <h4>Localisation</h4>
-                <input name='localisation' id='localisation' type='number' placeholder='  Saisissez une ville et un rayon'></input>
+                <input name='localisation' id='localisation' type='text' placeholder='  Saisissez une ville et un rayon' value={cityLocalisation} onChange={(e) => setCityLocalisation(e.target.value)}></input>
                 {/* <Position /> */}
 
                 <Button onClick={toggle} id="btn-discipline" style={{ marginBottom: '1rem', border : 'none'}}>

@@ -7,9 +7,17 @@
     margin-bottom: 1em;
 }
 
+.main-head h4 {
+    text-align: center;
+}
+
 .header {
     display: flex;
     align-items: baseline;    
+}
+
+#chevron-left {
+    color: white;
 }
 
 

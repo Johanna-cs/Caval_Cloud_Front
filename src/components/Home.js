@@ -21,14 +21,14 @@ function Home(props) {
             <h5 className='welcome'> Bienvenue sur Cavalcloud ! </h5>
             <p className='welcomeText'> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod. </p>
 
-                <Link to='/searchHorse' style={{ textDecoration: "none" }} >
+                <Link to='/search-horse' style={{ textDecoration: "none" }} >
                     <div className='homeBtn' >
                         <img className='logoHorse' src={horse} alt='horse icon'/>
                         <p className='textBtn'> Chercher un équidé </p>
                     </div>
                 </Link>
 
-                <Link to='/searchRider' style={{ textDecoration: "none" }} >
+                <Link to='/search-rider' style={{ textDecoration: "none" }} >
                     <div  className='homeBtn' >
                         <img className='logoHelmet' src={helmet} alt='helmet icon'/>
                         <p className='textBtn'> Chercher un cavalier </p>
