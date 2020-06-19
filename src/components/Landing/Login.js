@@ -22,7 +22,7 @@ const Login = () => {
           <label>
             <input
               className="login_input_text"
-              type="text"
+              type="password"
               placeholder=" Mot de passe"
             />
           </label>
