@@ -11,6 +11,7 @@ import BudgetMensuel from './BudgetMensuel'
 import Ecurie from './Ecurie'
 import HebergementHorse from './HebergementHorse'
 import FlottingButton from '../common/FlottingButton'
+import SlidingButton from '../common/SlidingButton'
 
 
 const SearchHorse = (props) => {
@@ -31,11 +32,10 @@ const SearchHorse = (props) => {
             <div className='searchHorse_bal'>
                 <h4>Balade</h4>
                 <div className='balade'>
-                    <p>J'aimerais pouvoir partir en balade</p>
-                    <label class="switch">
-                        <input type="checkbox"></input>
-                        <span class="slider round"></span>
-                    </label>
+                    <SlidingButton 
+                    SlidingButtonText="J'aimerais pouvoir partir en balade"
+                    SlidingButtonUD="baladSwitch"
+                    />
                 </div>
             </div>
             <hr />
@@ -53,20 +53,17 @@ const SearchHorse = (props) => {
             <div className='searchHorse_coaching'>
                 <h4>Coaching</h4>
                 <div className='coaching'>
-                    <p>Sur place</p>
-                    <label class="switch">
-                        <input type="checkbox"></input>
-                        <span class="slider round"></span>
-                    </label>
-                </div>
+                    <SlidingButton 
+                    SlidingButtonText="Sur place"
+                    SlidingButtonUD="coachSwitch"
+                    />
                 <div className='coaching'>
-                    <p>Intervenant exterieur</p>
-                    <label class="switch">
-                        <input type="checkbox"></input>
-                        <span class="slider round"></span>
-                    </label>
+                    <SlidingButton 
+                    SlidingButtonText="Intervenant exterieur"
+                    SlidingButtonUD="coachExtSwitch"
+                    />
                 </div>
-            </div>
+                </div>
             <hr />
 
             <hr />
@@ -100,7 +97,7 @@ const SearchHorse = (props) => {
             </div>
 
                 <FlottingButton btnName={'Lancer la recherche'}/>
-
+            </div>
         </div>
     )
 }

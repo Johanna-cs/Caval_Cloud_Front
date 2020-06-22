@@ -17,7 +17,7 @@ function Home(props) {
     return (
 
        <div className='HomePage'> 
-            <h5 className='welcome'> Bienvenue sur Cavalcloud ! </h5>
+            <h3 className='welcome'> Bienvenue sur Cavalcloud ! </h3>
             <p className='welcomeText'> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod. </p>
 
                 <Link to='/search-horse' style={{ textDecoration: "none" }} >
