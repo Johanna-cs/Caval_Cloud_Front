@@ -35,14 +35,14 @@ function Home(props) {
                     </div>
                 </Link>
 
-                <Link to='/postRider' style={{ textDecoration: "none" }} >
+                <Link to='/post-rider' style={{ textDecoration: "none" }} >
                 <div  className='homeBtn'>
                     <img className='logoboot' src={boot} alt='boot icon'/>
                     <p className='textBtn'> Poster une annonce cavalier </p>
                 </div>
                 </Link>
 
-                <Link to='/postHorse' style={{ textDecoration: "none" }} >
+                <Link to='/post-horse' style={{ textDecoration: "none" }} >
                     <div  className='homeBtn'>
                         <img className='logoHorseframe' src={horseFrame} alt='horse frame icon'/>
                         <p className='textBtn'> Poster une annonce cheval </p>
