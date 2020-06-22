@@ -63,6 +63,8 @@ body {
 }
 .login_page {
   margin-top: 12em;
+  text-align: center;
+
 }
 .login_logo {
   height: 9em;
@@ -108,6 +110,8 @@ body {
 
 .register_page {
   margin-top: 10em;
+  text-align: center;
+
 }
 .register_logo {
   height: 9em;

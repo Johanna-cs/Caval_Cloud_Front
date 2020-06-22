@@ -7,6 +7,7 @@ import RadioButton from "./common/RadioButton";
 import Carousel from "./common/Carousel";
 import logo from "./SVG-icons/cavalcloud-logo.png";
 import Checkbox from "./common/Checkbox";
+import RadioCheck from "./common/RadioCheck";
 
 const PostRider = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -73,35 +74,35 @@ const PostRider = () => {
             </svg>
           </Button>
           <Collapse isOpen={isOpen}>
-                <div>
-                  <h4>Prix mensuel maximum:</h4>
-                  <form className="postRider_price-form">
-                    <label>
-                      <input
-                        className="postRider_input"
-                        type="number"
-                        placeholder=" Budget"
-                        autoFocus
-                      />
-                    </label>
-                  </form>
-                  <h4>Devise:</h4>
-                  <RadioButton
-                    radioButtonText="Euros - €"
-                    radioButtonName="devise"
-                    radioButtonId="devise1"
+            <div>
+              <h4>Prix mensuel maximum:</h4>
+              <form className="postRider_price-form">
+                <label>
+                  <input
+                    className="postRider_input"
+                    type="number"
+                    placeholder=" Budget"
+                    autoFocus
                   />
-                  <RadioButton
-                    radioButtonText="Livre sterling - £"
-                    radioButtonName="devise"
-                    radioButtonId="devise2"
-                  />
-                  <RadioButton
-                    radioButtonText="Dollar - $"
-                    radioButtonName="devise"
-                    radioButtonId="devise3"
-                  />
-                </div>
+                </label>
+              </form>
+              <h4>Devise:</h4>
+              <RadioButton
+                radioButtonText="Euros - €"
+                radioButtonName="devise"
+                radioButtonId="devise1"
+              />
+              <RadioButton
+                radioButtonText="Livre sterling - £"
+                radioButtonName="devise"
+                radioButtonId="devise2"
+              />
+              <RadioButton
+                radioButtonText="Dollar - $"
+                radioButtonName="devise"
+                radioButtonId="devise3"
+              />
+            </div>
           </Collapse>
         </div>
       </div>
@@ -126,7 +127,6 @@ const PostRider = () => {
         <p>Galop</p>
       </div>
       <hr />
-
       <div className="postRider-disc">
         <h4>Disciplines</h4>
         <div className="postRider-disciplineList">
