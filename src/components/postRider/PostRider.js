@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import "./postRider.css";
 import { Collapse, Button} from "reactstrap";
 import { Link } from "react-router-dom";
-import SlidingButton from "./common/SlidingButton";
-import RadioButton from "./common/RadioButton";
-import Carousel from "./common/Carousel";
-import logo from "./SVG-icons/cavalcloud-logo.png";
-import Checkbox from "./common/Checkbox";
-import RadioCheck from "./common/RadioCheck";
+import SlidingButton from "../common/SlidingButton";
+import RadioButton from "../common/RadioButton";
+import Carousel from "../common/Carousel";
+import logo from "../SVG-icons/cavalcloud-logo.png"
+import Checkbox from "../common/Checkbox";
 
 const PostRider = () => {
   const [isOpen, setIsOpen] = useState(true);

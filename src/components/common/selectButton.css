@@ -1,0 +1,14 @@
+.selectBtn {
+    background-color: #b0b9d380;
+    margin: 0.2em ;
+    padding: none ;
+    width: 9em;
+    font-size: 1em !important;
+    outline: none!important;
+    overflow: visible;
+}
+
+.selectBtn a :checked {
+    background-color: #5D5AA4 ;
+}
+

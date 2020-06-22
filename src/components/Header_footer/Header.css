@@ -1,0 +1,42 @@
+.main-head {
+    background-color: #5D5AA4;
+    height: 4.5em;
+    color : white;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.main-head h4 {
+    text-align: center;
+}
+
+.header {
+    display: flex;
+    align-items: baseline;    
+}
+
+#chevron-left {
+    color: white;
+}
+
+
+.element:nth-child(1) /* On prend le deuxième bloc élément */
+{
+    background-color: blue;
+    align-self: flex-start; /* Seul ce bloc sera aligné à la fin */
+    order: 2;
+}
+
+.element:nth-child(2) /* On prend le deuxième bloc élément */
+{
+    background-color: blue;
+    align-self: flex-start; /* Seul ce bloc sera aligné à la fin */
+    order: 1;
+}
+
+
+/* #chevron-left {
+    margin-left: 0.5em;
+    margin-right: 1em;
+} */

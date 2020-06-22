@@ -56,7 +56,7 @@ const Register = () => {
           </FormGroup>
         </Form>
       </div>
-      <button className="register_button">CREER UN COMPTE</button>
+      <button className="register_button">Créer un compte</button>
       <div>
         <p>Vous avez déjà un compte ?</p>
         <Link to="/login" style={{ textDecoration: "none" }}>
