@@ -112,12 +112,9 @@ const SearchRider = () => {
                     </label>
 
                 </div>
-
             </div>
-                
-            <FlottingButton btnName={'Lancer la recherche'}/>
         </div>
-
+        <FlottingButton btnName={'Lancer la recherche'}/>
 
         </>
     )
