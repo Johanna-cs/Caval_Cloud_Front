@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './searchHorse.css'
 import { Collapse, Button, Input } from 'reactstrap'
-import Localisation from './Localisation'
-import Disciplines from './Disciplines'
+import Header from '../Header_footer/Header';
+import Localisation from '../common_section/Localisation'
+import Disciplines from '../common_section/Disciplines'
 import Structures from './Structures'
 import IdealHorse from './IdealHorse'
 import IdealOwner from './IdealOwner'
@@ -20,6 +21,8 @@ const SearchHorse = (props) => {
     const toggle = () => setIsOpen(!isOpen)
 
     return (
+        <>
+        <Header className='header' title='CHERCHER UN CHEVAL'/>
         <div className='searchHorse_page'>
                 <Localisation />
             <hr />
@@ -99,6 +102,7 @@ const SearchHorse = (props) => {
                 <FlottingButton btnName={'Lancer la recherche'}/>
             </div>
         </div>
+    </>
     )
 }
 

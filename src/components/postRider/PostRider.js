@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./postRider.css";
 import { Collapse, Button} from "reactstrap";
 import { Link } from "react-router-dom";
+import Header from '../Header_footer/Header';
 import SlidingButton from "../common/SlidingButton";
 import RadioButton from "../common/RadioButton";
 import Carousel from "../common/Carousel";
@@ -13,6 +14,8 @@ const PostRider = () => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
+    <>
+    <Header title='POSTER UNE ANNONCE CAVALIER'/>
     <div className="postRider_page">
       <div className="postRider_header">
         <img className="postRider_logo" src={logo} alt="logo" />
@@ -237,6 +240,7 @@ const PostRider = () => {
         <button id="post-button">PUBLIER MON ANNONCE</button>
       </div>
     </div>
+  </>
   );
 };
 export default PostRider;

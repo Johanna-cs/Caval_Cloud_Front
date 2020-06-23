@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Collapse, Button, Input } from 'reactstrap'
-import './searchHorse.css'
+import '../searchHorse/searchHorse.css'
 import geoloc from '../SVG-icons/geolocalisation.svg'
 import loc from '../SVG-icons/geolocation-icon2.svg'
 import locmap from '../SVG-icons/map-marker-alt-solid.svg'
