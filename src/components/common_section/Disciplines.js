@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Checkbox from '../common/Checkbox'
 import { Collapse, Button, Input } from 'reactstrap'
+import './common_section.css'
 
 const Disciplines = () => {
     
@@ -10,9 +11,9 @@ const Disciplines = () => {
     return (
 
 
-        <div className="postRider-disc">
+        <div className="disc">
             <h4>Disciplines</h4>
-        <div className="postRider-disciplineList">
+        <div className="disciplineList">
           <Checkbox CheckboxText="Obstacle" />
           <Checkbox CheckboxText="Dressage" />
           <Checkbox CheckboxText="CCE" />

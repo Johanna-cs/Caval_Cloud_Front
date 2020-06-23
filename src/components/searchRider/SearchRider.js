@@ -56,16 +56,14 @@ const SearchRider = () => {
                 <div> Age du cavalier 
 
                 </div>
+                <hr />
                 <SlidingButton SlidingButtonText='Personne véhiculée' SlidingButtonID='vehiculed' />
             </div>
             <hr />
                 <Disciplines />
             <hr />
                 <BudgetMensuel />
-            <hr />
-            <h4>Rythme de la demi-pension</h4>
-                <Frenquency />
-            
+                <Frenquency frequencyTitle='Rythme de la demi-pension'/>
             <h4>Concours</h4>
                 <SlidingButton SlidingButtonText='Le cavalier peut faire du concours avec mon cheval' SlidingButtonID='competitionOk' />
 
