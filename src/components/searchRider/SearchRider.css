@@ -1,6 +1,9 @@
-.main {
-    margin-left: 1em;
-    margin-right: 1em;
+.searchRider_page {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-left: 3em;
+  margin-right: 3em;
+  padding-bottom: 5em;
 }
 
 .localisation {
@@ -11,30 +14,6 @@
 .localisation input {
     border-radius: 20px;
     border : 1px solid black;
-}
-
-/* Bouton Toggle */
-#btn-discipline {
-    background-color: white;
-    color: #D6D6D8;
-    border: none;
-}
-
-.btn-secondary.focus, .btn-secondary:focus {
-    border: none;
-}
-
-/* Violet div discipline with checkbox */
-
-.discipline {
-    background-color: #5D5AA4;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    color : white;
-    padding: 1em;
-    margin-bottom: 0.5em;
-    border-radius: 10px;
 }
 
 /* Bouton On-Off */
@@ -107,24 +86,4 @@
     justify-content: space-between;
 }
 
-.search-button {
-    display: flex;
-    justify-content: center;
-}
-
-#search-button {
-    position: fixed;
-    background-color: #59a080;
-    border: none;
-    border-style: none;
-    border-radius: 20px;
-    font-family: "Open Sans", sans-serif;
-    font-weight: bold;
-    color: white;
-    height: 3em;
-    width: 19em;
-    bottom : 2em;
-    outline: none;
-    z-index: 1;
-}
 
