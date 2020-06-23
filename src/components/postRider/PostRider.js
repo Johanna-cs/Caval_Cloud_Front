@@ -84,7 +84,7 @@ const PostRider = () => {
                     className="postRider_input"
                     type="number"
                     placeholder=" Budget"
-                    autoFocus
+                    
                   />
                 </label>
               </form>

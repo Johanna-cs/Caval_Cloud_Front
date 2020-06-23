@@ -5,23 +5,28 @@
     display: flex;
     justify-content: space-around;
     align-items: baseline;
+    padding: 0.8em;
     margin-bottom: 1em;
+    word-break: break-all !important;
    
 }
 
 #header {
     margin-right: 1em;
     text-align: center;
+
 }
 
 h3 {
+    font-size: 1.2em !important;
     font-weight: 200 !important;
 }
 
 
-.bi {
+#chevron-header {
     text-align: left;
-    color: white;
+    color: white !important;
+    position: fixed;
 }
 
 
