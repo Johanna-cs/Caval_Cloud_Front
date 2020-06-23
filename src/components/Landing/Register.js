@@ -5,6 +5,7 @@ import logo from "../SVG-icons/cavalcloud-logo.png";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 import Axios from 'axios';
 
+
 const Register = () => {
 
   // Check if subscribe successfull or not

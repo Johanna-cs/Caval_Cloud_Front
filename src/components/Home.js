@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import Axios from 'axios';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css'
 import horse from './SVG-icons/horse-icon.svg'
@@ -18,7 +17,7 @@ function Home(props) {
     return (
 
        <div className='HomePage'> 
-            <h5 className='welcome'> Bienvenue sur Cavalcloud ! </h5>
+            <h3 className='welcome'> Bienvenue sur Cavalcloud ! </h3>
             <p className='welcomeText'> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod. </p>
 
                 <Link to='/search-horse' style={{ textDecoration: "none" }} >
@@ -49,7 +48,7 @@ function Home(props) {
                     </div>
                 </Link>
 
-                <Link to='/aboutUs' style={{ textDecoration: "none" }} >
+                <Link to='/about-us' style={{ textDecoration: "none" }} >
                     <div  className='AboutUSBtn'>
                         <img className='logoCaval' src={cavalCloudLogo} alt='caval cloud logo'/>
                         <p className='textUs'> Qui sommes-nous ? </p>

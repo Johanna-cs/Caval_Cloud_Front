@@ -22,14 +22,14 @@ const Login = () => {
           <label>
             <input
               className="login_input_text"
-              type="text"
+              type="password"
               placeholder=" Mot de passe"
             />
           </label>
         </form>
         <p>Mot de passe oublié</p>
       </div>
-      <button className="login_button">SE CONNECTER</button>
+      <button className="login_button">Se connecter</button>
       <div>
         <p>Pas encore de compte ?</p>
         <Link to="/register" style={{ textDecoration: "none" }}>

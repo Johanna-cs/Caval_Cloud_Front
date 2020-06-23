@@ -2,14 +2,15 @@
 .searchHorse_page {
     display: flex;
     flex-flow: column nowrap;
-    margin-left: 2em;
-    margin-right: 2em;
+    margin-left: 3em;
+    margin-right: 3em;
     padding-bottom: 5em;
 }
 /* common css btn etc */
 #toggle_btn_chev {
     width: 5em;
     margin: 1em;
+    color : #5d5aa4;
 }
 .mainInput {
     width: 18em;
@@ -24,9 +25,6 @@
     width: 100%;
   }
 /* ***** Localisation ***** */
-.searchHorse_loc {
-  text-align: left;
-}
 
 .rayon_loc {
     display: flex;
@@ -53,10 +51,7 @@
     width: 1.5em;
     padding: 0.3em;
 }
-/* ***** Price ***** */
-.searchHorse_price {
-    text-align: left;
-}
+
 /* ***** Button Radio all ok***** */
 .searchHorse_form-check {
   display: flex;
@@ -103,9 +98,6 @@ input[type="radio"].searchHorse_form-check-input {
 /* ***** Checkbox Violettes ***** */
 /* Disciplines, Structures, ecuries, hebergement */
 
-.searchHorse_disc, .searchHorse_struc, .searchHorse_ecuries, .searchHorse_hebergt, .searchHorse_rythme {
-    text-align: left;
-  }
 .disciplineList, .structureList, .ecuriesList, .hebergtList {
     margin-top: 1em;
     display: flex;
@@ -118,6 +110,7 @@ input[type="radio"].searchHorse_form-check-input {
     margin-bottom: 0.5em;
     border-radius: 10px;
     }
+
 .discipline label, .structure label, .ecurie label {
     font-size: 14px;
     background-color: #5d5aa4;
@@ -187,9 +180,7 @@ background-color: white;
 /* ------------------------- */
 /* ****** Slide buttons violet ******* */
 /* Balade, Coaching, Materiel, Concours */
-.searchHorse_bal, .searchHorse_coaching, .searchHorse_materiel, .searchHorse_compet {
-    text-align : left;
-}
+
 .searchHorse_bal p, .searchHorse_coaching p, .searchHorse_materiel p, .searchHorse_compet p {
     margin-right: 1em;
     word-wrap: break-word;
@@ -263,25 +254,12 @@ input:checked + .slider:before {
 
 /* ****** Grands button violet ******* */
 /* ideal Horse & ideal Rider */
-.horse_size, .horse_age, .rider_age, .rider_communication, .rider_horseWork {
-    text-align: left;
-}
-.horse_temper , .horse_caracter, .horse_body, .rider_caracter {
-    text-align: left;
-}
 .select_temper, .select_caracter, .select_body, .select_communication, .select_horseWork {
     display: flex;
     justify-content: space-evenly;
     flex-flow: row wrap;
 }
-.selectBtn {
-    background-color: #b0b9d380;
-    margin: 0.2em !important;
-    padding: 0.5em !important;
-    width: 9em;
-    font-size: 1em !important;
-    outline: none;
-}
+
 /* Boutons plus grands */
 .selectBtn2 {
     background-color: #b0b9d380;
@@ -291,31 +269,4 @@ input:checked + .slider:before {
     font-size: 1em !important;
     outline: none;
 }
-
-
 /* ------------------------- */
-
-
-
-
-/* ****** lancer la recherche ******* */
-.search-button {
-    display: flex;
-    padding : 2em;
-}
-#search-button {
-    position: fixed;
-    background-color: #59a080;
-    border: none;
-    border-style: none;
-    border-radius: 20px;
-    font-family: "Open Sans", sans-serif;
-    font-weight: bold;
-    color: white;
-    height: 3em;
-    width: 19em;
-    bottom : 1.5em;
-    outline: none;
-    z-index: 1;
-}
-
