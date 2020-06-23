@@ -115,7 +115,24 @@ const Register = () => {
           </FormGroup>
         </Form>
       </div>
-      <button className="register_button" onClick={(e) => subscribe(e)}>CREER UN COMPTE</button>
+
+      {dataUser.user_lastname && dataUser.user_firstname && dataUser.user_password &&  dataUser.user_email !== '' && dataUser.user_accept_CGV === 1 ? 
+        <button 
+          type='submit' 
+          className='register_button' 
+          disabled='false'
+          onClick={(e) => subscribe(e)}>
+            CREER UN COMPTE
+        </button>
+        : <button 
+          type='submit'
+          className='register_button'
+          // disabled='true' 
+          onClick={(e) => subscribe(e)}>
+            CREER UN COMPTE
+        </button>
+      }
+
       <div>
         <p>Vous avez déjà un compte ?</p>
         <Link to="/login" style={{ textDecoration: "none" }}>
