@@ -11,7 +11,7 @@ const Frequency = () => {
 
 
         <div className="searchHorse_rythme">
-            <h4>Rythme de venue</h4>
+            
             <p>Fréquence : 5 à 7 fois / semaine</p>
             <p>Régularité: jours fixes</p>
             <div>
@@ -27,7 +27,7 @@ const Frequency = () => {
                 </Button>
                 <Collapse isOpen={isOpen}>
                     <div>
-                        <h4>Fréquence:</h4>
+                        <h4>Fréquence </h4>
                         <div className="searchHorse_form-check">
                             5 à 7 fois / semaine
                             <input
