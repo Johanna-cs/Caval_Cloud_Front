@@ -12,6 +12,7 @@ const SlidingButton = (props) =>{
             type="checkbox"
             className="custom-control-input"
             id={props.SlidingButtonID}
+            name={props.SlidingButtonID}
           />
           <label
             className="custom-control-label"

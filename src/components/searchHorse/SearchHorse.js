@@ -8,7 +8,7 @@ import Disciplines from '../common_section/Disciplines'
 import Structures from './Structures'
 import IdealHorse from './IdealHorse'
 import IdealOwner from './IdealOwner'
-import BudgetMensuel from './BudgetMensuel'
+import BudgetMensuel from '../common_section/BudgetMensuel'
 import Ecurie from './Ecurie'
 import HebergementHorse from './HebergementHorse'
 import FloatingButton from '../common/FloatingButton'
@@ -37,7 +37,7 @@ const SearchHorse = (props) => {
                 <div className='balade'>
                     <SlidingButton 
                     SlidingButtonText="J'aimerais pouvoir partir en balade"
-                    SlidingButtonUD="baladSwitch"
+                    SlidingButtonID="baladSwitch"
                     />
                 </div>
             </div>
