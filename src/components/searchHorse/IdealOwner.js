@@ -20,10 +20,10 @@ const IdealOwner = () => {
                     <h5> Caractère :</h5>
                 <div className='select_caracter'>
                     <RadioCheck 
-                    RadioCheckText1='Introverti' 
-                    RadioCheckText2='Sociable'
-                    RadioCheckText3='Extraverti' 
-                    RadioCheckText4='Solitaire' />
+                    RadioCheckText1={'Introverti'} 
+                    RadioCheckText2={'Sociable'}
+                    RadioCheckText3={'Extraverti'} 
+                    RadioCheckText4={'Solitaire'} />
 
                     
                 </div>
