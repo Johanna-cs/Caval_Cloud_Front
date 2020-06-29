@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
 import './searchHorse.css'
-import { Collapse, Button, Input } from 'reactstrap'
 import Header from '../Header_footer/Header';
 import Localisation from '../common_section/Localisation'
 import Disciplines from '../common_section/Disciplines'
@@ -17,9 +15,6 @@ import SlidingButton from '../common/SlidingButton'
 
 
 const SearchHorse = (props) => {
-
-    const [isOpen, setIsOpen] = useState(true)
-    const toggle = () => setIsOpen(!isOpen)
 
     return (
         <>
