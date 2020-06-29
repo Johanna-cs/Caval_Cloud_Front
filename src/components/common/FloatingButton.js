@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import './flottingButton.css'
+import './floatingButton.css'
 import './selectButton.css'
 
-const FlottingButton = (props) => {
+const FloatingButton = (props) => {
 
     // const [isOpen, setIsOpen] = useState(true)
     // const toggle = () => setIsOpen(!isOpen)
@@ -15,4 +15,4 @@ const FlottingButton = (props) => {
 
     )}
 
-export default FlottingButton
+export default FloatingButton
