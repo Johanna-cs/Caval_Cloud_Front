@@ -4,7 +4,7 @@ import "./slidingButton.css";
 
 const SlidingButton = (props) =>{
   return (
-    <>
+    <div className='slidingBtn_zone'>
       <div className="slidingButton-check">
         {props.SlidingButtonText}
         <div className="slidingButton-check">
@@ -20,7 +20,7 @@ const SlidingButton = (props) =>{
           ></label>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

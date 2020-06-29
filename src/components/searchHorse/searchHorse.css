@@ -2,53 +2,14 @@
 .searchHorse_page {
     display: flex;
     flex-flow: column nowrap;
-    margin-left: 3em;
-    margin-right: 3em;
+    margin-left: 2em;
+    margin-right: 2em;
     padding-bottom: 5em;
 }
 .searchHorse_page hr {
     border-top: 1em thin;
     width: 100%;
   }
-
-/* ***** Checkbox Violettes ***** */
-/* Disciplines, Structures, ecuries, hebergement */
-
-/* ***** Disciplines, structures ***** */
-/* 
-.disciplineList, .structureList, .ecuriesList, .hebergtList {
-  margin-top: 1em;
-  display: flex;
-  flex-direction: column;
-  }
-.discipline, .structure, .ecurie, .hebergt {
-  background-color: #5d5aa4;
-  color: white;
-  padding: 1em;
-  margin-bottom: 0.5em;
-  border-radius: 10px;
-  }
-
-.discipline label, .structure label, .ecurie label {
-  font-size: 14px;
-  background-color: #5d5aa4;
-  font-weight: 400 !important;
-  } */
-
-/* ****** Slide buttons violet ******* */
-/* Balade, Coaching, Materiel, Concours */
-
-.searchHorse_bal p, .searchHorse_coaching p, .searchHorse_materiel p, .searchHorse_compet p {
-    margin-right: 1em;
-    word-wrap: break-word;
-}
-.balade, .coaching, .materiel, .competition {
-    display : flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-}
-
-/* ------------------------- */
 
 /* ****** Grands button violet ******* */
 /* ideal Horse & ideal Rider */
@@ -59,12 +20,13 @@
 }
 
 /* Boutons plus grands */
-.selectBtn2 {
+/* .selectBtn2 {
     background-color: #b0b9d380;
     margin: 0.2em !important;
     padding: 0.5em !important;
     width: 20em;
     font-size: 1em !important;
     outline: none;
-}
+} */
+
 /* ------------------------- */
