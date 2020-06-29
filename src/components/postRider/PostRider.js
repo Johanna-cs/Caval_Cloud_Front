@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import "./postRider.css";
-import { Collapse, Button} from "reactstrap";
 import { Link } from "react-router-dom";
 import Header from '../Header_footer/Header';
 import SlidingButton from "../common/SlidingButton";
-import RadioButton from "../common/RadioButton";
 import Carousel from "../common/Carousel";
 import logo from "../SVG-icons/cavalcloud-logo.png"
 import FloatingButton from "../common/FloatingButton";
 import Disciplines from "../common_section/Disciplines";
 import BudgetMensuel from "../common_section/BudgetMensuel";
-import Frenquency from "../common_section/Frequency";
+import Frequency from "../common_section/Frequency";
 
 
 
@@ -91,7 +89,7 @@ const PostRider = () => {
         </div>
         <hr />
         <div>
-          <Frenquency frequencyTitle="Rythme de la demi-pension" />
+          <Frequency frequencyTitle="Rythme de la demi-pension" />
         </div>
         <hr />
         <div>

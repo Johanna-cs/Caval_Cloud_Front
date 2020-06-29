@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react'
-import { Collapse, Button, Input } from 'reactstrap'
+import React, { useState} from 'react'
+import { Collapse, Button} from 'reactstrap'
 import RadioButton from '../common/RadioButton'
 import './common_section.css'
 import SlidingButton from "../common/SlidingButton";
 
-import { geoPropTypes } from 'react-geolocated'
 
 const Frequency = (props) => {
 
     const [isOpen, setIsOpen] = useState(true)
     const toggle = () => setIsOpen(!isOpen)
+    const [frequency, setFrequency] = useState("2 fois /semaine");
+
+
 
     return (
       <>
@@ -31,34 +33,39 @@ const Frequency = (props) => {
               />
             </svg>
           </Button>
-          <p>Fréquence : 5 à 7 fois /semaine</p>
+          <p>Fréquence : {frequency}</p>
           <p>Régularité : jours fixes</p>
         </div>
         <Collapse isOpen={isOpen}>
           <div>
             <h5>Fréquence </h5>
+
             <RadioButton
-              radioButtonText="5 à 7 fois / semaine"
-              radioButtonName="7timesWeek"
-              radioButtonId="7timesWeek"
+              radioButtonText="5 à 7 fois /semaine"
+              radioButtonName="frequency"
+              radioButtonId="frequency1"
+              onClick={() => setFrequency("5 à 7 fois /semaine")}
             />
             <RadioButton
-              radioButtonText="3 à 4 fois / semaine"
-              radioButtonName="4timesaWeek"
-              radioButtonId="4timesWeek"
+              radioButtonText="3 à 4 fois /semaine"
+              radioButtonName="frequency"
+              radioButtonId="frequency2"
+              onClick={() => setFrequency("3 à 4 fois /semaine")}
             />
             <RadioButton
-              radioButtonText="2 fois / semaine"
-              radioButtonName="2timesaWeek"
-              radioButtonId="2timesWeek"
+              radioButtonText="2 fois /semaine"
+              radioButtonName="frequency"
+              radioButtonId="frequency3"
+              onClick={() => setFrequency("2 fois /semaine")}
             />
             <RadioButton
-              radioButtonText="1 fois / semaine"
-              radioButtonName="1timesaWeek"
-              radioButtonId="1timesWeek"
+              radioButtonText="1 fois /semaine"
+              radioButtonName="frequency"
+              radioButtonId="frequency4"
+              onClick={() => setFrequency("1 fois /semaine")}
             />
           </div>
-          <h5>Régularité:</h5>
+          <h4>Régularité:</h4>
           <SlidingButton
             SlidingButtonText="Jours fixes"
             SlidingButtonID="fixedDaysSwitch"
