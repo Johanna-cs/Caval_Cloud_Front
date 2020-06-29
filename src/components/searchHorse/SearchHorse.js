@@ -11,7 +11,7 @@ import IdealOwner from './IdealOwner'
 import BudgetMensuel from './BudgetMensuel'
 import Ecurie from './Ecurie'
 import HebergementHorse from './HebergementHorse'
-import FlottingButton from '../common/FlottingButton'
+import FloatingButton from '../common/FloatingButton'
 import SlidingButton from '../common/SlidingButton'
 
 
@@ -99,7 +99,7 @@ const SearchHorse = (props) => {
                 </div>
             </div>
 
-                <FlottingButton btnName={'Lancer la recherche'}/>
+                <FloatingButton btnName={'Lancer la recherche'}/>
             </div>
         </div>
     </>
