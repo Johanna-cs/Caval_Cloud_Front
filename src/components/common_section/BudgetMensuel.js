@@ -26,7 +26,7 @@ const BudgetMensuel = () => {
                     <label>
                       <input className="mainInput" type="number" placeholder="Budget"/>
                     </label>
-                  <h5>Devise</h5>
+                  <h5>Devise:</h5>
                   
                     <RadioButton
                       radioButtonText="Euros - €"

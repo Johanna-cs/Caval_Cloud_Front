@@ -7,8 +7,11 @@ import SlidingButton from "../common/SlidingButton";
 import RadioButton from "../common/RadioButton";
 import Carousel from "../common/Carousel";
 import logo from "../SVG-icons/cavalcloud-logo.png"
-import Checkbox from "../common/Checkbox";
 import FloatingButton from "../common/FloatingButton";
+import Disciplines from "../common_section/Disciplines";
+import BudgetMensuel from "../common_section/BudgetMensuel";
+import Frenquency from "../common_section/Frequency";
+
 
 
 const PostRider = () => {
@@ -52,63 +55,7 @@ const PostRider = () => {
         </div>
         <hr />
         <div>
-          <h4>Budget</h4>
-          <p>125€ / mois</p>
-          <div>
-            <Button
-              onClick={toggle}
-              style={{
-                display: "flex",
-                backgroundColor: "#5d5aa4",
-                marginBottom: "1em",
-              }}
-            >
-              <svg
-                class="bi bi-chevron-down"
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
-                />
-              </svg>
-            </Button>
-            <Collapse isOpen={isOpen}>
-              <div>
-                <h4>Prix mensuel maximum:</h4>
-                <form className="postRider_price-form">
-                  <label>
-                    <input
-                      className="postRider_input"
-                      type="number"
-                      placeholder=" Budget"
-                      autoFocus
-                    />
-                  </label>
-                </form>
-                <h4>Devise:</h4>
-                <RadioButton
-                  radioButtonText="Euros - €"
-                  radioButtonName="devise"
-                  radioButtonId="devise1"
-                />
-                <RadioButton
-                  radioButtonText="Livre sterling - £"
-                  radioButtonName="devise"
-                  radioButtonId="devise2"
-                />
-                <RadioButton
-                  radioButtonText="Dollar - $"
-                  radioButtonName="devise"
-                  radioButtonId="devise3"
-                />
-              </div>
-            </Collapse>
-          </div>
+          <BudgetMensuel />
         </div>
         <hr />
         <div>
@@ -132,15 +79,7 @@ const PostRider = () => {
         </div>
         <hr />
         <div className="postRider-disc">
-          <h4>Disciplines</h4>
-          <div className="postRider-disciplineList">
-            <Checkbox CheckboxText="Obstacle" />
-            <Checkbox CheckboxText="Dressage" />
-            <Checkbox CheckboxText="CCE" />
-            <Checkbox CheckboxText="Ethologie" />
-            <Checkbox CheckboxText="Attelage" />
-            <Checkbox CheckboxText="TREC" />
-          </div>
+          <Disciplines />
         </div>
         <hr />
         <div>
@@ -152,63 +91,7 @@ const PostRider = () => {
         </div>
         <hr />
         <div>
-          <h4>Rythme de venue</h4>
-          <p>Fréquence : 5 à 7 fois / semaine</p>
-          <p>Régularité: jours fixes</p>
-          <div>
-            <Button
-              onClick={toggle}
-              style={{
-                display: "flex",
-                backgroundColor: "#5d5aa4",
-                marginBottom: "1em",
-              }}
-            >
-              <svg
-                className="bi bi-chevron-down"
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
-                />
-              </svg>
-            </Button>
-            <Collapse isOpen={isOpen}>
-              <div>
-                <h4>Fréquence:</h4>
-                <RadioButton
-                  radioButtonText="5 à 7 fois / semaine"
-                  radioButtonName="frequency"
-                  radioButtonId="frequency1"
-                />
-                <RadioButton
-                  radioButtonText="3 à 4 fois / semaine"
-                  radioButtonName="frequency"
-                  radioButtonId="frequency2"
-                />
-                <RadioButton
-                  radioButtonText="2 fois / semaine"
-                  radioButtonName="frequency"
-                  radioButtonId="frequency3"
-                />
-                <RadioButton
-                  radioButtonText="1 fois / semaine"
-                  radioButtonName="frequency"
-                  radioButtonId="frequency4"
-                />
-                <h4>Régularité:</h4>
-                <SlidingButton
-                  SlidingButtonText="Jours fixes"
-                  SlidingButtonID="fixedDaysSwitch"
-                />
-              </div>
-            </Collapse>
-          </div>
+          <Frenquency frequencyTitle="Rythme de la demi-pension" />
         </div>
         <hr />
         <div>
