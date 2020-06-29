@@ -13,7 +13,7 @@ const Frequency = (props) => {
 
     return (
       <>
-        <div className="frenquencyDiv">
+        <div className="frequencyDiv">
           <div className="toggle_place">
             <h4>{props.frequencyTitle} </h4>
           </div>
@@ -44,17 +44,17 @@ const Frequency = (props) => {
             />
             <RadioButton
               radioButtonText="3 à 4 fois / semaine"
-              radioButtonName="4timesWeek"
+              radioButtonName="4timesaWeek"
               radioButtonId="4timesWeek"
             />
             <RadioButton
               radioButtonText="2 fois / semaine"
-              radioButtonName="2timesWeek"
+              radioButtonName="2timesaWeek"
               radioButtonId="2timesWeek"
             />
             <RadioButton
               radioButtonText="1 fois / semaine"
-              radioButtonName="1timesWeek"
+              radioButtonName="1timesaWeek"
               radioButtonId="1timesWeek"
             />
           </div>

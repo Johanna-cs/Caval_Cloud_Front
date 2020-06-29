@@ -1,0 +1,43 @@
+.rangeButtonSec {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+    margin: 0.2em !important;
+    padding: 0.2em !important;
+    width: 100%;
+  }
+.rangeButtonSec label {
+    font-size : 1em !important;
+  }
+
+input[type="range"].rangeBtn {
+    -webkit-appearance: none;
+    width: 12em;
+  }
+
+input[type="range"] label  {
+    border-radius: 5px;  
+    background: #5d5aa4;
+    outline: none;
+    }
+input[type="range"]:focus {
+    outline: none;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+    background: #b0b9d380;
+    border-radius: 2px;
+    width: 50em;
+    height: 8.4px;
+    cursor: pointer;
+  }
+
+input[type="range"]::-webkit-slider-thumb {
+    margin-top: -6px;
+    width: 18px;
+    height: 18px;
+    background-color: #5d5aa4;
+    border-radius: 13px;
+    cursor: pointer;
+    -webkit-appearance: none;
+  }
+

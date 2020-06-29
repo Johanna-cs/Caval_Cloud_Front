@@ -33,8 +33,7 @@
     padding-bottom: 1em;
 }
 /* ***** Localisation ***** */
-.locationDiv,
-.frequencyDiv {
+.locationDiv {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
