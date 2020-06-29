@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css'
+import Header from './Header_footer/Header';
 import horse from './SVG-icons/horse-icon.svg'
 import helmet from './SVG-icons/bombe-icon.svg' 
 import boot from './SVG-icons/botte-icon.svg'
@@ -15,7 +16,8 @@ function Home(props) {
     // const [postHorse, setPostHorse] = useState(props.location.postHorse)
 
     return (
-
+    <>
+        <Header className='header' title='ACCUEIL'/>
        <div className='HomePage'> 
             <h3 className='welcome'> Bienvenue sur Cavalcloud ! </h3>
             <p className='welcomeText'> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod. </p>
@@ -56,6 +58,7 @@ function Home(props) {
                 </Link>
 
        </div>
+       </>
     )
 }
 

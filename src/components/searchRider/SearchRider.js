@@ -41,19 +41,13 @@ const SearchRider = () => {
 
         <Header title='CHERCHER UN CAVALIER'/>
 
-        {/* <code>
-            latitude: {latitude}<br/>
-            longitude: {longitude}<br/>
-            error: {error}
-        </code> */}
-
         <div className="searchRider_page">
 
             <div className="localisation">            
-                <h4>Localisation section à modifier</h4>
-                <input name='localisation' id='localisation' type='text' placeholder='  Saisissez une ville et un rayon' value={cityLocalisation} onChange={(e) => setCityLocalisation(e.target.value)}></input>
-                {/* <Position /> */}
-                <Localisation />
+                <Localisation 
+                    value={cityLocalisation}
+                    onChange={(e) => setCityLocalisation(e.target.value)}
+                />
 
             </div>
             <hr />
