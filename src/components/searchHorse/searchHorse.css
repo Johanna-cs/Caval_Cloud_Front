@@ -6,63 +6,21 @@
     margin-right: 3em;
     padding-bottom: 5em;
 }
-/* common css btn etc */
-#toggle_btn_chev {
-    width: 5em;
-    margin: 1em;
-    color : #5d5aa4;
-    background-color: #b0b9d380;
-}
-.mainInput {
-    width: 18em;
-    background-color: #b0b9d380;
-    border : none ;
-    border-radius: 2px;
-    height: 2em;
-    padding: 1em;
-}
 .searchHorse_page hr {
     border-top: 1em thin;
     width: 100%;
   }
-/* ***** Localisation ***** */
-
-.rayon_loc {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5em;
-}
-.rayon_loc span {
-    margin: 1em;
-}
-.last_loc {
-    display: flex;
-    flex-direction: column;
-}
-.lastLoc{
-    display: flex;
-    flex-flow: row nowrap;
-}
-.aroundMe {
-    display: flex;
-    flex-flow: row nowrap;
-}
-
-.loc_map {
-    width: 1.5em;
-    padding: 0.3em;
-}
-
-
 
 /* ***** Checkbox Violettes ***** */
 /* Disciplines, Structures, ecuries, hebergement */
 
+/* ***** Disciplines, structures ***** */
+/* 
 .disciplineList, .structureList, .ecuriesList, .hebergtList {
-    margin-top: 1em;
-    display: flex;
-    flex-direction: column;
-    }
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  }
 .discipline, .structure, .ecurie, .hebergt {
     background-color: #5d5aa4;
     color: white;
