@@ -3,7 +3,7 @@ import Header from '../Header_footer/Header';
 import Axios from 'axios'
 import usePosition from '../usePosition';
 import './SearchRider.css';
-import FlottingButton from '../common/FlottingButton'
+import FloatingButton from '../common/FloatingButton'
 import Disciplines from '../common_section/Disciplines'
 import Localisation from '../common_section/Localisation';
 import SlidingButton from '../common/SlidingButton'
@@ -184,9 +184,7 @@ const SearchRider = () => {
                 />
 
         </div>
-        <FlottingButton 
-            btnName={'Lancer la recherche'}
-        />
+        <FloatingButton btnName={'Lancer la recherche'}/>
 
         </>
     )

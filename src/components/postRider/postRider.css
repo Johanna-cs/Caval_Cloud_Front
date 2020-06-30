@@ -3,7 +3,7 @@
   flex-flow: column wrap;
   margin-left: 3em;
   margin-right: 3em;
-  padding-bottom: 5em;
+  padding-bottom: 2em;
 }
 
 .postRider_page hr {
@@ -76,27 +76,4 @@
 
 .postRider-disc {
   text-align: left;
-}
-
-/* floating button*/
-
-.post-button {
-  display: flex;
-  justify-content: center;
-}
-
-#post-button {
-  position: fixed;
-  background-color: #59a080;
-  border: none;
-  border-style: none;
-  border-radius: 20px;
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
-  color: white;
-  height: 3em;
-  width: 19em;
-  bottom: 1.5em;
-  outline: none;
-  z-index: 1;
 }
