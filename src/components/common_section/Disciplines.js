@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Checkbox from '../common/Checkbox'
 import { Collapse, Button, Input } from 'reactstrap'
+import './common_section.css'
 
 const Disciplines = (props) => {
     
@@ -10,7 +11,7 @@ const Disciplines = (props) => {
     return (
 
 
-        <div className="postRider-disc">
+        <div className="disc">
             <h4>Disciplines</h4>
         <div className="postRider-disciplineList">
           <Checkbox CheckboxText="Obstacle" name={"Obstacle"} onChange={props.onChange} onlog={props.onlog}/>

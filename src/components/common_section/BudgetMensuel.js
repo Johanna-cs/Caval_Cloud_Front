@@ -1,21 +1,35 @@
 import React, { useState, useEffect } from 'react'
 import { Collapse, Button, Input } from 'reactstrap'
+import RadioButton from '../common/RadioButton'
+import './common_section.css'
 
 const BudgetMensuel = (props) => {
   const [isOpen, setIsOpen] = useState(true)
   const toggle = () => setIsOpen(!isOpen)
     return (
-
-        <div className='searchHorse_price' >
+      <>
+        <div className='mensuel_price' >
+          <div className='toggle_place'>
                 <h4> Prix </h4>
+<<<<<<< HEAD
         <p>{props.budget} {props.currency} /mois </p>
                 <Button id='toggle_btn_chev'color="transparent" onClick={toggle} style={{ marginBottom: '1rem' }}><svg class="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+=======
+                <p>125 € /mois</p>
+            </div>
+            <Button id='toggle_btn_chev'color="transparent" onClick={toggle} style={{ marginBottom: '1rem' }}>
+                  <svg class="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+>>>>>>> bdb633e701de71ea61e196e68b53ffe5e843c036
                             <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-                        </svg></Button>
-                <div className='searchHorse_price2'>
+                  </svg>
+                </Button>
+                
+                </div>
+                <div className='mensuel_price2'>
                 <Collapse isOpen={isOpen}>
-                  <h5>Prix mensuel maximum:</h5>
+                  <h5>Prix mensuel maximum :</h5>
                     <label>
+<<<<<<< HEAD
                       <input className="mainInput" 
                         onChange={props.onChange} 
                         type="number" 
@@ -59,9 +73,30 @@ const BudgetMensuel = (props) => {
                     />
                     <label className="searchHorse_form-check-label" for="selectDol"/>
                   </div>
+=======
+                      <input className="mainInput" type="number" placeholder="Budget"/>
+                    </label>
+                  <h5>Devise</h5>
+                  
+                    <RadioButton
+                      radioButtonText="Euros - €"
+                      radioButtonName="devise"
+                      radioButtonId="devise1"
+                    />
+                    <RadioButton
+                      radioButtonText="Livre sterling - £"
+                      radioButtonName="devise"
+                      radioButtonId="devise2"
+                    />
+                    <RadioButton
+                      radioButtonText="Dollar - $"
+                      radioButtonName="devise"
+                      radioButtonId="devise3"
+                    />
+>>>>>>> bdb633e701de71ea61e196e68b53ffe5e843c036
                     </Collapse>
                 </div>
-        </div>
+        </>
     )}
 
 export default BudgetMensuel

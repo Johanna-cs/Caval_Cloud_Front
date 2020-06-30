@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Collapse, Button, Input } from 'reactstrap'
+import './common_section.css'
 
 const Frequency = (props) => {
 
@@ -7,8 +8,6 @@ const Frequency = (props) => {
     const toggle = () => setIsOpen(!isOpen)
 
     return (
-
-
 
         <div className="searchHorse_rythme">
             
@@ -95,7 +94,6 @@ const Frequency = (props) => {
                 </Collapse>
             </div>
         </div>
-
     )
 }
 
