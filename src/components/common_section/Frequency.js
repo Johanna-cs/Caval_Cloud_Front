@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Collapse, Button, Input } from 'reactstrap'
 
-const Frequency = () => {
+const Frequency = (props) => {
 
     const [isOpen, setIsOpen] = useState(true)
     const toggle = () => setIsOpen(!isOpen)
@@ -12,7 +12,7 @@ const Frequency = () => {
 
         <div className="searchHorse_rythme">
             
-            <p>Fréquence : 5 à 7 fois / semaine</p>
+            <p>Fréquence : {props.frequency}</p>
             <p>Régularité: jours fixes</p>
             <div>
                 <Button id="toggle_btn_chev" onClick={toggle}>
@@ -35,8 +35,8 @@ const Frequency = () => {
                                 type="radio"
                                 name="frequency"
                                 id="frequency1"
-                                value="option1"
-                                checked
+                                value="5 à 7 fois / semaine"
+                                onClick={props.onChange}
                             />
                             <label
                                 className="searchHorse_form-check-label"
@@ -51,8 +51,8 @@ const Frequency = () => {
                                 type="radio"
                                 name="frequency"
                                 id="frequency2"
-                                value="option2"
-                                checked
+                                value="3 à 4 fois / semaine"
+                                onClick={props.onChange}
                             />
                             <label
                                 className="searchHorse_form-check-label"
@@ -67,8 +67,8 @@ const Frequency = () => {
                                 type="radio"
                                 name="frequency"
                                 id="frequency3"
-                                value="option3"
-                                checked
+                                value="2 fois / semaine"
+                                onChange={props.onChange}
                             />
                             <label
                                 className="searchHorse_form-check-label"
@@ -83,8 +83,8 @@ const Frequency = () => {
                                 type="radio"
                                 name="frequency"
                                 id="frequency4"
-                                value="option4"
-                                checked
+                                value="1 fois / semaine"
+                                onChange={props.onChange}
                             />
                             <label
                                 className="searchHorse_form-check-label"

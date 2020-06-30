@@ -9,7 +9,7 @@ function Localisation(props) {
     
     const [isOpen, setIsOpen] = useState(true)
     const toggle = () => setIsOpen(!isOpen)
-      
+    var myLastCitySaved = localStorage.getItem('lastCitySaved')
     return (
 
 
@@ -38,7 +38,7 @@ function Localisation(props) {
                     
                     <div className='lastLoc'>
                         <img src={locmap} alt='logo loc' className='loc_map'/>
-                        <p> Aix derniere localisation</p>
+                        <p> {myLastCitySaved} derniere localisation</p>
                     </div>
                     <div className='aroundMe'>
                         <img src={geoloc} alt='logo loc' className='loc_map'/>
