@@ -9,7 +9,7 @@ const Frequency = (props) => {
 
     const [isOpen, setIsOpen] = useState(true)
     const toggle = () => setIsOpen(!isOpen)
-    const [frequency, setFrequency] = useState("2 fois /semaine");
+    const [frequency, setFrequency] = useState("");
 
 
 
@@ -44,25 +44,25 @@ const Frequency = (props) => {
               radioButtonText="5 à 7 fois /semaine"
               radioButtonName="frequency"
               radioButtonId="frequency1"
-              onClick={() => setFrequency("5 à 7 fois /semaine")}
+              onClick={() => setFrequency("frequency1")}
             />
             <RadioButton
               radioButtonText="3 à 4 fois /semaine"
               radioButtonName="frequency"
               radioButtonId="frequency2"
-              onClick={() => setFrequency("3 à 4 fois /semaine")}
+              onClick={() => setFrequency("frequency2")}
             />
             <RadioButton
               radioButtonText="2 fois /semaine"
               radioButtonName="frequency"
               radioButtonId="frequency3"
-              onClick={() => setFrequency("2 fois /semaine")}
+              onClick={() => setFrequency("frequency3")}
             />
             <RadioButton
               radioButtonText="1 fois /semaine"
               radioButtonName="frequency"
               radioButtonId="frequency4"
-              onClick={() => setFrequency("1 fois /semaine")}
+              onClick={() => setFrequency("frequency4")}
             />
           </div>
           <h4>Régularité:</h4>
