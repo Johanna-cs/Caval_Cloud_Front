@@ -8,11 +8,9 @@ const FloatingButton = (props) => {
     // const toggle = () => setIsOpen(!isOpen)
 
     return (
-    
-    <div className='search-button'>
-        <button id="search-button"> {props.btnName}</button>
-    </div>
-
-    )}
+      <div className="floating-button">
+        <button id="floating-button"> {props.btnName}</button>
+      </div>
+    );}
 
 export default FloatingButton
