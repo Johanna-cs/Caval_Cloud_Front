@@ -88,4 +88,4 @@ const Disciplines = () => {
   );
 };
 
-export default Disciplines;
+export default Disciplines

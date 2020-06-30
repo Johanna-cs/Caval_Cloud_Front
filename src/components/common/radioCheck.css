@@ -1,7 +1,21 @@
 .radioCheck-list {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-flow: row wrap;
+  margin: 0.2em !important;
+  padding: 0.5em !important;
+}
+.radioCheck-list label {
+  font-size : 1em !important;
+  padding: 1em;
+  margin: 0.7em;
+}
+.row1 {
+  display: flex;
+
+}
+.row2 {
+  display: flex;
 }
 
 input[type="checkbox"].radioCheck {

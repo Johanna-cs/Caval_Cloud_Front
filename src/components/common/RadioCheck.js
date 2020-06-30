@@ -5,14 +5,20 @@ const RadioCheck = (props) => {
   return (
     <>
       <div className="radioCheck-list">
-        <input type="checkbox" class="radioCheck" id="radioCheck1" />
-        <label for="radioCheck1">{props.RadioCheckText1}</label>
-        <input type="checkbox" class="radioCheck" id="radioCheck2" />
-        <label for="radioCheck2">{props.RadioCheckText2}</label>
-        <input type="checkbox" class="radioCheck" id="radioCheck3" />
-        <label for="radioCheck3">{props.RadioCheckText3}</label>
-        <input type="checkbox" class="radioCheck" id="radioCheck4" />
-        <label for="radioCheck4">{props.RadioCheckText4}</label>
+        <div className="row1">
+          <input type="checkbox" class="radioCheck" id={props.radioCheckId1} name={props.RadioCheckText1} />
+          <label for={props.radioCheckId1}>{props.RadioCheckText1} </label>
+
+          <input type="checkbox" class="radioCheck" id={props.radioCheckId2} name={props.RadioCheckText2}/>
+          <label for={props.radioCheckId2}>{props.RadioCheckText2}</label>
+        </div>
+        <div className="row2">
+          <input type="checkbox" class="radioCheck" id={props.radioCheckId3} name={props.RadioCheckText3} />
+          <label for={props.radioCheckId3}>{props.RadioCheckText3}</label>
+          
+          <input type="checkbox" class="radioCheck" id={props.radioCheckId4} name={props.rRadioCheckText4} />
+          <label for={props.radioCheckId4}>{props.RadioCheckText4}</label>
+        </div>
       </div>
     </>
   );

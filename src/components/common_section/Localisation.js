@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { Collapse, Button, Input } from 'reactstrap'
 import '../searchHorse/searchHorse.css'
 import geoloc from '../SVG-icons/geolocalisation.svg'
-import loc from '../SVG-icons/geolocation-icon2.svg'
 import locmap from '../SVG-icons/map-marker-alt-solid.svg'
+import RangeButton from '../common/RangeButton'
 
 function Localisation(props) {
     
     const [isOpen, setIsOpen] = useState(true)
     const toggle = () => setIsOpen(!isOpen)
-      
+    var myLastCitySaved = localStorage.getItem('lastCitySaved')
     return (
         <>
 
@@ -33,7 +33,7 @@ function Localisation(props) {
                     <p className='loc_text'>Dans un rayon autour de : </p>
                     <div className='rayon_loc'>
                             <span>0</span>
-                            <input type="range" min="0" max="200" />
+                            <RangeButton radioSelBtnText='kms'/>
                             <span>200</span>
                     </div>
                     <div className='last_loc'>
@@ -41,7 +41,7 @@ function Localisation(props) {
                     
                     <div className='lastLoc'>
                         <img src={locmap} alt='logo loc' className='loc_map'/>
-                        <p> Aix derniere localisation</p>
+                        <p> {myLastCitySaved} derniere localisation</p>
                     </div>
                     <div className='aroundMe'>
                         <img src={geoloc} alt='logo loc' className='loc_map'/>

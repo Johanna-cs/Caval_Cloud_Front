@@ -1,20 +1,24 @@
 import React, { useState } from "react";
 import "./postRider.css";
 import { Link } from "react-router-dom";
-import Header from '../Header_footer/Header';
+import Header from "../Header_footer/Header";
 import SlidingButton from "../common/SlidingButton";
 import Carousel from "../common/Carousel";
-import logo from "../SVG-icons/cavalcloud-logo.png"
+import logo from "../SVG-icons/cavalcloud-logo.png";
 import FloatingButton from "../common/FloatingButton";
 import Disciplines from "../common_section/Disciplines";
 import BudgetMensuel from "../common_section/BudgetMensuel";
 import Frequency from "../common_section/Frequency";
 
-
-
 const PostRider = () => {
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
+  const [frequency, setFrequency] = useState("");
+  const [fixedFrequency, setFixedFrequency] = useState(false);
+  const [budget, setBudget] = useState(null);
+  const [currency, setCurrency] = useState("€");
+
+
 
   return (
     <>
@@ -53,7 +57,12 @@ const PostRider = () => {
         </div>
         <hr />
         <div>
-          <BudgetMensuel />
+          <BudgetMensuel
+            budget={budget}
+            currency={currency}
+            onChange={(e) => setBudget(e.target.value)}
+            onClick={(e) => setCurrency(e.target.value)}
+          />
         </div>
         <hr />
         <div>
@@ -89,7 +98,12 @@ const PostRider = () => {
         </div>
         <hr />
         <div>
-          <Frequency frequencyTitle="Rythme de la demi-pension" />
+          <Frequency
+            frequencyTitle="Rythme de la demi-pension"
+            onClick={(e) => setFrequency(e.target.value)}
+            frequency={frequency}
+            changeFixedFrequency={() => setFixedFrequency(!fixedFrequency)}
+          />
         </div>
         <hr />
         <div>

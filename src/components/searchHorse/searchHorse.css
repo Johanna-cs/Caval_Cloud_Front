@@ -13,12 +13,17 @@
 
 /* ****** Grands button violet ******* */
 /* ideal Horse & ideal Rider */
-.select_temper, .select_caracter, .select_body, .select_communication, .select_horseWork {
+.select_temper, .select_caracter, .select_body  {
     display: flex;
     justify-content: space-evenly;
     flex-flow: row wrap;
 }
-
+.select_communication, .select_horseWork  {
+    display: flex; 
+    align-items: center;
+    flex-flow: column wrap;
+    
+}
 /* Boutons plus grands */
 /* .selectBtn2 {
     background-color: #b0b9d380;

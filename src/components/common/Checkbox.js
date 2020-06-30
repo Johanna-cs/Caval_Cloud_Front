@@ -14,6 +14,7 @@ const Checkbox = (props) => {
               id={props.CheckboxText}
               name={props.CheckboxText}
               onChange={props.onChange}
+              // ref={props.CheckboxText}
             />
             <span class="checkmark"></span>
           </label>
