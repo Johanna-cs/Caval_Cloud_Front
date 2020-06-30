@@ -7,9 +7,8 @@ import SlidingButton from "../common/SlidingButton";
 
 const Frequency = (props) => {
 
-    const [isOpen, setIsOpen] = useState(true)
+    const [isOpen, setIsOpen] = useState(false)
     const toggle = () => setIsOpen(!isOpen)
-    const [frequency, setFrequency] = useState("2 fois /semaine");
 
 
 
@@ -33,42 +32,42 @@ const Frequency = (props) => {
               />
             </svg>
           </Button>
-          <p>Fréquence : {frequency}</p>
-          <p>Régularité : jours fixes</p>
         </div>
         <Collapse isOpen={isOpen}>
           <div>
-            <h5>Fréquence </h5>
+            <h5>Fréquence :</h5>
 
             <RadioButton
               radioButtonText="5 à 7 fois /semaine"
               radioButtonName="frequency"
               radioButtonId="frequency1"
-              onClick={() => setFrequency("5 à 7 fois /semaine")}
+              onClick={props.onClick}
             />
             <RadioButton
               radioButtonText="3 à 4 fois /semaine"
               radioButtonName="frequency"
               radioButtonId="frequency2"
-              onClick={() => setFrequency("3 à 4 fois /semaine")}
+              onClick={props.onClick}
             />
             <RadioButton
               radioButtonText="2 fois /semaine"
               radioButtonName="frequency"
               radioButtonId="frequency3"
-              onClick={() => setFrequency("2 fois /semaine")}
+              onClick={props.onClick}
             />
             <RadioButton
               radioButtonText="1 fois /semaine"
               radioButtonName="frequency"
               radioButtonId="frequency4"
-              onClick={() => setFrequency("1 fois /semaine")}
+              onClick={props.onClick}
+
             />
           </div>
-          <h4>Régularité:</h4>
+          <h5>Régularité :</h5>
           <SlidingButton
             SlidingButtonText="Jours fixes"
             SlidingButtonID="fixedDaysSwitch"
+            onClick ={props.changeFixedFrequency}
           />
         </Collapse>
       </>

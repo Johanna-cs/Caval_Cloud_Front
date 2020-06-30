@@ -10,6 +10,9 @@ import SlidingButton from '../common/SlidingButton'
 import BudgetMensuel from '../common_section/BudgetMensuel'
 import Frequency from '../common_section/Frequency'
 
+
+
+
 const SearchRider = () => {
 
     // Localisation des coordonnées GPS via le hook "usePosition" :
@@ -51,6 +54,9 @@ const SearchRider = () => {
     // Fréquence de la demi-pension :
     const [frequency, setFrequency] = useState('')
 
+    // Fréquence de la demi-pension, jours fixes :
+    const [fixedFrequency, setFixedFrequency] = useState(false)
+
     // Concours ou pas :
     const [doCompetition, setDoCompetition] = useState(false)
 
@@ -60,27 +66,7 @@ const SearchRider = () => {
         .get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
         .then(res => setCityLocalisation(res.data.address.municipality))
         .catch(err => console.error(err))
-    }
-
-    // Fonction qui permet de gérer les disciplines séléctionnées par le user
-    // const manageDisciplines = (discipline) => {
-    //     const arrayInitial = disciplines
-    //     const modifyArray = arrayInitial.push(discipline)
-    //     console.log(disciplines)
-    //     console.log(modifyArray)
-    // }
-
-    // const reducer = (state, action) => { 
-    //     switch (action.type) {
-    //         case 
-    //     }
-
-
-    // }
-
-
-    // const [checkbox, setCheckbox] = useReducer( , [])
-
+    }    
 
     useEffect(() => {
         getLocation()
@@ -160,6 +146,7 @@ const SearchRider = () => {
                     // onChange={(e) => manageDisciplines(e.target.name)}
                     // onlog = {console.log(disciplines)}
                     // onChange = {(e) => Checkboxes(e.target.name)}
+                    
 
                 />
             <hr />
@@ -172,8 +159,9 @@ const SearchRider = () => {
             <hr />
             <h4>Rythme de la demi-pension</h4>
                 <Frequency 
-                    onChange={(e) => setFrequency(e.target.value)}
+                    onClick={(e) => setFrequency(e.target.value)}
                     frequency={frequency}
+                    changeFixedFrequency={() => setFixedFrequency(!fixedFrequency)}
                 />
             
             <h4>Concours</h4>
