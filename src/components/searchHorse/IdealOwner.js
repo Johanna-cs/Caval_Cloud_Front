@@ -1,50 +1,60 @@
-import React, { useState, useEffect } from 'react'
-import { Collapse, Button, Input } from 'reactstrap'
+import React from 'react'
+import SelectButton from '../common/SelectButton'
+import RadioCheck from '../common/RadioCheck'
+import RangeButton from '../common/RangeButton'
+
 
 const IdealOwner = () => {
-    
-    const [isOpen, setIsOpen] = useState(true)
-    const toggle = () => setIsOpen(!isOpen)
       
     return (
 
-
+<>
 
         <div className='searchHorse_idealRider'>
             <div className='rider_age'>
                     <h5> Age :</h5>
                     <span>10 ans</span>
-                    <input type="range" min="10" max="100" />
+                    <RangeButton radioSelBtnText='ans'/>
             </div>
                 <hr />
             <div className='rider_caracter'>
                     <h5> Caractère :</h5>
                 <div className='select_caracter'>
-                        <Button className='selectBtn' size='lg'>Introverti</Button>
-                        <Button className='selectBtn' size='lg'>Sociable</Button>
-                        <Button className='selectBtn' size='lg'>Extraverti</Button>
-                        <Button className='selectBtn' size='lg'>Solitaire</Button>
-                    </div>
+                    <RadioCheck 
+                    RadioCheckText1={'Introverti'}
+                    radioCheckId1={'introverti'} 
+                    RadioCheckText2={'Sociable'}
+                    radioCheckId2={'sociable'}
+                    RadioCheckText3={'Extraverti'}
+                    radioCheckId3={'extraverti'} 
+                    RadioCheckText4={'Solitaire'}
+                    radioCheckId4={'solitaire'} />
+
+                    
+                </div>
             </div>
                 <hr />
             <div className='rider_communication'>
                 <h5> Fréquence de communication :</h5>
                     <div className='select_communication'>
-                        <Button className='selectBtn2' size='lg'>Moins d'une fois par semaine</Button>
-                        <Button className='selectBtn2' size='lg'>Une fois par semaine</Button>
-                        <Button className='selectBtn2' size='lg'>Plus d'une fois par semaine</Button>
-                    </div>
+                    <SelectButton radioSelBtnText={"Moins d'une fois par semaine"} radioSelBtnId={'0timeWeek'} />
+                    <SelectButton radioSelBtnText={'Une fois par semaine'} radioSelBtnId={'1timeWeek'}/>
+                    <SelectButton radioSelBtnText={"Plus d'une fois par semaine"} radioSelBtnId={'manytimesWeek'}/>
+                    
+                </div>
              </div>
                 <hr />
             <div className='rider_horseWork'>
                 <h5> Travail du cheval :</h5>
                     <div className='select_horseWork'>
-                        <Button className='selectBtn2' size='lg'>Ouvert à la nouveauté</Button>
-                        <Button className='selectBtn2' size='lg'>Normal</Button>
-                        <Button className='selectBtn2' size='lg'>Cadré</Button>
+                    <SelectButton radioSelBtnText={"Ouvert à la nouveauté"} radioSelBtnId={'openToNew'} />
+                    <SelectButton radioSelBtnText={'Normal'} radioSelBtnId={'normal'} />
+                    <SelectButton radioSelBtnText={"Cadré"} radioSelBtnId={'cadre'} />
+                    
                     </div>
             </div>
         </div>
+        </>
     )}
 
 export default IdealOwner

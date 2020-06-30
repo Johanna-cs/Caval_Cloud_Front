@@ -1,8 +1,10 @@
-.search-button {
+.floating-button {
     display: flex;
+    justify-content: center;
     padding : 2em;
+    
 }
-#search-button {
+#floating-button {
     position: fixed;
     background-color: #59a080;
     border: none;
@@ -16,4 +18,5 @@
     bottom : 1.5em;
     outline: none;
     z-index: 1;
+   
 }

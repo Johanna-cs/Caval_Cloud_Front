@@ -5,38 +5,19 @@ const RadioCheck = (props) => {
   return (
     <>
       <div className="radioCheck-list">
-        <input
-          type="radio"
-          name="radioCheck"
-          class="radioCheck"
-          id="radioCheck-a"
-        />
-        <label for="radioCheck-a">{props.RadioCheckText1}</label>
-        <input
-          type="radio"
-          name="radioCheck"
-          class="radioCheck"
-          id="radioCheck-b"
-        />
-        <label for="radioCheck-b">{props.RadioCheckText2}</label>
-        <input
-          type="radio"
-          name="radioCheck"
-          class="radioCheck"
-          id="radioCheck-c"
-        />
-        <label for="radioCheck-c">{props.RadioCheckText3}</label>
-        <input
-          type="radio"
-          name="radioCheck"
-          class="radioCheck"
-          id="radioCheck-d"
-        />
-        <label for="radioCheck-d">{props.RadioCheckText4}</label>
+        <div className="row1">
+          <input type="checkbox" class="radioCheck" id={props.radioCheckId1} name={props.RadioCheckText1} />
+          <label for={props.radioCheckId1}>{props.RadioCheckText1} </label>
 
-        <div>
-          RadioCheckText1="Calme" RadioCheckText2="Dynamique"
-          RadioCheckText3="Speed" RadioCheckText4="A Canaliser"
+          <input type="checkbox" class="radioCheck" id={props.radioCheckId2} name={props.RadioCheckText2}/>
+          <label for={props.radioCheckId2}>{props.RadioCheckText2}</label>
+        </div>
+        <div className="row2">
+          <input type="checkbox" class="radioCheck" id={props.radioCheckId3} name={props.RadioCheckText3} />
+          <label for={props.radioCheckId3}>{props.RadioCheckText3}</label>
+          
+          <input type="checkbox" class="radioCheck" id={props.radioCheckId4} name={props.rRadioCheckText4} />
+          <label for={props.radioCheckId4}>{props.RadioCheckText4}</label>
         </div>
       </div>
     </>

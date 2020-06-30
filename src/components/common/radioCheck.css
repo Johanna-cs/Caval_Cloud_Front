@@ -1,13 +1,27 @@
 .radioCheck-list {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-flow: row wrap;
+  margin: 0.2em !important;
+  padding: 0.5em !important;
 }
-input[type="radio"].radioCheck {
-  display: none;
+.radioCheck-list label {
+  font-size : 1em !important;
+  padding: 1em;
+  margin: 0.7em;
+}
+.row1 {
+  display: flex;
+
+}
+.row2 {
+  display: flex;
 }
 
-input[type="radio"].radioCheck + label {
+input[type="checkbox"].radioCheck {
+  display: none;
+}
+input[type="checkbox"].radioCheck + label {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5;
@@ -19,7 +33,7 @@ input[type="radio"].radioCheck + label {
   border: 1px solid transparent;
   transition: all 0.15s ease-in-out;
 }
-input[type="radio"].radioCheck:checked + label {
+input[type="checkbox"].radioCheck:checked + label {
   background-color: #5d5aa4;
   border-color: #5d5aa4;
 }

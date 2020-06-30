@@ -8,11 +8,12 @@ import Disciplines from '../common_section/Disciplines'
 import Structures from './Structures'
 import IdealHorse from './IdealHorse'
 import IdealOwner from './IdealOwner'
-import BudgetMensuel from './BudgetMensuel'
+import BudgetMensuel from '../common_section/BudgetMensuel'
 import Ecurie from './Ecurie'
 import HebergementHorse from './HebergementHorse'
-import FlottingButton from '../common/FlottingButton'
+import FloatingButton from '../common/FloatingButton'
 import SlidingButton from '../common/SlidingButton'
+
 
 
 const SearchHorse = (props) => {
@@ -37,7 +38,7 @@ const SearchHorse = (props) => {
                 <div className='balade'>
                     <SlidingButton 
                     SlidingButtonText="J'aimerais pouvoir partir en balade"
-                    SlidingButtonUD="baladSwitch"
+                    SlidingButtonID="baladSwitch"
                     />
                 </div>
             </div>
@@ -58,50 +59,46 @@ const SearchHorse = (props) => {
                 <div className='coaching'>
                     <SlidingButton 
                     SlidingButtonText="Sur place"
-                    SlidingButtonUD="coachSwitch"
+                    SlidingButtonID="coachSwitch"
                     />
+                </div>
                 <div className='coaching'>
                     <SlidingButton 
                     SlidingButtonText="Intervenant exterieur"
-                    SlidingButtonUD="coachExtSwitch"
+                    SlidingButtonID="coachExtSwitch"
                     />
                 </div>
+                
                 </div>
-            <hr />
-
             <hr />
             <div className='searchHorse_materiel'>
                 <h4>Materiel</h4>
                 <div className='materiel'>
-                    <p>J'ai ma selle</p>
-                    <label class="switch">
-                        <input type="checkbox"></input>
-                        <span class="slider round"></span>
-                    </label>
+                        <SlidingButton 
+                        SlidingButtonText="J'ai ma selle"
+                        SlidingButtonID="materialSwitch"
+                        />
                 </div>
                 <div className='materiel'>
-                    <p>J'ai mon materiel de soin </p>
-                    <label class="switch">
-                        <input type="checkbox"></input>
-                        <span class="slider round"></span>
-                    </label>
+                    <SlidingButton 
+                        SlidingButtonText="J'ai mon materiel de soin"
+                        SlidingButtonID="materialCareSwitch"
+                        />
                 </div>
             </div>
             <hr />
             <div className='searchHorse_compet'>
                 <h4>Concours</h4>
                 <div className='competiton'>
-                    <p>J'aimerais pouvoir sortir en concours</p>
-                    <label class="switch">
-                        <input type="checkbox"></input>
-                        <span class="slider round"></span>
-                    </label>
+                <SlidingButton 
+                        SlidingButtonText="J'aimerais pouvoir sortir en concours"
+                        SlidingButtonID="competitionSwitch"
+                        />
                 </div>
+            </div>    
             </div>
-
-                <FlottingButton btnName={'Lancer la recherche'}/>
-            </div>
-        </div>
+            <FloatingButton btnName={'Lancer la recherche'}/>
+        
     </>
     )
 }
