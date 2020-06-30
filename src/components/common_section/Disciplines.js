@@ -3,11 +3,13 @@ import Checkbox from "../common/Checkbox";
 import { Collapse, Button, Input } from "reactstrap";
 import "./common_section.css";
 
-const Disciplines = () => {
-  const [isOpen, setIsOpen] = useState(true);
-  const toggle = () => setIsOpen(!isOpen);
+const Disciplines = (props) => {
+    
+    const [isOpen, setIsOpen] = useState(true)
+    const toggle = () => setIsOpen(!isOpen)
+      
+    return (
 
-  return (
     <div className="disc">
       <h4>Disciplines</h4>
       <div className="disciplineList">
@@ -22,4 +24,4 @@ const Disciplines = () => {
   );
 };
 
-export default Disciplines;
+export default Disciplines

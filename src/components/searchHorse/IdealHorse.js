@@ -5,26 +5,34 @@ import { Collapse, Button, Input } from 'reactstrap'
 
 const IdealHorse = (props) => {
 
+const [horseSize, setHorseSize] = useState('')
+const [ageHorse, setAgeHorse] = useState('')
+
     return (
 
         <div className='searchHorse_idealHorse'>
             <div className='horse_size'>
-                    <h5> Taille :</h5>
-                    <RangeButton radioSelBtnText='cm'/>
+                <h5> Taille : {horseSize} cm</h5>
+                    <RangeButton 
+                        min='100'
+                        max='200'
+                        radioSelBtnId='horseSize'
+                        onChange={(e) => setHorseSize(e.target.value)
+                    }/>
             </div>
                 <hr />
             <div className='horse_temper'>
                     <h5> Tempérament :</h5>
                     <div className='select_temper'>
                     <RadioCheck 
-                    RadioCheckText1={'Calme'}
-                    radioCheckId1={'Calme'}
-                    RadioCheckText2={'Dynamique'}
-                    radioCheckId2={'Dynamique'}
-                    RadioCheckText3={'Speed'}
-                    radioCheckId3={'Speed'} 
-                    RadioCheckText4={'A canaliser'}
-                    radioCheckId4={'A canaliser'} />
+                    RadioCheckText1='Calme'
+                    radioCheckId1='Calme'
+                    RadioCheckText2='Dynamique'
+                    radioCheckId2='Dynamique'
+                    RadioCheckText3='Speed'
+                    radioCheckId3='Speed'
+                    RadioCheckText4='A canaliser'
+                    radioCheckId4='A canaliser' />
                     </div>
             </div>
                 <hr />
@@ -59,10 +67,19 @@ const IdealHorse = (props) => {
             </div>
                 <hr />
             <div className='horse_age'>
-                    <h5> Age :</h5>
-                    <RangeButton radioSelBtnText='ans'/>
+            <h5> Age : {ageHorse} ans</h5>
+                    <span>10 ans</span>
+                    <RangeButton 
+                        id='ageHorse'
+                        min='10'
+                        max='99'
+                        radioSelBtnId='ageHorse'
+                        onChange={(e) => setAgeHorse(e.target.value)
+                    }/>
+                    <span>30 ans</span>
             </div>
-        </div>
+            </div>
+        
 
     )}
 

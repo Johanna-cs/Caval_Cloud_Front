@@ -94,7 +94,7 @@ const SearchHorse = (props) => {
             <hr />
                 <h4>Propriétaire idéal</h4>
                 <IdealOwner />
-            <hr />
+            
             <h4>Ecuries et moniteur </h4>
                 <Ecurie />
             <hr />

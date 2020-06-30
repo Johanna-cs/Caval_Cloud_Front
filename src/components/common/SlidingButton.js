@@ -13,6 +13,7 @@ const SlidingButton = (props) =>{
             className="custom-control-input"
             id={props.SlidingButtonID}
             name={props.SlidingButtonID}
+            onClick={props.onClick}
           />
           <label
             className="custom-control-label"
