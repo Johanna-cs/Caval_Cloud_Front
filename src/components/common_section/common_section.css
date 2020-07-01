@@ -28,7 +28,11 @@
   align-items: baseline;
   justify-content: space-between;
 }
-
+.priceDiv{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
 .mensuel_price2 label{
     padding-bottom: 1em;
 }

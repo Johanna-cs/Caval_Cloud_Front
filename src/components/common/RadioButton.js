@@ -11,7 +11,7 @@ const RadioButton = (props) => {
           type="radio"
           name={props.radioButtonName}
           id={props.radioButtonId}
-          value={props.radioButtonText}
+          value={props.radioButtonValue}
           onClick={props.onClick}
         />
         <label className="radioButton-check-label" for={props.radioButtonId}></label>

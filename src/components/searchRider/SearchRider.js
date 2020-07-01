@@ -1,7 +1,7 @@
-import React, {useState, useEffect, useReducer} from 'react'
+import React, {useState, useEffect} from 'react'
 import Header from '../Header_footer/Header';
 import Axios from 'axios'
-import usePosition from '../usePosition';
+import usePosition from '../common_section/usePosition';
 import './SearchRider.css';
 import FloatingButton from '../common/FloatingButton'
 import Disciplines from '../common_section/Disciplines'
@@ -42,25 +42,27 @@ const SearchRider = () => {
     const [fixedFrequency, setFixedFrequency] = useState(false)
     // Concours ou pas :
     const [doCompetition, setDoCompetition] = useState(false)
-    // Fonction qui permet de transformer les coordonnées GPS en adresse physique, ici la ville ('municipality'), depuis l'API openstreetmap
+
+
     const getLocation = () => {
         Axios
         .get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
         .then(res => setCityLocalisation(res.data.address.municipality))
-        .catch(err => console.error(err))
-        .finally(console.log(cityLocalisation))
+        .catch(err => console.log(err))
     }
+
     useEffect(() => {
         getLocation()
-    }, [])
+    }, )
+
+
     return (
         <>
         <Header title='CHERCHER UN CAVALIER'/>
         <div className="searchRider_page">
+
             <div className="localisation">   
-            {latitude}{longitude}
-            <h1>ville : {cityLocalisation} </h1>
-                <Localisation
+                <Localisation 
                     value={cityLocalisation}
                     onChange={(e) => setCityLocalisation(e.target.value)}
                     definePerimeter={(e) => setPerimeter(e.target.value)}
@@ -69,11 +71,11 @@ const SearchRider = () => {
                 <div> Années de pratique : {yearsOfPractice}
                     <div className='annees_pratique'>
                         <span>0</span>
-                        <RangeButton
+                        <RangeButton 
                             min="0" 
                             max="99"
                             onChange={(e) => setYearsOfPractice(e.target.value)
-                            }
+                            } 
                         />
                         <span>99</span>
                     </div>
@@ -81,8 +83,8 @@ const SearchRider = () => {
                 <hr />
                 <div> Niveau de Galop : {gallopLevel}
                     <div className='niveau_galop'>
-                        <span>0</span>
-                        <RangeButton
+                        <span>0</span>                   
+                        <RangeButton 
                             min="0" 
                             max="7" 
                             list='niveau_galop'
@@ -96,7 +98,7 @@ const SearchRider = () => {
                 <div> Age du cavalier : {riderAge}
                     <div className='age_cavalier'>
                         <span>5</span>
-                        <RangeButton
+                        <RangeButton 
                             min="0" 
                             max="99"
                             onChange={(e) =>setRiderAge(e.target.value)} 
@@ -139,7 +141,8 @@ const SearchRider = () => {
                 />
         </div>
         <FloatingButton btnName={'Lancer la recherche'}/>
-        </>
-    )
+
+        </>    )
+
 }
 export default SearchRider

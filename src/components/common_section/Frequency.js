@@ -10,8 +10,6 @@ const Frequency = (props) => {
     const [isOpen, setIsOpen] = useState(false)
     const toggle = () => setIsOpen(!isOpen)
 
-
-
     return (
       <>
         <div className="frequencyDiv">

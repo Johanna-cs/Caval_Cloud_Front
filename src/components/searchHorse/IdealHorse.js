@@ -68,10 +68,10 @@ const [ageHorse, setAgeHorse] = useState('')
                 <hr />
             <div className='horse_age'>
             <h5> Age du cheval : {ageHorse} ans</h5>
-                    <span>10 ans</span>
+                    <span>1 an</span>
                     <RangeButton 
                         id='ageHorse'
-                        min='10'
+                        min='1'
                         max='30'
                         radioSelBtnId='ageHorse'
                         onChange={(e) => setAgeHorse(e.target.value)

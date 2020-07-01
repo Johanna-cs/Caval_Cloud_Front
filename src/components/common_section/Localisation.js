@@ -9,7 +9,8 @@ function Localisation(props) {
     
     const [isOpen, setIsOpen] = useState(true)
     const toggle = () => setIsOpen(!isOpen)
-    var myLastCitySaved = localStorage.getItem('lastCitySaved')
+    let myLastCitySaved = localStorage.getItem('lastCitySaved')
+
     return (
         <>
 
@@ -18,7 +19,7 @@ function Localisation(props) {
             <h4>Localisation </h4>
                 <input 
                     min="0" 
-                    max="99"
+                    max="200"
                     className='mainInput' 
                     placeholder='Localisation' 
                     value={props.value}
@@ -32,10 +33,14 @@ function Localisation(props) {
             <div className='searchHorse_loc2'>
                 <Collapse isOpen={isOpen}>
                     <h5>Localisation  :</h5>
-                    <p className='loc_text'>Dans un rayon autour de : </p>
+                    <p className='loc_text'>Dans un rayon autour de : {props.perimeter} kms</p>
                     <div className='rayon_loc'>
                             <span>0</span>
-                            <RangeButton min="0" max="200" />
+                            <RangeButton 
+                                radioSelBtnText='kms' 
+                                onChange={props.definePerimeter} 
+                                min='0' max='200'
+                            />
                             <span>200</span>
                     </div>
                     <div className='last_loc'>
@@ -43,7 +48,7 @@ function Localisation(props) {
                     
                     <div className='lastLoc'>
                         <img src={locmap} alt='logo loc' className='loc_map'/>
-                        <p> {myLastCitySaved} derniere localisation</p>
+                        <p> {myLastCitySaved}</p>
                     </div>
                     <div className='aroundMe'>
                         <img src={geoloc} alt='logo loc' className='loc_map'/>

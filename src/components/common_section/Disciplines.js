@@ -2,23 +2,90 @@ import React, { useState } from "react";
 import Checkbox from "../common/Checkbox";
 import "./common_section.css";
 
-const Disciplines = (props) => {
-    
-      
-    return (
+const initialDiscipline = [
+  {
+    id: "a",
+    name: "Obstacle",
+    checked: false,
+  },
+  {
+    id: "b",
+    name: "Dressage",
+    checked: false,
+  },
+  {
+    id: "c",
+    name: "CCE",
+    checked: false,
+  },
+  {
+    id: "d",
+    name: "Ethologie",
+    checked: false,
+  },
+  {
+    id: "e",
+    name: "Attelage",
+    checked: false,
+  },
+  {
+    id: "f",
+    name: "TREC",
+    checked: false,
+  },
+];
 
-    <div className="disc">
+const disciplineReducer = (state, action) => {
+  switch (action.type) {
+    case "ADD":
+      return state.map((discipline) => {
+        if (discipline.id === action.id) {
+          return { ...discipline, checked: true };
+        } else {
+          return discipline;
+        }
+      });
+    case "REMOVE":
+      return state.map((discipline) => {
+        if (discipline.id === action.id) {
+          return { ...discipline, checked: false };
+        } else {
+          return discipline;
+        }
+      });
+    default:
+      return state;
+  }
+};
+
+const Disciplines = () => {
+  const [disciplines, dispatch] = React.useReducer(
+    disciplineReducer,
+    initialDiscipline
+  );
+
+  const handleChange = (discipline) => {
+    dispatch({
+      type: discipline.checked ? "REMOVE" : "ADD",
+      id: discipline.id,
+    });
+  };
+
+  return (
+    <>
       <h4>Disciplines</h4>
       <div className="disciplineList">
-        <Checkbox CheckboxText="Obstacle" />
-        <Checkbox CheckboxText="Dressage" />
-        <Checkbox CheckboxText="CCE" />
-        <Checkbox CheckboxText="Ethologie" />
-        <Checkbox CheckboxText="Attelage" />
-        <Checkbox CheckboxText="TREC" />
+        {disciplines.map((discipline) => (
+          <Checkbox
+            CheckboxText={discipline.name}
+            type="checkbox"
+            checked={discipline.checked}
+            onChange={() => handleChange(discipline)}
+          />
+        ))}
       </div>
-    </div>
-  )
-}
+    </>
+  );
+};
 
 export default Disciplines

@@ -12,7 +12,7 @@ import HebergementHorse from './HebergementHorse'
 import FloatingButton from '../common/FloatingButton'
 import SlidingButton from '../common/SlidingButton'
 import Axios from 'axios'
-import usePosition from '../usePosition';
+import usePosition from '../common_section/usePosition';
 
 
 const SearchHorse = (props) => {
@@ -22,7 +22,7 @@ const SearchHorse = (props) => {
     // Récupération de l'ancienne ville pour le locale storage
     localStorage.setItem('lastCitySaved',cityLocalisation);
     // Choix du rayon de recherche des annonces :
-    const [perimeters, setPerimeters] = useState(null);
+    const [perimeter, setPerimeter] = useState(null);
     // Précédente localisation enregistrée dans le navigateur (si existante) :
     const [lastCitySaved, setLastCitySaved] = useState('');
     
@@ -62,13 +62,16 @@ const SearchHorse = (props) => {
         <div className='searchHorse_page'>
                 <Localisation 
                 value={cityLocalisation}
-                onChange={(e) => setCityLocalisation(e.target.value)}/>
+                onChange={(e) => setCityLocalisation(e.target.value)}
+                definePerimeter={(e) => setPerimeter(e.target.value)}
+                perimeter={perimeter} 
+                />
             <hr />
                 <BudgetMensuel budget={budget} 
                     currency={currency}
                     onChange={(e) => setBudget(e.target.value)}
                     onClick={(e) => setCurrency(e.target.value)}/>
-            <hr />
+            
                 <Disciplines />
             <hr />
                 <Structures />
