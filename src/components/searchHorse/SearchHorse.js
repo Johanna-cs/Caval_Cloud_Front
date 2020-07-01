@@ -18,8 +18,6 @@ import usePosition from '../usePosition';
 const SearchHorse = (props) => {
     
     const {latitude, longitude, error} = usePosition();
-    
-    const [location, setLocation] = useState(null);
     const [cityLocalisation, setCityLocalisation] = useState('')
     // Récupération de l'ancienne ville pour le locale storage
     localStorage.setItem('lastCitySaved',cityLocalisation);

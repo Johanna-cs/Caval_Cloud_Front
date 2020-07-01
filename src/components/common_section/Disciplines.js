@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Checkbox from "../common/Checkbox";
-import { Collapse, Button, Input } from "reactstrap";
 import "./common_section.css";
 
 const Disciplines = (props) => {
     
-    const [isOpen, setIsOpen] = useState(true)
-    const toggle = () => setIsOpen(!isOpen)
       
     return (
 
@@ -21,7 +18,7 @@ const Disciplines = (props) => {
         <Checkbox CheckboxText="TREC" />
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default Disciplines
