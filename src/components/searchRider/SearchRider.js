@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useReducer} from 'react'
 import Header from '../Header_footer/Header';
 import Axios from 'axios'
 import usePosition from '../usePosition';
@@ -91,6 +91,7 @@ const SearchRider = () => {
                         <span>7</span>
                     </div>
                 </div>
+
                 <hr />
                 <div> Age du cavalier : {riderAge}
                     <div className='age_cavalier'>
