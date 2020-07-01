@@ -5,7 +5,10 @@ import { Collapse, Button, Input } from 'reactstrap'
 
 const IdealHorse = (props) => {
 
+    // Taille du cheval idéal
 const [horseSize, setHorseSize] = useState('')
+
+    // Age du cheval idéal
 const [ageHorse, setAgeHorse] = useState('')
 
     return (

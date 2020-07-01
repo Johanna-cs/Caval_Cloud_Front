@@ -36,6 +36,9 @@ const SearchHorse = (props) => {
     //Ecurie
     const [scuringType, setScuringType] = useState('')
 
+    //Hebergement 
+    const [boxeType, setBoxeType] = useState('')
+
     //Coaching 
     const [coachingHere, setCoachingHere] = useState(false)
     const [externalCoach, setExternalCoach] = useState(false)
@@ -91,21 +94,26 @@ const SearchHorse = (props) => {
             </div>
             <hr />
                 <h4>Cheval idéal</h4>
-                <IdealHorse />
+                <IdealHorse 
+                    horseSize={IdealHorse.horseSize}
+                    ageHorse={IdealHorse.ageHorse}
+                     />
             <hr />
                 <h4>Propriétaire idéal</h4>
                 <IdealOwner 
-                    ageOwner={props.ageOwner}
-                    frequency={props.frequency}
-                    horseWork={props.horseWork}
+                    ageOwner={IdealOwner.ageOwner}
+                    frequency={IdealOwner.frequency}
+                    horseWork={IdealOwner.horseWork}
                 />
             
             <h4>Ecuries et moniteur </h4>
                 <Scuring
-                scuringType={scuringType}
-                onClick={(e) => setScuringType(e.target.value)}/>
+                    scuringType={scuringType}
+                    onClick={(e) => setScuringType(e.target.value)}/>
             <hr />
-                <HebergementHorse />
+                <HebergementHorse 
+                    boxeType={boxeType}
+                    onClick={(e) => setBoxeType(e.target.value)}/>
             <hr />
             <div className='searchHorse_coaching'>
                 <h4>Coaching</h4>

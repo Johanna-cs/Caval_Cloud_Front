@@ -126,7 +126,7 @@ const SearchRider = () => {
                     onChange={(e) => setBudget(e.target.value)}
                     onClick={(e) => setCurrency(e.target.value)}
                 />
-            <hr />
+            
             <h4>Rythme de la demi-pension</h4>
                 <Frequency
                     onClick={(e) => setFrequency(e.target.value)}

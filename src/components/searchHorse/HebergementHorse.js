@@ -1,7 +1,7 @@
 import React from 'react'
-import Checkbox from '../common/Checkbox'
+import SelectButton from '../common/SelectButton'
 
-const HebergementHorse = () => {
+const HebergementHorse = (props) => {
       
     return ( 
         
@@ -11,9 +11,9 @@ const HebergementHorse = () => {
         <div className="searchHorse_hebergt">
             <h5>Comment est hebergé le cheval ? </h5>
                 <div className="hebergtList">
-                    <Checkbox CheckboxText="Boxe" />
-                    <Checkbox CheckboxText="Paddock" />
-                    <Checkbox CheckboxText="Stabulation" />
+                <SelectButton radioSelBtnId="Boxe" radioSelBtnValue="Boxe" radioSelBtnName='boxeType' onClick={props.onClick} />
+                <SelectButton radioSelBtnId="Paddock" radioSelBtnValue="Paddock" radioSelBtnName='boxeType' onClick={props.onClick} />
+                <SelectButton radioSelBtnId="Stabulation" radioSelBtnValue="Stabulation" radioSelBtnName='boxeType' onClick={props.onClick} />
                     
                 </div>
         </div>

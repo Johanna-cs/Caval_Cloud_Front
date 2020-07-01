@@ -71,15 +71,18 @@ const IdealOwner = (props) => {
             <div className='rider_horseWork'>
                 <h5> Travail du cheval :</h5>
                     <div className='select_horseWork'>
-                        <RadioButton radioButtonText="Ouvert à la nouveauté" radioButtonId='openToNew' radioButtonName='horseWork' 
+                        <RadioButton radioButtonText="Ouvert à la nouveauté" 
+                        radioButtonId='openToNew' radioButtonName='horseWork' radioButtonValue='Ouvert à la nouveauté'
                         onClick={(e) => setHorseWork(e.target.value)}
                         horseWork={horseWork}/>
 
-                        <RadioButton radioButtonText="Normal" radioButtonId='normal' radioButtonName='horseWork' 
+                        <RadioButton radioButtonText="Normal" 
+                        radioButtonId='normal' radioButtonName='horseWork' radioButtonValue='Normal'
                         onClick={(e) => setHorseWork(e.target.value)}
                         horseWork={horseWork}/>
 
-                        <RadioButton radioButtonText="Cadré" radioButtonId='cadre' radioButtonName='horseWork' 
+                        <RadioButton radioButtonText="Cadré" 
+                        radioButtonId='cadre' radioButtonName='horseWork' radioButtonValue='Cadré'
                         onClick={(e) => setHorseWork(e.target.value)}
                         horseWork={horseWork}/>
                     </div>
