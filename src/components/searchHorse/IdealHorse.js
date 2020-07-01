@@ -16,7 +16,7 @@ const [ageHorse, setAgeHorse] = useState('')
                     <RangeButton 
                         min='80'
                         max='200'
-                        radioSelBtnId='horseSize'
+                        radioRangeBtnId='horseSize'
                         onChange={(e) => setHorseSize(e.target.value)
                     }/>
             </div>
@@ -73,7 +73,7 @@ const [ageHorse, setAgeHorse] = useState('')
                         id='ageHorse'
                         min='1'
                         max='30'
-                        radioSelBtnId='ageHorse'
+                        radioRangeBtnId='ageHorse'
                         onChange={(e) => setAgeHorse(e.target.value)
                     }/>
                     <span>30 ans</span>

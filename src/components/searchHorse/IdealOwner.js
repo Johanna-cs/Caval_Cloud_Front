@@ -8,16 +8,16 @@ import Frequency from '../common_section/Frequency'
 
 const IdealOwner = (props) => {
 
-// age du proprietaire
-const [ageOwner, setAgeOwner] = useState(null)
+    // age du proprietaire
+    const [ageOwner, setAgeOwner] = useState(null)
 
-// Fréquence :
-const [frequency, setFrequency] = useState('')
+    // Fréquence :
+    const [frequency, setFrequency] = useState('')
 
-// Fréquence jours fixes :
-const [fixedFrequency, setFixedFrequency] = useState(false)
+    // Fréquence jours fixes :
+    const [fixedFrequency, setFixedFrequency] = useState(false)
 
-const [horseWork, setHorseWork] = useState('')
+    const [horseWork, setHorseWork] = useState('')
 
     return (
 

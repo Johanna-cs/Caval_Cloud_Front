@@ -7,7 +7,7 @@ import Structures from './Structures'
 import IdealHorse from './IdealHorse'
 import IdealOwner from './IdealOwner'
 import BudgetMensuel from '../common_section/BudgetMensuel'
-import Ecurie from './Ecurie'
+import Scuring from './Scuring'
 import HebergementHorse from './HebergementHorse'
 import FloatingButton from '../common/FloatingButton'
 import SlidingButton from '../common/SlidingButton'
@@ -32,6 +32,9 @@ const SearchHorse = (props) => {
 
     //balade
     const [doBalad, setDoBalad] = useState(false)
+
+    //Ecurie
+    const [scuringType, setScuringType] = useState('')
 
     //Coaching 
     const [coachingHere, setCoachingHere] = useState(false)
@@ -91,10 +94,16 @@ const SearchHorse = (props) => {
                 <IdealHorse />
             <hr />
                 <h4>Propriétaire idéal</h4>
-                <IdealOwner />
+                <IdealOwner 
+                    ageOwner={props.ageOwner}
+                    frequency={props.frequency}
+                    horseWork={props.horseWork}
+                />
             
             <h4>Ecuries et moniteur </h4>
-                <Ecurie />
+                <Scuring
+                scuringType={scuringType}
+                onClick={(e) => setScuringType(e.target.value)}/>
             <hr />
                 <HebergementHorse />
             <hr />

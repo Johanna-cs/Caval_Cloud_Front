@@ -9,8 +9,8 @@ const RangeButton = (props) => {
             <input 
                 type="range" 
                 class="rangeBtn" 
-                id={props.radioSelBtnId} 
-                name={props.radioSelBtnText} 
+                id={props.radioRangeBtnId} 
+                name={props.radioRangeBtnText} 
                 min={props.min} max={props.max} 
                 value={props.onchange} 
                 onChange={props.onChange}

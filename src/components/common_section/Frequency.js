@@ -37,24 +37,28 @@ const Frequency = (props) => {
 
             <RadioButton
               radioButtonText="5 à 7 fois /semaine"
+              radioButtonValue="5 à 7 fois /semaine"
               radioButtonName="frequency"
               radioButtonId="frequency1"
               onClick={props.onClick}
             />
             <RadioButton
               radioButtonText="3 à 4 fois /semaine"
+              radioButtonValue="3 à 4 fois /semaine"
               radioButtonName="frequency"
               radioButtonId="frequency2"
               onClick={props.onClick}
             />
             <RadioButton
               radioButtonText="2 fois /semaine"
+              radioButtonValue="2 fois /semaine"
               radioButtonName="frequency"
               radioButtonId="frequency3"
               onClick={props.onClick}
             />
             <RadioButton
               radioButtonText="1 fois /semaine"
+              radioButtonValue="1 fois /semaine"
               radioButtonName="frequency"
               radioButtonId="frequency4"
               onClick={props.onClick}
