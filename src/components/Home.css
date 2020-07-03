@@ -15,7 +15,26 @@
     padding: 1em;
     text-align: center;
   }
-  
+  /* HEADER  */
+  .headerHome {
+    background-color: #5D5AA4;
+    height: 4.5em;
+    color : white;
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    padding: 0.8em;
+    margin-bottom: 1em;
+    word-break: break-all !important;
+   
+}
+
+#homeTitle {
+    font-size: 1.2em !important;
+    font-weight: 200 !important;
+    margin-top: 0.5em !important;
+    text-align: center;
+}
       /* logos de la HOME PAGE */
   .logoHorse {
     width: 5em;
