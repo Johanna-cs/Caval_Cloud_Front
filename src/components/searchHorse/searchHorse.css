@@ -19,8 +19,7 @@
     justify-content: space-evenly;
     flex-flow: row wrap;
 }
-.select_communication, .hebergtList, .scuringList {
-   
+ .hebergtList, .scuringList {
     display: flex; 
     align-items: center;
     flex-flow: column wrap;
