@@ -32,9 +32,8 @@ const Frequency = (props) => {
           </Button>
         </div>
         <Collapse isOpen={isOpen}>
-          <div>
-            <h5>Fréquence :</h5>
-
+        <h5>Fréquence :</h5>
+          <div className='select_frequency'>
             <RadioButton
               radioButtonText="5 à 7 fois /semaine"
               radioButtonValue="5 à 7 fois /semaine"

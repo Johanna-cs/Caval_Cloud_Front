@@ -75,3 +75,9 @@
   display: flex;
   flex-direction: column;
 }
+
+.select_frequency {
+  display: flex;
+  justify-content: space-evenly;
+  flex-flow: row wrap;
+}
