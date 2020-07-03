@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, createContext, useContext } from "react";
 import "./postRider.css";
 import { Link } from "react-router-dom";
 import Header from "../Header_footer/Header";
@@ -10,6 +10,9 @@ import Disciplines from "../common_section/Disciplines";
 import BudgetMensuel from "../common_section/BudgetMensuel";
 import Frequency from "../common_section/Frequency";
 
+const MyContext = createContext(null);
+
+
 const PostRider = () => {
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
@@ -17,6 +20,12 @@ const PostRider = () => {
   const [fixedFrequency, setFixedFrequency] = useState(false);
   const [budget, setBudget] = useState(null);
   const [currency, setCurrency] = useState("€");
+  const [discipline, setDisciplines] = useState([]);
+  const [yearsOfPractice, setYearsOfPractice] = useState(null);
+  const [gallopLevel, setGallopLevel] = useState(null);
+  const [isVehiculed, setIsVehiculed] = useState(false);
+  const [doCompetition, setDoCompetition] = useState(false);
+  
 
 
 

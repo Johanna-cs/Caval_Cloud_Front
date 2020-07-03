@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer} from "react";
 import Checkbox from "../common/Checkbox";
 import "./common_section.css";
+
+
 
 const initialDiscipline = [
   {
@@ -58,8 +60,8 @@ const disciplineReducer = (state, action) => {
   }
 };
 
-const Disciplines = () => {
-  const [disciplines, dispatch] = React.useReducer(
+const Disciplines = (props) => {
+  const [disciplines, dispatch] = useReducer(
     disciplineReducer,
     initialDiscipline
   );
