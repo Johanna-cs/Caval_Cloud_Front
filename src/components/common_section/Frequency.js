@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, {useState} from 'react'
 import { Collapse, Button} from 'reactstrap'
 import RadioButton from '../common/RadioButton'
 import './common_section.css'
@@ -40,25 +40,29 @@ const Frequency = (props) => {
               radioButtonName="frequency"
               radioButtonId="frequency1"
               onClick={props.onClick}
+              radioButtonValue="5 à 7 fois /semaine"
+
             />
             <RadioButton
               radioButtonText="3 à 4 fois /semaine"
               radioButtonName="frequency"
               radioButtonId="frequency2"
               onClick={props.onClick}
+              radioButtonValue="3 à 4 fois /semaine"
             />
             <RadioButton
               radioButtonText="2 fois /semaine"
               radioButtonName="frequency"
               radioButtonId="frequency3"
               onClick={props.onClick}
+              radioButtonValue="2 fois /semaine"
             />
             <RadioButton
               radioButtonText="1 fois /semaine"
               radioButtonName="frequency"
               radioButtonId="frequency4"
               onClick={props.onClick}
-
+              radioButtonValue="1 fois /semaine"
             />
           </div>
           <h5>Régularité :</h5>
