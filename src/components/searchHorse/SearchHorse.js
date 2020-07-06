@@ -15,6 +15,7 @@ import Axios from 'axios'
 import usePosition from '../common_section/usePosition';
 
 
+
 const SearchHorse = (props) => {
     
     const {latitude, longitude, error} = usePosition();
@@ -33,6 +34,11 @@ const SearchHorse = (props) => {
     //balade
     const [doBalad, setDoBalad] = useState(false)
 
+    // Taille du cheval idéal
+    const [horseSize, setHorseSize] = useState('')
+
+    // Age du cheval idéal
+    const [ageHorse, setAgeHorse] = useState('')
     //Ecurie
     const [scuringType, setScuringType] = useState('')
 
@@ -95,8 +101,10 @@ const SearchHorse = (props) => {
             <hr />
                 <h4>Cheval idéal</h4>
                 <IdealHorse 
+                    onChange={(e) => setAgeHorse(e.target.value)
+                    }
                     horseSize={IdealHorse.horseSize}
-                    ageHorse={IdealHorse.ageHorse}
+                    
                      />
             <hr />
                 <h4>Propriétaire idéal</h4>

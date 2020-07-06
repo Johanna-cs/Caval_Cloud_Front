@@ -68,7 +68,7 @@ const SearchRider = () => {
                     definePerimeter={(e) => setPerimeter(e.target.value)}
                     perimeter={perimeter}
                 />
-                <div> Années de pratique : {yearsOfPractice}
+                <h5> Années de pratique : {yearsOfPractice} ans</h5>
                     <div className='annees_pratique'>
                         <span>0</span>
                         <RangeButton 
@@ -79,9 +79,9 @@ const SearchRider = () => {
                         />
                         <span>99</span>
                     </div>
-                </div>
+                
                 <hr />
-                <div> Niveau de Galop : {gallopLevel}
+                <h5> Niveau de Galop : {gallopLevel} </h5>
                     <div className='niveau_galop'>
                         <span>0</span>                   
                         <RangeButton 
@@ -92,20 +92,20 @@ const SearchRider = () => {
                         />
                         <span>7</span>
                     </div>
-                </div>
+                
 
                 <hr />
-                <div> Age du cavalier : {riderAge}
+                <h5> Age du cavalier : {riderAge} ans</h5>
                     <div className='age_cavalier'>
-                        <span>5</span>
+                        <span>5 ans</span>
                         <RangeButton 
                             min="0" 
                             max="99"
                             onChange={(e) =>setRiderAge(e.target.value)} 
                         />
-                        <span>99</span>
+                        <span>99 ans</span>
                     </div>
-                </div>
+                
                 <SlidingButton
                     SlidingButtonText='Personne véhiculée' 
                     SlidingButtonID='vehiculed' 
@@ -128,11 +128,13 @@ const SearchRider = () => {
                 />
             
             <h4>Rythme de la demi-pension</h4>
+            <div className='frequency_pension'>
                 <Frequency
                     onClick={(e) => setFrequency(e.target.value)}
                     frequency={frequency}
                     changeFixedFrequency={() => setFixedFrequency(!fixedFrequency)}
                 />
+            </div>
             <h4>Concours</h4>
                 <SlidingButton
                     SlidingButtonText='Le cavalier peut faire du concours avec mon cheval' 
