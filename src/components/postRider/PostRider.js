@@ -1,4 +1,4 @@
-import React, { useState, useContext} from "react";
+import React, { useState, useEffect } from "react";
 import "./postRider.css";
 import { Link } from "react-router-dom";
 import Header from "../Header_footer/Header";
@@ -10,7 +10,7 @@ import Disciplines from "../common_section/Disciplines";
 import BudgetMensuel from "../common_section/BudgetMensuel";
 import Frequency from "../common_section/Frequency";
 import IdealHorse from "../searchHorse/IdealHorse";
-import PostRiderPresentation from "./PostRiderPresentation";
+import Axios from "axios";
 
 
 const PostRider = ({...profile}) => {
@@ -26,7 +26,7 @@ const PostRider = ({...profile}) => {
   const [isVehiculed, setIsVehiculed] = useState(false);
   const [doCompetition, setDoCompetition] = useState(false);
   
-  // const [prenom, setPrenom] = useState("");
+  const [profile, setProfile] = useState("");
   // const [age, setAge] = useState("");
   // const [codeP, setCodeP] = useState("");
   // const [message, setMessage] = useState("");
@@ -37,7 +37,15 @@ const PostRider = ({...profile}) => {
   // const [ridingWord2, setRidingWord2] = useState("");
   // const [ridingWord3, setRidingWord3] = useState("");
 
-  const profileP = <PostRiderPresentation/>;
+const getProfile = () => {
+  Axios.get(`http://localhost:3010/api/users`)
+    .then((res) => setProfile(...res))
+    .catch((err) => console.log(err));
+};
+
+useEffect(() => {
+  getProfile();
+});
 
   return (
     <>
@@ -47,7 +55,7 @@ const PostRider = ({...profile}) => {
           <img className="postRider_logo" src={logo} alt="logo" />
           <div className="postRider_forms">
             <p>
-              {profileP.prenom}, <span>{profile.age}</span>
+              {profile.prenom}, <span>{profile.age}</span>
             </p>
             <p>
               {profile.selfWord1}, {profile.selfWord2}, {profile.selfWord3}
@@ -68,8 +76,10 @@ const PostRider = ({...profile}) => {
           <h4>Message :</h4>
           <p>{profile.message}</p>
           <Link
-            to={{pathname:"/PostRiderPresentation",
-            style: {textDecoration: "none"} }}
+            to={{
+              pathname: "/PostRiderPresentation",
+              style: { textDecoration: "none" },
+            }}
           >
             <button className="postRider_edit-button">
               Editer votre présentation
