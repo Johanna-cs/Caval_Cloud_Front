@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext } from "react";
+import React, { useState, useContext} from "react";
 import "./postRider.css";
 import { Link } from "react-router-dom";
 import Header from "../Header_footer/Header";
@@ -10,12 +10,10 @@ import Disciplines from "../common_section/Disciplines";
 import BudgetMensuel from "../common_section/BudgetMensuel";
 import Frequency from "../common_section/Frequency";
 import IdealHorse from "../searchHorse/IdealHorse";
+import PostRiderPresentation from "./PostRiderPresentation";
 
 
-const MyContext = createContext(null);
-
-
-const PostRider = () => {
+const PostRider = ({...profile}) => {
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
   const [frequency, setFrequency] = useState("");
@@ -28,8 +26,18 @@ const PostRider = () => {
   const [isVehiculed, setIsVehiculed] = useState(false);
   const [doCompetition, setDoCompetition] = useState(false);
   
+  // const [prenom, setPrenom] = useState("");
+  // const [age, setAge] = useState("");
+  // const [codeP, setCodeP] = useState("");
+  // const [message, setMessage] = useState("");
+  // const [selfWord1, setSelfWord1] = useState("");
+  // const [selfWord2, setSelfWord2] = useState("");
+  // const [selfWord3, setSelfWord3] = useState("");
+  // const [ridingWord1, setRidingWord1] = useState("");
+  // const [ridingWord2, setRidingWord2] = useState("");
+  // const [ridingWord3, setRidingWord3] = useState("");
 
-
+  const profileP = <PostRiderPresentation/>;
 
   return (
     <>
@@ -39,9 +47,11 @@ const PostRider = () => {
           <img className="postRider_logo" src={logo} alt="logo" />
           <div className="postRider_forms">
             <p>
-              Nom, <span>age</span>
+              {profileP.prenom}, <span>{profile.age}</span>
             </p>
-            <p>Mot 1, Mot 2, Mot 3</p>
+            <p>
+              {profile.selfWord1}, {profile.selfWord2}, {profile.selfWord3}
+            </p>
           </div>
           <div>
             <h4>Localisation</h4>
@@ -50,17 +60,17 @@ const PostRider = () => {
         <Carousel />
         <div>
           <h4>Equitation</h4>
-          <p>Mot-Eq 1, Mot-Eq 2, Mot-Eq 3</p>
+          <p>
+            {profile.ridingWord1}, {profile.ridingWord2}, {profile.ridingWord3}
+          </p>
         </div>
         <div className="postRider_message">
           <h4>Message :</h4>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book.
-          </p>
-          <Link to="/PostRiderPresentation" style={{ textDecoration: "none" }}>
+          <p>{profile.message}</p>
+          <Link
+            to={{pathname:"/PostRiderPresentation",
+            style: {textDecoration: "none"} }}
+          >
             <button className="postRider_edit-button">
               Editer votre présentation
             </button>
@@ -95,7 +105,7 @@ const PostRider = () => {
           <p>Nombre d'années de pratique cumulées</p>
           <p>Galop</p>
         </div>
-        
+
         <div className="postRider-disc">
           <Disciplines />
         </div>
@@ -119,7 +129,7 @@ const PostRider = () => {
         <hr />
         <div>
           <h4>Cheval idéal</h4>
-          <IdealHorse/>
+          <IdealHorse />
         </div>
         <hr />
         <h4>Coaching</h4>
