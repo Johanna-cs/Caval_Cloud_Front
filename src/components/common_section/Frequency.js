@@ -13,9 +13,7 @@ const Frequency = (props) => {
     return (
       <>
         <div className="frequencyDiv">
-          <div className="toggle_place">
             <h4>{props.frequencyTitle} </h4>
-          </div>
           <Button id="toggle_btn_chev" onClick={toggle}>
             <svg
               width="1em"

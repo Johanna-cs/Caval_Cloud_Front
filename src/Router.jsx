@@ -8,7 +8,8 @@ import SearchRider from './components/searchRider/SearchRider'
 import SearchHorse from "./components/searchHorse/SearchHorse"
 import PostHorse from "./components/postHorse/PostHorse"
 import PostRider from './components/postRider/PostRider'
-import PostRiderPresentation from "./components/postRider/PostRiderPresentation";
+import PostRiderPresentation from "./components/postRider/PostRiderPresentation"
+import OwnerPres from './components/postHorse/OwnerPres'
 
 const Router = () => {
   return (
@@ -23,6 +24,7 @@ const Router = () => {
         <Route exact path="/post-horse" component={PostHorse} />
         <Route exact path="/post-rider" component={PostRider} />
         <Route exact path="/PostRiderPresentation" component={PostRiderPresentation}/>
+        <Route exact path="/post-horse-owner" component={OwnerPres} />
       </Switch>
     </>
   );

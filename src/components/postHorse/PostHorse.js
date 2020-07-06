@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import './postHorse.css'
 import Header from '../Header_footer/Header'
+import { Link } from "react-router-dom";
 import RangeButton from '../common/RangeButton'
 import SelectButton from '../common/SelectButton'
 import SlidingButton from '../common/SlidingButton'
@@ -10,6 +11,8 @@ import Localisation from '../common_section/Localisation'
 import Disciplines from '../common_section/Disciplines'
 import Frequency from '../common_section/Frequency'
 import BudgetMensuel from '../common_section/BudgetMensuel'
+import IdealRider from './IdealRider'
+import FloatingButton from '../common/FloatingButton'
 
 
 const PostHorse = (props) => {
@@ -36,7 +39,7 @@ const PostHorse = (props) => {
 
     // Concours :
     const [doCompetition, setDoCompetition] = useState(false)
-    
+
      // Budget mensuel 
      const [budget, setBudget] = useState(null)
      const [currency, setCurrency] = useState('')
@@ -153,25 +156,27 @@ const PostHorse = (props) => {
 
                     <SelectButton 
                         radioSelBtnValue='Fin'
-                        radioSelBtnId={'fin'} 
+                        radioSelBtnId={'Fin'} 
                         radioSelBtnName='bodyHorse'
                         onClick={props.onClick}  />
 
                     <SelectButton 
                         radioSelBtnValue={'Classique'}
-                        radioSelBtnId={'classique'}
+                        radioSelBtnId={'Classique'}
                         radioSelBtnName='bodyHorse'
                         onClick={props.onClick}  />
 
                     <SelectButton 
                         radioSelBtnValue={'Porteur'}
-                        radioSelBtnId={'porteur'} 
+                        radioSelBtnId={'Porteur'} 
                         radioSelBtnName='bodyHorse'
                         onClick={props.onClick}  />
 
                     <SelectButton 
                         radioSelBtnValue={'Lourd'}
-                        radioSelBtnId={'lourd'} />
+                        radioSelBtnId={'Lourd'}
+                        radioSelBtnName='bodyHorse'
+                        onClick={props.onClick}  />
                     </div>
             </div>
             <hr />
@@ -254,10 +259,29 @@ const PostHorse = (props) => {
                     currency={currency}
                     onChange={(e) => setBudget(e.target.value)}
                     onClick={(e) => setCurrency(e.target.value)}/>
+
+
+
+            <hr />
+            <div className='owner_presentation'>
+                <h4> A propos de vous </h4> 
+                <div>
+                    <Link to="/post-horse-owner" style={{ textDecoration: "none" }}>
+                        <button className="postHorse_edit-button">
+                            Editer votre présentation
+                        </button>
+                    </Link>
+                </div>
+            </div>
+            <hr />
+            <div className='postHorse_idealRider'>
+            <h4>Cavalier idéal</h4>
+                <IdealRider />
+            </div>
         </div>
 
 
-
+        <FloatingButton btnName={'Poster mon annonce'}/>
 
         </>
     )

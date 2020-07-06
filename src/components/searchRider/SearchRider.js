@@ -127,14 +127,16 @@ const SearchRider = () => {
                     onClick={(e) => setCurrency(e.target.value)}
                 />
             
-            <h4>Rythme de la demi-pension</h4>
+            
             <div className='frequency_pension'>
                 <Frequency
+                    frequencyTitle='Rythme de la demi-pension'
                     onClick={(e) => setFrequency(e.target.value)}
                     frequency={frequency}
                     changeFixedFrequency={() => setFixedFrequency(!fixedFrequency)}
                 />
             </div>
+            <hr />
             <h4>Concours</h4>
                 <SlidingButton
                     SlidingButtonText='Le cavalier peut faire du concours avec mon cheval' 
