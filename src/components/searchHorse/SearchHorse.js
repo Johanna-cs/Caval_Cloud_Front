@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, {useState, useEffect} from 'react'
 import './searchHorse.css'
-import { Collapse, Button, Input } from 'reactstrap'
 import Header from '../Header_footer/Header';
 import Localisation from '../common_section/Localisation'
 import Disciplines from '../common_section/Disciplines'
@@ -9,26 +7,77 @@ import Structures from './Structures'
 import IdealHorse from './IdealHorse'
 import IdealOwner from './IdealOwner'
 import BudgetMensuel from '../common_section/BudgetMensuel'
-import Ecurie from './Ecurie'
+import Scuring from './Scuring'
 import HebergementHorse from './HebergementHorse'
 import FloatingButton from '../common/FloatingButton'
 import SlidingButton from '../common/SlidingButton'
-
+import Axios from 'axios'
+import usePosition from '../common_section/usePosition';
 
 
 const SearchHorse = (props) => {
+    
+    const {latitude, longitude, error} = usePosition();
+    const [cityLocalisation, setCityLocalisation] = useState('')
+    // Récupération de l'ancienne ville pour le locale storage
+    localStorage.setItem('lastCitySaved',cityLocalisation);
+    // Choix du rayon de recherche des annonces :
+    const [perimeter, setPerimeter] = useState(null);
+    // Précédente localisation enregistrée dans le navigateur (si existante) :
+    const [lastCitySaved, setLastCitySaved] = useState('');
+    
+    // Budget mensuel 
+    const [budget, setBudget] = useState(null)
+    const [currency, setCurrency] = useState('')
 
-    const [isOpen, setIsOpen] = useState(true)
-    const toggle = () => setIsOpen(!isOpen)
+    //balade
+    const [doBalad, setDoBalad] = useState(false)
+
+    //Ecurie
+    const [scuringType, setScuringType] = useState('')
+
+    //Hebergement 
+    const [boxeType, setBoxeType] = useState('')
+
+    //Coaching 
+    const [coachingHere, setCoachingHere] = useState(false)
+    const [externalCoach, setExternalCoach] = useState(false)
+
+    // Materiel selle et de soin :
+    const [haveMaterialSaddle, setHaveMaterialSaddle] = useState(false)
+    const [haveMaterialCare, setHaveMaterialCare] = useState(false)
+
+    // Concours :
+    const [doCompetition, setDoCompetition] = useState(false)
+    
+
+    const getLocation = () => {
+        Axios
+        .get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
+        .then(res => setCityLocalisation(res.data.address.municipality))
+        .catch(err => console.log(err))
+    }
+
+    useEffect(() => {
+        getLocation()
+    }, )
 
     return (
         <>
         <Header className='header' title='CHERCHER UN CHEVAL'/>
         <div className='searchHorse_page'>
-                <Localisation />
+                <Localisation 
+                value={cityLocalisation}
+                onChange={(e) => setCityLocalisation(e.target.value)}
+                definePerimeter={(e) => setPerimeter(e.target.value)}
+                perimeter={perimeter} 
+                />
             <hr />
-                <BudgetMensuel />
-            <hr />
+                <BudgetMensuel budget={budget} 
+                    currency={currency}
+                    onChange={(e) => setBudget(e.target.value)}
+                    onClick={(e) => setCurrency(e.target.value)}/>
+            
                 <Disciplines />
             <hr />
                 <Structures />
@@ -39,20 +88,32 @@ const SearchHorse = (props) => {
                     <SlidingButton 
                     SlidingButtonText="J'aimerais pouvoir partir en balade"
                     SlidingButtonID="baladSwitch"
+                    onClick={() => setDoBalad(!doBalad)}
                     />
                 </div>
             </div>
             <hr />
                 <h4>Cheval idéal</h4>
-                <IdealHorse />
+                <IdealHorse 
+                    horseSize={IdealHorse.horseSize}
+                    ageHorse={IdealHorse.ageHorse}
+                     />
             <hr />
                 <h4>Propriétaire idéal</h4>
-                <IdealOwner />
-            <hr />
+                <IdealOwner 
+                    ageOwner={IdealOwner.ageOwner}
+                    frequency={IdealOwner.frequency}
+                    horseWork={IdealOwner.horseWork}
+                />
+            
             <h4>Ecuries et moniteur </h4>
-                <Ecurie />
+                <Scuring
+                    scuringType={scuringType}
+                    onClick={(e) => setScuringType(e.target.value)}/>
             <hr />
-                <HebergementHorse />
+                <HebergementHorse 
+                    boxeType={boxeType}
+                    onClick={(e) => setBoxeType(e.target.value)}/>
             <hr />
             <div className='searchHorse_coaching'>
                 <h4>Coaching</h4>
@@ -60,12 +121,14 @@ const SearchHorse = (props) => {
                     <SlidingButton 
                     SlidingButtonText="Sur place"
                     SlidingButtonID="coachSwitch"
+                    onClick={() => setCoachingHere(!coachingHere)}
                     />
                 </div>
                 <div className='coaching'>
                     <SlidingButton 
                     SlidingButtonText="Intervenant exterieur"
                     SlidingButtonID="coachExtSwitch"
+                    onClick={() => setExternalCoach(!externalCoach)}
                     />
                 </div>
                 
@@ -77,12 +140,14 @@ const SearchHorse = (props) => {
                         <SlidingButton 
                         SlidingButtonText="J'ai ma selle"
                         SlidingButtonID="materialSwitch"
+                        onClick={() => setHaveMaterialSaddle(!haveMaterialSaddle)}
                         />
                 </div>
                 <div className='materiel'>
                     <SlidingButton 
                         SlidingButtonText="J'ai mon materiel de soin"
                         SlidingButtonID="materialCareSwitch"
+                        onClick={() => setHaveMaterialCare(!haveMaterialCare)}
                         />
                 </div>
             </div>
@@ -93,6 +158,7 @@ const SearchHorse = (props) => {
                 <SlidingButton 
                         SlidingButtonText="J'aimerais pouvoir sortir en concours"
                         SlidingButtonID="competitionSwitch"
+                        onClick={() => setDoCompetition(!doCompetition)}
                         />
                 </div>
             </div>    

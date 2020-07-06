@@ -39,7 +39,7 @@ const BudgetMensuel = (props) => {
               onChange={props.onChange}
               type="number"
               placeholder="Budget"
-              autoFocus
+              
             />
           </label>
           <h5>Devise:</h5>

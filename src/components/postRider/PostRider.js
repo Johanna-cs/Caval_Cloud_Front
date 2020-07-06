@@ -9,6 +9,8 @@ import FloatingButton from "../common/FloatingButton";
 import Disciplines from "../common_section/Disciplines";
 import BudgetMensuel from "../common_section/BudgetMensuel";
 import Frequency from "../common_section/Frequency";
+import IdealHorse from "../searchHorse/IdealHorse";
+
 
 const MyContext = createContext(null);
 
@@ -93,7 +95,7 @@ const PostRider = () => {
           <p>Nombre d'années de pratique cumulées</p>
           <p>Galop</p>
         </div>
-        <hr />
+        
         <div className="postRider-disc">
           <Disciplines />
         </div>
@@ -117,10 +119,7 @@ const PostRider = () => {
         <hr />
         <div>
           <h4>Cheval idéal</h4>
-          <p>Taille: 1m - 1,8m</p>
-          <p>Tempérament: Dynamique</p>
-          <p>Caractère: Affectueux</p>
-          <p>Age: 4 ans - 20 ans</p>
+          <IdealHorse/>
         </div>
         <hr />
         <h4>Coaching</h4>
