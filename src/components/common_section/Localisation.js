@@ -7,7 +7,7 @@ import locmap from '../SVG-icons/map-marker-alt-solid.svg'
 
 function Localisation(props) {
     
-    const [isOpen, setIsOpen] = useState(true)
+    const [isOpen, setIsOpen] = useState(false)
     const toggle = () => setIsOpen(!isOpen)
     let myLastCitySaved = localStorage.getItem('lastCitySaved')
 

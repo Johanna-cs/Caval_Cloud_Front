@@ -4,7 +4,7 @@ import RadioButton from "../common/RadioButton";
 
 
 const BudgetMensuel = (props) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   return (
     <>
