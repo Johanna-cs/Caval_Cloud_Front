@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./postRider.css";
 import { Link } from "react-router-dom";
 import FloatingButton from "../common/FloatingButton";
@@ -177,24 +177,13 @@ const PostRiderPresentation = (props) => {
           </label>
         </form>
       </div>
-      <Link to="/post-rider" style={{ textDecoration: "none" }}>
-        {profile.prenom &&
-          profile.age &&
-          profile.codeP &&
-          profile.message &&
-          profile.selfWord1 &&
-          profile.selfWord2 &&
-          profile.selfWord3 &&
-          profile.ridingWord1 &&
-          profile.ridingWord2 &&
-          profile.ridingWord3(
+          <Link to="/post-rider" style={{ textDecoration: "none" }}>
             <FloatingButton
               btnName={"Valider"}
               type="submit"
               onClick={(e) => submit(e)}
             />
-          )}
-      </Link>
+          </Link>
     </div>
   );
 };

@@ -13,7 +13,7 @@ import IdealHorse from "../searchHorse/IdealHorse";
 import Axios from "axios";
 
 
-const PostRider = ({...profile}) => {
+const PostRider = () => {
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
   const [frequency, setFrequency] = useState("");
@@ -26,7 +26,7 @@ const PostRider = ({...profile}) => {
   const [isVehiculed, setIsVehiculed] = useState(false);
   const [doCompetition, setDoCompetition] = useState(false);
   
-  const [profile, setProfile] = useState("");
+  const [riderProfile, setRiderProfile] = useState("");
   // const [age, setAge] = useState("");
   // const [codeP, setCodeP] = useState("");
   // const [message, setMessage] = useState("");
@@ -39,7 +39,7 @@ const PostRider = ({...profile}) => {
 
 const getProfile = () => {
   Axios.get(`http://localhost:3010/api/users`)
-    .then((res) => setProfile(...res))
+    .then((res) => setRiderProfile(...res))
     .catch((err) => console.log(err));
 };
 
@@ -55,10 +55,10 @@ useEffect(() => {
           <img className="postRider_logo" src={logo} alt="logo" />
           <div className="postRider_forms">
             <p>
-              {profile.prenom}, <span>{profile.age}</span>
+              {riderProfile.prenom}, <span>{riderProfile.age}</span>
             </p>
             <p>
-              {profile.selfWord1}, {profile.selfWord2}, {profile.selfWord3}
+              {riderProfile.selfWord1}, {riderProfile.selfWord2}, {riderProfile.selfWord3}
             </p>
           </div>
           <div>
@@ -69,12 +69,12 @@ useEffect(() => {
         <div>
           <h4>Equitation</h4>
           <p>
-            {profile.ridingWord1}, {profile.ridingWord2}, {profile.ridingWord3}
+            {riderProfile.ridingWord1}, {riderProfile.ridingWord2}, {riderProfile.ridingWord3}
           </p>
         </div>
         <div className="postRider_message">
           <h4>Message :</h4>
-          <p>{profile.message}</p>
+          <p>{riderProfile.message}</p>
           <Link
             to={{
               pathname: "/PostRiderPresentation",
