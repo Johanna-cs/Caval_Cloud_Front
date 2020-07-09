@@ -30,9 +30,9 @@ const PostHorse = (props) => {
     // Fréquence de la demi-pension, jours fixes :
     const [fixedFrequency, setFixedFrequency] = useState(false)
 
-    // Materiel selle et de soin :
+    // Materiel selle :
     const [haveMaterialSaddle, setHaveMaterialSaddle] = useState(false)
-    const [haveMaterialCare, setHaveMaterialCare] = useState(false)
+    
 
     //balade
     const [doBalad, setDoBalad] = useState(false)
@@ -224,20 +224,14 @@ const PostHorse = (props) => {
                         onClick={() => setHaveMaterialSaddle(!haveMaterialSaddle)}
                         />
                 </div>
-                <div className='materiel'>
-                    <SlidingButton 
-                        SlidingButtonText="Le cavalier doit utiliser son materiel "
-                        SlidingButtonID="materialCareSwitch"
-                        onClick={() => setHaveMaterialCare(!haveMaterialCare)}
-                        />
-                </div>
+                
             </div>
             <hr />
             <div className='postHorse_bal'>
                 <h4>Balade</h4>
                 <div className='balade'>
                     <SlidingButton 
-                    SlidingButtonText="Possibilité de partir en balade"
+                    SlidingButtonText="Possibilité de partir seul en balade"
                     SlidingButtonID="baladSwitch"
                     onClick={() => setDoBalad(!doBalad)}
                     />
@@ -257,6 +251,7 @@ const PostHorse = (props) => {
             <hr />
                 <BudgetMensuel budget={budget} 
                     currency={currency}
+                    priceTitle={'prix minimum :'}
                     onChange={(e) => setBudget(e.target.value)}
                     onClick={(e) => setCurrency(e.target.value)}/>
 

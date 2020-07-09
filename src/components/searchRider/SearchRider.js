@@ -123,6 +123,7 @@ const SearchRider = () => {
                 <BudgetMensuel 
                     budget={budget} 
                     currency={currency}
+                    priceTitle={'prix macimum :'}
                     onChange={(e) => setBudget(e.target.value)}
                     onClick={(e) => setCurrency(e.target.value)}
                 />

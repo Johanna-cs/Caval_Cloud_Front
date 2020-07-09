@@ -91,6 +91,7 @@ useEffect(() => {
           <BudgetMensuel
             budget={budget}
             currency={currency}
+            priceTitle={'prix minimum :'}
             onChange={(e) => setBudget(e.target.value)}
             onClick={(e) => setCurrency(e.target.value)}
           />
@@ -145,11 +146,11 @@ useEffect(() => {
         <h4>Coaching</h4>
         <div className="postRider-coaching">
           <SlidingButton
-            SlidingButtonText="J'aimerais avoir accès à des cours"
+            SlidingButtonText="Sur place"
             SlidingButtonID="coachingSwitch"
           />
           <SlidingButton
-            SlidingButtonText="J'aimerais faire intervenir un coach extérieur"
+            SlidingButtonText="Intervenant exterieur"
             SlidingButtonID="extCoachSwitch"
           />
         </div>

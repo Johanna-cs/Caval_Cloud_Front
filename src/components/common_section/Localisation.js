@@ -14,7 +14,7 @@ function Localisation(props) {
     return (
         <>
 
-        <div className='location'>
+        <div className='locationDiv'>
             <div className='toggle_place'>
             <h4>Localisation </h4>
                 <input 
@@ -30,7 +30,7 @@ function Localisation(props) {
                     <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg></Button>
                 </div>
-            <div className='searchHorse_loc2'>
+            <div className='locationDiv'>
                 <Collapse isOpen={isOpen}>
                     <h5>Localisation  :</h5>
                     <p className='loc_text'>Dans un rayon autour de : {props.perimeter} kms</p>
