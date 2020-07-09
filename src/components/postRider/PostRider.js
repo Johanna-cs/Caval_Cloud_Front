@@ -95,6 +95,7 @@ useEffect(() => {
             priceTitle={'prix minimum :'}
             onChange={(e) => setBudget(e.target.value)}
             onClick={(e) => setCurrency(e.target.value)}
+            checked
           />
         </div>
         <hr />
