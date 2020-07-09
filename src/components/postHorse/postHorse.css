@@ -49,3 +49,14 @@
     flex-flow: column wrap;
     
 }
+.divRangeSpan {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 1em;
+    padding: 0.5em;
+}
+span {
+    padding: 0.5em;
+    font-size: smaller;
+}
