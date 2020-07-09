@@ -5,26 +5,37 @@ import { Collapse, Button, Input } from 'reactstrap'
 
 const IdealHorse = (props) => {
 
+    // Taille du cheval idéal
+const [horseSize, setHorseSize] = useState('')
+
+    // Age du cheval idéal
+const [ageHorse, setAgeHorse] = useState('')
+
     return (
 
         <div className='searchHorse_idealHorse'>
             <div className='horse_size'>
-                    <h5> Taille :</h5>
-                    <RangeButton radioSelBtnText='cm'/>
+                <h5> Taille : {horseSize} cm</h5>
+                    <RangeButton 
+                        min='80'
+                        max='200'
+                        radioRangeBtnId='horseSize'
+                        onChange={(e) => setHorseSize(e.target.value)
+                    }/>
             </div>
                 <hr />
             <div className='horse_temper'>
                     <h5> Tempérament :</h5>
                     <div className='select_temper'>
                     <RadioCheck 
-                    RadioCheckText1={'Calme'}
-                    radioCheckId1={'Calme'}
-                    RadioCheckText2={'Dynamique'}
-                    radioCheckId2={'Dynamique'}
-                    RadioCheckText3={'Speed'}
-                    radioCheckId3={'Speed'} 
-                    RadioCheckText4={'A canaliser'}
-                    radioCheckId4={'A canaliser'} />
+                    RadioCheckText1='Calme'
+                    radioCheckId1='Calme'
+                    RadioCheckText2='Dynamique'
+                    radioCheckId2='Dynamique'
+                    RadioCheckText3='Speed'
+                    radioCheckId3='Speed'
+                    RadioCheckText4='A canaliser'
+                    radioCheckId4='A canaliser' />
                     </div>
             </div>
                 <hr />
@@ -59,10 +70,18 @@ const IdealHorse = (props) => {
             </div>
                 <hr />
             <div className='horse_age'>
-                    <h5> Age :</h5>
-                    <RangeButton radioSelBtnText='ans'/>
+            <h5> Age du cheval : {ageHorse} ans</h5>
+                    <span>1 an</span>
+                    <RangeButton 
+                        id='ageHorse'
+                        min='1'
+                        max='30'
+                        radioRangeBtnId='ageHorse'
+                        onChange={props.onChange}/>
+                    <span>30 ans</span>
             </div>
-        </div>
+            </div>
+        
 
     )}
 

@@ -18,7 +18,7 @@ const RadioButton = (props) => {
       </div>
       <hr />
     </>
-  );
+  )
 }
 
 export default RadioButton;

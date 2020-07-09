@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Collapse, Button, Input } from "reactstrap";
+import React, { useState} from "react";
+import { Collapse, Button} from "reactstrap";
 import RadioButton from "../common/RadioButton";
 
 
@@ -39,7 +39,7 @@ const BudgetMensuel = (props) => {
               onChange={props.onChange}
               type="number"
               placeholder="Budget"
-              autoFocus
+              
             />
           </label>
           <h5>Devise:</h5>

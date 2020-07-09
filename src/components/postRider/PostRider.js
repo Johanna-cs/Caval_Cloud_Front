@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext} from "react";
 import "./postRider.css";
 import { Link } from "react-router-dom";
 import Header from "../Header_footer/Header";
@@ -9,6 +9,9 @@ import FloatingButton from "../common/FloatingButton";
 import Disciplines from "../common_section/Disciplines";
 import BudgetMensuel from "../common_section/BudgetMensuel";
 import Frequency from "../common_section/Frequency";
+import IdealHorse from "../searchHorse/IdealHorse";
+import PostRiderPresentation from "./PostRiderPresentation";
+
 
 const PostRider = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -17,8 +20,24 @@ const PostRider = () => {
   const [fixedFrequency, setFixedFrequency] = useState(false);
   const [budget, setBudget] = useState(null);
   const [currency, setCurrency] = useState("€");
-
-
+  const [discipline, setDisciplines] = useState([]);
+  const [yearsOfPractice, setYearsOfPractice] = useState(null);
+  const [gallopLevel, setGallopLevel] = useState(null);
+  const [isVehiculed, setIsVehiculed] = useState(false);
+  const [doCompetition, setDoCompetition] = useState(false);
+  
+  const [profile, setProfile] = useState({
+    prenom: "",
+    age: "",
+    codeP: "",
+    message: "",
+    selfWord1: "",
+    selfWord2: "",
+    selfWord3: "",
+    ridingWord1: "",
+    ridingWord2: "",
+    ridingWord3: "",
+  });
 
   return (
     <>
@@ -28,9 +47,11 @@ const PostRider = () => {
           <img className="postRider_logo" src={logo} alt="logo" />
           <div className="postRider_forms">
             <p>
-              Nom, <span>age</span>
+              {profile.prenom}, <span>{profile.age}</span>
             </p>
-            <p>Mot 1, Mot 2, Mot 3</p>
+            <p>
+              {profile.selfWord1}, {profile.selfWord2}, {profile.selfWord3}
+            </p>
           </div>
           <div>
             <h4>Localisation</h4>
@@ -39,17 +60,21 @@ const PostRider = () => {
         <Carousel />
         <div>
           <h4>Equitation</h4>
-          <p>Mot-Eq 1, Mot-Eq 2, Mot-Eq 3</p>
+          <p>
+            {profile.ridingWord1}, {profile.ridingWord2}, {profile.ridingWord3}
+          </p>
         </div>
         <div className="postRider_message">
           <h4>Message :</h4>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book.
-          </p>
-          <Link to="/PostRiderPresentation" style={{ textDecoration: "none" }}>
+          <p>{profile.message}</p>
+          <Link 
+            to={{
+              pathname:"/PostRiderPresentation",
+              style: {textDecoration: "none"},
+              test : () => setProfile(),
+              profile : {...profile}
+            }}
+          >
             <button className="postRider_edit-button">
               Editer votre présentation
             </button>
@@ -84,7 +109,7 @@ const PostRider = () => {
           <p>Nombre d'années de pratique cumulées</p>
           <p>Galop</p>
         </div>
-        <hr />
+
         <div className="postRider-disc">
           <Disciplines />
         </div>
@@ -108,10 +133,7 @@ const PostRider = () => {
         <hr />
         <div>
           <h4>Cheval idéal</h4>
-          <p>Taille: 1m - 1,8m</p>
-          <p>Tempérament: Dynamique</p>
-          <p>Caractère: Affectueux</p>
-          <p>Age: 4 ans - 20 ans</p>
+          <IdealHorse />
         </div>
         <hr />
         <h4>Coaching</h4>

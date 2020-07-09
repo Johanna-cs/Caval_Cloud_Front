@@ -5,6 +5,7 @@
     margin-left: 2em;
     margin-right: 2em;
     padding-bottom: 5em;
+    
 }
 .searchHorse_page hr {
     border-top: 1em thin;
@@ -13,25 +14,14 @@
 
 /* ****** Grands button violet ******* */
 /* ideal Horse & ideal Rider */
-.select_temper, .select_caracter, .select_body  {
+.select_temper, .select_caracter, .select_bodys  {
     display: flex;
     justify-content: space-evenly;
     flex-flow: row wrap;
 }
-.select_communication, .select_horseWork  {
+ .hebergtList, .scuringList {
     display: flex; 
     align-items: center;
     flex-flow: column wrap;
     
 }
-/* Boutons plus grands */
-/* .selectBtn2 {
-    background-color: #b0b9d380;
-    margin: 0.2em !important;
-    padding: 0.5em !important;
-    width: 20em;
-    font-size: 1em !important;
-    outline: none;
-} */
-
-/* ------------------------- */

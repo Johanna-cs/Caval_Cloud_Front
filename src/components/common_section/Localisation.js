@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Collapse, Button, Input } from 'reactstrap'
 import '../searchHorse/searchHorse.css'
 import geoloc from '../SVG-icons/geolocalisation.svg'
-import locmap from '../SVG-icons/map-marker-alt-solid.svg'
 import RangeButton from '../common/RangeButton'
+import locmap from '../SVG-icons/map-marker-alt-solid.svg'
 
 function Localisation(props) {
     
@@ -18,6 +18,8 @@ function Localisation(props) {
             <div className='toggle_place'>
             <h4>Localisation </h4>
                 <input 
+                    min="0" 
+                    max="200"
                     className='mainInput' 
                     placeholder='Localisation' 
                     value={props.value}
