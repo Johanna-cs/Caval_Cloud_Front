@@ -1,0 +1,12 @@
+.searchRider_page {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-left: 2em;
+  margin-right: 2em;
+  padding-bottom: 5em;
+}
+
+.searchRider_page hr {
+  border-top: 1em thin;
+  width: 100%;
+}

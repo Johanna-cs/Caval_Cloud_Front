@@ -1,0 +1,27 @@
+/* Search page  */
+.searchHorse_page {
+    display: flex;
+    flex-flow: column nowrap;
+    margin-left: 2em;
+    margin-right: 2em;
+    padding-bottom: 5em;
+    
+}
+.searchHorse_page hr {
+    border-top: 1em thin;
+    width: 100%;
+  }
+
+/* ****** Grands button violet ******* */
+/* ideal Horse & ideal Rider */
+.select_temper, .select_caracter, .select_bodys  {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+}
+ .hebergtList, .scuringList {
+    display: flex; 
+    align-items: center;
+    flex-flow: column wrap;
+    
+}

@@ -1,0 +1,22 @@
+.floating-button {
+    display: flex;
+    justify-content: center;
+    padding : 2em;
+    
+}
+#floating-button {
+    position: fixed;
+    background-color: #59a080;
+    border: none;
+    border-style: none;
+    border-radius: 20px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    color: white;
+    height: 3em;
+    width: 20em;
+    bottom : 1.5em;
+    outline: none;
+    z-index: 1;
+   
+}

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import Axios from 'axios';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import '../App.css'
+import './Home.css'
+import Header from './Header_footer/Header';
 import horse from './SVG-icons/horse-icon.svg'
 import helmet from './SVG-icons/bombe-icon.svg' 
 import boot from './SVG-icons/botte-icon.svg'
@@ -16,40 +16,42 @@ function Home(props) {
     // const [postHorse, setPostHorse] = useState(props.location.postHorse)
 
     return (
-
+    <>
+        {/* <Header className='header' title='ACCUEIL'/> */}
+        <div className='headerHome'><h3 id='homeTitle'>ACCUEIL</h3> </div>
        <div className='HomePage'> 
-            <h5 className='welcome'> Bienvenue sur Cavalcloud ! </h5>
+            <h3 className='welcome'> Bienvenue sur Cavalcloud ! </h3>
             <p className='welcomeText'> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod. </p>
 
-                <Link to='/searchHorse' style={{ textDecoration: "none" }} >
+                <Link to='/search-horse' style={{ textDecoration: "none" }} >
                     <div className='homeBtn' >
                         <img className='logoHorse' src={horse} alt='horse icon'/>
                         <p className='textBtn'> Chercher un équidé </p>
                     </div>
                 </Link>
 
-                <Link to='/searchRider' style={{ textDecoration: "none" }} >
+                <Link to='/search-rider' style={{ textDecoration: "none" }} >
                     <div  className='homeBtn' >
                         <img className='logoHelmet' src={helmet} alt='helmet icon'/>
                         <p className='textBtn'> Chercher un cavalier </p>
                     </div>
                 </Link>
 
-                <Link to='/postRider' style={{ textDecoration: "none" }} >
+                <Link to='/post-rider' style={{ textDecoration: "none" }} >
                 <div  className='homeBtn'>
                     <img className='logoboot' src={boot} alt='boot icon'/>
                     <p className='textBtn'> Poster une annonce cavalier </p>
                 </div>
                 </Link>
 
-                <Link to='/postHorse' style={{ textDecoration: "none" }} >
+                <Link to='/post-horse' style={{ textDecoration: "none" }} >
                     <div  className='homeBtn'>
                         <img className='logoHorseframe' src={horseFrame} alt='horse frame icon'/>
                         <p className='textBtn'> Poster une annonce cheval </p>
                     </div>
                 </Link>
 
-                <Link to='/aboutUs' style={{ textDecoration: "none" }} >
+                <Link to='/about-us' style={{ textDecoration: "none" }} >
                     <div  className='AboutUSBtn'>
                         <img className='logoCaval' src={cavalCloudLogo} alt='caval cloud logo'/>
                         <p className='textUs'> Qui sommes-nous ? </p>
@@ -57,6 +59,7 @@ function Home(props) {
                 </Link>
 
        </div>
+       </>
     )
 }
 
