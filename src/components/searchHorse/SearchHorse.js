@@ -13,6 +13,7 @@ import FloatingButton from '../common/FloatingButton'
 import SlidingButton from '../common/SlidingButton'
 import Axios from 'axios'
 import usePosition from '../common_section/usePosition';
+import Competition from '../common_section/Competition';
 
 
 
@@ -51,7 +52,7 @@ const SearchHorse = (props) => {
 
     // Materiel selle et de soin :
     const [haveMaterialSaddle, setHaveMaterialSaddle] = useState(false)
-    const [haveMaterialCare, setHaveMaterialCare] = useState(false)
+    
 
     // Concours :
     const [doCompetition, setDoCompetition] = useState(false)
@@ -69,7 +70,7 @@ const SearchHorse = (props) => {
     }, )
 
     return (
-        <>
+    <>
         <Header className='header' title='CHERCHER UN CHEVAL'/>
         <div className='searchHorse_page'>
                 <Localisation 
@@ -152,24 +153,11 @@ const SearchHorse = (props) => {
                         onClick={() => setHaveMaterialSaddle(!haveMaterialSaddle)}
                         />
                 </div>
-                <div className='materiel'>
-                    <SlidingButton 
-                        SlidingButtonText="J'ai mon materiel de soin"
-                        SlidingButtonID="materialCareSwitch"
-                        onClick={() => setHaveMaterialCare(!haveMaterialCare)}
-                        />
-                </div>
+
             </div>
             <hr />
             <div className='searchHorse_compet'>
-                <h4>Concours</h4>
-                <div className='competiton'>
-                <SlidingButton 
-                        SlidingButtonText="J'aimerais pouvoir sortir en concours"
-                        SlidingButtonID="competitionSwitch"
-                        onClick={() => setDoCompetition(!doCompetition)}
-                        />
-                </div>
+                <Competition />
             </div>    
             </div>
             <FloatingButton btnName={'Lancer la recherche'}/>

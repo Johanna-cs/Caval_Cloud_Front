@@ -13,13 +13,14 @@ import Frequency from '../common_section/Frequency'
 import BudgetMensuel from '../common_section/BudgetMensuel'
 import IdealRider from './IdealRider'
 import FloatingButton from '../common/FloatingButton'
+import Competition from '../common_section/Competition'
 
 
 const PostHorse = (props) => {
     
     
     // Présentation cheval nom, age, taile
-    const [nom, setNom] = useState('');
+    const [name, setName] = useState('');
     const [ageHorse, setAgeHorse] = useState('')
     const [horseSize, setHorseSize] = useState('')
     //Coaching 
@@ -56,7 +57,7 @@ const PostHorse = (props) => {
                 className="postHorse_input"
                 type="text"
                 placeholder="Nom du cheval"
-                onChange={(event) => setNom(event.target.value)}
+                onChange={(event) => setName(event.target.value)}
                 autoFocus
                 />
             </label>
@@ -238,17 +239,12 @@ const PostHorse = (props) => {
                 </div>
             </div>
             <hr />
-            <div className='postHorse_compet'>
-                <h4>Concours</h4>
+            
                 <div className='competiton'>
-                <SlidingButton 
-                        SlidingButtonText="Ouvert à la compétition"
-                        SlidingButtonID="competitionSwitch"
-                        onClick={() => setDoCompetition(!doCompetition)}
-                        />
+                <Competition onClick={() => setDoCompetition(!doCompetition)}/>
                 </div>
-            </div> 
-            <hr />
+            
+            
                 <BudgetMensuel budget={budget} 
                     currency={currency}
                     priceTitle={'prix minimum :'}

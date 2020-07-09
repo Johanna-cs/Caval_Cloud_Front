@@ -10,6 +10,7 @@ import SlidingButton from '../common/SlidingButton'
 import BudgetMensuel from '../common_section/BudgetMensuel'
 import Frequency from '../common_section/Frequency'
 import RangeButton from '../common/RangeButton'
+import Competition from '../common_section/Competition'
 
 const SearchRider = () => {
     // Localisation des coordonnées GPS via le hook "usePosition" :
@@ -138,16 +139,11 @@ const SearchRider = () => {
                 />
             </div>
             <hr />
-            <h4>Concours</h4>
-                <SlidingButton
-                    SlidingButtonText='Le cavalier peut faire du concours avec mon cheval' 
-                    SlidingButtonID='competitionOk' 
-                    onClick={() => setDoCompetition(!doCompetition)}
-                />
+            <Competition onClick={() => setDoCompetition(!doCompetition)}/>
         </div>
         <FloatingButton btnName={'Lancer la recherche'}/>
 
-        </>    )
-
+        </>
+        )
 }
 export default SearchRider
