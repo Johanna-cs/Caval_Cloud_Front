@@ -18,20 +18,20 @@ const IdealRider = (props) => {
     return (
         <div className='postHorse_idealRider'>
             <h5> Années de pratique : {yearsOfPractice} ans</h5>
-                    <div className='annees_pratique'>
-                        <span>0</span>
+                    <div className='divRangeSpan'>
+                        <span>1 an</span>
                         <RangeButton 
                             min="0" 
                             max="99"
                             onChange={(e) => setYearsOfPractice(e.target.value)
                             } 
                         />
-                        <span>99</span>
+                        <span>30 ans</span>
                     </div>
                 
                 <hr />
             <h5> Niveau de Galop : {galopLevel} </h5>
-                <div className='niveau_galop'>
+                <div className='divRangeSpan'>
                     <span>0</span>                   
                     <RangeButton 
                         min="0" 
@@ -43,7 +43,7 @@ const IdealRider = (props) => {
                 </div>
                 <hr />
                 <h5> Age du cavalier : {riderAge} ans</h5>
-                    <div className='age_cavalier'>
+                    <div className='divRangeSpan'>
                         <span>5 ans</span>
                         <RangeButton 
                             min="0" 

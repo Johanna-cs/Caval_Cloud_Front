@@ -21,7 +21,8 @@ const IdealOwner = (props) => {
     <>
       <div className="searchHorse_idealOwner">
         <div className="owner_age">
-          <h5> Age : {ageOwner} ans</h5>
+          <h5> Age <span>(+/- 3ans)</span>: {ageOwner} ans</h5>
+          <div className='divRangeSpan'>
           <span>10 ans</span>
           <RangeButton
             id="ageOwner"
@@ -31,6 +32,7 @@ const IdealOwner = (props) => {
             onChange={(e) => setAgeOwner(e.target.value)}
           />
           <span>99 ans</span>
+          </div>
         </div>
         <hr />
         <div className="rider_caracter">

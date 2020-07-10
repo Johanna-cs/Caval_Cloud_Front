@@ -16,12 +16,16 @@ const [ageHorse, setAgeHorse] = useState('')
         <div className='searchHorse_idealHorse'>
             <div className='horse_size'>
                 <h5> Taille : {horseSize} cm</h5>
+                <div className='divRangeSpan'>
+                    <span>80cm</span>
                     <RangeButton 
                         min='80'
                         max='200'
                         radioRangeBtnId='horseSize'
                         onChange={(e) => setHorseSize(e.target.value)
                     }/>
+                    <span>200cm</span>
+                </div>
             </div>
                 <hr />
             <div className='horse_temper'>
@@ -70,7 +74,8 @@ const [ageHorse, setAgeHorse] = useState('')
             </div>
                 <hr />
             <div className='horse_age'>
-            <h5> Age du cheval : {ageHorse} ans</h5>
+            <h5> Age du cheval <span>(+/- 3ans)</span> : {ageHorse} ans</h5>
+            <div className='divRangeSpan'>
                     <span>1 an</span>
                     <RangeButton 
                         id='ageHorse'
@@ -79,6 +84,7 @@ const [ageHorse, setAgeHorse] = useState('')
                         radioRangeBtnId='ageHorse'
                         onChange={props.onChange}/>
                     <span>30 ans</span>
+                </div>
             </div>
             </div>
         
