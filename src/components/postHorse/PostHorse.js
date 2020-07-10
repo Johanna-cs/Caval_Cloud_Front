@@ -17,6 +17,7 @@ import IdealRider from './IdealRider'
 import FloatingButton from '../common/FloatingButton'
 import Competition from '../common_section/Competition'
 import HebergementHorse from '../common_section/HebergementHorse'
+import Carousel from '../common/Carousel'
 
 
 const PostHorse = (props) => {
@@ -117,7 +118,8 @@ const PostHorse = (props) => {
                     <span>200 cm</span>
                 </div>
             </div>
-            <hr />
+            <Carousel />
+            
             <div className='localisation_horse'>
             <h5>Où se trouve le cheval ? </h5>
                 <Localisation 

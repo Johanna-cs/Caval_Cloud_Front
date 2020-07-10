@@ -12,6 +12,7 @@ import Frequency from '../common_section/Frequency'
 import RangeButton from '../common/RangeButton'
 import Competition from '../common_section/Competition'
 
+
 const SearchRider = () => {
     // Localisation des coordonnées GPS via le hook "usePosition" :
     const {latitude, longitude, error} = usePosition();    
@@ -26,7 +27,7 @@ const SearchRider = () => {
     // Années de pratique :
     const [yearsOfPractice, setYearsOfPractice] = useState(null);
     // Niveau de galop : 
-    const [gallopLevel, setGallopLevel] = useState(null)
+    const [galopLevel, setGalopLevel] = useState(null)
     // Age du cavalier :
     const [riderAge, setRiderAge] = useState(null)
     // Personne véhiculée ou non :
@@ -69,8 +70,8 @@ const SearchRider = () => {
                     definePerimeter={(e) => setPerimeter(e.target.value)}
                     perimeter={perimeter}
                 />
-                <h5> Années de pratique : {yearsOfPractice} ans</h5>
-                    <div className='annees_pratique'>
+                <h5> Années de pratique minimum : {yearsOfPractice} ans</h5>
+                    <div className='divRangeSpan'>
                         <span>0</span>
                         <RangeButton 
                             min="0" 
@@ -78,26 +79,26 @@ const SearchRider = () => {
                             onChange={(e) => setYearsOfPractice(e.target.value)
                             } 
                         />
-                        <span>99</span>
+                        <span>99 ans</span>
                     </div>
                 
                 <hr />
-                <h5> Niveau de Galop : {gallopLevel} </h5>
-                    <div className='niveau_galop'>
+                <h5> Niveau de Galop minimum : {galopLevel} </h5>
+                    <div className='divRangeSpan'>
                         <span>0</span>                   
                         <RangeButton 
                             min="0" 
                             max="7" 
                             list='niveau_galop'
-                            onChange={(e) => setGallopLevel(e.target.value)} 
+                            onChange={(e) => setGalopLevel(e.target.value)} 
                         />
                         <span>7</span>
                     </div>
                 
 
                 <hr />
-                <h5> Age du cavalier : {riderAge} ans</h5>
-                    <div className='age_cavalier'>
+                <h5> Age du cavalier <span>(+/- 3ans)</span>: {riderAge} ans</h5>
+                    <div className='divRangeSpan'>
                         <span>5 ans</span>
                         <RangeButton 
                             min="0" 
