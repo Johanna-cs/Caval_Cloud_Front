@@ -12,6 +12,7 @@ import PostRiderPresentation from "./components/postRider/PostRiderPresentation"
 import OwnerPres from './components/postHorse/OwnerPres'
 import ResultPage from "./components/Results/ResultPage";
 import ResultAnnonce from "./components/Results/ResultAnnonce";
+import MyProfile from "./components/MyProfile/MyProfile";
 
 
 const Router = () => {
@@ -36,6 +37,7 @@ const Router = () => {
         <Route exact path="/result-annonce" component={ResultAnnonce} />
         ResultAnnonce
       </Switch>
+      <Route exact path="/my-profile" component={MyProfile} />
     </>
   );
 };

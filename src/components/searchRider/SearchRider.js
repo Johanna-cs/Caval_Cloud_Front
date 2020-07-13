@@ -56,7 +56,7 @@ const SearchRider = () => {
 
     return (
         <>
-        <Header title='CHERCHER UN CAVALIER'/>
+        <Header title='Chercher un cavalier'/>
         <div className="searchRider_page">
 
             <div className="localisation">   

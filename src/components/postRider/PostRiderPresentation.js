@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./postRider.css";
 import { Link } from "react-router-dom";
 import FloatingButton from "../common/FloatingButton";
+import Header from "../Header_footer/Header";
 import Axios from "axios";
 
 const PostRiderPresentation = (props) => {
@@ -36,10 +37,11 @@ const PostRiderPresentation = (props) => {
   };
 
   return (
+    <>
+    <Header className="header" title="Ma Présentation" />
     <div className="postRider_page">
       <div className="postRider_forms">
         <h4>Présentation:</h4>
-        <h1>{props.location.profile.prenom}</h1>
         <form className="postRider-form">
           <label>
             <input
@@ -186,6 +188,7 @@ const PostRiderPresentation = (props) => {
             />
           </Link>
     </div>
+    </>
   );
 };
 export default PostRiderPresentation;
