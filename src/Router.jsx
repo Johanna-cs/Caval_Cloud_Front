@@ -10,6 +10,9 @@ import PostHorse from "./components/postHorse/PostHorse"
 import PostRider from './components/postRider/PostRider'
 import PostRiderPresentation from "./components/postRider/PostRiderPresentation"
 import OwnerPres from './components/postHorse/OwnerPres'
+import ResultPage from "./components/Results/ResultPage";
+import ResultAnnonce from "./components/Results/ResultAnnonce";
+
 
 const Router = () => {
   return (
@@ -19,12 +22,19 @@ const Router = () => {
         <Route exact path="/home" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-        <Route exact path="/search-rider" component ={SearchRider} />
+        <Route exact path="/search-rider" component={SearchRider} />
         <Route exact path="/search-horse" component={SearchHorse} />
         <Route exact path="/post-horse" component={PostHorse} />
         <Route exact path="/post-rider" component={PostRider} />
-        <Route exact path="/PostRiderPresentation" component={PostRiderPresentation}/>
+        <Route
+          exact
+          path="/PostRiderPresentation"
+          component={PostRiderPresentation}
+        />
         <Route exact path="/post-horse-owner" component={OwnerPres} />
+        <Route exact path="/result-page" component={ResultPage} />
+        <Route exact path="/result-annonce" component={ResultAnnonce} />
+        ResultAnnonce
       </Switch>
     </>
   );

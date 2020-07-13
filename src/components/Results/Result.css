@@ -1,0 +1,47 @@
+.Result-Page {
+  display: flex;
+  flex-flow: column wrap;
+  margin-left: 3em;
+  margin-right: 3em;
+  padding-bottom: 2em;
+}
+
+.Result-Page hr {
+  border-top: 1em thin;
+  width: 100%;
+}
+
+.Result-filterbar {
+  display: flex;
+  padding: 0em 1em 1em 0em;
+}
+
+.Result-filterbar-button {
+  background-color: white;
+  color: #59a080;
+  width: 12em;
+  height: auto;
+  border: solid 1px#59A080;
+  border-radius: 20px;
+}
+
+.resultPhoto {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.resultCard-container {
+  width: 250px;
+  height: 110px;
+  margin-bottom: -0.2em;
+}
+.resultDetails {
+  color: white;
+  text-align: left;
+  margin-left: 0.5em;
+}
+
+.resultHeart{
+margin-left: 2em;
+}
