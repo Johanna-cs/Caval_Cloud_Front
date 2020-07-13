@@ -41,14 +41,23 @@ const SearchRider = () => {
     // Fréquence de la demi-pension, jours fixes :
     const [fixedFrequency, setFixedFrequency] = useState(false)
     // Concours ou pas :
-    const [doCompetition, setDoCompetition] = useState(false)
-
+    const [doCompetition, setDoCompetition] = useState('')
+    // Résultats de la recherche de riders :
+    const [riders, setRiders] = useState([])
 
     const getLocation = () => {
         Axios
         .get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
         .then(res => setCityLocalisation(res.data.address.municipality))
         .catch(err => console.log(err))
+    }
+
+    const getRiders = async () => {
+        await Axios
+        .get(`http://localhost:4000/api/riders/search/?`)
+        .then(res=> setRiders(res))
+        .catch(err => console.log(err))
+        .finally(console.log(riders))
     }
 
     useEffect(() => {
@@ -60,7 +69,6 @@ const SearchRider = () => {
         <>
         <Header title='CHERCHER UN CAVALIER'/>
         <div className="searchRider_page">
-
             <div className="localisation">   
                 <Localisation 
                     value={cityLocalisation}
@@ -137,9 +145,12 @@ const SearchRider = () => {
                 />
             </div>
             <hr />
-            <Competition onClick={() => setDoCompetition(!doCompetition)}/>
+            <Competition onClick={(e) => setDoCompetition(e.target.value)}/>
         </div>
-        <FloatingButton btnName={'Lancer la recherche'}/>
+        <FloatingButton 
+            btnName={'Lancer la recherche'} 
+            onClick={() => getRiders()}
+        />
 
         </>
         )
