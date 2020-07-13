@@ -20,6 +20,8 @@ const SearchRider = () => {
     const [cityLocalisation, setCityLocalisation] = useState('');
     // Récupération de l'ancienne ville pour le locale storage
     localStorage.setItem('lastCitySaved',cityLocalisation);
+    //Récupération du CP 
+    const [postal, setPostal] = useState(null);
     // Choix du rayon de recherche des annonces :
     const [perimeter, setPerimeter] = useState(20);
     // Années de pratique :
@@ -54,7 +56,7 @@ const SearchRider = () => {
 
     const getRiders = async () => {
         await Axios
-        .get(`http://localhost:4000/api/riders/search/?`)
+        .get(`http://localhost:4000/api/riders/search/?age=${riderAge}&postal=${postal}&level=${galopLevel}&vehiculed=${isVehiculed}&budget=${budget}&competition=${doCompetition}`)
         .then(res=> setRiders(res))
         .catch(err => console.log(err))
         .finally(console.log(riders))
@@ -130,7 +132,7 @@ const SearchRider = () => {
                 <BudgetMensuel 
                     budget={budget} 
                     currency={currency}
-                    priceTitle={'prix macimum :'}
+                    priceTitle={'prix maximum :'}
                     onChange={(e) => setBudget(e.target.value)}
                     onClick={(e) => setCurrency(e.target.value)}
                 />
@@ -145,11 +147,13 @@ const SearchRider = () => {
                 />
             </div>
             <hr />
-            <Competition onClick={(e) => setDoCompetition(e.target.value)}/>
+            <Competition 
+                    onClick={(e) => setDoCompetition(e.target.value)}
+            />
         </div>
         <FloatingButton 
-            btnName={'Lancer la recherche'} 
-            onClick={() => getRiders()}
+                    btnName={'Lancer la recherche'} 
+                    onClick={() => getRiders()}
         />
 
         </>
