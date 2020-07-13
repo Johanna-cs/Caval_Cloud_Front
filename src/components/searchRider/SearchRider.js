@@ -10,6 +10,8 @@ import SlidingButton from '../common/SlidingButton'
 import BudgetMensuel from '../common_section/BudgetMensuel'
 import Frequency from '../common_section/Frequency'
 import RangeButton from '../common/RangeButton'
+import Competition from '../common_section/Competition'
+
 
 const SearchRider = () => {
     // Localisation des coordonnées GPS via le hook "usePosition" :
@@ -23,7 +25,7 @@ const SearchRider = () => {
     // Années de pratique :
     const [yearsOfPractice, setYearsOfPractice] = useState(null);
     // Niveau de galop : 
-    const [gallopLevel, setGallopLevel] = useState(null)
+    const [galopLevel, setGalopLevel] = useState(null)
     // Age du cavalier :
     const [riderAge, setRiderAge] = useState(null)
     // Personne véhiculée ou non :
@@ -39,14 +41,23 @@ const SearchRider = () => {
     // Fréquence de la demi-pension, jours fixes :
     const [fixedFrequency, setFixedFrequency] = useState(false)
     // Concours ou pas :
-    const [doCompetition, setDoCompetition] = useState(false)
-
+    const [doCompetition, setDoCompetition] = useState('')
+    // Résultats de la recherche de riders :
+    const [riders, setRiders] = useState([])
 
     const getLocation = () => {
         Axios
         .get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
         .then(res => setCityLocalisation(res.data.address.municipality))
         .catch(err => console.log(err))
+    }
+
+    const getRiders = async () => {
+        await Axios
+        .get(`http://localhost:4000/api/riders/search/?`)
+        .then(res=> setRiders(res))
+        .catch(err => console.log(err))
+        .finally(console.log(riders))
     }
 
     useEffect(() => {
@@ -58,7 +69,6 @@ const SearchRider = () => {
         <>
         <Header title='Chercher un cavalier'/>
         <div className="searchRider_page">
-
             <div className="localisation">   
                 <Localisation 
                     value={cityLocalisation}
@@ -66,34 +76,34 @@ const SearchRider = () => {
                     definePerimeter={(e) => setPerimeter(e.target.value)}
                     perimeter={perimeter}
                 />
-                <h5> Années de pratique : {yearsOfPractice} ans</h5>
-                    <div className='annees_pratique'>
+                <h5> Années de pratique minimum : {yearsOfPractice} ans</h5>
+                    <div className='divRangeSpan'>
                         <span>0</span>
                         <RangeButton 
                             min="0" 
                             max="99"
                             onChange={(e) => setYearsOfPractice(e.target.value)} 
                         />
-                        <span>99</span>
+                        <span>99 ans</span>
                     </div>
                 
                 <hr />
-                <h5> Niveau de Galop : {gallopLevel} </h5>
-                    <div className='niveau_galop'>
+                <h5> Niveau de Galop minimum : {galopLevel} </h5>
+                    <div className='divRangeSpan'>
                         <span>0</span>                   
                         <RangeButton 
                             min="0" 
                             max="7" 
                             list='niveau_galop'
-                            onChange={(e) => setGallopLevel(e.target.value)} 
+                            onChange={(e) => setGalopLevel(e.target.value)} 
                         />
                         <span>7</span>
                     </div>
                 
 
                 <hr />
-                <h5> Age du cavalier : {riderAge} ans</h5>
-                    <div className='age_cavalier'>
+                <h5> Age du cavalier <span>(+/- 3ans)</span>: {riderAge} ans</h5>
+                    <div className='divRangeSpan'>
                         <span>5 ans</span>
                         <RangeButton 
                             min="0" 
@@ -135,16 +145,14 @@ const SearchRider = () => {
                 />
             </div>
             <hr />
-            <h4>Concours</h4>
-                <SlidingButton
-                    SlidingButtonText='Le cavalier peut faire du concours avec mon cheval' 
-                    SlidingButtonID='competitionOk' 
-                    onClick={() => setDoCompetition(!doCompetition)}
-                />
+            <Competition onClick={(e) => setDoCompetition(e.target.value)}/>
         </div>
-        <FloatingButton btnName={'Lancer la recherche'}/>
+        <FloatingButton 
+            btnName={'Lancer la recherche'} 
+            onClick={() => getRiders()}
+        />
 
-        </>    )
-
+        </>
+        )
 }
 export default SearchRider

@@ -11,6 +11,7 @@ import BudgetMensuel from "../common_section/BudgetMensuel";
 import Frequency from "../common_section/Frequency";
 import IdealHorse from "../searchHorse/IdealHorse";
 import Axios from "axios";
+import Competition from "../common_section/Competition";
 
 
 const PostRider = () => {
@@ -169,11 +170,7 @@ useEffect(() => {
         </div>
         <hr />
         <div>
-          <h4>Concours</h4>
-          <SlidingButton
-            SlidingButtonText="J'aimerais pouvoir sortir en concours"
-            SlidingButtonID="competeSwitch"
-          />
+        <Competition onClick={() => setDoCompetition(!doCompetition)}/>
         </div>
         <FloatingButton btnName={"Poster mon annonce"} />
       </div>

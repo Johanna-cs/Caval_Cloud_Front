@@ -1,0 +1,70 @@
+.menu {
+    background-color: none;
+    height: 4.9em;
+    color : white;
+    display: flex;
+    justify-content: space-around;
+    box-shadow: 1px 0px 3px 0px #77838F65;
+    width: 100%;
+    margin-top: 0.5em;
+   
+}
+.divBtn {
+    display: flex;
+    justify-self: center;
+    align-items: baseline;
+    width: 4em;
+    height: 4em;
+    margin: 0.4em;
+    padding: 0.1em;
+    text-align: center;
+    box-sizing: content-box;
+}
+
+.menu p {
+    text-align: center !important;
+    font-weight: 200 !important;
+    font-family: 'open-sans', sans-serif;
+    font-size: 0.8em !important;
+    margin: auto ;
+    padding: 0.2em;
+    word-break: keep-all;
+  }
+
+/* logos menu */
+.logo-home {
+    width: 1.7em !important;
+    margin-bottom: 0.4em;
+}
+.logo-save {
+    width: 1em !important;
+    margin-bottom: 0.4em;
+}
+.logo-mess {
+    width: 1.6em !important;
+    margin-bottom: 0.4em;
+}
+.logo-profil {
+    width: 1.3em !important;
+    margin-bottom: 0.4em;
+}
+
+a {
+    text-decoration: none !important; 
+    color: #77838F !important;
+}
+.logoM :hover{
+    padding: 1.1em;
+    border-radius: 10px;
+    fill: #b0b9d3!important;
+}
+.logoM :visited {
+    padding: 1.1em;
+    border-radius: 10px;
+    fill: #b0b9d380 !important;
+}
+.logoM :active {
+    padding: 1.1em;
+    border-radius: 10px;
+    fill: #b0b9d380 !important;
+}

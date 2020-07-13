@@ -14,6 +14,7 @@
     font-weight: 300;
     padding: 1em;
     text-align: center;
+    margin-bottom: 0em;
   }
   /* HEADER  */
   .headerHome {
@@ -66,7 +67,7 @@
     align-items: center;
     flex-flow: row nowrap;
     padding: 1em;
-    margin: 1em;
+    margin: 0.8em;
     width: 20em;
     height: 5em;
     border-radius: 10px;

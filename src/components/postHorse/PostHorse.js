@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import Axios from 'axios'
 import './postHorse.css'
 import Header from '../Header_footer/Header'
 import { Link } from "react-router-dom";
@@ -8,20 +9,33 @@ import SlidingButton from '../common/SlidingButton'
 import Scuring from '../common_section/Scuring'
 import Structures from '../common_section/Structures'
 import Localisation from '../common_section/Localisation'
+import usePosition from '../common_section/usePosition';
 import Disciplines from '../common_section/Disciplines'
 import Frequency from '../common_section/Frequency'
 import BudgetMensuel from '../common_section/BudgetMensuel'
 import IdealRider from './IdealRider'
 import FloatingButton from '../common/FloatingButton'
+import Competition from '../common_section/Competition'
+import HebergementHorse from '../common_section/HebergementHorse'
+import Carousel from '../common/Carousel'
 
 
 const PostHorse = (props) => {
     
-    
     // Présentation cheval nom, age, taile
-    const [nom, setNom] = useState('');
+    const [name, setName] = useState('');
     const [ageHorse, setAgeHorse] = useState('')
     const [horseSize, setHorseSize] = useState('')
+
+    const {latitude, longitude, error} = usePosition();
+    const [cityLocalisation, setCityLocalisation] = useState('')
+    // Récupération de l'ancienne ville pour le locale storage
+    localStorage.setItem('lastCitySaved',cityLocalisation);
+    // Choix du rayon de recherche des annonces :
+    const [perimeter, setPerimeter] = useState(null);
+    // Précédente localisation enregistrée dans le navigateur (si existante) :
+    const [lastCitySaved, setLastCitySaved] = useState('');
+
     //Coaching 
     const [coachingHere, setCoachingHere] = useState(false)
     const [externalCoach, setExternalCoach] = useState(false)
@@ -32,7 +46,8 @@ const PostHorse = (props) => {
 
     // Materiel selle :
     const [haveMaterialSaddle, setHaveMaterialSaddle] = useState(false)
-    
+    //Hebergement 
+    const [boxeType, setBoxeType] = useState('')
 
     //balade
     const [doBalad, setDoBalad] = useState(false)
@@ -43,6 +58,18 @@ const PostHorse = (props) => {
      // Budget mensuel 
      const [budget, setBudget] = useState(null)
      const [currency, setCurrency] = useState('')
+
+     const getLocation = () => {
+        Axios
+        .get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
+        .then(res => setCityLocalisation(res.data.address.municipality))
+        .catch(err => console.log(err))
+    }
+
+    useEffect(() => {
+        getLocation()
+    }, )
+
 
     return (
         <>
@@ -56,7 +83,7 @@ const PostHorse = (props) => {
                 className="postHorse_input"
                 type="text"
                 placeholder="Nom du cheval"
-                onChange={(event) => setNom(event.target.value)}
+                onChange={(event) => setName(event.target.value)}
                 autoFocus
                 />
             </label>
@@ -65,6 +92,7 @@ const PostHorse = (props) => {
             </div>
             <div className='horse_age'>
             <h5> Age du cheval : {ageHorse} ans</h5>
+            <div className='divRangeSpan'>
                     <span>1 an</span>
                     <RangeButton 
                         id='ageHorse'
@@ -74,21 +102,31 @@ const PostHorse = (props) => {
                         onChange={(e) => setAgeHorse(e.target.value)
                     }/>
                     <span>30 ans</span>
+                </div>
             </div>
             <hr />
             <div className='horse_size'>
                 <h5> Taille : {horseSize} cm</h5>
+                <div className='divRangeSpan'>
+                    <span>100 cm</span>
                     <RangeButton 
                         min='80'
                         max='200'
                         radioRangeBtnId='horseSize'
                         onChange={(e) => setHorseSize(e.target.value)
                     }/>
+                    <span>200 cm</span>
+                </div>
             </div>
-            <hr />
+            <Carousel />
+            
             <div className='localisation_horse'>
             <h5>Où se trouve le cheval ? </h5>
-                <Localisation />
+                <Localisation 
+                value={cityLocalisation}
+                onChange={(e) => setCityLocalisation(e.target.value)}
+                definePerimeter={(e) => setPerimeter(e.target.value)}
+                perimeter={perimeter} />
             </div>
             <hr />
             <div className='horse_temper'>
@@ -182,6 +220,9 @@ const PostHorse = (props) => {
             <hr />
             <h4>Ecuries et moniteur </h4>
             <Scuring />
+            <HebergementHorse 
+                    boxeType={boxeType}
+                    onClick={(e) => setBoxeType(e.target.value)}/>
             <hr />
             <Structures />
             <hr />
@@ -238,17 +279,12 @@ const PostHorse = (props) => {
                 </div>
             </div>
             <hr />
-            <div className='postHorse_compet'>
-                <h4>Concours</h4>
+            
                 <div className='competiton'>
-                <SlidingButton 
-                        SlidingButtonText="Ouvert à la compétition"
-                        SlidingButtonID="competitionSwitch"
-                        onClick={() => setDoCompetition(!doCompetition)}
-                        />
+                <Competition onClick={() => setDoCompetition(!doCompetition)}/>
                 </div>
-            </div> 
-            <hr />
+            
+            
                 <BudgetMensuel budget={budget} 
                     currency={currency}
                     priceTitle={'prix minimum :'}

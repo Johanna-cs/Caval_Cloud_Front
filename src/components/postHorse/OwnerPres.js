@@ -38,6 +38,7 @@ const OwnerPres = (props) => {
         </form>
             <div className='owner_age'>
             <h5> Votre age : {ageOwner} ans</h5>
+            <div className='divRangeSpan'>
                     <span>4 ans</span>
                     <RangeButton 
                         id='ageOwner'
@@ -47,20 +48,10 @@ const OwnerPres = (props) => {
                         onChange={(e) => setAgeOwner(e.target.value)
                     }/>
                     <span>99 ans</span>
+                    </div>
             </div>
             <hr />
-            <h5>Message :</h5>
-                <form className="postHorse_msg">
-                <label>
-                    <textarea
-                    className="postHorse_input"
-                    type="text"
-                    placeholder="Ajoutez quelques mots"
-                    onChange={(event) => setMessage(event.target.value)}
-                    />
-                </label>
-                </form>
-        <hr />
+            
             <div className='owner_caracter'>
                     <h5> Caractère :</h5>
                     <div className='select_caracter'>
@@ -120,6 +111,19 @@ const OwnerPres = (props) => {
                         horseWork={horseWork}/>
                     </div>
             </div>
+            <hr />
+            <h5>Message :</h5>
+                <form className="postHorse_msg">
+                <label>
+                    <textarea
+                    className="postHorse_input"
+                    type="text"
+                    placeholder="Ajoutez quelques mots"
+                    onChange={(event) => setMessage(event.target.value)}
+                    />
+                </label>
+                </form>
+        
         </div>
 
         </div>
