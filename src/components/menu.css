@@ -1,0 +1,65 @@
+.menu {
+    background-color: transparent;
+    height: 4.3em;
+    color : white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 1px 0px 3px 0px #77838F65;
+    width: 100%;
+   
+}
+.logo-home {
+    margin-top: 0.5em;
+    padding: 0.1em;
+    width: 1.5em !important;
+}
+
+.logo-save {
+    margin-top: 0.5em;
+    padding: 0.1em;
+    width: 1em !important;
+}
+.logo-mess {
+    margin-top: 0.5em;
+    padding: 0.1em;
+    width: 1.4em !important;
+}
+.logo-profil {
+    margin-top: 0.5em;
+    padding: 0.1em;
+    width: 1.2em !important;
+}
+
+.divBtn {
+    text-align: center;
+}
+
+.menu p {
+    text-align: center !important;
+    font-weight: 200 !important;
+    font-family: 'open-sans', sans-serif;
+    font-size: 0.8em !important;
+    margin-bottom: none;
+  }
+.menu a {
+    color: #77838F;
+}
+
+.logoM a hover {
+    background-color: #b0b9d380;
+}
+
+/* .element:nth-child(1) 
+{
+    background-color: blue;
+    align-self: flex-start; 
+    order: 2;
+}
+
+.element:nth-child(2) 
+{
+    background-color: blue;
+    align-self: flex-start; 
+    order: 1;
+} */

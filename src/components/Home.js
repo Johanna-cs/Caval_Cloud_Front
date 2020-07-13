@@ -6,6 +6,7 @@ import helmet from './SVG-icons/bombe-icon.svg'
 import boot from './SVG-icons/botte-icon.svg'
 import horseFrame from './SVG-icons/horse-in-cadre-icon.svg'
 import cavalCloudLogo from './SVG-icons/cavalcloud-logoTest.jpg'
+import Menu from './Menu'
 
 
 function Home(props) {
@@ -55,7 +56,7 @@ function Home(props) {
                         <p className='textUs'> Qui sommes-nous ? </p>
                     </div>
                 </Link>
-
+            <Menu />
        </div>
        </>
     )
