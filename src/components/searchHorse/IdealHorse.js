@@ -5,25 +5,20 @@ import { Collapse, Button, Input } from 'reactstrap'
 
 const IdealHorse = (props) => {
 
-    // Taille du cheval idéal
-const [horseSize, setHorseSize] = useState('')
-
-    // Age du cheval idéal
-const [ageHorse, setAgeHorse] = useState('')
 
     return (
 
         <div className='searchHorse_idealHorse'>
             <div className='horse_size'>
-                <h5> Taille : {horseSize} cm</h5>
+                <h5> Taille : {props.horseSize} cm</h5>
                 <div className='divRangeSpan'>
                     <span>80cm</span>
                     <RangeButton 
                         min='80'
                         max='200'
                         radioRangeBtnId='horseSize'
-                        onChange={(e) => setHorseSize(e.target.value)
-                    }/>
+                        onChange={props.changeSize}
+                        />
                     <span>200cm</span>
                 </div>
             </div>
@@ -32,14 +27,14 @@ const [ageHorse, setAgeHorse] = useState('')
                     <h5> Tempérament :</h5>
                     <div className='select_temper'>
                     <RadioCheck 
-                    RadioCheckText1='Calme'
-                    radioCheckId1='Calme'
-                    RadioCheckText2='Dynamique'
-                    radioCheckId2='Dynamique'
-                    RadioCheckText3='Speed'
-                    radioCheckId3='Speed'
-                    RadioCheckText4='A canaliser'
-                    radioCheckId4='A canaliser' />
+                        RadioCheckText1='Calme'
+                        radioCheckId1='Calme'
+                        RadioCheckText2='Dynamique'
+                        radioCheckId2='Dynamique'
+                        RadioCheckText3='Speed'
+                        radioCheckId3='Speed'
+                        RadioCheckText4='A canaliser'
+                        radioCheckId4='A canaliser' />
                     </div>
             </div>
                 <hr />
@@ -74,7 +69,7 @@ const [ageHorse, setAgeHorse] = useState('')
             </div>
                 <hr />
             <div className='horse_age'>
-            <h5> Age du cheval <span>(+/- 3ans)</span> : {ageHorse} ans</h5>
+            <h5> Age du cheval <span>(+/- 3ans)</span> : {props.ageHorse} ans</h5>
             <div className='divRangeSpan'>
                     <span>1 an</span>
                     <RangeButton 
@@ -82,7 +77,7 @@ const [ageHorse, setAgeHorse] = useState('')
                         min='1'
                         max='30'
                         radioRangeBtnId='ageHorse'
-                        onChange={props.onChange}/>
+                        onChange={props.changeAge}/>
                     <span>30 ans</span>
                 </div>
             </div>
