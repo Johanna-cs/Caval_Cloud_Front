@@ -17,7 +17,9 @@ const Menu = (props)=>{
 <div className='menu'>
 <div className='divBtn'>
   <Link className='menu_home' to='/home' style={{ textDecoration: "none" }} >
-    <img src={Home} width="30" height="30" alt='home caval cloud' className='logo-home logoM'/>
+  <div className='logoM'>
+    <img src={Home} width="30" height="30" alt='home caval cloud' className='logo-home logo'/>
+    </div>
     <p>Accueil</p>
   </Link>
   
@@ -25,15 +27,19 @@ const Menu = (props)=>{
 
 <div className='divBtn'>
   <Link className='menu_save' to='/home' style={{ textDecoration: "none" }} >
-    <img src={Save} width="30" height="30" alt='home caval cloud' className='logo-save logoM'/>
-    <p>Sauvegardes</p>
+  <div className='logoM'>
+    <img src={Save} width="30" height="30" alt='home caval cloud' className='logo-save logo'/>
+    </div>
+    <p>Favoris</p>
   </Link>
   
 </div>
 
 <div className='divBtn'>
   <Link className='menu_message' to='/home' style={{ textDecoration: "none" }} >
-    <img src={Message} width="30" height="30" alt='home caval cloud' className='logo-mess logoM'/>
+  <div className='logoM'>
+    <img src={Message} width="30" height="30" alt='home caval cloud' className='logo-mess logo'/>
+  </div>
     <p>Message</p>
   </Link>
   
@@ -41,7 +47,9 @@ const Menu = (props)=>{
 
 <div className='divBtn'>
   <Link className='menu_myprofil' to='/home' style={{ textDecoration: "none" }} >
-    <img src={Profil} width="30" height="30" alt='home caval cloud'className='logo-profil logoM'/>
+    <div className='logoM'>
+    <img src={Profil} width="30" height="30" alt='home caval cloud'className='logo-profil logo'/>
+    </div>
     <p>Mon Profil</p>
   </Link>
   

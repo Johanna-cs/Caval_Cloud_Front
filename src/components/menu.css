@@ -1,38 +1,24 @@
 .menu {
-    background-color: transparent;
-    height: 4.3em;
+    background-color: none;
+    height: 4.9em;
     color : white;
     display: flex;
     justify-content: space-around;
-    align-items: center;
     box-shadow: 1px 0px 3px 0px #77838F65;
     width: 100%;
+    margin-top: 0.5em;
    
 }
-.logo-home {
-    margin-top: 0.5em;
-    padding: 0.1em;
-    width: 1.5em !important;
-}
-
-.logo-save {
-    margin-top: 0.5em;
-    padding: 0.1em;
-    width: 1em !important;
-}
-.logo-mess {
-    margin-top: 0.5em;
-    padding: 0.1em;
-    width: 1.4em !important;
-}
-.logo-profil {
-    margin-top: 0.5em;
-    padding: 0.1em;
-    width: 1.2em !important;
-}
-
 .divBtn {
+    display: flex;
+    justify-self: center;
+    align-items: baseline;
+    width: 4em;
+    height: 4em;
+    margin: 0.4em;
+    padding: 0.1em;
     text-align: center;
+    box-sizing: content-box;
 }
 
 .menu p {
@@ -40,26 +26,45 @@
     font-weight: 200 !important;
     font-family: 'open-sans', sans-serif;
     font-size: 0.8em !important;
-    margin-bottom: none;
+    margin: auto ;
+    padding: 0.2em;
+    word-break: keep-all;
   }
-.menu a {
-    color: #77838F;
+
+/* logos menu */
+.logo-home {
+    width: 1.7em !important;
+    margin-bottom: 0.4em;
+}
+.logo-save {
+    width: 1em !important;
+    margin-bottom: 0.4em;
+}
+.logo-mess {
+    width: 1.6em !important;
+    margin-bottom: 0.4em;
+}
+.logo-profil {
+    width: 1.3em !important;
+    margin-bottom: 0.4em;
 }
 
-.logoM a hover {
-    background-color: #b0b9d380;
+a {
+    text-decoration: none !important; 
+    color: #77838F !important;
 }
-
-/* .element:nth-child(1) 
-{
-    background-color: blue;
-    align-self: flex-start; 
-    order: 2;
+.logoM :hover{
+    padding: 1.1em;
+    border-radius: 10px;
+    fill: #b0b9d3!important;
 }
-
-.element:nth-child(2) 
-{
-    background-color: blue;
-    align-self: flex-start; 
-    order: 1;
-} */
+.logoM :visited {
+    padding: 1.1em;
+    border-radius: 10px;
+    fill: #b0b9d380 !important;
+}
+.logoM :active {
+    padding: 1.1em;
+    border-radius: 10px;
+    fill: #b0b9d380 !important;
+}
