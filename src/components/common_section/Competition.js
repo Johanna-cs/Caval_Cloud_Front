@@ -34,7 +34,7 @@ const Competition = (props) => {
               radioButtonText="Non"
               radioButtonValue="no"
               radioButtonName="competition"
-              radioButtonId="compet2"
+              radioButtonId="compet3"
               onClick={props.onClick}
             />
           </div>

@@ -6,7 +6,12 @@ const FloatingButton = (props) => {
 
     return (
       <div className="floating-button">
-        <button id="floating-button"> {props.btnName}</button>
+        <button 
+          id="floating-button"
+          onClick={props.onClick}
+        > 
+          {props.btnName}
+        </button>
       </div>
     );}
 

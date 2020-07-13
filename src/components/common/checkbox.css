@@ -2,7 +2,9 @@
 .checkboxObject {
   background-color: #5d5aa4;
   align-items: baseline;
+  margin-left:1em;
   color: white;
+  width: 17.4em;
   padding: 1em;
   margin-bottom: 0.5em;
   border-radius: 10px;

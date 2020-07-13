@@ -79,8 +79,8 @@ const SearchHorse = (props) => {
     }, )
 
     return (
-    <>
-        <Header className='header' title='CHERCHER UN CHEVAL'/>
+        <>
+        <Header className='header' title='Chercher un cheval'/>
         <div className='searchHorse_page'>
                 <Localisation 
                 value={cityLocalisation}

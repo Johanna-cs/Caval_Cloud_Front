@@ -61,8 +61,8 @@ useEffect(() => {
 });
 
   return (
-    <div className='main'>
-      <Header title="POSTER UNE ANNONCE CAVALIER" />
+    <>
+      <Header title="Poster une annonce cavalier" />
       <div className="postRider_page">
         <div className="postRider_header">
           <img className="postRider_logo" src={logo} alt="logo" />
@@ -174,7 +174,7 @@ useEffect(() => {
         </div>
         <FloatingButton btnName={"Poster mon annonce"} />
       </div>
-    </div>
+    </>
   );
 };
 export default PostRider;
