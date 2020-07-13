@@ -10,7 +10,7 @@ const BudgetMensuel = (props) => {
     <>
       <div className="priceDiv">
         <div className="toggle_place">
-          <h4> Prix </h4>{" "}
+          <h4> Budget mensuel </h4>{" "}
         </div>
         <Button id="toggle_btn_chev" onClick={toggle}>
           <svg
@@ -32,7 +32,7 @@ const BudgetMensuel = (props) => {
       </p>
       <div className="searchHorse_price2">
         <Collapse isOpen={isOpen}>
-          <h5>Prix mensuel maximum:</h5>
+          <h5>{props.priceTitle}</h5>
           <label>
             <input
               className="mainInput"
@@ -49,6 +49,7 @@ const BudgetMensuel = (props) => {
             radioButtonId="devise1"
             radioButtonValue="€"
             onClick={props.onClick}
+            checked
           />
           <RadioButton
             radioButtonText="Livre sterling - £"

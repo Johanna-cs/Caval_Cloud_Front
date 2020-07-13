@@ -1,4 +1,4 @@
-import React, { useState, useContext} from "react";
+import React, { useState, useEffect } from "react";
 import "./postRider.css";
 import { Link } from "react-router-dom";
 import Header from "../Header_footer/Header";
@@ -10,7 +10,7 @@ import Disciplines from "../common_section/Disciplines";
 import BudgetMensuel from "../common_section/BudgetMensuel";
 import Frequency from "../common_section/Frequency";
 import IdealHorse from "../searchHorse/IdealHorse";
-import PostRiderPresentation from "./PostRiderPresentation";
+import Axios from "axios";
 
 
 const PostRider = () => {
@@ -26,18 +26,38 @@ const PostRider = () => {
   const [isVehiculed, setIsVehiculed] = useState(false);
   const [doCompetition, setDoCompetition] = useState(false);
   
-  const [profile, setProfile] = useState({
-    prenom: "",
-    age: "",
-    codeP: "",
-    message: "",
-    selfWord1: "",
-    selfWord2: "",
-    selfWord3: "",
-    ridingWord1: "",
-    ridingWord2: "",
-    ridingWord3: "",
-  });
+  // const [profile, setProfile] = useState({
+  //   prenom: "",
+  //   age: "",
+  //   codeP: "",
+  //   message: "",
+  //   selfWord1: "",
+  //   selfWord2: "",
+  //   selfWord3: "",
+  //   ridingWord1: "",
+  //   ridingWord2: "",
+  //   ridingWord3: "",
+  // });
+  const [riderProfile, setRiderProfile] = useState("");
+  // const [age, setAge] = useState("");
+  // const [codeP, setCodeP] = useState("");
+  // const [message, setMessage] = useState("");
+  // const [selfWord1, setSelfWord1] = useState("");
+  // const [selfWord2, setSelfWord2] = useState("");
+  // const [selfWord3, setSelfWord3] = useState("");
+  // const [ridingWord1, setRidingWord1] = useState("");
+  // const [ridingWord2, setRidingWord2] = useState("");
+  // const [ridingWord3, setRidingWord3] = useState("");
+
+const getProfile = () => {
+  Axios.get(`http://localhost:3010/api/users`)
+    .then((res) => setRiderProfile(...res))
+    .catch((err) => console.log(err));
+};
+
+useEffect(() => {
+  getProfile();
+});
 
   return (
     <>
@@ -47,10 +67,11 @@ const PostRider = () => {
           <img className="postRider_logo" src={logo} alt="logo" />
           <div className="postRider_forms">
             <p>
-              {profile.prenom}, <span>{profile.age}</span>
+              {/* {profile.prenom}, <span>{profile.age}</span> */}
+              {riderProfile.prenom}, <span>{riderProfile.age}</span>
             </p>
             <p>
-              {profile.selfWord1}, {profile.selfWord2}, {profile.selfWord3}
+              {riderProfile.selfWord1}, {riderProfile.selfWord2}, {riderProfile.selfWord3}
             </p>
           </div>
           <div>
@@ -61,18 +82,16 @@ const PostRider = () => {
         <div>
           <h4>Equitation</h4>
           <p>
-            {profile.ridingWord1}, {profile.ridingWord2}, {profile.ridingWord3}
+            {riderProfile.ridingWord1}, {riderProfile.ridingWord2}, {riderProfile.ridingWord3}
           </p>
         </div>
         <div className="postRider_message">
           <h4>Message :</h4>
-          <p>{profile.message}</p>
-          <Link 
+          {/* <p>{riderProfile.message}</p> */}
+          <Link
             to={{
-              pathname:"/PostRiderPresentation",
-              style: {textDecoration: "none"},
-              test : () => setProfile(),
-              profile : {...profile}
+              pathname: "/PostRiderPresentation",
+              style: { textDecoration: "none" },
             }}
           >
             <button className="postRider_edit-button">
@@ -85,6 +104,7 @@ const PostRider = () => {
           <BudgetMensuel
             budget={budget}
             currency={currency}
+            priceTitle={'prix minimum :'}
             onChange={(e) => setBudget(e.target.value)}
             onClick={(e) => setCurrency(e.target.value)}
           />
@@ -139,11 +159,11 @@ const PostRider = () => {
         <h4>Coaching</h4>
         <div className="postRider-coaching">
           <SlidingButton
-            SlidingButtonText="J'aimerais avoir accès à des cours"
+            SlidingButtonText="Sur place"
             SlidingButtonID="coachingSwitch"
           />
           <SlidingButton
-            SlidingButtonText="J'aimerais faire intervenir un coach extérieur"
+            SlidingButtonText="Intervenant exterieur"
             SlidingButtonID="extCoachSwitch"
           />
         </div>

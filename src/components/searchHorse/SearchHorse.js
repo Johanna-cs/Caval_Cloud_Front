@@ -81,6 +81,7 @@ const SearchHorse = (props) => {
             <hr />
                 <BudgetMensuel budget={budget} 
                     currency={currency}
+                    priceTitle={'prix maximum :'}
                     onChange={(e) => setBudget(e.target.value)}
                     onClick={(e) => setCurrency(e.target.value)}/>
             
@@ -92,7 +93,7 @@ const SearchHorse = (props) => {
                 <h4>Balade</h4>
                 <div className='balade'>
                     <SlidingButton 
-                    SlidingButtonText="J'aimerais pouvoir partir en balade"
+                    SlidingButtonText="J'aimerais pouvoir partir seul en balade"
                     SlidingButtonID="baladSwitch"
                     onClick={() => setDoBalad(!doBalad)}
                     />
