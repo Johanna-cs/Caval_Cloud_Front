@@ -20,8 +20,6 @@ const SearchRider = () => {
     localStorage.setItem('lastCitySaved',cityLocalisation);
     // Choix du rayon de recherche des annonces :
     const [perimeter, setPerimeter] = useState(20);
-    // Précédente localisation enregistrée dans le navigateur (si existante) :
-    const [lastCitySaved, setLastCitySaved] = useState('');
     // Années de pratique :
     const [yearsOfPractice, setYearsOfPractice] = useState(null);
     // Niveau de galop : 
@@ -74,8 +72,7 @@ const SearchRider = () => {
                         <RangeButton 
                             min="0" 
                             max="99"
-                            onChange={(e) => setYearsOfPractice(e.target.value)
-                            } 
+                            onChange={(e) => setYearsOfPractice(e.target.value)} 
                         />
                         <span>99</span>
                     </div>

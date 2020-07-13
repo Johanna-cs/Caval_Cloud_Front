@@ -26,6 +26,18 @@ const PostRider = () => {
   const [isVehiculed, setIsVehiculed] = useState(false);
   const [doCompetition, setDoCompetition] = useState(false);
   
+  // const [profile, setProfile] = useState({
+  //   prenom: "",
+  //   age: "",
+  //   codeP: "",
+  //   message: "",
+  //   selfWord1: "",
+  //   selfWord2: "",
+  //   selfWord3: "",
+  //   ridingWord1: "",
+  //   ridingWord2: "",
+  //   ridingWord3: "",
+  // });
   const [riderProfile, setRiderProfile] = useState("");
   // const [age, setAge] = useState("");
   // const [codeP, setCodeP] = useState("");
@@ -55,6 +67,7 @@ useEffect(() => {
           <img className="postRider_logo" src={logo} alt="logo" />
           <div className="postRider_forms">
             <p>
+              {/* {profile.prenom}, <span>{profile.age}</span> */}
               {riderProfile.prenom}, <span>{riderProfile.age}</span>
             </p>
             <p>
@@ -74,7 +87,7 @@ useEffect(() => {
         </div>
         <div className="postRider_message">
           <h4>Message :</h4>
-          <p>{riderProfile.message}</p>
+          {/* <p>{riderProfile.message}</p> */}
           <Link
             to={{
               pathname: "/PostRiderPresentation",

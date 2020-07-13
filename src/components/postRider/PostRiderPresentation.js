@@ -39,6 +39,7 @@ const PostRiderPresentation = (props) => {
     <div className="postRider_page">
       <div className="postRider_forms">
         <h4>Présentation:</h4>
+        <h1>{props.location.profile.prenom}</h1>
         <form className="postRider-form">
           <label>
             <input
