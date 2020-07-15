@@ -23,7 +23,7 @@ import Carousel from '../common/Carousel'
 const PostHorse = (props) => {
     
     // Présentation cheval nom, age, taille
-    const [name, setName] = useState('');
+    const [name, setName] = useState('')
     const [ageHorse, setAgeHorse] = useState('')
     const [horseSize, setHorseSize] = useState('')
 
@@ -58,8 +58,8 @@ const PostHorse = (props) => {
     // Concours :
     const [doCompetition, setDoCompetition] = useState('')
      // Budget mensuel 
-     const [budget, setBudget] = useState(null)
-     const [currency, setCurrency] = useState('')
+    const [budget, setBudget] = useState(null)
+    const [currency, setCurrency] = useState('')
 
     // cavalier ideal 
     const [yearPractice, setYearPractice] = useState('')
@@ -68,9 +68,6 @@ const PostHorse = (props) => {
     const [isVehiculed, setIsVehiculed] = useState(false)
     const [hasManaged, setHasManaged] = useState(false)
     
-
-
-
      const getLocation = () => {
         Axios
         .get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
@@ -81,12 +78,46 @@ const PostHorse = (props) => {
     useEffect(() => {
         getLocation()
     }, )
-
+    // Récupération des données à envoyer sur le serveur BDD
+    const dataHorse = {
+        horse_name : name, 
+        horse_age : ageHorse, 
+        horse_height : horseSize, 
+        horse_localisation : cityLocalisation, 
+        horse_temper : temperHorse, 
+        horse_character : caracterHorse, 
+        horse_body_type : bodyHorse, 
+        horse_location_type : scuringType, 
+        horse_accomodation_horse : boxeType, 
+        horse_get_lesson : coachingHere, 
+        horse_get_coach :externalCoach, 
+        horse_riding_frequency : frequency, 
+        horse_fixed_day : fixedFrequency, 
+        horse_materiel : haveMaterialSaddle, 
+        horse_stroll_along : doBalad, 
+        horse_competition_preference : doCompetition, 
+        horse_mensuel_price : budget, 
+        horse_budget_currency : currency, 
+        ideal_rider_years_of_practice : yearPractice, 
+        ideal_rider_age : ageRider, 
+        ideal_rider_gallop_level : gallopLevel, 
+        ideal_rider_vehiculed : isVehiculed, 
+        ideal_rider_managed_horse : hasManaged 
+    }
+// Check if subscribe successfull or not
+    const [success, setSuccess] = useState(null);
+    const createPostHorse = (e) => {
+        e.preventDefault()
+        Axios.post('http://localhost:4000/api/horses', dataHorse)
+        .catch((err) => console.error(err))
+        .finally(setSuccess(true));
+    }
 
     return (
         <>
         <Header className='header' title='Poster une annonce cheval' />
         <div className='postHorse_page'>
+            
             <div className='postHorse_pres'>
         <h4>Présentation :</h4>
             <form className="postHorse-form">
@@ -331,9 +362,22 @@ const PostHorse = (props) => {
                 />
             </div>
         </div>
+        {/* {success === true ? (
+            <div class="alert alert-success" role="alert">
+                <h5> Votre annonce est créée !</h5>
+            </div>
+        ) : success === false ? (
+            <div class="alert alert-danger" role="alert">
+                <h5> Un problème est survenu lors de la création de votre annonce, veuillez
+            réessayer. </h5>
+            </div>
+        ) : (
+            ""
+        )} */}
 
-
-        <FloatingButton btnName={'Poster mon annonce'}/>
+        <FloatingButton 
+            btnName={'Poster mon annonce'}
+            onClick={(e) => createPostHorse(e)}/>
 
         </>
     )

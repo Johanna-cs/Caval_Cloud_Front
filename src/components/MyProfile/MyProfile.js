@@ -58,7 +58,7 @@ function MyProfile(props) {
         <h4>Email:</h4>
         {modif ? (
           <input
-            type="text"
+            type="mail"
             value={modifiedProfile.mail}
             onChange={(e) =>
               setModifiedProfile({
@@ -74,7 +74,7 @@ function MyProfile(props) {
         <h4>Téléphone:</h4>
         {modif ? (
           <input
-            type="text"
+            type="tel"
             value={modifiedProfile.phone}
             onChange={(e) =>
               setModifiedProfile({

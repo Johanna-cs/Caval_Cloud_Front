@@ -11,15 +11,15 @@ const IdealRider = (props) => {
 
     return (
         <div className='postHorse_idealRider'>
-            <h5> Années de pratique : {props.yearsOfPractice} ans</h5>
+            <h5> Années de pratique : {props.yearPractice} ans</h5>
                     <div className='divRangeSpan'>
                         <span>1 an</span>
                         <RangeButton 
                             min="0" 
-                            max="99"
+                            max="50"
                             onChange={props.changePractice} 
                         />
-                        <span>30 ans</span>
+                        <span>50 ans</span>
                     </div>
                 
                 <hr />
@@ -39,7 +39,7 @@ const IdealRider = (props) => {
                     <div className='divRangeSpan'>
                         <span>5 ans</span>
                         <RangeButton 
-                            min="0" 
+                            min="5" 
                             max="99"
                             onChange={props.changeAgeRider} 
                         />
