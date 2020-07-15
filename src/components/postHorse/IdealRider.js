@@ -7,48 +7,41 @@ import SlidingButton from '../common/SlidingButton'
 
 const IdealRider = (props) => {
 
-    const [yearsOfPractice, setYearsOfPractice] = useState ('')
-    const [galopLevel, setGalopLevel] = useState ('')
-    const [riderAge, setRiderAge] = useState('')
-    const [isVehiculed, setIsVehiculed] = useState(false)
-    const [isExperienced, setIsExperienced] = useState(false)
-
 
 
     return (
         <div className='postHorse_idealRider'>
-            <h5> Années de pratique : {yearsOfPractice} ans</h5>
+            <h5> Années de pratique : {props.yearsOfPractice} ans</h5>
                     <div className='divRangeSpan'>
                         <span>1 an</span>
                         <RangeButton 
                             min="0" 
                             max="99"
-                            onChange={(e) => setYearsOfPractice(e.target.value)
-                            } 
+                            onChange={props.changePractice} 
                         />
                         <span>30 ans</span>
                     </div>
                 
                 <hr />
-            <h5> Niveau de Galop : {galopLevel} </h5>
+            <h5> Niveau de Galop : {props.gallopLevel} </h5>
                 <div className='divRangeSpan'>
                     <span>0</span>                   
                     <RangeButton 
                         min="0" 
                         max="7" 
                         list='niveau_galop'
-                        onChange={(e) => setGalopLevel(e.target.value)} 
+                        onChange={props.changeGallop} 
                     />
                     <span>7</span>
                 </div>
                 <hr />
-                <h5> Age du cavalier : {riderAge} ans</h5>
+                <h5> Age du cavalier : {props.ageRider} ans</h5>
                     <div className='divRangeSpan'>
                         <span>5 ans</span>
                         <RangeButton 
                             min="0" 
                             max="99"
-                            onChange={(e) =>setRiderAge(e.target.value)} 
+                            onChange={props.changeAgeRider} 
                         />
                         <span>99 ans</span>
                     </div>
@@ -56,12 +49,12 @@ const IdealRider = (props) => {
                     <SlidingButton
                     SlidingButtonText='Personne véhiculée' 
                     SlidingButtonID='vehiculed' 
-                    onClick={() => setIsVehiculed(!isVehiculed)}
+                    onClick={props.isVehiculed}
                     />
                     <SlidingButton
                     SlidingButtonText='A déjà eu un cheval sous sa responsabilité' 
                     SlidingButtonID='experience' 
-                    onClick={() => setIsExperienced(!isExperienced)}
+                    onClick={props.hasManaged}
                     />
             
             <hr />

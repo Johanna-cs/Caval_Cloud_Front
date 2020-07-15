@@ -22,11 +22,19 @@ import Carousel from '../common/Carousel'
 
 const PostHorse = (props) => {
     
-    // Présentation cheval nom, age, taile
+    // Présentation cheval nom, age, taille
     const [name, setName] = useState('');
     const [ageHorse, setAgeHorse] = useState('')
     const [horseSize, setHorseSize] = useState('')
 
+    //Présentation cheval tempérament, caractere, physique, écurie, boxe
+    const [temperHorse, setTemperHorse] = useState('')
+    const [caracterHorse, setCaracterHorse] = useState('')
+    const [bodyHorse, setBodyHorse] = useState('')
+    const [scuringType, setScuringType] = useState('')
+    const [boxeType, setBoxeType] = useState('')
+
+    // Localisation
     const {latitude, longitude, error} = usePosition();
     const [cityLocalisation, setCityLocalisation] = useState('')
     // Récupération de l'ancienne ville pour le locale storage
@@ -43,21 +51,25 @@ const PostHorse = (props) => {
     const [frequency, setFrequency] = useState('')
     // Fréquence de la demi-pension, jours fixes :
     const [fixedFrequency, setFixedFrequency] = useState(false)
-
     // Materiel selle :
     const [haveMaterialSaddle, setHaveMaterialSaddle] = useState(false)
-    //Hebergement 
-    const [boxeType, setBoxeType] = useState('')
-
     //balade
     const [doBalad, setDoBalad] = useState(false)
-
     // Concours :
-    const [doCompetition, setDoCompetition] = useState(false)
-
+    const [doCompetition, setDoCompetition] = useState('')
      // Budget mensuel 
      const [budget, setBudget] = useState(null)
      const [currency, setCurrency] = useState('')
+
+    // cavalier ideal 
+    const [yearPractice, setYearPractice] = useState('')
+    const [ageRider, setAgeRider] = useState('')
+    const [gallopLevel, setGallopLevel] = useState('')
+    const [isVehiculed, setIsVehiculed] = useState(false)
+    const [hasManaged, setHasManaged] = useState(false)
+    
+
+
 
      const getLocation = () => {
         Axios
@@ -136,25 +148,25 @@ const PostHorse = (props) => {
                         radioSelBtnId='Calme'
                         radioSelBtnValue='Calme'
                         radioSelBtnName='temperHorse'
-                        onClick={props.onClick} />
+                        onClick={(e) => setTemperHorse(e.target.value)} />
 
                     <SelectButton
                         radioSelBtnId='Dynamique'
                         radioSelBtnValue='Dynamique'
                         radioSelBtnName='temperHorse'
-                        onClick={props.onClick} />
+                        onClick={(e) => setTemperHorse(e.target.value)} />
 
                     <SelectButton
                         radioSelBtnId='Speed'
                         radioSelBtnValue='Speed'
                         radioSelBtnName='temperHorse'
-                        onClick={props.onClick} />
+                        onClick={(e) => setTemperHorse(e.target.value)} />
 
                     <SelectButton
                         radioSelBtnId='A canaliser'
                         radioSelBtnValue='A canaliser'
                         radioSelBtnName='temperHorse'
-                        onClick={props.onClick} />
+                        onClick={(e) => setTemperHorse(e.target.value)} />
 
                     </div>
             </div>
@@ -166,25 +178,25 @@ const PostHorse = (props) => {
                         radioSelBtnId='Affectueux'
                         radioSelBtnValue='Affectueux'
                         radioSelBtnName='caracterHorse'
-                        onClick={props.onClick} />
+                        onClick={(e) => setCaracterHorse(e.target.value)} />
 
                     <SelectButton
                         radioSelBtnId='Froid'
                         radioSelBtnValue='Froid'
                         radioSelBtnName='caracterHorse'
-                        onClick={props.onClick} />
+                        onClick={(e) => setCaracterHorse(e.target.value)} />
 
                     <SelectButton
                         radioSelBtnId='Joueur'
                         radioSelBtnValue='Joueur'
                         radioSelBtnName='caracterHorse'
-                        onClick={props.onClick} />
+                        onClick={(e) => setCaracterHorse(e.target.value)} />
 
                     <SelectButton   
                         radioSelBtnId='Sensible'
                         radioSelBtnValue='Sensible'
                         radioSelBtnName='caracterHorse'
-                        onClick={props.onClick}  />
+                        onClick={(e) => setCaracterHorse(e.target.value)}  />
                     </div>
             </div>
             <hr />
@@ -196,32 +208,32 @@ const PostHorse = (props) => {
                         radioSelBtnValue='Fin'
                         radioSelBtnId={'Fin'} 
                         radioSelBtnName='bodyHorse'
-                        onClick={props.onClick}  />
+                        onClick={(e) => setBodyHorse(e.target.value)}  />
 
                     <SelectButton 
                         radioSelBtnValue={'Classique'}
                         radioSelBtnId={'Classique'}
                         radioSelBtnName='bodyHorse'
-                        onClick={props.onClick}  />
+                        onClick={(e) => setBodyHorse(e.target.value)}  />
 
                     <SelectButton 
                         radioSelBtnValue={'Porteur'}
                         radioSelBtnId={'Porteur'} 
                         radioSelBtnName='bodyHorse'
-                        onClick={props.onClick}  />
+                        onClick={(e) => setBodyHorse(e.target.value)}  />
 
                     <SelectButton 
                         radioSelBtnValue={'Lourd'}
                         radioSelBtnId={'Lourd'}
                         radioSelBtnName='bodyHorse'
-                        onClick={props.onClick}  />
+                        onClick={(e) => setBodyHorse(e.target.value)}  />
                     </div>
             </div>
             <hr />
             <h4>Ecuries et moniteur </h4>
-            <Scuring />
+            <Scuring
+                    onClick={(e) => setScuringType(e.target.value)} />
             <HebergementHorse 
-                    boxeType={boxeType}
                     onClick={(e) => setBoxeType(e.target.value)}/>
             <hr />
             <Structures />
@@ -281,7 +293,7 @@ const PostHorse = (props) => {
             <hr />
             
                 <div className='competiton'>
-                <Competition onClick={() => setDoCompetition(!doCompetition)}/>
+                <Competition onClick={(e) => setDoCompetition(e.target.value)}/>
                 </div>
             
             
@@ -307,7 +319,16 @@ const PostHorse = (props) => {
             <hr />
             <div className='postHorse_idealRider'>
             <h4>Cavalier idéal</h4>
-                <IdealRider />
+                <IdealRider 
+                yearPractice={yearPractice}
+                changePractice={(e) => setYearPractice(e.target.value)}
+                gallopLevel={gallopLevel}
+                changeGallop={(e) =>setGallopLevel(e.target.value)}
+                ageRider={ageRider}
+                changeAgeRider={(e) =>setAgeRider(e.target.value)}
+                isVehiculed={()=> setIsVehiculed(!isVehiculed)}
+                hasManaged={()=> setHasManaged(!hasManaged)}
+                />
             </div>
         </div>
 
