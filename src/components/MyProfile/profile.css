@@ -4,7 +4,7 @@
   margin-left: 3em;
   margin-right: 3em;
   padding-bottom: 2em;
-  width:17.4em;
+  width: 17.4em;
 }
 
 .Profile-Page hr {
@@ -16,7 +16,7 @@
   font-size: 16px;
   margin-bottom: 1em;
 }
-.Profile-Page input{
+#input {
   background: #b0b9d380;
   border: none;
   border-radius: 3px;
@@ -37,13 +37,14 @@
 }
 
 .Profile-photo {
-  height: 7em;
-  width: 7em;
+  height: 8em;
+  width: 8em;
   padding: 0.5em;
-  background-color: black;
+  background-color: white;
   border-radius: 50%;
+  border: 1px thin #b0b9d380;
   margin-top: 1.5em;
-  margin-bottom: 1em;
+  text-align: center;
 }
 
 .Profile-button {
@@ -55,5 +56,20 @@
   margin-top: 1.5em;
   border-radius: 20px;
   margin-left: 2em;
+  outline: none;
+}
+
+#file-upload-button {
+  
+}
+
+.upload-button {
+  background-color: white;
+  color: #59a080;
+  width: 10em;
+  height: auto;
+  border: solid 1px#59A080;
+  margin: 1.5em 0em 1em 4em;
+  border-radius: 20px;
   outline: none;
 }
