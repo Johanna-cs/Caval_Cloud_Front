@@ -158,9 +158,10 @@ const PostRider = () => {
         <div>
           <h4>Cheval idéal</h4>
           <IdealHorse
-            onChange={(e) => setAgeHorse(e.target.value)}
-            horseSize={IdealHorse.horseSize}
-            ageHorse={IdealHorse.ageHorse}
+            horseSize={horseSize}
+            changeSize={(e) => setHorseSize(e.target.value)}
+            changeAge={(f) => setAgeHorse(f.target.value)}
+            ageHorse={ageHorse}
           />
         </div>
         <hr />
