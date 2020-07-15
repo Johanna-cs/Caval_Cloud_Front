@@ -13,7 +13,6 @@ import IdealHorse from "../searchHorse/IdealHorse";
 import Axios from "axios";
 import Competition from "../common_section/Competition";
 
-
 const PostRider = () => {
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
@@ -21,12 +20,14 @@ const PostRider = () => {
   const [fixedFrequency, setFixedFrequency] = useState(false);
   const [budget, setBudget] = useState(null);
   const [currency, setCurrency] = useState("€");
+  const [ageHorse, setAgeHorse] = useState("");
+  const [horseSize, setHorseSize] = useState("");
   const [discipline, setDisciplines] = useState([]);
   const [yearsOfPractice, setYearsOfPractice] = useState(null);
   const [gallopLevel, setGallopLevel] = useState(null);
   const [isVehiculed, setIsVehiculed] = useState(false);
   const [doCompetition, setDoCompetition] = useState(false);
-  
+
   // const [profile, setProfile] = useState({
   //   prenom: "",
   //   age: "",
@@ -50,15 +51,15 @@ const PostRider = () => {
   // const [ridingWord2, setRidingWord2] = useState("");
   // const [ridingWord3, setRidingWord3] = useState("");
 
-const getProfile = () => {
-  Axios.get(`http://localhost:3010/api/users`)
-    .then((res) => setRiderProfile(...res))
-    .catch((err) => console.log(err));
-};
+  const getProfile = () => {
+    Axios.get(`http://localhost:3010/api/users`)
+      .then((res) => setRiderProfile(...res))
+      .catch((err) => console.log(err));
+  };
 
-useEffect(() => {
-  getProfile();
-});
+  useEffect(() => {
+    getProfile();
+  });
 
   return (
     <>
@@ -72,7 +73,8 @@ useEffect(() => {
               {riderProfile.prenom}, <span>{riderProfile.age}</span>
             </p>
             <p>
-              {riderProfile.selfWord1}, {riderProfile.selfWord2}, {riderProfile.selfWord3}
+              {riderProfile.selfWord1}, {riderProfile.selfWord2},{" "}
+              {riderProfile.selfWord3}
             </p>
           </div>
           <div>
@@ -83,7 +85,8 @@ useEffect(() => {
         <div>
           <h4>Equitation</h4>
           <p>
-            {riderProfile.ridingWord1}, {riderProfile.ridingWord2}, {riderProfile.ridingWord3}
+            {riderProfile.ridingWord1}, {riderProfile.ridingWord2},{" "}
+            {riderProfile.ridingWord3}
           </p>
         </div>
         <div className="postRider_message">
@@ -105,7 +108,7 @@ useEffect(() => {
           <BudgetMensuel
             budget={budget}
             currency={currency}
-            priceTitle={'prix minimum :'}
+            priceTitle={"prix minimum :"}
             onChange={(e) => setBudget(e.target.value)}
             onClick={(e) => setCurrency(e.target.value)}
           />
@@ -154,7 +157,12 @@ useEffect(() => {
         <hr />
         <div>
           <h4>Cheval idéal</h4>
-          <IdealHorse />
+          <IdealHorse
+            horseSize={horseSize}
+            changeSize={(e) => setHorseSize(e.target.value)}
+            changeAge={(f) => setAgeHorse(f.target.value)}
+            ageHorse={ageHorse}
+          />
         </div>
         <hr />
         <h4>Coaching</h4>
@@ -170,7 +178,7 @@ useEffect(() => {
         </div>
         <hr />
         <div>
-        <Competition onClick={() => setDoCompetition(!doCompetition)}/>
+          <Competition onClick={() => setDoCompetition(!doCompetition)} />
         </div>
         <FloatingButton btnName={"Poster mon annonce"} />
       </div>

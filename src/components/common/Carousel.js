@@ -18,7 +18,7 @@ const Carousel = (props) => {
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
-        <div className="carousel-inner">
+        <div className="carousel-inner" style={{ height:"180px",width: "220px", position: "relative", left:"2.7em"}}>
           <div className="carousel-item active">
             <img src={logo} className="d-block w-100" alt="..." />
           </div>
