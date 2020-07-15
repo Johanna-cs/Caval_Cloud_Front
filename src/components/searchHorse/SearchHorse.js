@@ -121,7 +121,7 @@ const SearchHorse = (props) => {
                 <h4>Propriétaire idéal</h4>
                 <IdealOwner 
                     ageOwner={ageOwner}
-                    selectAge={(e) => setHorseSize(e.target.value)}
+                    selectAge={(e) => setAgeOwner(e.target.value)}
 
                     frequency={frequency}
                     selectFrequency={(e) => setFrequency(e.target.value)}
