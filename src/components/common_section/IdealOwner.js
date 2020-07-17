@@ -3,7 +3,7 @@ import SelectButton from "../common/SelectButton";
 import RadioCheck from "../common/RadioCheck";
 import RangeButton from "../common/RangeButton";
 import RadioButton from "../common/RadioButton";
-import Frequency from "../common_section/Frequency";
+import Frequency from "./Frequency";
 
 const IdealOwner = (props) => {
 

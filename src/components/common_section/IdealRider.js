@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './postHorse.css'
+import '../postHorse/postHorse.css'
 import RangeButton from '../common/RangeButton'
 import SlidingButton from '../common/SlidingButton'
 

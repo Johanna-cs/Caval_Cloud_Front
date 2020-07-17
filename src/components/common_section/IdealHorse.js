@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect} from 'react'
 import RadioCheck from '../common/RadioCheck'
 import RangeButton from '../common/RangeButton'
 import { Collapse, Button, Input } from 'reactstrap'
 
+
 const IdealHorse = (props) => {
 
+    
 
     return (
 
-        <div className='searchHorse_idealHorse'>
+        <div className='idealHorse'>
             <div className='horse_size'>
                 <h5> Taille : {props.horseSize} cm</h5>
                 <div className='divRangeSpan'>
@@ -18,6 +20,7 @@ const IdealHorse = (props) => {
                         max='200'
                         radioRangeBtnId='horseSize'
                         onChange={props.changeSize}
+
                         />
                     <span>200cm</span>
                 </div>

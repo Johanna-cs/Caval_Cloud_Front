@@ -8,7 +8,7 @@ import logo from "../SVG-icons/cavalcloud-logo.png";
 import Disciplines from "../common_section/Disciplines";
 import BudgetMensuel from "../common_section/BudgetMensuel";
 import Frequency from "../common_section/Frequency";
-import IdealHorse from "../searchHorse/IdealHorse";
+import IdealHorse from "../common_section/IdealHorse";
 import Axios from "axios";
 
 const ResultAnnonce = () => {
