@@ -73,7 +73,7 @@ const PostHorse = (props) => {
 
     return (
         <>
-        <Header className='header' title='POSTER UNE ANNONCE CHEVAL' />
+        <Header className='header' title='Poster une annonce cheval' />
         <div className='postHorse_page'>
             <div className='postHorse_pres'>
         <h4>Présentation :</h4>

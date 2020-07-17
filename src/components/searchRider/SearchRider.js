@@ -33,9 +33,9 @@ const SearchRider = () => {
     // Personne véhiculée ou non :
     const [isVehiculed, setIsVehiculed] = useState(false)
     // Disciplines :
-    const [disciplines, setDisciplines] = useState([1,2])
+    const [disciplines, setDisciplines] = useState([])
     // Budget mensuel :
-    const [budget, setBudget] = useState(null)
+    const [budget, setBudget] = useState(0)
     // Choix de la devise :
     const [currency, setCurrency] = useState('')
     // Fréquence de la demi-pension :
@@ -46,6 +46,8 @@ const SearchRider = () => {
     const [doCompetition, setDoCompetition] = useState('')
     // Résultats de la recherche de riders :
     const [riders, setRiders] = useState([])
+    // Rider a déjà managé des chevaux :
+    const [hasManaged, setHasManaged] = useState(false)
 
     const getLocation = () => {
         Axios
@@ -56,10 +58,9 @@ const SearchRider = () => {
 
     const getRiders = async () => {
         await Axios
-        .get(`http://localhost:4000/api/riders/search/?age=${riderAge}&postal=${postal}&level=${galopLevel}&vehiculed=${isVehiculed}&budget=${budget}&competition=${doCompetition}`)
+        .get(`http://localhost:4000/api/riders/search/?age=${riderAge}&postal=${postal}&level=${galopLevel}&vehiculed=${isVehiculed}&budget=${budget}&competition=${doCompetition}&years=${yearsOfPractice}&frequency=${frequency}&regularity=${fixedFrequency}`)
         .then(res=> setRiders(res))
         .catch(err => console.log(err))
-        .finally(console.log(riders))
     }
 
     useEffect(() => {
@@ -69,7 +70,7 @@ const SearchRider = () => {
 
     return (
         <>
-        <Header title='CHERCHER UN CAVALIER'/>
+        <Header title='Chercher un cavalier'/>
         <div className="searchRider_page">
             <div className="localisation">   
                 <Localisation 

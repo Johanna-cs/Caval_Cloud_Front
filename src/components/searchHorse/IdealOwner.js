@@ -6,22 +6,13 @@ import RadioButton from "../common/RadioButton";
 import Frequency from "../common_section/Frequency";
 
 const IdealOwner = (props) => {
-  // age du proprietaire
-  const [ageOwner, setAgeOwner] = useState(null);
 
-  // Fréquence :
-  const [frequency, setFrequency] = useState("");
-
-  // Fréquence jours fixes :
-  const [fixedFrequency, setFixedFrequency] = useState(false);
-
-  const [horseWork, setHorseWork] = useState("");
 
   return (
     <>
       <div className="searchHorse_idealOwner">
         <div className="owner_age">
-          <h5> Age <span>(+/- 3ans)</span>: {ageOwner} ans</h5>
+          <h5> Age <span>(+/- 3ans)</span>: {props.ageOwner} ans</h5>
           <div className='divRangeSpan'>
           <span>10 ans</span>
           <RangeButton
@@ -29,7 +20,7 @@ const IdealOwner = (props) => {
             min="10"
             max="99"
             radioSelBtnId="ageOwner"
-            onChange={(e) => setAgeOwner(e.target.value)}
+            onChange={props.selectAge}
           />
           <span>99 ans</span>
           </div>
@@ -55,9 +46,9 @@ const IdealOwner = (props) => {
           <h5> Fréquence de communication :</h5>
           <div className="select_communication">
             <Frequency
-              onClick={(e) => setFrequency(e.target.value)}
-              frequency={frequency}
-              changeFixedFrequency={() => setFixedFrequency(!fixedFrequency)}
+              onClick={props.selectFrequency}
+              frequency={props.frequency}
+              changeFixedFrequency={props.fixedDay}
             />
           </div>
         </div>
@@ -70,8 +61,8 @@ const IdealOwner = (props) => {
               radioButtonId="openToNew"
               radioButtonName="horseWork"
               radioButtonValue="Ouvert à la nouveauté"
-              onClick={(e) => setHorseWork(e.target.value)}
-              horseWork={horseWork}
+              onClick={props.selectHorseWork}
+              horseWork={props.horseWork}
             />
 
             <RadioButton
@@ -79,8 +70,8 @@ const IdealOwner = (props) => {
               radioButtonId="normal"
               radioButtonName="horseWork"
               radioButtonValue="Normal"
-              onClick={(e) => setHorseWork(e.target.value)}
-              horseWork={horseWork}
+              onClick={props.selectHorseWork}
+              horseWork={props.horseWork}
             />
 
             <RadioButton
@@ -88,8 +79,8 @@ const IdealOwner = (props) => {
               radioButtonId="cadre"
               radioButtonName="horseWork"
               radioButtonValue="Cadré"
-              onClick={(e) => setHorseWork(e.target.value)}
-              horseWork={horseWork}
+              onClick={props.selectHorseWork}
+              horseWork={props.horseWork}
             />
           </div>
         </div>

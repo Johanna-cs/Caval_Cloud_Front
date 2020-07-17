@@ -46,7 +46,7 @@ const Menu = (props)=>{
 </div>
 
 <div className='divBtn'>
-  <Link className='menu_myprofil' to='/home' style={{ textDecoration: "none" }} >
+  <Link className='menu_myprofil' to='/my-profile' style={{ textDecoration: "none" }} >
     <div className='logoM'>
     <img src={Profil} width="30" height="30" alt='home caval cloud'className='logo-profil logo'/>
     </div>

@@ -37,9 +37,18 @@ const SearchHorse = (props) => {
 
     // Taille du cheval idéal
     const [horseSize, setHorseSize] = useState('')
-
     // Age du cheval idéal
     const [ageHorse, setAgeHorse] = useState('')
+
+    // age du proprietaire ideal
+    const [ageOwner, setAgeOwner] = useState(null);
+    // Fréquence :
+    const [frequency, setFrequency] = useState("");
+    // Fréquence jours fixes :
+    const [fixedFrequency, setFixedFrequency] = useState(false);
+    const [horseWork, setHorseWork] = useState("");
+
+
     //Ecurie
     const [scuringType, setScuringType] = useState('')
 
@@ -55,7 +64,7 @@ const SearchHorse = (props) => {
     
 
     // Concours :
-    const [doCompetition, setDoCompetition] = useState(false)
+    const [doCompetition, setDoCompetition] = useState('')
     
 
     const getLocation = () => {
@@ -70,8 +79,8 @@ const SearchHorse = (props) => {
     }, )
 
     return (
-    <>
-        <Header className='header' title='CHERCHER UN CHEVAL'/>
+        <>
+        <Header className='header' title='Chercher un cheval'/>
         <div className='searchHorse_page'>
                 <Localisation 
                 value={cityLocalisation}
@@ -103,17 +112,23 @@ const SearchHorse = (props) => {
             <hr />
                 <h4>Cheval idéal</h4>
                 <IdealHorse 
-                    onChange={(e) => setAgeHorse(e.target.value)
-                    }
-                    horseSize={IdealHorse.horseSize}
-                    
+                    horseSize={horseSize}
+                    changeSize={(e) => setHorseSize(e.target.value)}
+                    changeAge={(f) => setAgeHorse(f.target.value)}
+                    ageHorse={ageHorse}
                      />
             <hr />
                 <h4>Propriétaire idéal</h4>
                 <IdealOwner 
-                    ageOwner={IdealOwner.ageOwner}
-                    frequency={IdealOwner.frequency}
-                    horseWork={IdealOwner.horseWork}
+                    ageOwner={ageOwner}
+                    selectAge={(e) => setHorseSize(e.target.value)}
+
+                    frequency={frequency}
+                    selectFrequency={(e) => setFrequency(e.target.value)}
+                    fixedDay={() => setFixedFrequency(!fixedFrequency)}
+
+                    selectHorseWork={(e) => setHorseWork(e.target.value)}
+                    horseWork={horseWork}
                 />
             
             <h4>Ecuries et moniteur </h4>
@@ -157,7 +172,8 @@ const SearchHorse = (props) => {
             </div>
             <hr />
             <div className='searchHorse_compet'>
-                <Competition />
+                <Competition 
+                onClick={(e) => setDoCompetition(e.target.value)}/>
             </div>    
             </div>
             <FloatingButton btnName={'Lancer la recherche'}/>

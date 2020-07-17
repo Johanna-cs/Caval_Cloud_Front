@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./postRider.css";
 import { Link } from "react-router-dom";
 import Header from "../Header_footer/Header";
@@ -12,6 +12,7 @@ import Frequency from "../common_section/Frequency";
 import IdealHorse from "../searchHorse/IdealHorse";
 import Axios from "axios";
 import Competition from "../common_section/Competition";
+import { RiderContext } from "../context/RiderContext";
 
 
 const PostRider = () => {
@@ -19,50 +20,30 @@ const PostRider = () => {
   const toggle = () => setIsOpen(!isOpen);
   const [frequency, setFrequency] = useState("");
   const [fixedFrequency, setFixedFrequency] = useState(false);
-  const [budget, setBudget] = useState(null);
+  const [budget, setBudget] = useState(0);
   const [currency, setCurrency] = useState("€");
   const [discipline, setDisciplines] = useState([]);
-  const [yearsOfPractice, setYearsOfPractice] = useState(null);
-  const [gallopLevel, setGallopLevel] = useState(null);
+  const [yearsOfPractice, setYearsOfPractice] = useState(0);
+  const [gallopLevel, setGallopLevel] = useState(0);
   const [isVehiculed, setIsVehiculed] = useState(false);
   const [doCompetition, setDoCompetition] = useState(false);
   
-  // const [profile, setProfile] = useState({
-  //   prenom: "",
-  //   age: "",
-  //   codeP: "",
-  //   message: "",
-  //   selfWord1: "",
-  //   selfWord2: "",
-  //   selfWord3: "",
-  //   ridingWord1: "",
-  //   ridingWord2: "",
-  //   ridingWord3: "",
-  // });
-  const [riderProfile, setRiderProfile] = useState("");
-  // const [age, setAge] = useState("");
-  // const [codeP, setCodeP] = useState("");
-  // const [message, setMessage] = useState("");
-  // const [selfWord1, setSelfWord1] = useState("");
-  // const [selfWord2, setSelfWord2] = useState("");
-  // const [selfWord3, setSelfWord3] = useState("");
-  // const [ridingWord1, setRidingWord1] = useState("");
-  // const [ridingWord2, setRidingWord2] = useState("");
-  // const [ridingWord3, setRidingWord3] = useState("");
+  const { riderProfile, setRiderProfile } = useContext(RiderContext)
 
-const getProfile = () => {
-  Axios.get(`http://localhost:3010/api/users`)
-    .then((res) => setRiderProfile(...res))
-    .catch((err) => console.log(err));
-};
+  const getProfile = () => {
+    Axios.get(`http://localhost:3010/api/users`)
+      .then((res) => setRiderProfile(...res))
+      .catch((err) => console.log(err));
+  };
 
-useEffect(() => {
-  getProfile();
-});
+
+  useEffect(() => {
+    getProfile();
+  }, )
 
   return (
-    <div className='main'>
-      <Header title="POSTER UNE ANNONCE CAVALIER" />
+    <>
+      <Header title="Poster une annonce cavalier" />
       <div className="postRider_page">
         <div className="postRider_header">
           <img className="postRider_logo" src={logo} alt="logo" />
@@ -87,8 +68,7 @@ useEffect(() => {
           </p>
         </div>
         <div className="postRider_message">
-          <h4>Message :</h4>
-          {/* <p>{riderProfile.message}</p> */}
+          <h4>Message : </h4>
           <Link
             to={{
               pathname: "/PostRiderPresentation",
@@ -103,11 +83,11 @@ useEffect(() => {
         <hr />
         <div>
           <BudgetMensuel
-            budget={budget}
-            currency={currency}
+            budget={riderProfile.budget}
+            currency={riderProfile.currency}
             priceTitle={'prix minimum :'}
-            onChange={(e) => setBudget(e.target.value)}
-            onClick={(e) => setCurrency(e.target.value)}
+            onChange={(e) => setRiderProfile({...riderProfile, budget : e.target.value })}
+            onClick={(e) => setRiderProfile({...riderProfile, currency : e.target.value })}
           />
         </div>
         <hr />
@@ -117,10 +97,13 @@ useEffect(() => {
             <SlidingButton
               SlidingButtonText="Je suis véhiculé"
               SlidingButtonID="vehicledSwitch"
+              onClick={() => setRiderProfile({...riderProfile, isVehiculed : !riderProfile.isVehiculed })}
             />
             <SlidingButton
               SlidingButtonText="J'ai déjà eu un cheval sous ma responsabilité"
               SlidingButtonID="responsabilitySwitch"
+              onClick={() => setRiderProfile({...riderProfile, hasManaged : !riderProfile.hasManaged })}
+
             />
           </div>
         </div>
@@ -131,6 +114,8 @@ useEffect(() => {
           <p>Galop</p>
         </div>
 
+        
+
         <div className="postRider-disc">
           <Disciplines />
         </div>
@@ -140,15 +125,16 @@ useEffect(() => {
           <SlidingButton
             SlidingButtonText="Je suis ouvert à pratiquer d'autres disciplines"
             SlidingButtonID="otherSwitch"
+            onClick={() => setRiderProfile({...riderProfile, isOpenToOtherDiscipline : !riderProfile.isOpenToOtherDiscipline })}
           />
         </div>
         <hr />
         <div>
           <Frequency
             frequencyTitle="Rythme de la demi-pension"
-            onClick={(e) => setFrequency(e.target.value)}
-            frequency={frequency}
-            changeFixedFrequency={() => setFixedFrequency(!fixedFrequency)}
+            onClick={(e) => setRiderProfile({...riderProfile, frequency : e.target.value })}
+            frequency={riderProfile.frequency}
+            changeFixedFrequency={() => setRiderProfile({...riderProfile, fixedFrequency : !riderProfile.fixedFrequency })}
           />
         </div>
         <hr />
@@ -162,19 +148,23 @@ useEffect(() => {
           <SlidingButton
             SlidingButtonText="Sur place"
             SlidingButtonID="coachingSwitch"
+            onClick={() => setRiderProfile({...riderProfile, coachingHere: !riderProfile.coachingHere })}
           />
           <SlidingButton
             SlidingButtonText="Intervenant exterieur"
             SlidingButtonID="extCoachSwitch"
+            onClick={() => setRiderProfile({...riderProfile, externalCoach: !riderProfile.externalCoach })}
           />
         </div>
         <hr />
         <div>
-        <Competition onClick={() => setDoCompetition(!doCompetition)}/>
+        <Competition 
+            onClick={(e) => setRiderProfile({...riderProfile, doCompetition : e.target.value })}
+            />
         </div>
         <FloatingButton btnName={"Poster mon annonce"} />
       </div>
-    </div>
+    </>
   );
 };
 export default PostRider;
