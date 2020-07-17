@@ -2,9 +2,9 @@
     display: flex;
     justify-content: space-evenly;
     flex-flow: row wrap;
-    margin: 0.2em !important;
-    padding: 0.2em !important;
-    width: 100%;
+    margin: 0.1em !important;
+    padding: 0.1em !important;
+    width: 11em;
   }
 .rangeButtonSec label {
     font-size : 1em !important;

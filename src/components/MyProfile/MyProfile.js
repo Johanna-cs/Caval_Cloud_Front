@@ -1,55 +1,78 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./profile.css";
 import Header from "../Header_footer/Header";
-import logo from "../SVG-icons/cavalcloud-logo.png";
-
+import Upload from "../common_section/Upload";
 
 function MyProfile(props) {
+  // const uploadedImage = React.useRef(null);
+  // const imageUploader = React.useRef(null);
 
-    const [modif, setModif] = useState(false);
-    const [profile, setProfile] = useState({
-      nom: "Horsini",
-      prenom: "Fanny",
-      mail: "fanny.horsini@gmail.com",
-      phone:"0606060606",
-      password: "123456",
-      photo:{logo},
+  // const handleImageUpload = (e) => {
+  //   const [file] = e.target.files;
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     const { current } = uploadedImage;
+  //     current.file = file;
+  //     reader.onload = (e) => {
+  //       current.src = e.target.result;
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // };
+  const [file, setFile] = useState("");
+  const [fileName, setFileName] = useState("Choose file");
+  const [uploadedFile, setUploadedFile] = useState({});
+  const [modif, setModif] = useState(false);
+  const [profile, setProfile] = useState({
+
+    nom: "Horsini",
+    prenom: "Fanny",
+    mail: "fanny.horsini@gmail.com",
+    phone: "0606060606",
+    password: "123456",
+    photo: uploadedFile.filePath,
+  });
+  const [modifiedProfile, setModifiedProfile] = useState({
+    mail: profile.mail,
+    password: profile.password,
+    phone: profile.phone,
+    photo: uploadedFile.filePath,
+  });
+  const [typedPW, setTypedPW] = useState("");
+  const [validPW, setValidPW] = useState();
+  const changePW = (e) => {
+    return e.target.value !== "" && typedPW !== "" && e.target.value === typedPW
+      ? setValidPW(true) &
+          setModifiedProfile({ ...modifiedProfile, password: e.target.value })
+      : setValidPW(false);
+  };
+  const modifprof = () => {
+    setModif(!modif);
+  };
+  const validprof = () => {
+    setProfile({
+      ...profile,
+      mail: modifiedProfile.mail,
+      password: modifiedProfile.password,
+      phone: modifiedProfile.phone,
+      photo: uploadedFile.filePath,
     });
-    const [modifiedProfile, setModifiedProfile] = useState({
-      mail: profile.mail,
-      password: profile.password,
-      phone: profile.phone,
-      photo: profile.photo,
-    });
-    const [typedPW, setTypedPW] = useState("");
-    const [validPW, setValidPW] = useState();
-    const changePW = (e) => {
-      return e.target.value !== "" &&
-        typedPW !== "" &&
-        e.target.value === typedPW
-        ? setValidPW(true) &
-            setModifiedProfile({ ...modifiedProfile, password: e.target.value })
-        : setValidPW(false);
-    };
-    const modifprof = () => {
-      setModif(!modif);
-    };
-    const validprof = () => {
-      setProfile({
-        ...profile,
-        mail: modifiedProfile.mail,
-        password: modifiedProfile.password,
-        phone: modifiedProfile.phone,
-        photo: modifiedProfile.photo,
-      });
-      setModif(!modif);
-    };
+    setModif(!modif);
+  };
   return (
     <>
       <Header className="header" title="Mon Profil" />
       <div className="Profile-Page">
         <div className="Profile-row">
-          <img className="Profile-photo" src={logo} alt="logo" />
+          {modif ? (
+            <Upload setFile={setFile} setFileName={setFileName} />
+          ) : (
+            <img
+              src={uploadedFile.filePath}
+              className="Profile-photo"
+              alt="Vous n'avez pas encore de photo"
+            />
+          )}
           <p className="Profile-infos">
             {profile.prenom} {profile.nom}
           </p>
@@ -58,7 +81,8 @@ function MyProfile(props) {
         <h4>Email:</h4>
         {modif ? (
           <input
-            type="text"
+            id="input"
+            type="mail"
             value={modifiedProfile.mail}
             onChange={(e) =>
               setModifiedProfile({
@@ -74,7 +98,8 @@ function MyProfile(props) {
         <h4>Téléphone:</h4>
         {modif ? (
           <input
-            type="text"
+            id="input"
+            type="tel"
             value={modifiedProfile.phone}
             onChange={(e) =>
               setModifiedProfile({
@@ -93,6 +118,7 @@ function MyProfile(props) {
             <tr className="entete">Nouveau mot de passe </tr>
             <tr className="valeur">
               <input
+                id="input"
                 type="password"
                 className={validPW ? "valid" : "invalid"}
                 value={typedPW}
@@ -102,6 +128,7 @@ function MyProfile(props) {
             <tr className="entete">Valider mot de passe </tr>
             <tr>
               <input
+                id="input"
                 type="password"
                 className={validPW ? "valid" : "invalid"}
                 onChange={(e) => changePW(e)}

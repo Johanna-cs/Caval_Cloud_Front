@@ -14,7 +14,6 @@ import Axios from "axios";
 import Competition from "../common_section/Competition";
 import { RiderContext } from "../context/RiderContext";
 
-
 const PostRider = () => {
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
@@ -22,6 +21,8 @@ const PostRider = () => {
   const [fixedFrequency, setFixedFrequency] = useState(false);
   const [budget, setBudget] = useState(0);
   const [currency, setCurrency] = useState("€");
+  const [ageHorse, setAgeHorse] = useState("");
+  const [horseSize, setHorseSize] = useState("");
   const [discipline, setDisciplines] = useState([]);
   const [yearsOfPractice, setYearsOfPractice] = useState(0);
   const [gallopLevel, setGallopLevel] = useState(0);
@@ -53,7 +54,8 @@ const PostRider = () => {
               {riderProfile.prenom}, <span>{riderProfile.age}</span>
             </p>
             <p>
-              {riderProfile.selfWord1}, {riderProfile.selfWord2}, {riderProfile.selfWord3}
+              {riderProfile.selfWord1}, {riderProfile.selfWord2},{" "}
+              {riderProfile.selfWord3}
             </p>
           </div>
           <div>
@@ -64,7 +66,8 @@ const PostRider = () => {
         <div>
           <h4>Equitation</h4>
           <p>
-            {riderProfile.ridingWord1}, {riderProfile.ridingWord2}, {riderProfile.ridingWord3}
+            {riderProfile.ridingWord1}, {riderProfile.ridingWord2},{" "}
+            {riderProfile.ridingWord3}
           </p>
         </div>
         <div className="postRider_message">
@@ -140,7 +143,12 @@ const PostRider = () => {
         <hr />
         <div>
           <h4>Cheval idéal</h4>
-          <IdealHorse />
+          <IdealHorse
+            horseSize={horseSize}
+            changeSize={(e) => setHorseSize(e.target.value)}
+            changeAge={(f) => setAgeHorse(f.target.value)}
+            ageHorse={ageHorse}
+          />
         </div>
         <hr />
         <h4>Coaching</h4>

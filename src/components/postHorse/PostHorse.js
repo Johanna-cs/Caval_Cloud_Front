@@ -22,11 +22,19 @@ import Carousel from '../common/Carousel'
 
 const PostHorse = (props) => {
     
-    // Présentation cheval nom, age, taile
-    const [name, setName] = useState('');
+    // Présentation cheval nom, age, taille
+    const [name, setName] = useState('')
     const [ageHorse, setAgeHorse] = useState('')
     const [horseSize, setHorseSize] = useState('')
 
+    //Présentation cheval tempérament, caractere, physique, écurie, boxe
+    const [temperHorse, setTemperHorse] = useState('')
+    const [caracterHorse, setCaracterHorse] = useState('')
+    const [bodyHorse, setBodyHorse] = useState('')
+    const [scuringType, setScuringType] = useState('')
+    const [boxeType, setBoxeType] = useState('')
+
+    // Localisation
     const {latitude, longitude, error} = usePosition();
     const [cityLocalisation, setCityLocalisation] = useState('')
     // Récupération de l'ancienne ville pour le locale storage
@@ -43,22 +51,23 @@ const PostHorse = (props) => {
     const [frequency, setFrequency] = useState('')
     // Fréquence de la demi-pension, jours fixes :
     const [fixedFrequency, setFixedFrequency] = useState(false)
-
     // Materiel selle :
     const [haveMaterialSaddle, setHaveMaterialSaddle] = useState(false)
-    //Hebergement 
-    const [boxeType, setBoxeType] = useState('')
-
     //balade
     const [doBalad, setDoBalad] = useState(false)
-
     // Concours :
-    const [doCompetition, setDoCompetition] = useState(false)
-
+    const [doCompetition, setDoCompetition] = useState('')
      // Budget mensuel 
-     const [budget, setBudget] = useState(null)
-     const [currency, setCurrency] = useState('')
+    const [budget, setBudget] = useState(null)
+    const [currency, setCurrency] = useState('')
 
+    // cavalier ideal 
+    const [yearPractice, setYearPractice] = useState('')
+    const [ageRider, setAgeRider] = useState('')
+    const [gallopLevel, setGallopLevel] = useState('')
+    const [isVehiculed, setIsVehiculed] = useState(false)
+    const [hasManaged, setHasManaged] = useState(false)
+    
      const getLocation = () => {
         Axios
         .get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
@@ -69,12 +78,46 @@ const PostHorse = (props) => {
     useEffect(() => {
         getLocation()
     }, )
-
+    // Récupération des données à envoyer sur le serveur BDD
+    const dataHorse = {
+        horse_name : name, 
+        horse_age : ageHorse, 
+        horse_height : horseSize, 
+        horse_localisation : cityLocalisation, 
+        horse_temper : temperHorse, 
+        horse_character : caracterHorse, 
+        horse_body_type : bodyHorse, 
+        horse_location_type : scuringType, 
+        horse_accomodation_horse : boxeType, 
+        horse_get_lesson : coachingHere, 
+        horse_get_coach :externalCoach, 
+        horse_riding_frequency : frequency, 
+        horse_fixed_day : fixedFrequency, 
+        horse_materiel : haveMaterialSaddle, 
+        horse_stroll_along : doBalad, 
+        horse_competition_preference : doCompetition, 
+        horse_mensuel_price : budget, 
+        horse_budget_currency : currency, 
+        ideal_rider_years_of_practice : yearPractice, 
+        ideal_rider_age : ageRider, 
+        ideal_rider_gallop_level : gallopLevel, 
+        ideal_rider_vehiculed : isVehiculed, 
+        ideal_rider_managed_horse : hasManaged 
+    }
+// Check if subscribe successfull or not
+    const [success, setSuccess] = useState(null);
+    const createPostHorse = (e) => {
+        e.preventDefault()
+        Axios.post('http://localhost:4000/api/horses', dataHorse)
+        .catch((err) => console.error(err))
+        .finally(setSuccess(true));
+    }
 
     return (
         <>
         <Header className='header' title='Poster une annonce cheval' />
         <div className='postHorse_page'>
+            
             <div className='postHorse_pres'>
         <h4>Présentation :</h4>
             <form className="postHorse-form">
@@ -136,25 +179,25 @@ const PostHorse = (props) => {
                         radioSelBtnId='Calme'
                         radioSelBtnValue='Calme'
                         radioSelBtnName='temperHorse'
-                        onClick={props.onClick} />
+                        onClick={(e) => setTemperHorse(e.target.value)} />
 
                     <SelectButton
                         radioSelBtnId='Dynamique'
                         radioSelBtnValue='Dynamique'
                         radioSelBtnName='temperHorse'
-                        onClick={props.onClick} />
+                        onClick={(e) => setTemperHorse(e.target.value)} />
 
                     <SelectButton
                         radioSelBtnId='Speed'
                         radioSelBtnValue='Speed'
                         radioSelBtnName='temperHorse'
-                        onClick={props.onClick} />
+                        onClick={(e) => setTemperHorse(e.target.value)} />
 
                     <SelectButton
                         radioSelBtnId='A canaliser'
                         radioSelBtnValue='A canaliser'
                         radioSelBtnName='temperHorse'
-                        onClick={props.onClick} />
+                        onClick={(e) => setTemperHorse(e.target.value)} />
 
                     </div>
             </div>
@@ -166,25 +209,25 @@ const PostHorse = (props) => {
                         radioSelBtnId='Affectueux'
                         radioSelBtnValue='Affectueux'
                         radioSelBtnName='caracterHorse'
-                        onClick={props.onClick} />
+                        onClick={(e) => setCaracterHorse(e.target.value)} />
 
                     <SelectButton
                         radioSelBtnId='Froid'
                         radioSelBtnValue='Froid'
                         radioSelBtnName='caracterHorse'
-                        onClick={props.onClick} />
+                        onClick={(e) => setCaracterHorse(e.target.value)} />
 
                     <SelectButton
                         radioSelBtnId='Joueur'
                         radioSelBtnValue='Joueur'
                         radioSelBtnName='caracterHorse'
-                        onClick={props.onClick} />
+                        onClick={(e) => setCaracterHorse(e.target.value)} />
 
                     <SelectButton   
                         radioSelBtnId='Sensible'
                         radioSelBtnValue='Sensible'
                         radioSelBtnName='caracterHorse'
-                        onClick={props.onClick}  />
+                        onClick={(e) => setCaracterHorse(e.target.value)}  />
                     </div>
             </div>
             <hr />
@@ -196,32 +239,32 @@ const PostHorse = (props) => {
                         radioSelBtnValue='Fin'
                         radioSelBtnId={'Fin'} 
                         radioSelBtnName='bodyHorse'
-                        onClick={props.onClick}  />
+                        onClick={(e) => setBodyHorse(e.target.value)}  />
 
                     <SelectButton 
                         radioSelBtnValue={'Classique'}
                         radioSelBtnId={'Classique'}
                         radioSelBtnName='bodyHorse'
-                        onClick={props.onClick}  />
+                        onClick={(e) => setBodyHorse(e.target.value)}  />
 
                     <SelectButton 
                         radioSelBtnValue={'Porteur'}
                         radioSelBtnId={'Porteur'} 
                         radioSelBtnName='bodyHorse'
-                        onClick={props.onClick}  />
+                        onClick={(e) => setBodyHorse(e.target.value)}  />
 
                     <SelectButton 
                         radioSelBtnValue={'Lourd'}
                         radioSelBtnId={'Lourd'}
                         radioSelBtnName='bodyHorse'
-                        onClick={props.onClick}  />
+                        onClick={(e) => setBodyHorse(e.target.value)}  />
                     </div>
             </div>
             <hr />
             <h4>Ecuries et moniteur </h4>
-            <Scuring />
+            <Scuring
+                    onClick={(e) => setScuringType(e.target.value)} />
             <HebergementHorse 
-                    boxeType={boxeType}
                     onClick={(e) => setBoxeType(e.target.value)}/>
             <hr />
             <Structures />
@@ -281,7 +324,7 @@ const PostHorse = (props) => {
             <hr />
             
                 <div className='competiton'>
-                <Competition onClick={() => setDoCompetition(!doCompetition)}/>
+                <Competition onClick={(e) => setDoCompetition(e.target.value)}/>
                 </div>
             
             
@@ -307,12 +350,34 @@ const PostHorse = (props) => {
             <hr />
             <div className='postHorse_idealRider'>
             <h4>Cavalier idéal</h4>
-                <IdealRider />
+                <IdealRider 
+                yearPractice={yearPractice}
+                changePractice={(e) => setYearPractice(e.target.value)}
+                gallopLevel={gallopLevel}
+                changeGallop={(e) =>setGallopLevel(e.target.value)}
+                ageRider={ageRider}
+                changeAgeRider={(e) =>setAgeRider(e.target.value)}
+                isVehiculed={()=> setIsVehiculed(!isVehiculed)}
+                hasManaged={()=> setHasManaged(!hasManaged)}
+                />
             </div>
         </div>
+        {/* {success === true ? (
+            <div class="alert alert-success" role="alert">
+                <h5> Votre annonce est créée !</h5>
+            </div>
+        ) : success === false ? (
+            <div class="alert alert-danger" role="alert">
+                <h5> Un problème est survenu lors de la création de votre annonce, veuillez
+            réessayer. </h5>
+            </div>
+        ) : (
+            ""
+        )} */}
 
-
-        <FloatingButton btnName={'Poster mon annonce'}/>
+        <FloatingButton 
+            btnName={'Poster mon annonce'}
+            onClick={(e) => createPostHorse(e)}/>
 
         </>
     )
