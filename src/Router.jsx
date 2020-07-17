@@ -10,17 +10,20 @@ import PostHorse from "./components/postHorse/PostHorse"
 import PostRider from './components/postRider/PostRider'
 import PostRiderPresentation from "./components/postRider/PostRiderPresentation"
 import OwnerPres from './components/postHorse/OwnerPres'
-import ResultPage from "./components/Results/ResultPage";
-import ResultAnnonce from "./components/Results/ResultAnnonce";
+import ResultPage from "./components/Rider_Results/ResultPage";
+import ResultAnnonce from "./components/Rider_Results/ResultAnnonce";
 import MyProfile from "./components/MyProfile/MyProfile";
 import { RiderContext } from "./components/context/RiderContext";
 import { riderProfileContext } from './components/context/RiderContext';
+import { Results_Rider_Context} from './components/context/Results_Rider_Context'
 
 
 const Router = () => {
   const [riderProfile, setRiderProfile] = useState(riderProfileContext)
+  const [resultsRiders, setResultsRiders] = useState([])
 
   const providerRiderProfile = useMemo(() => ({riderProfile, setRiderProfile}), [riderProfile, setRiderProfile])
+  const providerResultsRiders = useMemo(() => ({resultsRiders, setResultsRiders}), [resultsRiders, setResultsRiders])
 
   return (
     <>
@@ -32,16 +35,17 @@ const Router = () => {
         <Route exact path="/search-rider" component={SearchRider} />
         <Route exact path="/search-horse" component={SearchHorse} />
         <Route exact path="/post-horse" component={PostHorse} />
+        <Route exact path="/post-horse-owner" component={OwnerPres} />
+        <Route exact path="/my-profile" component={MyProfile} />
+        <Route exact path="/result-annonce" component={ResultAnnonce} />
+        <Route exact path="/result-page" component={ResultPage} />
         <RiderContext.Provider value={providerRiderProfile}>
             <Route exact path="/post-rider" component={PostRider} />
             <Route exact path="/PostRiderPresentation" component={PostRiderPresentation} />
         </RiderContext.Provider>
-        <Route exact path="/post-horse-owner" component={OwnerPres} />
-        <Route exact path="/result-page" component={ResultPage} />
-        <Route exact path="/result-annonce" component={ResultAnnonce} />
-        ResultAnnonce
+        {/* <Results_Rider_Context.Provider value={providerResultsRiders}> */}
+        {/* </Results_Rider_Context.Provider> */}
       </Switch>
-      <Route exact path="/my-profile" component={MyProfile} />
     </>
   );
 };

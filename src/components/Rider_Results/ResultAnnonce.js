@@ -80,9 +80,9 @@ const ResultAnnonce = () => {
         <hr />
         <div className="postRider-disc">
           <h4>Discipline</h4>
-          {annonce.disciplines.map((discipline) => (
+          {/* {annonce.disciplines.map((discipline) => (
             <li>{discipline}</li>
-          ))}
+          ))} */}
         </div>
         <hr />
         <div>

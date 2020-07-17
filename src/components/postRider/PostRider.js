@@ -15,32 +15,17 @@ import Competition from "../common_section/Competition";
 import { RiderContext } from "../context/RiderContext";
 
 const PostRider = () => {
-  const [isOpen, setIsOpen] = useState(true);
-  const toggle = () => setIsOpen(!isOpen);
-  const [frequency, setFrequency] = useState("");
-  const [fixedFrequency, setFixedFrequency] = useState(false);
-  const [budget, setBudget] = useState(0);
-  const [currency, setCurrency] = useState("€");
   const [ageHorse, setAgeHorse] = useState("");
   const [horseSize, setHorseSize] = useState("");
-  const [discipline, setDisciplines] = useState([]);
-  const [yearsOfPractice, setYearsOfPractice] = useState(0);
-  const [gallopLevel, setGallopLevel] = useState(0);
-  const [isVehiculed, setIsVehiculed] = useState(false);
-  const [doCompetition, setDoCompetition] = useState(false);
   
   const { riderProfile, setRiderProfile } = useContext(RiderContext)
 
-  const getProfile = () => {
-    Axios.get(`http://localhost:3010/api/users`)
-      .then((res) => setRiderProfile(...res))
-      .catch((err) => console.log(err));
+  const postDataRider = () => {
+    Axios
+    .post(`http://localhost:4000/api/riders`, riderProfile)
+    .catch((err) => console.log(err))
+    .finally(console.log(riderProfile))
   };
-
-
-  useEffect(() => {
-    getProfile();
-  }, )
 
   return (
     <>
@@ -51,11 +36,11 @@ const PostRider = () => {
           <div className="postRider_forms">
             <p>
               {/* {profile.prenom}, <span>{profile.age}</span> */}
-              {riderProfile.prenom}, <span>{riderProfile.age}</span>
+              {riderProfile.rider_firstname}, <span>{riderProfile.rider_age}</span>
             </p>
             <p>
-              {riderProfile.selfWord1}, {riderProfile.selfWord2},{" "}
-              {riderProfile.selfWord3}
+              {riderProfile.rider_selfWord1}, {riderProfile.rider_selfWord2},{" "}
+              {riderProfile.rider_selfWord3}
             </p>
           </div>
           <div>
@@ -66,8 +51,8 @@ const PostRider = () => {
         <div>
           <h4>Equitation</h4>
           <p>
-            {riderProfile.ridingWord1}, {riderProfile.ridingWord2},{" "}
-            {riderProfile.ridingWord3}
+            {riderProfile.rider_ridingWord1}, {riderProfile.rider_ridingWord2},{" "}
+            {riderProfile.rider_ridingWord3}
           </p>
         </div>
         <div className="postRider_message">
@@ -86,11 +71,11 @@ const PostRider = () => {
         <hr />
         <div>
           <BudgetMensuel
-            budget={riderProfile.budget}
-            currency={riderProfile.currency}
+            budget={riderProfile.rider_budget}
+            currency={riderProfile.rider_currency_budget}
             priceTitle={'prix minimum :'}
-            onChange={(e) => setRiderProfile({...riderProfile, budget : e.target.value })}
-            onClick={(e) => setRiderProfile({...riderProfile, currency : e.target.value })}
+            onChange={(e) => setRiderProfile({...riderProfile, rider_budget : e.target.value })}
+            onClick={(e) => setRiderProfile({...riderProfile, rider_currency_budget : e.target.value })}
           />
         </div>
         <hr />
@@ -100,12 +85,12 @@ const PostRider = () => {
             <SlidingButton
               SlidingButtonText="Je suis véhiculé"
               SlidingButtonID="vehicledSwitch"
-              onClick={() => setRiderProfile({...riderProfile, isVehiculed : !riderProfile.isVehiculed })}
+              onClick={() => setRiderProfile({...riderProfile, rider_vehiculed: !riderProfile.rider_vehiculed })}
             />
             <SlidingButton
               SlidingButtonText="J'ai déjà eu un cheval sous ma responsabilité"
               SlidingButtonID="responsabilitySwitch"
-              onClick={() => setRiderProfile({...riderProfile, hasManaged : !riderProfile.hasManaged })}
+              onClick={() => setRiderProfile({...riderProfile, rider_managed_horse : !riderProfile.rider_managed_horse })}
 
             />
           </div>
@@ -128,16 +113,16 @@ const PostRider = () => {
           <SlidingButton
             SlidingButtonText="Je suis ouvert à pratiquer d'autres disciplines"
             SlidingButtonID="otherSwitch"
-            onClick={() => setRiderProfile({...riderProfile, isOpenToOtherDiscipline : !riderProfile.isOpenToOtherDiscipline })}
+            onClick={() => setRiderProfile({...riderProfile, rider_agree_other_discipline : !riderProfile.rider_agree_other_discipline })}
           />
         </div>
         <hr />
         <div>
           <Frequency
             frequencyTitle="Rythme de la demi-pension"
-            onClick={(e) => setRiderProfile({...riderProfile, frequency : e.target.value })}
-            frequency={riderProfile.frequency}
-            changeFixedFrequency={() => setRiderProfile({...riderProfile, fixedFrequency : !riderProfile.fixedFrequency })}
+            onClick={(e) => setRiderProfile({...riderProfile, rider_riding_frequency : e.target.value })}
+            frequency={riderProfile.rider_riding_frequency}
+            changeFixedFrequency={() => setRiderProfile({...riderProfile, rider_fixed_day : !riderProfile.rider_fixed_day })}
           />
         </div>
         <hr />
@@ -156,21 +141,21 @@ const PostRider = () => {
           <SlidingButton
             SlidingButtonText="Sur place"
             SlidingButtonID="coachingSwitch"
-            onClick={() => setRiderProfile({...riderProfile, coachingHere: !riderProfile.coachingHere })}
+            onClick={() => setRiderProfile({...riderProfile, rider_coaching_here: !riderProfile.rider_coaching_here })}
           />
           <SlidingButton
             SlidingButtonText="Intervenant exterieur"
             SlidingButtonID="extCoachSwitch"
-            onClick={() => setRiderProfile({...riderProfile, externalCoach: !riderProfile.externalCoach })}
+            onClick={() => setRiderProfile({...riderProfile, rider_external_coach: !riderProfile.rider_external_coach })}
           />
         </div>
         <hr />
         <div>
         <Competition 
-            onClick={(e) => setRiderProfile({...riderProfile, doCompetition : e.target.value })}
+            onClick={(e) => setRiderProfile({...riderProfile, rider_competition : e.target.value })}
             />
         </div>
-        <FloatingButton btnName={"Poster mon annonce"} />
+          <FloatingButton btnName={"Poster mon annonce"} onClick={() => postDataRider()} />
       </div>
     </>
   );
