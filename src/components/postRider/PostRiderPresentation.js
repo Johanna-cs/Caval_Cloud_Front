@@ -24,7 +24,7 @@ const PostRiderPresentation = (props) => {
               placeholder="Prénom"
               onChange={(e) => setRiderProfile({...riderProfile, rider_firstname : e.target.value })}
               value={riderProfile.rider_firstname}
-              autoFocus
+              
             />
           </label>
         </form>

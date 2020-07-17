@@ -10,8 +10,9 @@ import BudgetMensuel from "../common_section/BudgetMensuel";
 import Frequency from "../common_section/Frequency";
 import IdealHorse from "../common_section/IdealHorse";
 import Axios from "axios";
+import { geoPropTypes } from "react-geolocated";
 
-const ResultAnnonce = () => {
+const ResultAnnonce = (props) => {
   
   const [annonce, setAnnonce] = useState("");
 
@@ -38,10 +39,10 @@ const ResultAnnonce = () => {
           <img className="postRider_logo" src={logo} alt="logo" />
           <div className="postRider_forms">
             <p>
-              {annonce.prenom}, <span>{annonce.age}</span>
+              {props.location.results.rider_firstname}, <span>{props.location.results.rider_age}</span>
             </p>
             <p>
-              {annonce.selfWord1}, {annonce.selfWord2}, {annonce.selfWord3}
+              {props.location.results.rider_selfWord1}, {props.location.results.rider_selfWord2}, {props.location.results.rider_selfWord3}
             </p>
           </div>
           <h4>Localisation</h4>
@@ -50,7 +51,7 @@ const ResultAnnonce = () => {
         <div>
           <h4>Equitation</h4>
           <p>
-            {annonce.ridingWord1}, {annonce.ridingWord2}, {annonce.ridingWord3}
+            {props.location.results.rider_ridingWord1}, {annonce.ridingWord2}, {annonce.ridingWord3}
           </p>
         </div>
         <div className="postRider_message">
@@ -61,21 +62,21 @@ const ResultAnnonce = () => {
         <div>
           <h4>Budget</h4>
           <p>
-            {annonce.budget}
-            {annonce.currency} / mois
+            {props.location.results.rider_budget}
+            {props.location.results.rider_currency_budget} / mois
           </p>
         </div>
         <hr />
         <div>
           <h4>Autonomie</h4>
-          <p>{annonce.isVehiculed}</p>
-          <p>{annonce.responsability}</p>
+          <p>{props.location.results.rider_vehiculed}</p>
+          <p>{props.location.results.rider_responsability}</p>
         </div>
         <hr />
         <div>
           <h4>Niveau</h4>
-          <p>{annonce.yearsOfPractice}</p>
-          <p>{annonce.gallopLevel}</p>
+          <p>{props.location.results.rider_years_of_practice}</p>
+          <p>{props.location.results.rider_gallopLevel}</p>
         </div>
         <hr />
         <div className="postRider-disc">

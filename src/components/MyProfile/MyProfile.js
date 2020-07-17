@@ -78,7 +78,7 @@ function MyProfile(props) {
           </p>
         </div>
         <hr />
-        <h4>Email:</h4>
+        <h4>Email :</h4>
         {modif ? (
           <input
             id="input"
@@ -95,7 +95,7 @@ function MyProfile(props) {
           profile.mail
         )}
         <hr />
-        <h4>Téléphone:</h4>
+        <h4>Téléphone :</h4>
         {modif ? (
           <input
             id="input"
@@ -112,7 +112,7 @@ function MyProfile(props) {
           profile.phone
         )}
         <hr />
-        <h4>Mot de passe:</h4>
+        <h4>Mot de passe :</h4>
         {modif ? (
           <>
             <tr className="entete">Nouveau mot de passe </tr>

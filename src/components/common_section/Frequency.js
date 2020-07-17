@@ -3,7 +3,7 @@ import { Collapse, Button} from 'reactstrap'
 import RadioButton from '../common/RadioButton'
 import './common_section.css'
 import SlidingButton from "../common/SlidingButton";
-
+//1 à 2 fois / 3 à 4 fois / 5 à 7 fois
 
 const Frequency = (props) => {
 

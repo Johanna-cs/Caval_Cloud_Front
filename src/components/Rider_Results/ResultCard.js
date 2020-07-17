@@ -28,14 +28,14 @@ const ResultCard = (props) => {
       <div className="resultCard">
         <Link
           to={{
-            pathname: `/results/${props.id}`,
-            results: props.results,
+            pathname: `/result-annonce`,
+            results: props.fullResult,
           }}
         >
           <div className="resultCard-container">
             <img
               className="resultPhoto"
-              src="https://cdnfr1.img.sputniknews.com/img/104237/27/1042372789_0:0:1921:1039_1000x541_80_0_0_615949ee93fd8244dcec868f3df5a7f4.jpg"
+              src="https://images.unsplash.com/photo-1579113813543-fa41eb8bf556?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1971&q=80"
               alt=""
             />
           </div>
