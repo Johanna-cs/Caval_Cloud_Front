@@ -6,17 +6,16 @@ import Axios from "axios";
 import { Results_Rider_Context} from '../context/Results_Rider_Context'
 
 
-function ResultPage(props) {
+function ResultPage() {
 
   const [resultsRiders, setResultsRiders] = useState([])
 
 
-  const getRiders = async () => {
-    await Axios
-    .get(`http://localhost:4000/api/riders/search/?`)
-    .then(res=> setResultsRiders(res))
+  const getRiders = () => {
+    Axios
+    .get(`http://localhost:4000/api/riders`)
+    .then(res => setResultsRiders(res.data))
     .catch(err=> console.error(err))
-    .finally(console.log(resultsRiders))
   }
 
   useEffect(() => {
@@ -33,9 +32,14 @@ function ResultPage(props) {
             Retour à la recherche
           </button>
         </div>
-        <ResultCard />
-        <ResultCard />
-        <ResultCard />
+      {resultsRiders.map(e=> 
+        <ResultCard 
+          firstname={e.rider_firstname}
+          fullResult={e} 
+        />
+        )
+      }
+
       </div>
     </>
   );

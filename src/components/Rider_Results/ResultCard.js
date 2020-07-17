@@ -41,7 +41,7 @@ const ResultCard = (props) => {
           </div>
         </Link>
         <div className="resultDetails">
-          <h7 id="resultName">Machin propose Tornado</h7>
+          <h7 id="resultName">{props.firstname}</h7>
           <img
             className="resultHeart"
             onClick={
