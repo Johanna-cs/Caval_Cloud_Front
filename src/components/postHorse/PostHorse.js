@@ -13,7 +13,7 @@ import usePosition from '../common_section/usePosition';
 import Disciplines from '../common_section/Disciplines'
 import Frequency from '../common_section/Frequency'
 import BudgetMensuel from '../common_section/BudgetMensuel'
-import IdealRider from './IdealRider'
+import IdealRider from '../common_section/IdealRider'
 import FloatingButton from '../common/FloatingButton'
 import Competition from '../common_section/Competition'
 import HebergementHorse from '../common_section/HebergementHorse'
@@ -112,7 +112,7 @@ const PostHorse = (props) => {
         .catch((err) => console.error(err))
         .finally(setSuccess(true));
     }
-
+console.log(dataHorse)
     return (
         <>
         <Header className='header' title='Poster une annonce cheval' />
