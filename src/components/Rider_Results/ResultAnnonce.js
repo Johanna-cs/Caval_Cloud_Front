@@ -13,8 +13,6 @@ import Axios from "axios";
 import { Results_Rider_Context } from '../context/Results_Rider_Context'
 import { Result_Rider_ID_Context } from '../context/Results_Rider_Context'
 
-
-
 const ResultAnnonce = (props) => {
   
     // get search results stored in Results_Rider_Context  
