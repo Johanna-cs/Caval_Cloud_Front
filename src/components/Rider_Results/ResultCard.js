@@ -1,14 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Result.css";
 import Axios from "axios";
-
 import heart from "../SVG-icons/coeur-hors-selection.svg";
 import heartFull from "../SVG-icons/coeur-selection.svg";
+import { Results_Rider_Context} from '../context/Results_Rider_Context'
+import { Result_Rider_ID_Context } from '../context/Results_Rider_Context'
+
 
 const ResultCard = (props) => {
   
+  // get the correct riderID in order to pass it to the ResultAnnonce component
+  const riderID = props.rider_ID
+  
+  // used to store the riderID in the specific context, allowing to share information what ever the user does
+  const {resultRiderId, setResultRiderId} = useContext(Result_Rider_ID_Context)
+
   const [favorite, setFavorite] = useState(heart);
+
+  useEffect(() => {
+      setResultRiderId(riderID)
+  }, [])
 
   const favoriteCard = () => {
     if (favorite === { heartFull }) {
@@ -28,8 +40,7 @@ const ResultCard = (props) => {
       <div className="resultCard">
         <Link
           to={{
-            pathname: `/results/${props.id}`,
-            results: props.results,
+            pathname: `/result-annonce/${props.fullResult.rider_ID}`,
           }}
         >
           <div className="resultCard-container">
@@ -46,7 +57,9 @@ const ResultCard = (props) => {
             className="resultHeart"
             onClick={
               (favoriteCard(),
-              () => setFavorite(favorite === heart ? heartFull : heart))
+              () => setFavorite(favorite === heart ? heartFull : heart)),
+              () => setResultRiderId(riderID)
+
             }
             src={favorite}
             alt="favoris"

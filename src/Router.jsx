@@ -16,14 +16,21 @@ import MyProfile from "./components/MyProfile/MyProfile";
 import { RiderContext } from "./components/context/RiderContext";
 import { riderProfileContext } from './components/context/RiderContext';
 import { Results_Rider_Context} from './components/context/Results_Rider_Context'
+import { Result_Rider_ID_Context} from './components/context/Results_Rider_Context'
+
 
 
 const Router = () => {
+
+  //Appel des différents contexts qui vont partager ensuite l'information entre les composants concernés
   const [riderProfile, setRiderProfile] = useState(riderProfileContext)
   const [resultsRiders, setResultsRiders] = useState([])
+  const [resultRiderId, setResultRiderId] = useState(null)
 
+//Appel des différents providers de contexts qui vont ensuite distribuer l'information à travers le routeur
   const providerRiderProfile = useMemo(() => ({riderProfile, setRiderProfile}), [riderProfile, setRiderProfile])
   const providerResultsRiders = useMemo(() => ({resultsRiders, setResultsRiders}), [resultsRiders, setResultsRiders])
+  const providerResultRiderId = useMemo(() => ({resultRiderId, setResultRiderId}), [resultRiderId, setResultsRiders])
 
   return (
     <>
@@ -37,14 +44,16 @@ const Router = () => {
         <Route exact path="/post-horse" component={PostHorse} />
         <Route exact path="/post-horse-owner" component={OwnerPres} />
         <Route exact path="/my-profile" component={MyProfile} />
-        <Route exact path="/result-annonce" component={ResultAnnonce} />
-        <Route exact path="/result-page" component={ResultPage} />
         <RiderContext.Provider value={providerRiderProfile}>
             <Route exact path="/post-rider" component={PostRider} />
             <Route exact path="/PostRiderPresentation" component={PostRiderPresentation} />
+          <Results_Rider_Context.Provider value={providerResultsRiders}>
+            <Result_Rider_ID_Context.Provider value={providerResultRiderId}>
+              <Route exact path="/result-page" component={ResultPage} />
+              <Route exact path="/result-annonce/:id" component={ResultAnnonce} />
+            </Result_Rider_ID_Context.Provider>
+          </Results_Rider_Context.Provider>
         </RiderContext.Provider>
-        {/* <Results_Rider_Context.Provider value={providerResultsRiders}> */}
-        {/* </Results_Rider_Context.Provider> */}
       </Switch>
     </>
   );

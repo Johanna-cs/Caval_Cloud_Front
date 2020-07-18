@@ -8,7 +8,7 @@ import { Results_Rider_Context} from '../context/Results_Rider_Context'
 
 function ResultPage() {
 
-  const [resultsRiders, setResultsRiders] = useState([])
+  const {resultsRiders, setResultsRiders} = useContext(Results_Rider_Context)
 
 
   const getRiders = () => {
@@ -36,6 +36,7 @@ function ResultPage() {
         <ResultCard 
           firstname={e.rider_firstname}
           fullResult={e} 
+          rider_ID={e.rider_ID}
         />
         )
       }
