@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 import Header from "../Header_footer/Header"
 import SlidingButton from "../common/SlidingButton"
 import RangeButton from '../common/RangeButton'
-import RadioCheck from '../common/RadioCheck'
 import SelectButton from '../common/SelectButton'
 import Carousel from "../common/Carousel"
 import logo from "../SVG-icons/cavalcloud-logo.png"
@@ -12,14 +11,34 @@ import FloatingButton from "../common/FloatingButton"
 import Disciplines from "../common_section/Disciplines"
 import BudgetMensuel from "../common_section/BudgetMensuel"
 import Frequency from "../common_section/Frequency"
+import Localisation from '../common_section/Localisation'
+import usePosition from '../common_section/usePosition';
 import Axios from "axios"
 import Competition from "../common_section/Competition"
 import { RiderContext } from "../context/RiderContext"
 
 
 const PostRider = () => {
-  const [ageHorse, setAgeHorse] = useState("");
-  const [horseSize, setHorseSize] = useState("");
+
+  // Localisation
+  const {latitude, longitude, error} = usePosition();
+  const [cityLocalisation, setCityLocalisation] = useState('')
+  // Récupération de l'ancienne ville pour le locale storage
+  localStorage.setItem('lastCitySaved',cityLocalisation);
+  // Choix du rayon de recherche des annonces :
+  const [perimeter, setPerimeter] = useState(null);
+  // Précédente localisation enregistrée dans le navigateur (si existante) :
+  const [lastCitySaved, setLastCitySaved] = useState('');
+  const getLocation = () => {
+    Axios
+    .get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
+    .then(res => setCityLocalisation(res.data.address.municipality))
+    .catch(err => console.log(err))
+}
+
+useEffect(() => {
+    getLocation()
+}, )
   
   const { riderProfile, setRiderProfile } = useContext(RiderContext)
 
@@ -38,19 +57,24 @@ const PostRider = () => {
           <img className="postRider_logo" src={logo} alt="logo" />
           <div className="postRider_forms">
             <p>
-              {/* {profile.prenom}, <span>{profile.age}</span> */}
-              {riderProfile.rider_firstname} <span>{riderProfile.rider_age}</span>
+              {riderProfile.rider_firstname} <span>{riderProfile.rider_age} ans</span>
             </p>
             <p>
               {riderProfile.rider_selfWord1} {riderProfile.rider_selfWord2}{" "}
               {riderProfile.rider_selfWord3}
             </p>
           </div>
-          <div>
-            <h4>Localisation</h4>
-          </div>
-        </div>
+                </div>
+  
         <Carousel />
+        <div>
+            <Localisation 
+            value={cityLocalisation}
+            onChange={(e) => setRiderProfile({...riderProfile, rider_postal_code: e.target.value})}
+            definePerimeter={(e) => setPerimeter(e.target.value)}
+            perimeter={perimeter}
+            />
+        </div>
         <div>
           <h4>Equitation :</h4>
           <p>

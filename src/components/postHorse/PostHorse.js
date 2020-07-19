@@ -68,7 +68,7 @@ const PostHorse = (props) => {
     const [isVehiculed, setIsVehiculed] = useState(false)
     const [hasManaged, setHasManaged] = useState(false)
     
-     const getLocation = () => {
+    const getLocation = () => {
         Axios
         .get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
         .then(res => setCityLocalisation(res.data.address.municipality))

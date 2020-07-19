@@ -13,6 +13,7 @@
 /* common css btn etc */
 #toggle_btn_chev {
   width: 2em;
+  margin-right: 0.2em;
   margin-top: 0.6em;
   margin-bottom: 0.3em;
   color: #5d5aa4;
@@ -31,35 +32,29 @@
   height: 2.5em;
   padding: 1em;
 }
-/* ***** Budget ***** */
+/* ***** Budget & Localisation ***** */
 .mensuel_price {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
 }
-.priceDiv{
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-}
-.mensuel_price2 label{
-    padding-bottom: 1em;
-}
-
-/* ***** Localisation ***** */
-.locationDiv{
+.priceDiv, .locationDiv{
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   padding-bottom: 1em;
 }
+.mensuel_price2 label{
+    padding-bottom: 1em;
+}
+/* ***** */
 .rayon_loc {
   display: flex;
   justify-content: space-between;
-  padding: 0.5em;
+  padding: 0.1em;
 }
 .rayon_loc span {
-  margin: 1em;
+  margin: 0.7em;
 }
 .last_loc {
   display: flex;

@@ -1,14 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect} from "react";
 import "./Result.css";
-import { Link } from "react-router-dom";
 import Header from "../Header_footer/Header";
-import SlidingButton from "../common/SlidingButton";
 import Carousel from "../common/Carousel";
 import logo from "../SVG-icons/cavalcloud-logo.png";
-import Disciplines from "../common_section/Disciplines";
-import BudgetMensuel from "../common_section/BudgetMensuel";
-import Frequency from "../common_section/Frequency";
-import IdealHorse from "../common_section/IdealHorse";
+
 import Axios from "axios";
 
 const ResultAnnonce = (props) => {
@@ -26,7 +21,7 @@ const ResultAnnonce = (props) => {
       .then(res => setDataRider(res.data[0]))
       .catch(err=> console.error(err))
     }
-
+    const changeBool = dataRider.value === true ? 'oui' : 'non'
     // When a result is displayed, the function getRiderInformation starts first in order to query BDD
     useEffect(() => {
       getRiderInformation()
@@ -36,7 +31,7 @@ const ResultAnnonce = (props) => {
 
   return (
     <>
-      <Header title="RESULTATS DE VOTRE RECHERCHE" />
+      <Header title="Résultats de votre recherche" />
       <div className="postRider_page">
         <div className="Result-filterbar">
           <button className="Result-filterbar-button">
@@ -46,14 +41,15 @@ const ResultAnnonce = (props) => {
         <div className="postRider_header">
           <img className="postRider_logo" src={logo} alt="logo" />
           <div className="postRider_forms">
-            <p>
-              {dataRider.rider_firstname}, <span>{dataRider.rider_age}</span>
-            </p>
+            <h5>
+              {dataRider.rider_firstname}, <span>{dataRider.rider_age} ans</span>
+            </h5>
             <p>
               {dataRider.rider_selfWord1}, {dataRider.rider_selfWord2}, {dataRider.rider_selfWord3}
             </p>
           </div>
           <h4>Localisation</h4>
+            <p>{dataRider.rider_postal_code}</p>
         </div>
         <Carousel />
         <div>
@@ -93,26 +89,26 @@ const ResultAnnonce = (props) => {
         <hr />
         <div>
           <h4>Autre</h4>
-          <p>Je suis ouvert à pratiquer d'autres disciplines</p>
+          <p>{dataRider.rider_agree_other_discipline}</p>
         </div>
         <hr />
         <div>
           <h4>Rythme de venue</h4>
           <p>{dataRider.rider_riding_frequency}</p>
-          <p>{dataRider.rider_fixed_day} souhaités</p>
+          <p>Jours fixes souhaités : {dataRider.rider_fixed_day} </p>
         </div>
         <hr />
         <div>
           <h4>Cheval idéal</h4>
-          <p>Taille: 1m - 1,8m</p>
-          <p>Tempérament: Dynamique</p>
-          <p>Caractère: Affectueux</p>
-          <p>Age: 4 ans - 20 ans</p>
+          <p>Taille :{dataRider.idealHorseSize}</p>
+          <p>Tempérament : {dataRider.idealHorseTemper}</p>
+          <p>Caractère : {dataRider.idealHorseCaracter}</p>
+          <p>Age : {dataRider.idealHorseAge}</p>
         </div>
         <hr />
         <h4>Coaching</h4>
-        <p>J'aimerais avoir accès à des cours</p>
-        <p>J'aimerais faire intervenir un coach de l'extérieur</p>
+        <p>J'aimerais avoir accès à des cours : {dataRider.rider_coaching_here}</p>
+        <p>J'aimerais faire intervenir un coach de l'extérieur : {dataRider.rider_external_coach}</p>
         <hr />
         <div>
           <h4>Concours</h4>
