@@ -10,26 +10,29 @@ import BudgetMensuel from "../common_section/BudgetMensuel";
 import Frequency from "../common_section/Frequency";
 import IdealHorse from "../common_section/IdealHorse";
 import Axios from "axios";
-import { Results_Rider_Context } from '../context/Results_Rider_Context'
-import { Result_Rider_ID_Context } from '../context/Results_Rider_Context'
 
 const ResultAnnonce = (props) => {
   
-    // get search results stored in Results_Rider_Context  
-    const {resultsRiders, setResultsRiders} = useContext(Results_Rider_Context)
+    // get the rider_ID in order to display the specific result
+    const riderId = Number(props.match.params.id)
 
-    // const riderId = props.location.rider_ID
+    // Rider Data information
+    const [dataRider, setDataRider] = useState([])
     
-    // rider_ID in order to display the specific result
-    const {resultRiderId, setResultRiderId} = useContext(Result_Rider_ID_Context)
+    // Get information about the selected rider from its ID
+    const getRiderInformation = () => {
+      Axios
+      .get(`http://localhost:4000/api/riders/${riderId}`)
+      .then(res => setDataRider(res.data[0]))
+      .catch(err=> console.error(err))
+    }
 
-    // The specific full result to display
-    const [thisResultRider, setThisResultRider] = useState([...resultsRiders.filter(result => result.rider_ID === resultRiderId)][0])
-
-
-  //   useEffect(() => {
-  //       setResultRiderId(riderId)
-  // }, [])
+    // When a result is displayed, the function getRiderInformation starts first in order to query BDD
+    useEffect(() => {
+      getRiderInformation()
+      }, 
+    [])
+  
 
   return (
     <>
@@ -44,10 +47,10 @@ const ResultAnnonce = (props) => {
           <img className="postRider_logo" src={logo} alt="logo" />
           <div className="postRider_forms">
             <p>
-              {thisResultRider.rider_firstname}, <span>{thisResultRider.rider_age}</span>
+              {dataRider.rider_firstname}, <span>{dataRider.rider_age}</span>
             </p>
             <p>
-              {thisResultRider.rider_selfWord1}, {thisResultRider.rider_selfWord2}, {thisResultRider.rider_selfWord3}
+              {dataRider.rider_selfWord1}, {dataRider.rider_selfWord2}, {dataRider.rider_selfWord3}
             </p>
           </div>
           <h4>Localisation</h4>
@@ -56,39 +59,36 @@ const ResultAnnonce = (props) => {
         <div>
           <h4>Equitation</h4>
           <p>
-            {thisResultRider.rider_ridingWord1}, {thisResultRider.rider_ridingWord2}, {thisResultRider.rider_ridingWord3}
+            {dataRider.rider_ridingWord1}, {dataRider.rider_ridingWord2}, {dataRider.rider_ridingWord3}
           </p>
         </div>
         <div className="postRider_message">
           <h4>Message :</h4>
-          <p>{thisResultRider.rider_biography}</p>
+          <p>{dataRider.rider_biography}</p>
         </div>
         <hr />
         <div>
           <h4>Budget</h4>
           <p>
-            {thisResultRider.rider_budget}
-            {thisResultRider.rider_currency_budget} / mois
+            {dataRider.rider_budget}
+            {dataRider.rider_currency_budget} / mois
           </p>
         </div>
         <hr />
         <div>
           <h4>Autonomie</h4>
-          <p>{thisResultRider.rider_vehiculed}</p>
-          <p>{thisResultRider.rider_managed_horse}</p>
+          <p>{dataRider.rider_vehiculed}</p>
+          <p>{dataRider.rider_managed_horse}</p>
         </div>
         <hr />
         <div>
           <h4>Niveau</h4>
-          <p>{thisResultRider.rider_years_of_practice}</p>
-          <p>{thisResultRider.rider_gallop_level}</p>
+          <p>{dataRider.rider_years_of_practice}</p>
+          <p>{dataRider.rider_gallop_level}</p>
         </div>
         <hr />
         <div className="postRider-disc">
           <h4>Discipline</h4>
-          {/* {thisResultRider.disciplines.map((discipline) => (
-            <li>{discipline}</li>
-          ))} */}
         </div>
         <hr />
         <div>
@@ -98,8 +98,8 @@ const ResultAnnonce = (props) => {
         <hr />
         <div>
           <h4>Rythme de venue</h4>
-          <p>{thisResultRider.rider_riding_frequency}</p>
-          <p>{thisResultRider.rider_fixed_day} souhaités</p>
+          <p>{dataRider.rider_riding_frequency}</p>
+          <p>{dataRider.rider_fixed_day} souhaités</p>
         </div>
         <hr />
         <div>
@@ -116,7 +116,7 @@ const ResultAnnonce = (props) => {
         <hr />
         <div>
           <h4>Concours</h4>
-          <p>{thisResultRider.doCompetition}</p>
+          <p>{dataRider.doCompetition}</p>
         </div>
       </div>
     </>

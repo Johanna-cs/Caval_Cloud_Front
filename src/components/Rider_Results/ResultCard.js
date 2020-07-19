@@ -4,23 +4,13 @@ import "./Result.css";
 import Axios from "axios";
 import heart from "../SVG-icons/coeur-hors-selection.svg";
 import heartFull from "../SVG-icons/coeur-selection.svg";
-import { Results_Rider_Context} from '../context/Results_Rider_Context'
-import { Result_Rider_ID_Context } from '../context/Results_Rider_Context'
-
 
 const ResultCard = (props) => {
   
   // get the correct riderID in order to pass it to the ResultAnnonce component
   const riderID = props.rider_ID
   
-  // used to store the riderID in the specific context, allowing to share information what ever the user does
-  const {resultRiderId, setResultRiderId} = useContext(Result_Rider_ID_Context)
-
   const [favorite, setFavorite] = useState(heart);
-
-  useEffect(() => {
-      setResultRiderId(riderID)
-  }, [])
 
   const favoriteCard = () => {
     if (favorite === { heartFull }) {
@@ -40,7 +30,7 @@ const ResultCard = (props) => {
       <div className="resultCard">
         <Link
           to={{
-            pathname: `/result-annonce/${props.fullResult.rider_ID}`,
+            pathname: `/result-annonce/${riderID}`,
           }}
         >
           <div className="resultCard-container">
@@ -48,6 +38,7 @@ const ResultCard = (props) => {
               className="resultPhoto"
               src="https://images.unsplash.com/photo-1579113813543-fa41eb8bf556?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1971&q=80"
               alt=""
+
             />
           </div>
         </Link>
@@ -57,9 +48,7 @@ const ResultCard = (props) => {
             className="resultHeart"
             onClick={
               (favoriteCard(),
-              () => setFavorite(favorite === heart ? heartFull : heart)),
-              () => setResultRiderId(riderID)
-
+              () => setFavorite(favorite === heart ? heartFull : heart))
             }
             src={favorite}
             alt="favoris"

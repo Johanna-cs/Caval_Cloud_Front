@@ -34,8 +34,8 @@ function ResultPage() {
         </div>
       {resultsRiders.map(e=> 
         <ResultCard 
-          firstname={e.rider_firstname}
           fullResult={e} 
+          firstname={e.rider_firstname}
           rider_ID={e.rider_ID}
         />
         )
