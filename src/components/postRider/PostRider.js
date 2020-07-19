@@ -39,10 +39,10 @@ const PostRider = () => {
           <div className="postRider_forms">
             <p>
               {/* {profile.prenom}, <span>{profile.age}</span> */}
-              {riderProfile.rider_firstname}, <span>{riderProfile.rider_age}</span>
+              {riderProfile.rider_firstname} <span>{riderProfile.rider_age}</span>
             </p>
             <p>
-              {riderProfile.rider_selfWord1}, {riderProfile.rider_selfWord2},{" "}
+              {riderProfile.rider_selfWord1} {riderProfile.rider_selfWord2}{" "}
               {riderProfile.rider_selfWord3}
             </p>
           </div>
@@ -52,9 +52,9 @@ const PostRider = () => {
         </div>
         <Carousel />
         <div>
-          <h4>Equitation</h4>
+          <h4>Equitation :</h4>
           <p>
-            {riderProfile.rider_ridingWord1}, {riderProfile.rider_ridingWord2},{" "}
+            {riderProfile.rider_ridingWord1} {riderProfile.rider_ridingWord2}{" "}
             {riderProfile.rider_ridingWord3}
           </p>
         </div>
@@ -225,6 +225,7 @@ const PostRider = () => {
                         onClick={(e) => setRiderProfile({...riderProfile, idealHorseCaracter: e.target.value })}/>
                     </div>
             </div>
+            <hr />
             <div className='horse_body'>
                     <h5> Physique :</h5>
                     <div className='select_body'>
@@ -272,7 +273,7 @@ const PostRider = () => {
         </div>
         <hr />
         <h4>Coaching</h4>
-        <div className="postRider-coaching">
+        <div className="coachingDiv">
           <SlidingButton
             SlidingButtonText="Sur place"
             SlidingButtonID="coachingSwitch"

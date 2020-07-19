@@ -1,6 +1,7 @@
 import React, { useState} from "react";
 import { Collapse, Button} from "reactstrap";
 import RadioButton from "../common/RadioButton";
+import './common_section.css'
 
 
 const BudgetMensuel = (props) => {

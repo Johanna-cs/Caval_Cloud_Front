@@ -152,9 +152,11 @@ const SearchRider = () => {
                 />
             </div>
             <hr />
+            <div className='competition'>
             <Competition 
                     onClick={(e) => setDoCompetition(e.target.value)}
             />
+            </div>
         </div>
         <Link to={{pathname: "/result-page"}}>
             <FloatingButton 

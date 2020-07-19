@@ -1,9 +1,10 @@
 import React from "react";
 import SelectButton from "../common/SelectButton";
+import './common_section.css'
 
 const HebergementHorse = (props) => {
   return (
-    <div className="searchHorse_hebergt">
+    <div className="hebergement">
       <h5>Comment est hebergé le cheval ? </h5>
       <div className="hebergtList">
         <SelectButton

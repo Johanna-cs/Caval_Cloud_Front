@@ -132,7 +132,7 @@ console.log(dataHorse)
             </label>
             </form>
 
-            </div>
+            
             <div className='horse_age'>
             <h5> Age du cheval : {ageHorse} ans</h5>
             <div className='divRangeSpan'>
@@ -160,6 +160,7 @@ console.log(dataHorse)
                     }/>
                     <span>200 cm</span>
                 </div>
+            </div>
             </div>
             <Carousel />
             
@@ -269,7 +270,7 @@ console.log(dataHorse)
             <hr />
             <Structures />
             <hr />
-            <div className='searchHorse_coaching'>
+            <div className='coaching'>
                 <h4>Coaching</h4>
                 <div className='coaching'>
                     <SlidingButton 
@@ -299,7 +300,7 @@ console.log(dataHorse)
                 />
             </div>
             <hr />
-            <div className='postHorse_materiel'>
+            <div className='materialDiv'>
                 <h4>Materiel</h4>
                 <div className='materiel'>
                         <SlidingButton 
@@ -311,7 +312,7 @@ console.log(dataHorse)
                 
             </div>
             <hr />
-            <div className='postHorse_bal'>
+            <div className='baladeDiv'>
                 <h4>Balade</h4>
                 <div className='balade'>
                     <SlidingButton 

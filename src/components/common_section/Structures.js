@@ -1,12 +1,13 @@
 import React from 'react'
 import Checkbox from '../common/Checkbox'
+import './common_section.css'
 
 const Structures = () => {
     
     return (
         
         
-        <div className='searchHorse_struc'>
+        <div className='structures'>
             <h4>Structure à disposition </h4>
             <div className='structureList'>
                
