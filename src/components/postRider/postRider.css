@@ -1,11 +1,17 @@
 .postRider_page {
   display: flex;
+  
   flex-flow: column wrap;
   margin-left: 2em;
   margin-right: 2em;
   padding-bottom: 2em;
 }
-
+@media (min-width: 728px) and (max-width: 1280px), (min-width: 1281px) {
+  .postRider_page {
+  align-items: center;}
+    
+  }
+  
 .postRider_page hr {
   border-top: 1em thin;
   width: 100%;

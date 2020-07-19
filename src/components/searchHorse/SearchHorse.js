@@ -140,7 +140,7 @@ const SearchHorse = (props) => {
                     boxeType={boxeType}
                     onClick={(e) => setBoxeType(e.target.value)}/>
             <hr />
-            <div className='searchHorse_coaching'>
+            <div className='coachingDiv'>
                 <h4>Coaching</h4>
                 <div className='coaching'>
                     <SlidingButton 
@@ -159,7 +159,7 @@ const SearchHorse = (props) => {
                 
                 </div>
             <hr />
-            <div className='searchHorse_materiel'>
+            <div className='materialDiv'>
                 <h4>Materiel</h4>
                 <div className='materiel'>
                         <SlidingButton 
@@ -171,7 +171,7 @@ const SearchHorse = (props) => {
 
             </div>
             <hr />
-            <div className='searchHorse_compet'>
+            <div className='competition'>
                 <Competition 
                 onClick={(e) => setDoCompetition(e.target.value)}/>
             </div>    

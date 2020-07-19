@@ -7,6 +7,20 @@
   margin-right: 2em;
   padding-bottom: 5em;
 }
+
+@media (min-width: 728px) and (max-width: 1280px), (min-width: 1281px) {
+  .postHorse_page, .OwnerPres_page {
+  display: flex;
+  align-items: center;
+  text-align: left;}
+  .materialDiv, .baladeDiv, .postHorse_pres {
+    width: 480px;
+    display: flex;
+    justify-content: space-around;
+    flex-flow: column nowrap;
+
+  }
+  }
 .postHorse_page hr {
   border-top: 1em thin;
   width: 100%;
@@ -39,19 +53,6 @@
   outline: none;
 }
 
-.select_temper,
-.select_caracter,
-.select_body {
-  display: flex;
-  justify-content: space-evenly;
-  flex-flow: row wrap;
-}
-.hebergtList,
-.scuringList {
-  display: flex;
-  align-items: center;
-  flex-flow: column wrap;
-}
 .divRangeSpan {
     display: flex;
     align-items: baseline;

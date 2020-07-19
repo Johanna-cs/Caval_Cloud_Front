@@ -1,44 +1,28 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import "./profile.css";
 import Header from "../Header_footer/Header";
-import Upload from "../common_section/Upload";
-import UploadTest from "../common_section/UploadTest";
+import { storage } from "../Firebase";
 
-const MyProfile =(props)=> {
-  // const uploadedImage = React.useRef(null);
-  // const imageUploader = React.useRef(null);
-
-  // const handleImageUpload = (e) => {
-  //   const [file] = e.target.files;
-  //   if (file) {
-  //     const reader = new FileReader();
-  //     const { current } = uploadedImage;
-  //     current.file = file;
-  //     reader.onload = (e) => {
-  //       current.src = e.target.result;
-  //     };
-  //     reader.readAsDataURL(file);
-  //   }
-  // };
-  const [file, setFile] = useState("");
-  const [fileName, setFileName] = useState("Choose file");
-  const [uploadedFile, setUploadedFile] = useState({});
+const MyProfile = (props) => {
+  const [image, setImage] = useState(null);
+  const [url, setUrl] = useState("");
   const [modif, setModif] = useState(false);
   const [profile, setProfile] = useState({
-
     nom: "Horsini",
     prenom: "Fanny",
     mail: "fanny.horsini@gmail.com",
     phone: "0606060606",
     password: "123456",
-    photo: uploadedFile.filePath,
+    photo: { url },
   });
+
   const [modifiedProfile, setModifiedProfile] = useState({
     mail: profile.mail,
     password: profile.password,
     phone: profile.phone,
-    photo: uploadedFile.filePath,
+    photo: { url },
   });
+
   const [typedPW, setTypedPW] = useState("");
   const [validPW, setValidPW] = useState();
   const changePW = (e) => {
@@ -56,9 +40,33 @@ const MyProfile =(props)=> {
       mail: modifiedProfile.mail,
       password: modifiedProfile.password,
       phone: modifiedProfile.phone,
-      photo: uploadedFile.filePath,
+      photo: { url },
     });
     setModif(!modif);
+  };
+
+  const handleChange = (e) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+  };
+  console.log(image);
+  const handleUpload = () => {
+    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {},
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref("images")
+          .child(image.name)
+          .getDownloadURL()
+          .then((url) => setUrl(url));
+      }
+    );
   };
   return (
     <>
@@ -66,20 +74,27 @@ const MyProfile =(props)=> {
       <div className="Profile-Page">
         <div className="Profile-row">
           {modif ? (
-            <UploadTest setFile={setFile} setFileName={setFileName} />
+            <div className="Profile-image">
+              <input type="file" onChange={handleChange} />
+              <button onClick={handleUpload} className="upload-button">
+                Valider la photo
+              </button>
+              <img src={url} className="Profile-photo" alt="" />
+            </div>
           ) : (
             <img
-              src={uploadedFile.filePath}
+              src={url}
               className="Profile-photo"
               alt="Vous n'avez pas encore de photo"
             />
           )}
+
           <p className="Profile-infos">
             {profile.prenom} {profile.nom}
           </p>
         </div>
         <hr />
-        <h4>Email:</h4>
+        <h4>Email :</h4>
         {modif ? (
           <input
             id="input"
@@ -96,7 +111,7 @@ const MyProfile =(props)=> {
           profile.mail
         )}
         <hr />
-        <h4>Téléphone:</h4>
+        <h4>Téléphone :</h4>
         {modif ? (
           <input
             id="input"
@@ -113,7 +128,7 @@ const MyProfile =(props)=> {
           profile.phone
         )}
         <hr />
-        <h4>Mot de passe:</h4>
+        <h4>Mot de passe :</h4>
         {modif ? (
           <>
             <tr className="entete">Nouveau mot de passe </tr>
@@ -157,6 +172,6 @@ const MyProfile =(props)=> {
       </div>
     </>
   );
-}
+};
 
 export default MyProfile;

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import Header from '../Header_footer/Header';
 import Axios from 'axios'
 import usePosition from '../common_section/usePosition';
@@ -11,6 +11,9 @@ import BudgetMensuel from '../common_section/BudgetMensuel'
 import Frequency from '../common_section/Frequency'
 import RangeButton from '../common/RangeButton'
 import Competition from '../common_section/Competition'
+import { Link } from 'react-router-dom'
+import { Results_Rider_Context} from '../../components/context/Results_Rider_Context'
+
 
 
 const SearchRider = () => {
@@ -45,7 +48,7 @@ const SearchRider = () => {
     // Concours ou pas :
     const [doCompetition, setDoCompetition] = useState('')
     // Résultats de la recherche de riders :
-    const [riders, setRiders] = useState([])
+    const { resultsRiders, setResultsRiders } = useContext(Results_Rider_Context)
     // Rider a déjà managé des chevaux :
     const [hasManaged, setHasManaged] = useState(false)
 
@@ -59,8 +62,9 @@ const SearchRider = () => {
     const getRiders = async () => {
         await Axios
         .get(`http://localhost:4000/api/riders/search/?age=${riderAge}&postal=${postal}&level=${galopLevel}&vehiculed=${isVehiculed}&budget=${budget}&competition=${doCompetition}&years=${yearsOfPractice}&frequency=${frequency}&regularity=${fixedFrequency}`)
-        .then(res=> setRiders(res))
+        .then(res=> setResultsRiders(res))
         .catch(err => console.log(err))
+        .finally(console.log(resultsRiders))
     }
 
     useEffect(() => {
@@ -148,14 +152,19 @@ const SearchRider = () => {
                 />
             </div>
             <hr />
+            <div className='competition'>
             <Competition 
                     onClick={(e) => setDoCompetition(e.target.value)}
             />
+            </div>
         </div>
-        <FloatingButton 
-                    btnName={'Lancer la recherche'} 
-                    onClick={() => getRiders()}
-        />
+        <Link to={{pathname: "/result-page"}}>
+            <FloatingButton 
+                btnName={'Lancer la recherche'} 
+                onClick={async () => { await getRiders()} }
+            />
+        </Link>
+
 
         </>
         )

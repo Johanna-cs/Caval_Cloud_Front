@@ -34,17 +34,18 @@
   position: relative;
   font-weight: 700;
   margin-bottom: -0.5em;
+  margin-top: 1em;
 }
 
+.Profile-image img{
+  margin-left: 5em;
+}
 .Profile-photo {
   height: 8em;
   width: 8em;
-  padding: 0.5em;
-  background-color: white;
+  left: 7.5em;
   border-radius: 50%;
-  border: 1px thin #b0b9d380;
   margin-top: 1.5em;
-  text-align: center;
 }
 
 .Profile-button {
@@ -59,10 +60,6 @@
   outline: none;
 }
 
-#file-upload-button {
-  
-}
-
 .upload-button {
   background-color: white;
   color: #59a080;
@@ -71,15 +68,5 @@
   border: solid 1px#59A080;
   margin: 1.5em 0em 1em 4em;
   border-radius: 20px;
-  outline: none;
-}
-.btn, .btn-primary {
-  background-color: white !important;
-  color: #59a080 !important;
-  width: 10em !important;
-  height: auto !important;
-  border: solid 1px#59A080 !important;
-  margin: 0.5em 0em 0em 2em !important;
-  border-radius: 20px !important;
   outline: none;
 }

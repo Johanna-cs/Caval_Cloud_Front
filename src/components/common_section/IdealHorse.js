@@ -1,7 +1,7 @@
-import React, { useState, useEffect} from 'react'
+import React from 'react'
 import RadioCheck from '../common/RadioCheck'
 import RangeButton from '../common/RangeButton'
-import { Collapse, Button, Input } from 'reactstrap'
+import './common_section.css'
 
 
 const IdealHorse = (props) => {
