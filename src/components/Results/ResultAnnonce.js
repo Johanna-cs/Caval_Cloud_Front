@@ -16,7 +16,7 @@ const ResultAnnonce = () => {
   const [annonce, setAnnonce] = useState("");
 
   const getAnnonce = () => {
-    Axios.get(`http://localhost:3010/api/annonce=id`)
+    Axios.get(`http://localhost:4000/api/annonce=id`)
       .then((res) => setAnnonce(...res))
       .catch((err) => console.log(err));
   };

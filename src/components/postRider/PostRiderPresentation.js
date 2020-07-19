@@ -150,7 +150,6 @@ const PostRiderPresentation = (props) => {
             <FloatingButton
               btnName={"Valider"}
               type="submit"
-              // onClick={(e) => submit(e)}
             />
           </Link>
     </div>

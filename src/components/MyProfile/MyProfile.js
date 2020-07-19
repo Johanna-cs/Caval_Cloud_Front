@@ -2,8 +2,9 @@ import React, { useState, useRef } from "react";
 import "./profile.css";
 import Header from "../Header_footer/Header";
 import Upload from "../common_section/Upload";
+import UploadTest from "../common_section/UploadTest";
 
-function MyProfile(props) {
+const MyProfile =(props)=> {
   // const uploadedImage = React.useRef(null);
   // const imageUploader = React.useRef(null);
 
@@ -65,7 +66,7 @@ function MyProfile(props) {
       <div className="Profile-Page">
         <div className="Profile-row">
           {modif ? (
-            <Upload setFile={setFile} setFileName={setFileName} />
+            <UploadTest setFile={setFile} setFileName={setFileName} />
           ) : (
             <img
               src={uploadedFile.filePath}

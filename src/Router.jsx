@@ -32,16 +32,19 @@ const Router = () => {
         <Route exact path="/search-rider" component={SearchRider} />
         <Route exact path="/search-horse" component={SearchHorse} />
         <Route exact path="/post-horse" component={PostHorse} />
-        <RiderContext.Provider value={providerRiderProfile}>
-            <Route exact path="/post-rider" component={PostRider} />
-            <Route exact path="/PostRiderPresentation" component={PostRiderPresentation} />
-        </RiderContext.Provider>
         <Route exact path="/post-horse-owner" component={OwnerPres} />
         <Route exact path="/result-page" component={ResultPage} />
         <Route exact path="/result-annonce" component={ResultAnnonce} />
-        ResultAnnonce
+        <Route exact path="/my-profile" component={MyProfile} />
+        <RiderContext.Provider value={providerRiderProfile}>
+          <Route exact path="/post-rider" component={PostRider} />
+          <Route
+            exact
+            path="/PostRiderPresentation"
+            component={PostRiderPresentation}
+          />
+        </RiderContext.Provider>
       </Switch>
-      <Route exact path="/my-profile" component={MyProfile} />
     </>
   );
 };

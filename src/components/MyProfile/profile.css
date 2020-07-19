@@ -73,3 +73,13 @@
   border-radius: 20px;
   outline: none;
 }
+.btn, .btn-primary {
+  background-color: white !important;
+  color: #59a080 !important;
+  width: 10em !important;
+  height: auto !important;
+  border: solid 1px#59A080 !important;
+  margin: 0.5em 0em 0em 2em !important;
+  border-radius: 20px !important;
+  outline: none;
+}

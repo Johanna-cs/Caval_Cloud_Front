@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Result.css";
 import Axios from "axios";
-
 import heart from "../SVG-icons/coeur-hors-selection.svg";
 import heartFull from "../SVG-icons/coeur-selection.svg";
 
