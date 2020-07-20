@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import Axios from 'axios'
 import './postHorse.css'
 import Header from '../Header_footer/Header'
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 import RangeButton from '../common/RangeButton'
 import SelectButton from '../common/SelectButton'
 import SlidingButton from '../common/SlidingButton'
@@ -18,55 +18,24 @@ import FloatingButton from '../common/FloatingButton'
 import Competition from '../common_section/Competition'
 import HebergementHorse from '../common_section/HebergementHorse'
 import Carousel from '../common/Carousel'
+import { HorseContext } from '../context/HorseContext';
 
 
 const PostHorse = (props) => {
     
-    // Présentation cheval nom, age, taille
-    const [name, setName] = useState('')
-    const [ageHorse, setAgeHorse] = useState('')
-    const [horseSize, setHorseSize] = useState('')
-
-    //Présentation cheval tempérament, caractere, physique, écurie, boxe
-    const [temperHorse, setTemperHorse] = useState('')
-    const [caracterHorse, setCaracterHorse] = useState('')
-    const [bodyHorse, setBodyHorse] = useState('')
-    const [scuringType, setScuringType] = useState('')
-    const [boxeType, setBoxeType] = useState('')
-
-    // Localisation
+    // Get Localisation
     const {latitude, longitude, error} = usePosition();
     const [cityLocalisation, setCityLocalisation] = useState('')
-    // Récupération de l'ancienne ville pour le locale storage
+
+    // Store city in localstorage for next uses
     localStorage.setItem('lastCitySaved',cityLocalisation);
-    // Choix du rayon de recherche des annonces :
+
+    // Selection on perimeter for localisation :
     const [perimeter, setPerimeter] = useState(null);
-    // Précédente localisation enregistrée dans le navigateur (si existante) :
-    const [lastCitySaved, setLastCitySaved] = useState('');
 
-    //Coaching 
-    const [coachingHere, setCoachingHere] = useState(false)
-    const [externalCoach, setExternalCoach] = useState(false)
-    // Fréquence de la demi-pension :
-    const [frequency, setFrequency] = useState('')
-    // Fréquence de la demi-pension, jours fixes :
-    const [fixedFrequency, setFixedFrequency] = useState(false)
-    // Materiel selle :
-    const [haveMaterialSaddle, setHaveMaterialSaddle] = useState(false)
-    //balade
-    const [doBalad, setDoBalad] = useState(false)
-    // Concours :
-    const [doCompetition, setDoCompetition] = useState('')
-     // Budget mensuel 
-    const [budget, setBudget] = useState(null)
-    const [currency, setCurrency] = useState('')
+    // Get horseProfile Context in order to get and set information about it
+    const { horseProfile, setHorseProfile } = useContext(HorseContext)
 
-    // cavalier ideal 
-    const [yearPractice, setYearPractice] = useState('')
-    const [ageRider, setAgeRider] = useState('')
-    const [gallopLevel, setGallopLevel] = useState('')
-    const [isVehiculed, setIsVehiculed] = useState(false)
-    const [hasManaged, setHasManaged] = useState(false)
     
     const getLocation = () => {
         Axios
@@ -75,44 +44,25 @@ const PostHorse = (props) => {
         .catch(err => console.log(err))
     }
 
+    const postDataHorse = () => {
+        Axios
+        .post(`http://localhost:4000/api/horses`, horseProfile)
+        .catch((err) => console.log(err))
+      };
+    
     useEffect(() => {
         getLocation()
     }, )
-    // Récupération des données à envoyer sur le serveur BDD
-    const dataHorse = {
-        horse_name : name, 
-        horse_age : ageHorse, 
-        horse_height : horseSize, 
-        horse_localisation : cityLocalisation, 
-        horse_temper : temperHorse, 
-        horse_character : caracterHorse, 
-        horse_body_type : bodyHorse, 
-        horse_location_type : scuringType, 
-        horse_accomodation_horse : boxeType, 
-        horse_get_lesson : coachingHere, 
-        horse_get_coach :externalCoach, 
-        horse_riding_frequency : frequency, 
-        horse_fixed_day : fixedFrequency, 
-        horse_materiel : haveMaterialSaddle, 
-        horse_stroll_along : doBalad, 
-        horse_competition_preference : doCompetition, 
-        horse_mensuel_price : budget, 
-        horse_budget_currency : currency, 
-        ideal_rider_years_of_practice : yearPractice, 
-        ideal_rider_age : ageRider, 
-        ideal_rider_gallop_level : gallopLevel, 
-        ideal_rider_vehiculed : isVehiculed, 
-        ideal_rider_managed_horse : hasManaged 
-    }
 // Check if subscribe successfull or not
     const [success, setSuccess] = useState(null);
-    const createPostHorse = (e) => {
-        e.preventDefault()
-        Axios.post('http://localhost:4000/api/horses', dataHorse)
-        .catch((err) => console.error(err))
-        .finally(setSuccess(true));
-    }
-console.log(dataHorse)
+
+    // const createPostHorse = (e) => {
+    //     e.preventDefault()
+    //     Axios.post('http://localhost:4000/api/horses', dataHorse)
+    //     .catch((err) => console.error(err))
+    //     .finally(setSuccess(true));
+    // }
+
     return (
         <>
         <Header className='header' title='Poster une annonce cheval' />
@@ -126,7 +76,7 @@ console.log(dataHorse)
                 className="postHorse_input"
                 type="text"
                 placeholder="Nom du cheval"
-                onChange={(event) => setName(event.target.value)}
+                onChange={(event) => setHorseProfile({...horseProfile, horse_name : event.target.value}) }
                 autoFocus
                 />
             </label>
@@ -134,7 +84,7 @@ console.log(dataHorse)
 
             
             <div className='horse_age'>
-            <h5> Age du cheval : {ageHorse} ans</h5>
+            <h5> Age du cheval : {horseProfile.horse_age} ans</h5>
             <div className='divRangeSpan'>
                     <span>1 an</span>
                     <RangeButton 
@@ -142,22 +92,22 @@ console.log(dataHorse)
                         min='1'
                         max='30'
                         radioRangeBtnId='ageHorse'
-                        onChange={(e) => setAgeHorse(e.target.value)
-                    }/>
+                        onChange={(e) => setHorseProfile({...horseProfile, horse_age : e.target.value}) }
+                    />
                     <span>30 ans</span>
                 </div>
             </div>
             <hr />
             <div className='horse_size'>
-                <h5> Taille : {horseSize} cm</h5>
+                <h5> Taille : {horseProfile.horse_height} cm</h5>
                 <div className='divRangeSpan'>
                     <span>100 cm</span>
                     <RangeButton 
                         min='80'
                         max='200'
                         radioRangeBtnId='horseSize'
-                        onChange={(e) => setHorseSize(e.target.value)
-                    }/>
+                        onChange={(e) => setHorseProfile({...horseProfile, horse_height : e.target.value}) }
+                    />
                     <span>200 cm</span>
                 </div>
             </div>
@@ -168,7 +118,7 @@ console.log(dataHorse)
             <h5>Où se trouve le cheval ? </h5>
                 <Localisation 
                 value={cityLocalisation}
-                onChange={(e) => setCityLocalisation(e.target.value)}
+                onChange={(e) => {setCityLocalisation(e.target.value); setHorseProfile({...horseProfile, horse_localisation : e.target.value}) }}
                 definePerimeter={(e) => setPerimeter(e.target.value)}
                 perimeter={perimeter} />
             </div>
@@ -180,25 +130,29 @@ console.log(dataHorse)
                         radioSelBtnId='Calme'
                         radioSelBtnValue='Calme'
                         radioSelBtnName='temperHorse'
-                        onClick={(e) => setTemperHorse(e.target.value)} />
+                        onClick={(e) => setHorseProfile({...horseProfile, horse_temper : e.target.value}) }
+                    />
 
                     <SelectButton
                         radioSelBtnId='Dynamique'
                         radioSelBtnValue='Dynamique'
                         radioSelBtnName='temperHorse'
-                        onClick={(e) => setTemperHorse(e.target.value)} />
+                        onClick={(e) => setHorseProfile({...horseProfile, horse_temper : e.target.value}) }
+                    />
 
                     <SelectButton
                         radioSelBtnId='Speed'
                         radioSelBtnValue='Speed'
                         radioSelBtnName='temperHorse'
-                        onClick={(e) => setTemperHorse(e.target.value)} />
+                        onClick={(e) => setHorseProfile({...horseProfile, horse_temper : e.target.value}) }
+                    />
 
                     <SelectButton
                         radioSelBtnId='A canaliser'
                         radioSelBtnValue='A canaliser'
                         radioSelBtnName='temperHorse'
-                        onClick={(e) => setTemperHorse(e.target.value)} />
+                        onClick={(e) => setHorseProfile({...horseProfile, horse_temper : e.target.value}) }
+                    />
 
                     </div>
             </div>
@@ -210,25 +164,29 @@ console.log(dataHorse)
                         radioSelBtnId='Affectueux'
                         radioSelBtnValue='Affectueux'
                         radioSelBtnName='caracterHorse'
-                        onClick={(e) => setCaracterHorse(e.target.value)} />
+                        onClick={(e) => setHorseProfile({...horseProfile, horse_character : e.target.value}) }
+                    />
 
                     <SelectButton
                         radioSelBtnId='Froid'
                         radioSelBtnValue='Froid'
                         radioSelBtnName='caracterHorse'
-                        onClick={(e) => setCaracterHorse(e.target.value)} />
+                        onClick={(e) => setHorseProfile({...horseProfile, horse_character : e.target.value}) }
+                    />
 
                     <SelectButton
                         radioSelBtnId='Joueur'
                         radioSelBtnValue='Joueur'
                         radioSelBtnName='caracterHorse'
-                        onClick={(e) => setCaracterHorse(e.target.value)} />
+                        onClick={(e) => setHorseProfile({...horseProfile, horse_character : e.target.value}) }
+                    />
 
                     <SelectButton   
                         radioSelBtnId='Sensible'
                         radioSelBtnValue='Sensible'
                         radioSelBtnName='caracterHorse'
-                        onClick={(e) => setCaracterHorse(e.target.value)}  />
+                        onClick={(e) => setHorseProfile({...horseProfile, horse_character : e.target.value}) }
+                    />
                     </div>
             </div>
             <hr />
@@ -240,33 +198,39 @@ console.log(dataHorse)
                         radioSelBtnValue='Fin'
                         radioSelBtnId={'Fin'} 
                         radioSelBtnName='bodyHorse'
-                        onClick={(e) => setBodyHorse(e.target.value)}  />
+                        onClick={(e) => setHorseProfile({...horseProfile, horse_body_type : e.target.value}) }
+                    />
 
                     <SelectButton 
                         radioSelBtnValue={'Classique'}
                         radioSelBtnId={'Classique'}
                         radioSelBtnName='bodyHorse'
-                        onClick={(e) => setBodyHorse(e.target.value)}  />
+                        onClick={(e) => setHorseProfile({...horseProfile, horse_body_type : e.target.value}) }
+                    />
 
                     <SelectButton 
                         radioSelBtnValue={'Porteur'}
                         radioSelBtnId={'Porteur'} 
                         radioSelBtnName='bodyHorse'
-                        onClick={(e) => setBodyHorse(e.target.value)}  />
+                        onClick={(e) => setHorseProfile({...horseProfile, horse_body_type : e.target.value}) }
+                    />
 
                     <SelectButton 
                         radioSelBtnValue={'Lourd'}
                         radioSelBtnId={'Lourd'}
                         radioSelBtnName='bodyHorse'
-                        onClick={(e) => setBodyHorse(e.target.value)}  />
+                        onClick={(e) => setHorseProfile({...horseProfile, horse_body_type : e.target.value}) }
+                    />
                     </div>
             </div>
             <hr />
             <h4>Type d'écurie </h4>
             <Scuring
-                    onClick={(e) => setScuringType(e.target.value)} />
+                    onClick={(e) => setHorseProfile({...horseProfile, horse_practice_structure : e.target.value}) }
+            />
             <HebergementHorse 
-                    onClick={(e) => setBoxeType(e.target.value)}/>
+                    onClick={(e) => setHorseProfile({...horseProfile, horse_accomodation : e.target.value}) }
+            />
             <hr />
             <Structures />
             <hr />
@@ -276,12 +240,12 @@ console.log(dataHorse)
                     <SlidingButton 
                     SlidingButtonText="Sur place"
                     SlidingButtonID="coachSwitch"
-                    onClick={() => setCoachingHere(!coachingHere)}
+                    onClick={() => setHorseProfile({...horseProfile, horse_coaching_here : !horseProfile.horse_coaching_here}) }
                     />
                     <SlidingButton
                     SlidingButtonText="Intervenant exterieur"
                     SlidingButtonID="extCoachSwitch"
-                    onClick={() => setCoachingHere(!coachingHere)}
+                    onClick={() => setHorseProfile({...horseProfile, horse_external_coach : !horseProfile.horse_external_coach}) }
                     />
                 </div>
                 
@@ -289,7 +253,7 @@ console.log(dataHorse)
                     <SlidingButton 
                     SlidingButtonText="Intervenant exterieur"
                     SlidingButtonID="coachExtSwitch"
-                    onClick={() => setExternalCoach(!externalCoach)}
+                    onClick={() => setHorseProfile({...horseProfile, horse_external_coach : !horseProfile.horse_external_coach}) }
                     />
                 </div>
             </div>
@@ -298,9 +262,9 @@ console.log(dataHorse)
             <hr />
             <div className='frequency_pension'>
                 <Pension
-                    onClick={(e) => setFrequency(e.target.value)}
-                    frequency={frequency}
-                    changeFixedFrequency={() => setFixedFrequency(!fixedFrequency)}
+                    onClick={(e) => setHorseProfile({...horseProfile, horse_riding_frequency : e.target.value})}
+                    frequency={horseProfile.horse_riding_frequency}
+                    changeFixedFrequency={() => setHorseProfile({...horseProfile, horse_fixed_day : !horseProfile.horse_fixed_day}) }
                 />
             </div>
             <hr />
@@ -310,7 +274,7 @@ console.log(dataHorse)
                         <SlidingButton 
                         SlidingButtonText="Le cavalier doit avoir sa selle"
                         SlidingButtonID="materialSwitch"
-                        onClick={() => setHaveMaterialSaddle(!haveMaterialSaddle)}
+                        onClick={() => setHorseProfile({...horseProfile, horse_rider_need_own_saddle : !horseProfile.horse_rider_need_own_saddle}) }
                         />
                 </div>
                 
@@ -322,26 +286,26 @@ console.log(dataHorse)
                     <SlidingButton 
                     SlidingButtonText="Possibilité de partir seul en balade"
                     SlidingButtonID="baladSwitch"
-                    onClick={() => setDoBalad(!doBalad)}
+                    onClick={() => setHorseProfile({...horseProfile, horse_stroll_along : !horseProfile.horse_stroll_along}) }
                     />
                 </div>
             </div>
             <hr />
             
                 <div className='competiton'>
-                <Competition onClick={(e) => setDoCompetition(e.target.value)}/>
+                <Competition 
+                    onClick={(e) => setHorseProfile({...horseProfile, horse_competition : e.target.value})}
+                />
                 </div>
-            
-            
+                
                 <BudgetMensuel 
                     budgetTitle='Budget'
-                    budget={budget} 
-                    currency={currency}
-                    priceTitle={'Prix par mois:'}
-                    onChange={(e) => setBudget(e.target.value)}
-                    onClick={(e) => setCurrency(e.target.value)}/>
-
-
+                    budget={horseProfile.horse_budget} 
+                    currency={horseProfile.horse_budget_currency}
+                    priceTitle={'prix minimum :'}
+                    onChange={(e) => setHorseProfile({...horseProfile, horse_budget : e.target.value}) }
+                    onClick={(e) => setHorseProfile({...horseProfile, horse_currency_budget : e.target.value}) }
+                />
 
             <hr />
             <div className='owner_presentation'>
@@ -358,14 +322,14 @@ console.log(dataHorse)
             <div className='postHorse_idealRider'>
             <h4>Cavalier idéal</h4>
                 <IdealRider 
-                yearPractice={yearPractice}
-                changePractice={(e) => setYearPractice(e.target.value)}
-                gallopLevel={gallopLevel}
-                changeGallop={(e) =>setGallopLevel(e.target.value)}
-                ageRider={ageRider}
-                changeAgeRider={(e) =>setAgeRider(e.target.value)}
-                isVehiculed={()=> setIsVehiculed(!isVehiculed)}
-                hasManaged={()=> setHasManaged(!hasManaged)}
+                yearPractice={horseProfile.idealRiderYearsOfPractice}
+                changePractice={(e) => setHorseProfile({...horseProfile, idealRiderYearsOfPractice : e.target.value}) }
+                gallopLevel={horseProfile.idealRiderGallopLevel}
+                changeGallop={(e) => setHorseProfile({...horseProfile, idealRiderGallopLevel : e.target.value}) }
+                ageRider={horseProfile.idealRiderAge}
+                changeAgeRider={(e) => setHorseProfile({...horseProfile, idealRiderAge : e.target.value}) }
+                isVehiculed={()=> setHorseProfile({...horseProfile, idealRiderIsVehiculed : !horseProfile.idealRiderIsVehiculed}) }
+                hasManaged={()=> setHorseProfile({...horseProfile, idealRiderHasManaged : !horseProfile.idealRiderHasManaged}) }
                 />
             </div>
         </div>
@@ -384,7 +348,8 @@ console.log(dataHorse)
 
         <FloatingButton 
             btnName={'Poster mon annonce'}
-            onClick={(e) => createPostHorse(e)}/>
+            onClick={() => postDataHorse()}
+        />
 
         </>
     )

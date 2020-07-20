@@ -179,7 +179,7 @@ const SearchRider = () => {
             />
             </div>
         </div>
-        <Link to={{pathname: "/result-page"}}>
+        <Link to={{pathname: "/rider/results"}}>
             <FloatingButton 
                 btnName={'Lancer la recherche'} 
                 onClick={async () => { await getRiders()} }

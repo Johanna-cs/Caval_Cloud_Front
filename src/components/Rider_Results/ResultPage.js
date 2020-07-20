@@ -1,9 +1,9 @@
-import React, {useContext, useEffect} from "react"
-import "./Result.css"
-import Header from "../Header_footer/Header"
-import ResultCard from "./ResultCard"
-import Axios from "axios"
-import { Link } from "react-router-dom"
+import React, {useContext, useEffect} from "react";
+import { Link } from "react-router-dom";
+import "./Result.css";
+import Header from "../Header_footer/Header";
+import ResultCard from "./ResultCard";
+import Axios from "axios";
 import { Results_Rider_Context} from '../context/Results_Rider_Context'
 
 

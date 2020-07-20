@@ -46,7 +46,6 @@ useEffect(() => {
     Axios
     .post(`http://localhost:4000/api/riders`, riderProfile)
     .catch((err) => console.log(err))
-    .finally(console.log(riderProfile))
   };
 
   return (
@@ -305,9 +304,12 @@ useEffect(() => {
         <div>
         <Competition 
             onClick={(e) => setRiderProfile({...riderProfile, rider_competition : e.target.value })}
-            />
+        />
         </div>
-          <FloatingButton btnName={"Poster mon annonce"} onClick={() => postDataRider()} />
+        <FloatingButton 
+            btnName={"Poster mon annonce"} 
+            onClick={() => postDataRider()} 
+        />
       </div>
     </>
   );
