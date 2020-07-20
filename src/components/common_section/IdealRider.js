@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import '../postHorse/postHorse.css'
+import React from 'react'
+import './common_section.css'
 import RangeButton from '../common/RangeButton'
 import SlidingButton from '../common/SlidingButton'
 
@@ -10,8 +10,8 @@ const IdealRider = (props) => {
 
 
     return (
-        <div className='postHorse_idealRider'>
-            <h5> Années de pratique : {props.yearPractice} ans</h5>
+        <div className='idealRider'>
+            <h5> Années de pratique <span>(+/- 3ans)</span> :{props.yearPractice} ans</h5>
                     <div className='divRangeSpan'>
                         <span>1 an</span>
                         <RangeButton 

@@ -11,7 +11,7 @@ import Structures from '../common_section/Structures'
 import Localisation from '../common_section/Localisation'
 import usePosition from '../common_section/usePosition';
 import Disciplines from '../common_section/Disciplines'
-import Frequency from '../common_section/Frequency'
+import Pension from '../common_section/Pension'
 import BudgetMensuel from '../common_section/BudgetMensuel'
 import IdealRider from '../common_section/IdealRider'
 import FloatingButton from '../common/FloatingButton'
@@ -82,7 +82,7 @@ const PostHorse = (props) => {
             </label>
             </form>
 
-            </div>
+            
             <div className='horse_age'>
             <h5> Age du cheval : {horseProfile.horse_age} ans</h5>
             <div className='divRangeSpan'>
@@ -110,6 +110,7 @@ const PostHorse = (props) => {
                     />
                     <span>200 cm</span>
                 </div>
+            </div>
             </div>
             <Carousel />
             
@@ -233,7 +234,7 @@ const PostHorse = (props) => {
             <hr />
             <Structures />
             <hr />
-            <div className='searchHorse_coaching'>
+            <div className='coaching'>
                 <h4>Coaching</h4>
                 <div className='coaching'>
                     <SlidingButton 
@@ -254,16 +255,15 @@ const PostHorse = (props) => {
             <hr />
             <Disciplines />
             <hr />
-            <h4>Rythme de la demi-pension</h4>
             <div className='frequency_pension'>
-                <Frequency
+                <Pension
                     onClick={(e) => setHorseProfile({...horseProfile, horse_riding_frequency : e.target.value})}
                     frequency={horseProfile.horse_riding_frequency}
                     changeFixedFrequency={() => setHorseProfile({...horseProfile, horse_fixed_day : !horseProfile.horse_fixed_day}) }
                 />
             </div>
             <hr />
-            <div className='postHorse_materiel'>
+            <div className='materialDiv'>
                 <h4>Materiel</h4>
                 <div className='materiel'>
                         <SlidingButton 
@@ -275,7 +275,7 @@ const PostHorse = (props) => {
                 
             </div>
             <hr />
-            <div className='postHorse_bal'>
+            <div className='baladeDiv'>
                 <h4>Balade</h4>
                 <div className='balade'>
                     <SlidingButton 

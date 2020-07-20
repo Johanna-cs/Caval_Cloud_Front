@@ -74,7 +74,7 @@ const Disciplines = (props) => {
   };
 
   return (
-    <>
+    <div className='disciplines'>
       <h4>Disciplines</h4>
       <div className="disciplineList">
         {disciplines.map((discipline) => (
@@ -86,7 +86,7 @@ const Disciplines = (props) => {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

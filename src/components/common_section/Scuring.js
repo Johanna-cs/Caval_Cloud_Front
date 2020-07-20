@@ -1,9 +1,10 @@
 import React from "react";
 import SelectButton from "../common/SelectButton";
+import './common_section.css'
 
 const Scuring = (props) => {
   return (
-    <div className="searchHorse_ecuries">
+    <div className="scuring">
       <h5>Quel est le type d'écuries ?</h5>
       <div className="scuringList">
         <SelectButton

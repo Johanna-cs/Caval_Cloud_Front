@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import SelectButton from "../common/SelectButton";
+import React from "react";
 import RadioCheck from "../common/RadioCheck";
 import RangeButton from "../common/RangeButton";
 import RadioButton from "../common/RadioButton";
 import Frequency from "./Frequency";
+import './common_section.css'
 
 const IdealOwner = (props) => {
 
 
   return (
     <>
-      <div className="searchHorse_idealOwner">
+      <div className="idealOwner">
         <div className="owner_age">
           <h5> Age <span>(+/- 3ans)</span>: {props.ageOwner} ans</h5>
           <div className='divRangeSpan'>
