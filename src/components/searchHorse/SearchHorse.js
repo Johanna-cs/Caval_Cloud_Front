@@ -118,11 +118,12 @@ const SearchHorse = (props) => {
                     changeFixedFrequency={() => setFixedFrequency(!fixedFrequency)}
                 />
             </div>
+            <hr />
             <div className='searchHorse_bal'>
                 <h4>Balade</h4>
                 <div className='balade'>
                     <SlidingButton 
-                    SlidingButtonText="J'aimerais pouvoir partir seul en balade"
+                    SlidingButtonText="Pouvoir partir seul en balade"
                     SlidingButtonID="baladSwitch"
                     onClick={() => setDoBalad(!doBalad)}
                     />
@@ -150,7 +151,7 @@ const SearchHorse = (props) => {
                     horseWork={horseWork}
                 />
             
-            <h4>Ecuries et moniteur </h4>
+            <h4>Type d'écurie</h4>
                 <Scuring
                     scuringType={scuringType}
                     onClick={(e) => setScuringType(e.target.value)}/>

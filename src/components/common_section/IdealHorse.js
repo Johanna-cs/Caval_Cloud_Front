@@ -12,7 +12,7 @@ const IdealHorse = (props) => {
 
         <div className='idealHorse'>
             <div className='horse_size'>
-                <h5> Taille : {props.horseSize} cm</h5>
+                <h5> Taille en cm <span>(+ ou - 5cm)</span>: {props.horseSize}</h5>
                 <div className='divRangeSpan'>
                     <span>80cm</span>
                     <RangeButton 
@@ -27,7 +27,7 @@ const IdealHorse = (props) => {
             </div>
                 <hr />
             <div className='horse_temper'>
-                    <h5> Tempérament :</h5>
+                    <h5> Tempérament<span>(plusieurs choix possibles)</span></h5>
                     <div className='select_temper'>
                     <RadioCheck 
                         RadioCheckText1='Calme'
@@ -42,7 +42,7 @@ const IdealHorse = (props) => {
             </div>
                 <hr />
             <div className='horse_caracter'>
-                    <h5> Caractère :</h5>
+                    <h5> Caractère<span>(plusieurs choix possibles)</span></h5>
                     <div className='select_caracter'>
                     <RadioCheck 
                         RadioCheckText1={'Affectueux'}
@@ -57,7 +57,7 @@ const IdealHorse = (props) => {
             </div>
                 <hr />
             <div className='horse_body'>
-                    <h5> Physique :</h5>
+                    <h5> Physique<span>(plusieurs choix possibles)</span></h5>
                     <div className='select_body'>
                     <RadioCheck 
                         RadioCheckText1={'Fin'}
@@ -72,7 +72,7 @@ const IdealHorse = (props) => {
             </div>
                 <hr />
             <div className='horse_age'>
-            <h5> Age du cheval <span>(+/- 3ans)</span> : {props.ageHorse} ans</h5>
+            <h5> Age du cheval <span>(+ ou - 2ans)</span>: {props.ageHorse}</h5>
             <div className='divRangeSpan'>
                     <span>1 an</span>
                     <RangeButton 

@@ -10,14 +10,13 @@ const Structures = () => {
         <div className='structures'>
             <h4>Structure(s) disponible(s) </h4>
             <div className='structureList'>
-               
-                <Checkbox CheckboxText="Rond de longe" />
                 <Checkbox CheckboxText="Carrière" />
-                <Checkbox CheckboxText="Manège à couvert" />
-                <Checkbox CheckboxText="Champs" />
+                <Checkbox CheckboxText="Manège couvert" />
+                <Checkbox CheckboxText="Rond de longe" />
                 <Checkbox CheckboxText="Piste de trotting" />
+                <Checkbox CheckboxText="Cross" />
                 <Checkbox CheckboxText="Chemins de balade" />
-                    
+                <Checkbox CheckboxText="Champs" />
                
             </div>
         </div>

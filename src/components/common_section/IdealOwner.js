@@ -12,7 +12,7 @@ const IdealOwner = (props) => {
     <>
       <div className="idealOwner">
         <div className="owner_age">
-          <h5> Age <span>(+/- 3ans)</span>: {props.ageOwner} ans</h5>
+          <h5> Age <span>(+ ou - 3ans)</span>: {props.ageOwner} ans</h5>
           <div className='divRangeSpan'>
           <span>10 ans</span>
           <RangeButton
@@ -56,6 +56,14 @@ const IdealOwner = (props) => {
         <div className="rider_horseWork">
           <h5> Travail du cheval :</h5>
           <div className="select_horseWork">
+          <RadioButton
+              radioButtonText="Normal"
+              radioButtonId="normal"
+              radioButtonName="horseWork"
+              radioButtonValue="Normal"
+              onClick={props.selectHorseWork}
+              horseWork={props.horseWork}
+            />
             <RadioButton
               radioButtonText="Ouvert à la nouveauté"
               radioButtonId="openToNew"
@@ -64,16 +72,6 @@ const IdealOwner = (props) => {
               onClick={props.selectHorseWork}
               horseWork={props.horseWork}
             />
-
-            <RadioButton
-              radioButtonText="Normal"
-              radioButtonId="normal"
-              radioButtonName="horseWork"
-              radioButtonValue="Normal"
-              onClick={props.selectHorseWork}
-              horseWork={props.horseWork}
-            />
-
             <RadioButton
               radioButtonText="Cadré"
               radioButtonId="cadre"

@@ -39,7 +39,7 @@ const SearchRider = () => {
     // Disciplines :
     const [disciplines, setDisciplines] = useState([])
     // Budget mensuel :
-    const [budget, setBudget] = useState(0)
+    const [budget, setBudget] = useState('')
     // Choix de la devise :
     const [currency, setCurrency] = useState('')
     // Fréquence de la demi-pension :
@@ -130,7 +130,7 @@ const SearchRider = () => {
                     onClick={() => setIsVehiculed(!isVehiculed)}
                 />
                 <SlidingButton
-                    SlidingButtonText='A déjà eu un cheval sous sa responsabilité' 
+                    SlidingButtonText='Le cavalier a déjà eu un cheval sous sa responsabilité' 
                     SlidingButtonID='experience' 
                     onClick={() => setHasManaged(!hasManaged)}
                     />
@@ -144,7 +144,7 @@ const SearchRider = () => {
                 />
             <hr />
                 <BudgetMensuel 
-                budgetTitle='Budget'
+                    budgetTitle='Budget'
                     budget={budget} 
                     currency={currency}
                     priceTitle={'Prix maximum par mois :'}

@@ -43,7 +43,7 @@ const BudgetMensuel = (props) => {
               
             />
           </label>
-          <h5>Devise:</h5>
+          <h5>Devise :</h5>
           <RadioButton
             radioButtonText="Euros - €"
             radioButtonName="devise"

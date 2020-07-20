@@ -54,7 +54,7 @@ const PostHorse = (props) => {
         getLocation()
     }, )
 // Check if subscribe successfull or not
-    const [success, setSuccess] = useState(null);
+    // const [success, setSuccess] = useState(null);
 
     // const createPostHorse = (e) => {
     //     e.preventDefault()
@@ -249,13 +249,6 @@ const PostHorse = (props) => {
                     />
                 </div>
                 
-                <div className='coaching'>
-                    <SlidingButton 
-                    SlidingButtonText="Intervenant exterieur"
-                    SlidingButtonID="coachExtSwitch"
-                    onClick={() => setHorseProfile({...horseProfile, horse_external_coach : !horseProfile.horse_external_coach}) }
-                    />
-                </div>
             </div>
             <hr />
             <Disciplines />
@@ -302,7 +295,7 @@ const PostHorse = (props) => {
                     budgetTitle='Budget'
                     budget={horseProfile.horse_budget} 
                     currency={horseProfile.horse_budget_currency}
-                    priceTitle={'prix minimum :'}
+                    priceTitle={'Prix par mois :'}
                     onChange={(e) => setHorseProfile({...horseProfile, horse_budget : e.target.value}) }
                     onClick={(e) => setHorseProfile({...horseProfile, horse_currency_budget : e.target.value}) }
                 />

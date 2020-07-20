@@ -20,8 +20,26 @@ const HebergementHorse = (props) => {
           onClick={props.onClick}
         />
         <SelectButton
+          radioSelBtnId="Boxe + Paddock"
+          radioSelBtnValue="Box+Paddock"
+          radioSelBtnName="boxeType"
+          onClick={props.onClick}
+        />
+        <SelectButton
           radioSelBtnId="Stabulation"
           radioSelBtnValue="Stabulation"
+          radioSelBtnName="boxeType"
+          onClick={props.onClick}
+        />
+        <SelectButton
+          radioSelBtnId="Pâture"
+          radioSelBtnValue="Pature"
+          radioSelBtnName="boxeType"
+          onClick={props.onClick}
+        />
+        <SelectButton
+          radioSelBtnId="Autre"
+          radioSelBtnValue="Paddock"
           radioSelBtnName="boxeType"
           onClick={props.onClick}
         />
