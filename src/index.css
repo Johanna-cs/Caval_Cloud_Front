@@ -44,3 +44,8 @@ p {
 #root {
   width: 100%;
 }
+
+hr {
+  border-top: 1em thin;
+  width: 100%;
+}
