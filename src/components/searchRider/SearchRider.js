@@ -156,7 +156,7 @@ const SearchRider = () => {
                     onClick={(e) => setDoCompetition(e.target.value)}
             />
         </div>
-        <Link to={{pathname: "/result-page"}}>
+        <Link to={{pathname: "/rider/results"}}>
             <FloatingButton 
                 btnName={'Lancer la recherche'} 
                 onClick={async () => { await getRiders()} }

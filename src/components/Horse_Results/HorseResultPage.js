@@ -1,27 +1,28 @@
 import React, {useState, useContext, useEffect} from "react";
 import { Link } from "react-router-dom";
-import "./Result.css";
+import "./HorseResult.css";
 import Header from "../Header_footer/Header";
-import ResultCard from "./ResultCard";
+import HorseResultCard from "../Horse_Results/HorseResultCard";
 import Axios from "axios";
-import { Results_Rider_Context} from '../context/Results_Rider_Context'
+import { Results_Horse_Context} from '../context/Results_Horse_Context'
 
 
-function ResultPage() {
+const HorseResultPage = () => {
 
-  const {resultsRiders, setResultsRiders} = useContext(Results_Rider_Context)
+  const {resultsHorses, setResultsHorses} = useContext(Results_Horse_Context)
 
 
-  const getRiders = () => {
+  const getHorses = () => {
     Axios
-    .get(`http://localhost:4000/api/riders`)
-    .then(res => setResultsRiders(res.data))
+    .get(`http://localhost:4000/api/horses/`)
+    .then(res => setResultsHorses(res.data))
     .catch(err=> console.error(err))
   }
 
   useEffect(() => {
-    getRiders()
-}, [])
+    getHorses()
+  }, 
+  [])
   
 
   return (
@@ -29,17 +30,20 @@ function ResultPage() {
       <Header className="header" title="Résultats de la recherche" />
       <div className="Result-Page">
         <div className="Result-filterbar">
-        <Link to={{ pathname: `/search-rider`}} >
+        <Link to={{
+            pathname: `/search-horse`,
+          }}
+        >
           <button className="Result-filterbar-button">
             Retour à la recherche
           </button>
         </Link>
         </div>
-      {resultsRiders.map(e=> 
-        <ResultCard 
+      {resultsHorses.map(e=> 
+        <HorseResultCard 
           fullResult={e} 
-          firstname={e.rider_firstname}
-          rider_ID={e.rider_ID}
+          horse_name={e.horse_name}
+          horse_ID={e.horse_ID}
         />
         )
       }
@@ -49,4 +53,4 @@ function ResultPage() {
   );
 }
 
-export default ResultPage;
+export default HorseResultPage;

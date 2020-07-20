@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
+import { Link } from 'react-router-dom'
 import './searchHorse.css'
 import Header from '../Header_footer/Header';
 import Localisation from '../common_section/Localisation'
@@ -14,6 +15,8 @@ import SlidingButton from '../common/SlidingButton'
 import Axios from 'axios'
 import usePosition from '../common_section/usePosition';
 import Competition from '../common_section/Competition';
+import { Results_Horse_Context} from '../../components/context/Results_Horse_Context'
+
 
 
 
@@ -65,6 +68,10 @@ const SearchHorse = (props) => {
 
     // Concours :
     const [doCompetition, setDoCompetition] = useState('')
+
+    // Résultats de la recherche de riders :
+    const { resultsHorses, setResultsHorses } = useContext(Results_Horse_Context)
+
     
 
     const getLocation = () => {
@@ -73,6 +80,7 @@ const SearchHorse = (props) => {
         .then(res => setCityLocalisation(res.data.address.municipality))
         .catch(err => console.log(err))
     }
+
 
     useEffect(() => {
         getLocation()
@@ -176,7 +184,12 @@ const SearchHorse = (props) => {
                 onClick={(e) => setDoCompetition(e.target.value)}/>
             </div>    
             </div>
-            <FloatingButton btnName={'Lancer la recherche'}/>
+            <Link to={{pathname: "/horse/results"}}>
+            <FloatingButton 
+                btnName={'Lancer la recherche'} 
+                // onClick={async () => { await getRiders()} }
+            />
+        </Link>
         
     </>
     )
