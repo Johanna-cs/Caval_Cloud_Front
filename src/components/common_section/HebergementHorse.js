@@ -5,7 +5,7 @@ import './common_section.css'
 const HebergementHorse = (props) => {
   return (
     <div className="hebergement">
-      <h5>Comment est hebergé le cheval ? </h5>
+      <h5>Type d'hébergement </h5>
       <div className="hebergtList">
         <SelectButton
           radioSelBtnId="Boxe"

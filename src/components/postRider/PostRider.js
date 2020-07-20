@@ -57,7 +57,7 @@ useEffect(() => {
           <img className="postRider_logo" src={logo} alt="logo" />
           <div className="postRider_forms">
             <p>
-              {riderProfile.rider_firstname} <span>{riderProfile.rider_age} ans</span>
+              {riderProfile.rider_firstname}
             </p>
             <p>
               {riderProfile.rider_selfWord1} {riderProfile.rider_selfWord2}{" "}
@@ -75,15 +75,8 @@ useEffect(() => {
             perimeter={perimeter}
             />
         </div>
-        <div>
-          <h4>Equitation :</h4>
-          <p>
-            {riderProfile.rider_ridingWord1} {riderProfile.rider_ridingWord2}{" "}
-            {riderProfile.rider_ridingWord3}
-          </p>
-        </div>
-        <div className="postRider_message">
-          <h4>Message : </h4>
+
+        <div className="postRider_pres">
           <Link
             to={{
               pathname: "/PostRiderPresentation",
@@ -98,9 +91,10 @@ useEffect(() => {
         <hr />
         <div>
           <BudgetMensuel
+            budgetTitle='Budget'
             budget={riderProfile.rider_budget}
             currency={riderProfile.rider_currency_budget}
-            priceTitle={'prix minimum :'}
+            priceTitle={'Prix maximum par mois :'}
             onChange={(e) => setRiderProfile({...riderProfile, rider_budget : e.target.value })}
             onClick={(e) => setRiderProfile({...riderProfile, rider_currency_budget : e.target.value })}
           />
@@ -124,9 +118,9 @@ useEffect(() => {
         </div>
         <hr />
         <div>
-          <h4>Niveau</h4>
-          <h5> Années de pratique : {riderProfile.yearsOfPractice} ans</h5>
-          <p>Nombre d'années de pratique cumulées</p>
+          <h4>Mon niveau</h4>
+          <h5> Nombre d'années de pratique : {riderProfile.yearsOfPractice}</h5>
+          
                     <div className='divRangeSpan'>
                         <span>1 an</span>
                         <RangeButton 
@@ -154,9 +148,7 @@ useEffect(() => {
         <div className="postRider-disc">
           <Disciplines />
         </div>
-        <hr />
         <div>
-          <h4>Autre</h4>
           <SlidingButton
             SlidingButtonText="Je suis ouvert à pratiquer d'autres disciplines"
             SlidingButtonID="otherSwitch"

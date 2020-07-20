@@ -8,7 +8,7 @@ const Structures = () => {
         
         
         <div className='structures'>
-            <h4>Structure à disposition </h4>
+            <h4>Structure(s) disponible(s) </h4>
             <div className='structureList'>
                
                 <Checkbox CheckboxText="Rond de longe" />

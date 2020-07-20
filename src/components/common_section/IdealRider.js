@@ -11,7 +11,7 @@ const IdealRider = (props) => {
 
     return (
         <div className='idealRider'>
-            <h5> Années de pratique <span>(+/- 3ans)</span> :{props.yearPractice} ans</h5>
+            <h5> Années de pratique minimum :{props.yearPractice}</h5>
                     <div className='divRangeSpan'>
                         <span>1 an</span>
                         <RangeButton 
@@ -22,8 +22,8 @@ const IdealRider = (props) => {
                         <span>50 ans</span>
                     </div>
                 
-                <hr />
-            <h5> Niveau de Galop : {props.gallopLevel} </h5>
+                <hr /> 
+            <h5> Niveau de Galop minimum : {props.gallopLevel} </h5>
                 <div className='divRangeSpan'>
                     <span>0</span>                   
                     <RangeButton 
@@ -35,7 +35,7 @@ const IdealRider = (props) => {
                     <span>7</span>
                 </div>
                 <hr />
-                <h5> Age du cavalier : {props.ageRider} ans</h5>
+                <h5> Age du cavalier <span>(+/- 2ans)</span>: {props.ageRider}</h5>
                     <div className='divRangeSpan'>
                         <span>5 ans</span>
                         <RangeButton 

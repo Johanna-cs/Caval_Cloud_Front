@@ -22,9 +22,9 @@ const OwnerPres = (props) => {
 
     return (
         <div>
-        <Header className='header' title='A PROPOS DE VOUS' />
+        <Header className='header' title='A propos de moi' />
         <div className='OwnerPres_page'>
-            <h4> A propos de vous </h4>
+            
             <form className="postHorse-form">
           <label>
             <input
@@ -84,10 +84,9 @@ const OwnerPres = (props) => {
             <div className='owner_communication'>
                     <div className='select_communication'>
                     <Frequency 
-                    frequencyTitle='Fréquence de communication :'
+                    frequencyTitle='A quelle fréquence aimez-vous communiquer avec le propriétaire ? '
                     onClick={(e) => setFrequency(e.target.value)}
-                    frequency={frequency}
-                    changeFixedFrequency={() => setFixedFrequency(!fixedFrequency)}/>
+                    />
                     
                 </div>
              </div>
@@ -111,7 +110,7 @@ const OwnerPres = (props) => {
                         horseWork={horseWork}/>
                     </div>
             </div>
-            <hr />
+            
             <h5>Message :</h5>
                 <form className="postHorse_msg">
                 <label>

@@ -4,6 +4,7 @@ import Header from '../Header_footer/Header';
 import Localisation from '../common_section/Localisation'
 import Disciplines from '../common_section/Disciplines'
 import Structures from '../common_section/Structures'
+import Pension from '../common_section/Pension'
 import IdealHorse from '../common_section/IdealHorse'
 import IdealOwner from '../common_section/IdealOwner'
 import BudgetMensuel from '../common_section/BudgetMensuel'
@@ -80,18 +81,21 @@ const SearchHorse = (props) => {
 
     return (
         <>
-        <Header className='header' title='Chercher un cheval'/>
+        <Header className='header' title='Chercher un équidé'/>
         <div className='searchHorse_page'>
                 <Localisation 
+                locTitle='Où ?'
                 value={cityLocalisation}
                 onChange={(e) => setCityLocalisation(e.target.value)}
                 definePerimeter={(e) => setPerimeter(e.target.value)}
                 perimeter={perimeter} 
                 />
             <hr />
-                <BudgetMensuel budget={budget} 
+                <BudgetMensuel 
+                    budgetTitle='Budget'
+                    budget={budget} 
                     currency={currency}
-                    priceTitle={'prix maximum :'}
+                    priceTitle={'Prix maximum par mois :'}
                     onChange={(e) => setBudget(e.target.value)}
                     onClick={(e) => setCurrency(e.target.value)}/>
             
@@ -99,6 +103,13 @@ const SearchHorse = (props) => {
             <hr />
                 <Structures />
             <hr />
+            <div className='frequency_pension'>
+                <Pension
+                    onClick={(e) => setFrequency(e.target.value)}
+                    frequency={frequency}
+                    changeFixedFrequency={() => setFixedFrequency(!fixedFrequency)}
+                />
+            </div>
             <div className='searchHorse_bal'>
                 <h4>Balade</h4>
                 <div className='balade'>

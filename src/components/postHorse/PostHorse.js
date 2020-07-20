@@ -262,7 +262,7 @@ console.log(dataHorse)
                     </div>
             </div>
             <hr />
-            <h4>Ecuries et moniteur </h4>
+            <h4>Type d'écurie </h4>
             <Scuring
                     onClick={(e) => setScuringType(e.target.value)} />
             <HebergementHorse 
@@ -276,6 +276,11 @@ console.log(dataHorse)
                     <SlidingButton 
                     SlidingButtonText="Sur place"
                     SlidingButtonID="coachSwitch"
+                    onClick={() => setCoachingHere(!coachingHere)}
+                    />
+                    <SlidingButton
+                    SlidingButtonText="Intervenant exterieur"
+                    SlidingButtonID="extCoachSwitch"
                     onClick={() => setCoachingHere(!coachingHere)}
                     />
                 </div>
@@ -328,9 +333,11 @@ console.log(dataHorse)
                 </div>
             
             
-                <BudgetMensuel budget={budget} 
+                <BudgetMensuel 
+                    budgetTitle='Budget'
+                    budget={budget} 
                     currency={currency}
-                    priceTitle={'prix minimum :'}
+                    priceTitle={'Prix par mois:'}
                     onChange={(e) => setBudget(e.target.value)}
                     onClick={(e) => setCurrency(e.target.value)}/>
 
@@ -338,7 +345,7 @@ console.log(dataHorse)
 
             <hr />
             <div className='owner_presentation'>
-                <h4> A propos de vous </h4> 
+                <h4> A propos de moi </h4> 
                 <div>
                     <Link to="/post-horse-owner" style={{ textDecoration: "none" }}>
                         <button className="postHorse_edit-button">
