@@ -11,7 +11,7 @@ import Structures from '../common_section/Structures'
 import Localisation from '../common_section/Localisation'
 import usePosition from '../common_section/usePosition';
 import Disciplines from '../common_section/Disciplines'
-import Frequency from '../common_section/Frequency'
+import Pension from '../common_section/Pension'
 import BudgetMensuel from '../common_section/BudgetMensuel'
 import IdealRider from '../common_section/IdealRider'
 import FloatingButton from '../common/FloatingButton'
@@ -291,9 +291,8 @@ console.log(dataHorse)
             <hr />
             <Disciplines />
             <hr />
-            <h4>Rythme de la demi-pension</h4>
             <div className='frequency_pension'>
-                <Frequency
+                <Pension
                     onClick={(e) => setFrequency(e.target.value)}
                     frequency={frequency}
                     changeFixedFrequency={() => setFixedFrequency(!fixedFrequency)}

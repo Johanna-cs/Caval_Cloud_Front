@@ -10,7 +10,7 @@ import logo from "../SVG-icons/cavalcloud-logo.png"
 import FloatingButton from "../common/FloatingButton"
 import Disciplines from "../common_section/Disciplines"
 import BudgetMensuel from "../common_section/BudgetMensuel"
-import Frequency from "../common_section/Frequency"
+import Pension from "../common_section/Pension"
 import Localisation from '../common_section/Localisation'
 import usePosition from '../common_section/usePosition';
 import Axios from "axios"
@@ -165,7 +165,7 @@ useEffect(() => {
         </div>
         <hr />
         <div>
-          <Frequency
+          <Pension
             frequencyTitle="Rythme de la demi-pension"
             onClick={(e) => setRiderProfile({...riderProfile, rider_riding_frequency : e.target.value })}
             frequency={riderProfile.rider_riding_frequency}

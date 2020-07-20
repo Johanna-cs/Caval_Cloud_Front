@@ -85,11 +85,8 @@ const ResultAnnonce = (props) => {
         <hr />
         <div className="postRider-disc">
           <h4>Discipline</h4>
-        </div>
-        <hr />
-        <div>
-          <h4>Autre</h4>
-          <p>{dataRider.rider_agree_other_discipline}</p>
+
+          <p>Ouvert à d'autres disciplines : {dataRider.rider_agree_other_discipline}</p>
         </div>
         <hr />
         <div>

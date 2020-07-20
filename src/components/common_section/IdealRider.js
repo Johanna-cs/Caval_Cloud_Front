@@ -11,7 +11,7 @@ const IdealRider = (props) => {
 
     return (
         <div className='idealRider'>
-            <h5> Années de pratique : {props.yearPractice} ans</h5>
+            <h5> Années de pratique <span>(+/- 3ans)</span> :{props.yearPractice} ans</h5>
                     <div className='divRangeSpan'>
                         <span>1 an</span>
                         <RangeButton 
