@@ -163,7 +163,6 @@ console.log(dataHorse)
             </div>
             </div>
             <Carousel />
-            
             <div className='localisation_horse'>
             <h5>Où se trouve le cheval ? </h5>
                 <Localisation 
