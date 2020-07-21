@@ -17,12 +17,12 @@ const IdealHorse = (props) => {
                     <span>80cm</span>
                     <RangeButton 
                         min='80'
-                        max='200'
+                        max='210'
                         radioRangeBtnId='horseSize'
                         onChange={props.changeSize}
 
                         />
-                    <span>200cm</span>
+                    <span>210cm</span>
                 </div>
             </div>
                 <hr />

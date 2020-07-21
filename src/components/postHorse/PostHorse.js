@@ -104,11 +104,11 @@ const PostHorse = (props) => {
                     <span>100 cm</span>
                     <RangeButton 
                         min='80'
-                        max='200'
+                        max='210'
                         radioRangeBtnId='horseSize'
                         onChange={(e) => setHorseProfile({...horseProfile, horse_height : e.target.value}) }
                     />
-                    <span>200 cm</span>
+                    <span>210 cm</span>
                 </div>
             </div>
             </div>

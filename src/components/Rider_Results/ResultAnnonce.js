@@ -1,6 +1,5 @@
 import React, { useState, useEffect} from "react"
 import "./Result.css"
-import Header from "../Header_footer/Header"
 import Carousel from "../common/Carousel"
 import logo from "../SVG-icons/cavalcloud-logo.png"
 import { Link } from "react-router-dom"
