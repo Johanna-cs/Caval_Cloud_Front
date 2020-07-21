@@ -50,11 +50,12 @@ const ResultCard = (props) => {
           <h7 id="resultName">{props.firstname}</h7>
           <img
             className="resultHeart"
-            onClick={ () => {
-                setFavoriteIcon(favoriteIcon === heart ? heartFull : heart)
-            }}
-            src={favoriteIcon}
-            alt={favoriteIcon}
+            onClick={
+              (favoriteCard(),
+              () => setFavorite(favorite === heart ? heartFull : heart))
+            }
+            src={(props.src||favorite)}
+            alt="favoris"
           />
         </div>
       </div>

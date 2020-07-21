@@ -47,9 +47,9 @@ const Pension = (props) => {
             />
 
           </div>
-          <h5>Régularité :</h5>
+          <h5>Jours de venue</h5>
           <SlidingButton
-            SlidingButtonText="Jours fixes"
+            SlidingButtonText="Les mêmes jours d'une semaine sur l'autre"
             SlidingButtonID="fixedDaysSwitch"
             onClick={props.changeFixedFrequency}
           />

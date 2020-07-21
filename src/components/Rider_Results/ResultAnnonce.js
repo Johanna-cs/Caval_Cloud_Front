@@ -21,7 +21,7 @@ const ResultAnnonce = (props) => {
       .then(res => setDataRider(res.data[0]))
       .catch(err=> console.error(err))
     }
-    const changeBool = dataRider.value === true ? 'oui' : 'non'
+    const changeBool = () => dataRider.value === true ? 'oui' : 'non'
     // When a result is displayed, the function getRiderInformation starts first in order to query BDD
     useEffect(() => {
       getRiderInformation()

@@ -65,7 +65,7 @@ const HorseResultCard = (props) => {
           />
         </div>
       </div>
-      <hr />
+    
     </>
   );
 };

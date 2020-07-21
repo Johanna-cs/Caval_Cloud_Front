@@ -5,7 +5,7 @@ import './common_section.css'
 const Scuring = (props) => {
   return (
     <div className="scuring">
-      <h5>Quel est le type d'écuries ?</h5>
+      <h5>Plusieurs choix possibles</h5>
       <div className="scuringList">
         <SelectButton
           radioSelBtnId="Poney Club"

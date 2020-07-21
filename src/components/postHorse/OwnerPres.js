@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import './postHorse.css'
 import { Link } from "react-router-dom";
 import FloatingButton from "../common/FloatingButton";
@@ -18,9 +18,9 @@ const OwnerPres = (props) => {
 
     return (
         <div>
-        <Header className='header' title='A PROPOS DE VOUS' />
+        <Header className='header' title='A propos de moi' />
         <div className='OwnerPres_page'>
-            <h4> A propos de vous </h4>
+            
             <form className="postHorse-form">
           <label>
             <input
@@ -84,7 +84,7 @@ const OwnerPres = (props) => {
             <div className='owner_communication'>
                     <div className='select_communication'>
                     <Frequency 
-                        frequencyTitle='Fréquence de communication :'
+                        frequencyTitle='A quelle fréquence aimez-vous communiquer avec le propriétaire ? '
                         onClick={(e) => setHorseProfile({...horseProfile, horse_owner_communication_frequency : e.target.value}) }
                         frequency={horseProfile.horse_owner_communication_frequency}
                         changeFixedFrequency={() => setHorseProfile({...horseProfile, horse_owner_communication_fixed_day : !horseProfile.horse_owner_communication_fixed_day}) }
@@ -118,7 +118,7 @@ const OwnerPres = (props) => {
                         />
                     </div>
             </div>
-            <hr />
+            
             <h5>Message :</h5>
                 <form className="postHorse_msg">
                 <label>

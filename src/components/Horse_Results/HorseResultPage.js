@@ -28,8 +28,8 @@ const HorseResultPage = () => {
   return (
     <>
       <Header className="header" title="Résultats de la recherche" />
-      <div className="Result-Page">
-        <div className="Result-filterbar">
+      
+        <div className="Result-filterbarTop">
         <Link to={{
             pathname: `/search-horse`,
           }}
@@ -39,6 +39,7 @@ const HorseResultPage = () => {
           </button>
         </Link>
         </div>
+      <div className="Result-Page">
       {resultsHorses.map(e=> 
         <HorseResultCard 
           fullResult={e} 
