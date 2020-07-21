@@ -13,14 +13,14 @@ const MyProfile = (props) => {
     mail: "fanny.horsini@gmail.com",
     phone: "0606060606",
     password: "123456",
-    photo: { url },
+    avatar: { url },
   });
 
   const [modifiedProfile, setModifiedProfile] = useState({
     mail: profile.mail,
     password: profile.password,
     phone: profile.phone,
-    photo: { url },
+    avatar: { url },
   });
 
   const [typedPW, setTypedPW] = useState("");
@@ -40,7 +40,7 @@ const MyProfile = (props) => {
       mail: modifiedProfile.mail,
       password: modifiedProfile.password,
       phone: modifiedProfile.phone,
-      photo: { url },
+      avatar: { url },
     });
     setModif(!modif);
   };

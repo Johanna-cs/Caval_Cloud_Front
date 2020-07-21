@@ -119,7 +119,7 @@ const ResultAnnonce = (props) => {
       </div>
       <div className="Result-filterbarBot">
         <Link to ={{
-            pathname: "/result-page"
+            pathname: "/rider/results"
           }}>
           <button className="Result-filterbar-button">
             Retour aux résultats

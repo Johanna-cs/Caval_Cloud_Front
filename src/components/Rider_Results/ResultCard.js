@@ -10,17 +10,21 @@ const ResultCard = (props) => {
   // get the correct riderID in order to pass it to the ResultAnnonce component
   const riderID = props.rider_ID
   
-  const [favorite, setFavorite] = useState(heart);
+  const [favoriteIcon, setFavoriteIcon] = useState(heart);
+
+  const [isFavorite, setIsFavorite] = useState(null)
 
   const favoriteCard = () => {
-    if (favorite === { heartFull }) {
-      Axios.post("http://localhost:3010/api/favorite", favorite).catch((err) =>
-        console.error(err)
+    if (favoriteIcon === { heartFull }) {
+      Axios
+      .post(`http://localhost:4000/api/favorite`)
+      .catch((err) => console.error(err)
       );
     }
-    else if (favorite === { heart }) {
-      Axios.delete("http://localhost:3010/api/favorite", favorite).catch((err) =>
-        console.error(err)
+    else if (favoriteIcon === { heart }) {
+      Axios
+      .delete(`http://localhost:3010/api/favorite`)
+      .catch((err) => console.error(err)
       );
     }
   };
@@ -48,9 +52,9 @@ const ResultCard = (props) => {
             className="resultHeart"
             onClick={
               (favoriteCard(),
-              () => setFavorite(favorite === heart ? heartFull : heart))
+              () => setFavoriteIcon(favoriteIcon === heart ? heartFull : heart))
             }
-            src={favorite}
+            src={(props.src||favoriteIcon)}
             alt="favoris"
           />
         </div>
