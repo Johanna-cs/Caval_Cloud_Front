@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useReducer} from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import Checkbox from "../common/Checkbox";
 import "./common_section.css";
-
-
 
 const initialDiscipline = [
   {
@@ -71,10 +69,13 @@ const Disciplines = (props) => {
       type: discipline.checked ? "REMOVE" : "ADD",
       id: discipline.id,
     });
+    console.log(useReducer);
   };
 
+  const passDiscipline = disciplineReducer;
+
   return (
-    <div className='disciplines'>
+    <div className="disciplines">
       <h4>Discipline(s) souhaitée(s)</h4>
       <div className="disciplineList">
         {disciplines.map((discipline) => (
@@ -90,4 +91,4 @@ const Disciplines = (props) => {
   );
 };
 
-export default Disciplines
+export default Disciplines;

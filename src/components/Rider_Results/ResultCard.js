@@ -50,7 +50,7 @@ const ResultCard = (props) => {
               (favoriteCard(),
               () => setFavorite(favorite === heart ? heartFull : heart))
             }
-            src={favorite}
+            src={(props.src||favorite)}
             alt="favoris"
           />
         </div>
