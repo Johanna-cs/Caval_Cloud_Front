@@ -1,4 +1,5 @@
-import React, {useState, useContext, useEffect} from "react";
+import React, {useContext, useEffect} from "react";
+import { Link } from "react-router-dom";
 import "./Result.css";
 import Header from "../Header_footer/Header";
 import ResultCard from "./ResultCard";
@@ -26,12 +27,17 @@ function ResultPage() {
   return (
     <>
       <Header className="header" title="Résultats de la recherche" />
-      <div className="Result-Page">
-        <div className="Result-filterbar">
+      
+        <div className="Result-filterbarTop">
+          <Link to ={{
+            pathname : '/search-rider'
+          }}>
           <button className="Result-filterbar-button">
             Retour à la recherche
           </button>
+          </Link>
         </div>
+        <div className="Result-Page">
       {resultsRiders.map(e=> 
         <ResultCard 
           fullResult={e} 

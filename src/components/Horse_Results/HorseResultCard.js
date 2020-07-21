@@ -1,14 +1,14 @@
-import React, { useState} from "react"
-import { Link } from "react-router-dom"
-import "./Result.css"
-import Axios from "axios"
-import heart from "../SVG-icons/coeur-hors-selection.svg"
-import heartFull from "../SVG-icons/coeur-selection.svg"
+import React, { useState, useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./HorseResult.css";
+import Axios from "axios";
+import heart from "../SVG-icons/coeur-hors-selection.svg";
+import heartFull from "../SVG-icons/coeur-selection.svg";
 
-const ResultCard = (props) => {
+const HorseResultCard = (props) => {
   
   // get the correct riderID in order to pass it to the ResultAnnonce component
-  const riderID = props.rider_ID
+  const horseID = props.horse_ID
   
   const [favorite, setFavorite] = useState(heart);
 
@@ -30,7 +30,7 @@ const ResultCard = (props) => {
       <div className="resultCard">
         <Link
           to={{
-            pathname: `/rider/result-annonce/${riderID}`,
+            pathname: `/horse/result-annonce/${horseID}`,
           }}
         >
           <div className="resultCard-container">
@@ -43,7 +43,7 @@ const ResultCard = (props) => {
           </div>
         </Link>
         <div className="resultDetails">
-          <h7 id="resultName">{props.firstname}</h7>
+          <h7 id="resultName">{props.horse_name}</h7>
           <img
             className="resultHeart"
             onClick={
@@ -55,8 +55,9 @@ const ResultCard = (props) => {
           />
         </div>
       </div>
+    
     </>
   );
 };
 
-export default ResultCard;
+export default HorseResultCard;

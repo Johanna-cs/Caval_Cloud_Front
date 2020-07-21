@@ -1,9 +1,11 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
+import { Link } from 'react-router-dom'
 import './searchHorse.css'
 import Header from '../Header_footer/Header';
 import Localisation from '../common_section/Localisation'
 import Disciplines from '../common_section/Disciplines'
 import Structures from '../common_section/Structures'
+import Pension from '../common_section/Pension'
 import IdealHorse from '../common_section/IdealHorse'
 import IdealOwner from '../common_section/IdealOwner'
 import BudgetMensuel from '../common_section/BudgetMensuel'
@@ -14,6 +16,8 @@ import SlidingButton from '../common/SlidingButton'
 import Axios from 'axios'
 import usePosition from '../common_section/usePosition';
 import Competition from '../common_section/Competition';
+import { Results_Horse_Context} from '../../components/context/Results_Horse_Context'
+
 
 
 
@@ -65,6 +69,10 @@ const SearchHorse = (props) => {
 
     // Concours :
     const [doCompetition, setDoCompetition] = useState('')
+
+    // Résultats de la recherche de riders :
+    const { resultsHorses, setResultsHorses } = useContext(Results_Horse_Context)
+
     
 
     const getLocation = () => {
@@ -74,24 +82,28 @@ const SearchHorse = (props) => {
         .catch(err => console.log(err))
     }
 
+
     useEffect(() => {
         getLocation()
     }, )
 
     return (
         <>
-        <Header className='header' title='Chercher un cheval'/>
+        <Header className='header' title='Chercher un équidé'/>
         <div className='searchHorse_page'>
                 <Localisation 
+                locTitle='Où ?'
                 value={cityLocalisation}
                 onChange={(e) => setCityLocalisation(e.target.value)}
                 definePerimeter={(e) => setPerimeter(e.target.value)}
                 perimeter={perimeter} 
                 />
             <hr />
-                <BudgetMensuel budget={budget} 
+                <BudgetMensuel 
+                    budgetTitle='Budget'
+                    budget={budget} 
                     currency={currency}
-                    priceTitle={'prix maximum :'}
+                    priceTitle={'Prix maximum par mois :'}
                     onChange={(e) => setBudget(e.target.value)}
                     onClick={(e) => setCurrency(e.target.value)}/>
             
@@ -99,11 +111,19 @@ const SearchHorse = (props) => {
             <hr />
                 <Structures />
             <hr />
+            <div className='frequency_pension'>
+                <Pension
+                    onClick={(e) => setFrequency(e.target.value)}
+                    frequency={frequency}
+                    changeFixedFrequency={() => setFixedFrequency(!fixedFrequency)}
+                />
+            </div>
+            <hr />
             <div className='searchHorse_bal'>
                 <h4>Balade</h4>
                 <div className='balade'>
                     <SlidingButton 
-                    SlidingButtonText="J'aimerais pouvoir partir seul en balade"
+                    SlidingButtonText="Pouvoir partir seul en balade"
                     SlidingButtonID="baladSwitch"
                     onClick={() => setDoBalad(!doBalad)}
                     />
@@ -131,7 +151,7 @@ const SearchHorse = (props) => {
                     horseWork={horseWork}
                 />
             
-            <h4>Ecuries et moniteur </h4>
+            <h4>Type d'écurie</h4>
                 <Scuring
                     scuringType={scuringType}
                     onClick={(e) => setScuringType(e.target.value)}/>
@@ -176,7 +196,12 @@ const SearchHorse = (props) => {
                 onClick={(e) => setDoCompetition(e.target.value)}/>
             </div>    
             </div>
-            <FloatingButton btnName={'Lancer la recherche'}/>
+            <Link to={{pathname: "/horse/results"}}>
+            <FloatingButton 
+                btnName={'Lancer la recherche'} 
+                // onClick={async () => { await getRiders()} }
+            />
+        </Link>
         
     </>
     )

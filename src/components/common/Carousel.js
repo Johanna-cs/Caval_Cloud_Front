@@ -6,7 +6,6 @@ import "@brainhubeu/react-carousel/lib/style.css";
 const ImageCarousel = (props) => {
   // Carousel images
   const [imageCarousel, setImageCarousel] = useState({});
-  const [url, setUrl] = useState("test");
   const [useUrl, setUseUrl] = useState([])
 
   const handleChange = (e) => {
@@ -18,10 +17,8 @@ const ImageCarousel = (props) => {
   // const urlPush = useUrl.push(url);
   const handlePush = (url) => {
     useUrl.push(url)
-    console.log(useUrl);
   }
 
-  console.log(imageCarousel);
   const handleUpload = () => {
     const uploadTask = storage
       .ref(`images/${imageCarousel.name}`)
@@ -38,11 +35,9 @@ const ImageCarousel = (props) => {
           .child(imageCarousel.name)
           .getDownloadURL()
           .then((url) => handlePush(url))
-          // .then(handlePush(url));
       }
     );
   };
-  
   return (
     <>
       <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9}>

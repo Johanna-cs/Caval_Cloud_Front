@@ -13,6 +13,7 @@ import RangeButton from '../common/RangeButton'
 import Competition from '../common_section/Competition'
 import { Link } from 'react-router-dom'
 import { Results_Rider_Context} from '../../components/context/Results_Rider_Context'
+import Pension from '../common_section/Pension';
 
 
 
@@ -38,7 +39,7 @@ const SearchRider = () => {
     // Disciplines :
     const [disciplines, setDisciplines] = useState([])
     // Budget mensuel :
-    const [budget, setBudget] = useState(0)
+    const [budget, setBudget] = useState('')
     // Choix de la devise :
     const [currency, setCurrency] = useState('')
     // Fréquence de la demi-pension :
@@ -47,6 +48,8 @@ const SearchRider = () => {
     const [fixedFrequency, setFixedFrequency] = useState(false)
     // Concours ou pas :
     const [doCompetition, setDoCompetition] = useState('')
+    // Materiel selle :
+    const [haveMaterialSaddle, setHaveMaterialSaddle] = useState(false)
     // Résultats de la recherche de riders :
     const { resultsRiders, setResultsRiders } = useContext(Results_Rider_Context)
     // Rider a déjà managé des chevaux :
@@ -78,12 +81,13 @@ const SearchRider = () => {
         <div className="searchRider_page">
             <div className="localisation">   
                 <Localisation 
+                    locTitle='Où ?'
                     value={cityLocalisation}
                     onChange={(e) => setCityLocalisation(e.target.value)}
                     definePerimeter={(e) => setPerimeter(e.target.value)}
                     perimeter={perimeter}
                 />
-                <h5> Années de pratique minimum : {yearsOfPractice} ans</h5>
+                <h5> Années de pratique minimum : {yearsOfPractice} </h5>
                     <div className='divRangeSpan'>
                         <span>0</span>
                         <RangeButton 
@@ -109,7 +113,7 @@ const SearchRider = () => {
                 
 
                 <hr />
-                <h5> Age du cavalier <span>(+/- 3ans)</span>: {riderAge} ans</h5>
+                <h5> Age du cavalier <span>(+/- 2ans)</span>: {riderAge} ans</h5>
                     <div className='divRangeSpan'>
                         <span>5 ans</span>
                         <RangeButton 
@@ -125,6 +129,11 @@ const SearchRider = () => {
                     SlidingButtonID='vehiculed' 
                     onClick={() => setIsVehiculed(!isVehiculed)}
                 />
+                <SlidingButton
+                    SlidingButtonText='Le cavalier a déjà eu un cheval sous sa responsabilité' 
+                    SlidingButtonID='experience' 
+                    onClick={() => setHasManaged(!hasManaged)}
+                    />
             </div>
             <hr />
                 <Disciplines
@@ -135,21 +144,33 @@ const SearchRider = () => {
                 />
             <hr />
                 <BudgetMensuel 
+                    budgetTitle='Budget'
                     budget={budget} 
                     currency={currency}
-                    priceTitle={'prix maximum :'}
+                    priceTitle={'Prix maximum par mois :'}
                     onChange={(e) => setBudget(e.target.value)}
                     onClick={(e) => setCurrency(e.target.value)}
                 />
             
             
             <div className='frequency_pension'>
-                <Frequency
-                    frequencyTitle='Rythme de la demi-pension'
+                <Pension
                     onClick={(e) => setFrequency(e.target.value)}
                     frequency={frequency}
                     changeFixedFrequency={() => setFixedFrequency(!fixedFrequency)}
                 />
+            </div>
+            <hr />
+            <div className='materialDiv'>
+                <h4>Materiel</h4>
+                <div className='materiel'>
+                        <SlidingButton 
+                        SlidingButtonText="Le cavalier doit avoir sa selle"
+                        SlidingButtonID="materialSwitch"
+                        onClick={() => setHaveMaterialSaddle(!haveMaterialSaddle)}
+                        />
+                </div>
+                
             </div>
             <hr />
             <div className='competition'>
@@ -158,7 +179,7 @@ const SearchRider = () => {
             />
             </div>
         </div>
-        <Link to={{pathname: "/result-page"}}>
+        <Link to={{pathname: "/rider/results"}}>
             <FloatingButton 
                 btnName={'Lancer la recherche'} 
                 onClick={async () => { await getRiders()} }

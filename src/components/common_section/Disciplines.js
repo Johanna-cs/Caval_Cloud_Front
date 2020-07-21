@@ -75,7 +75,7 @@ const Disciplines = (props) => {
 
   return (
     <div className='disciplines'>
-      <h4>Disciplines</h4>
+      <h4>Discipline(s) souhaitée(s)</h4>
       <div className="disciplineList">
         {disciplines.map((discipline) => (
           <Checkbox

@@ -1,26 +1,22 @@
-import React, { useState, useEffect, useContext } from "react";
-import "./postRider.css";
-import { Link } from "react-router-dom";
-import Header from "../Header_footer/Header";
-import SlidingButton from "../common/SlidingButton";
-import RangeButton from "../common/RangeButton";
-import SelectButton from "../common/SelectButton";
-import Carousel from "../common/Carousel";
-import logo from "../SVG-icons/cavalcloud-logo.png";
-import FloatingButton from "../common/FloatingButton";
-import Disciplines from "../common_section/Disciplines";
-import BudgetMensuel from "../common_section/BudgetMensuel";
-import Frequency from "../common_section/Frequency";
-import Localisation from "../common_section/Localisation";
-import usePosition from "../common_section/usePosition";
-import Axios from "axios";
-import Competition from "../common_section/Competition";
-import { RiderContext } from "../context/RiderContext";
-import { storage } from "../Firebase";
+import React, { useState, useEffect, useContext } from "react"
+import "./postRider.css"
+import { Link } from "react-router-dom"
+import Header from "../Header_footer/Header"
+import SlidingButton from "../common/SlidingButton"
+import RangeButton from '../common/RangeButton'
+import SelectButton from '../common/SelectButton'
+import Carousel from "../common/Carousel"
+import FloatingButton from "../common/FloatingButton"
+import Disciplines from "../common_section/Disciplines"
+import BudgetMensuel from "../common_section/BudgetMensuel"
+import Pension from "../common_section/Pension"
+import Localisation from '../common_section/Localisation'
+import usePosition from '../common_section/usePosition';
+import Axios from "axios"
+import Competition from "../common_section/Competition"
+import { RiderContext } from "../context/RiderContext"
 
-const PostRider = (props) => {
-
-
+const PostRider = () => {
 
   // Localisation
   const { latitude, longitude, error } = usePosition();
@@ -43,13 +39,12 @@ const PostRider = (props) => {
     getLocation();
   });
 
-  
   const { riderProfile, setRiderProfile } = useContext(RiderContext);
 
   const postDataRider = () => {
-    Axios.post(`http://localhost:4000/api/riders`, riderProfile)
-      .catch((err) => console.log(err))
-      .finally(console.log(riderProfile));
+    Axios.post(`http://localhost:4000/api/riders`, riderProfile).catch((err) =>
+      console.log(err)
+    );
   };
 
   return (
@@ -65,16 +60,17 @@ const PostRider = (props) => {
           <div className="postRider_forms">
             <p>
               {riderProfile.rider_firstname}
-              <span>{riderProfile.rider_age} ans</span>
+              <span>{riderProfile.rider_age}</span>
             </p>
             <p>
-              {riderProfile.rider_selfWord1} {riderProfile.rider_selfWord2}{" "}
+              {riderProfile.rider_selfWord1} {riderProfile.rider_selfWord2}
               {riderProfile.rider_selfWord3}
             </p>
           </div>
         </div>
-
-        <Carousel/>
+        <hr/>
+        <h4>Vos photos</h4>
+        <Carousel />
         <div>
           <Localisation
             value={cityLocalisation}
@@ -88,15 +84,8 @@ const PostRider = (props) => {
             perimeter={perimeter}
           />
         </div>
-        <div>
-          <h4>Equitation :</h4>
-          <p>
-            {riderProfile.rider_ridingWord1} {riderProfile.rider_ridingWord2}{" "}
-            {riderProfile.rider_ridingWord3}
-          </p>
-        </div>
-        <div className="postRider_message">
-          <h4>Message : </h4>
+
+        <div className="postRider_pres">
           <Link
             to={{
               pathname: "/PostRiderPresentation",
@@ -111,9 +100,10 @@ const PostRider = (props) => {
         <hr />
         <div>
           <BudgetMensuel
+            budgetTitle="Budget"
             budget={riderProfile.rider_budget}
             currency={riderProfile.rider_currency_budget}
-            priceTitle={"prix minimum :"}
+            priceTitle={"Prix maximum par mois :"}
             onChange={(e) =>
               setRiderProfile({ ...riderProfile, rider_budget: e.target.value })
             }
@@ -153,9 +143,9 @@ const PostRider = (props) => {
         </div>
         <hr />
         <div>
-          <h4>Niveau</h4>
-          <h5> Années de pratique : {riderProfile.yearsOfPractice} ans</h5>
-          <p>Nombre d'années de pratique cumulées</p>
+          <h4>Mon niveau</h4>
+          <h5> Nombre d'années de pratique : {riderProfile.yearsOfPractice}</h5>
+
           <div className="divRangeSpan">
             <span>1 an</span>
             <RangeButton
@@ -191,9 +181,7 @@ const PostRider = (props) => {
         <div className="postRider-disc">
           <Disciplines />
         </div>
-        <hr />
         <div>
-          <h4>Autre</h4>
           <SlidingButton
             SlidingButtonText="Je suis ouvert à pratiquer d'autres disciplines"
             SlidingButtonID="otherSwitch"
@@ -207,7 +195,7 @@ const PostRider = (props) => {
         </div>
         <hr />
         <div>
-          <Frequency
+          <Pension
             frequencyTitle="Rythme de la demi-pension"
             onClick={(e) =>
               setRiderProfile({

@@ -16,7 +16,7 @@ function Localisation(props) {
 
         <div className='locationDiv'>
             <div className='toggle_place'>
-            <h4>Localisation </h4>
+            <h4>{props.locTitle}</h4>
                 <input 
                     min="0" 
                     max="200"
@@ -33,7 +33,7 @@ function Localisation(props) {
             <div className='locationDiv'>
                 <Collapse isOpen={isOpen}>
                     <h5>Localisation  :</h5>
-                    <p className='loc_text'>Dans un rayon autour de : {props.perimeter} kms</p>
+                    <p className='loc_text'>Dans un rayon autour de : {props.perimeter} km</p>
                     <div className='rayon_loc'>
                             <span>0</span>
                             <RangeButton 

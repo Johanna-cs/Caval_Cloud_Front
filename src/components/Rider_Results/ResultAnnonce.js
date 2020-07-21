@@ -1,8 +1,8 @@
-import React, { useState, useEffect} from "react";
-import "./Result.css";
-import Header from "../Header_footer/Header";
-import Carousel from "../common/Carousel";
-import logo from "../SVG-icons/cavalcloud-logo.png";
+import React, { useState, useEffect} from "react"
+import "./Result.css"
+import Carousel from "../common/Carousel"
+import logo from "../SVG-icons/cavalcloud-logo.png"
+import { Link } from "react-router-dom"
 
 import Axios from "axios";
 
@@ -21,7 +21,7 @@ const ResultAnnonce = (props) => {
       .then(res => setDataRider(res.data[0]))
       .catch(err=> console.error(err))
     }
-    const changeBool = dataRider.value === true ? 'oui' : 'non'
+    const changeBool = () => dataRider.value === true ? 'oui' : 'non'
     // When a result is displayed, the function getRiderInformation starts first in order to query BDD
     useEffect(() => {
       getRiderInformation()
@@ -31,16 +31,21 @@ const ResultAnnonce = (props) => {
 
   return (
     <>
-      <Header title="Résultats de votre recherche" />
-      <div className="postRider_page">
-        <div className="Result-filterbar">
+      <div className='headerAnnonce'><h3 id='annonceTitle'>Annonce Cavalier</h3> </div>
+      
+        <div className="Result-filterbarTop">
+        <Link to ={{
+            pathname: "/rider/results"
+          }}>
           <button className="Result-filterbar-button">
             Retour aux résultats
           </button>
+          </Link>
         </div>
-        <div className="postRider_header">
-          <img className="postRider_logo" src={logo} alt="logo" />
-          <div className="postRider_forms">
+        <div className="Result_annonce">
+        <div className="annonce_header">
+          <img className="annonce_logo" src={logo} alt="logo" />
+          <div>
             <h5>
               {dataRider.rider_firstname}, <span>{dataRider.rider_age} ans</span>
             </h5>
@@ -58,7 +63,7 @@ const ResultAnnonce = (props) => {
             {dataRider.rider_ridingWord1}, {dataRider.rider_ridingWord2}, {dataRider.rider_ridingWord3}
           </p>
         </div>
-        <div className="postRider_message">
+        <div>
           <h4>Message :</h4>
           <p>{dataRider.rider_biography}</p>
         </div>
@@ -83,13 +88,10 @@ const ResultAnnonce = (props) => {
           <p>{dataRider.rider_gallop_level}</p>
         </div>
         <hr />
-        <div className="postRider-disc">
-          <h4>Discipline</h4>
-        </div>
-        <hr />
         <div>
-          <h4>Autre</h4>
-          <p>{dataRider.rider_agree_other_discipline}</p>
+          <h4>Discipline</h4>
+
+          <p>Ouvert à d'autres disciplines : {dataRider.rider_agree_other_discipline}</p>
         </div>
         <hr />
         <div>
@@ -115,6 +117,15 @@ const ResultAnnonce = (props) => {
           <p>{dataRider.doCompetition}</p>
         </div>
       </div>
+      <div className="Result-filterbarBot">
+        <Link to ={{
+            pathname: "/result-page"
+          }}>
+          <button className="Result-filterbar-button">
+            Retour aux résultats
+          </button>
+          </Link>
+        </div>
     </>
   );
 };
