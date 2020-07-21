@@ -1,6 +1,5 @@
 import React, { useState, useEffect} from "react"
 import "./Result.css"
-import Header from "../Header_footer/Header"
 import Carousel from "../common/Carousel"
 import logo from "../SVG-icons/cavalcloud-logo.png"
 import { Link } from "react-router-dom"
@@ -120,7 +119,7 @@ const ResultAnnonce = (props) => {
       </div>
       <div className="Result-filterbarBot">
         <Link to ={{
-            pathname: "/result-page"
+            pathname: "/rider/results"
           }}>
           <button className="Result-filterbar-button">
             Retour aux résultats
