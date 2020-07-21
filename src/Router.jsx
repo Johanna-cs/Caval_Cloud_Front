@@ -15,6 +15,7 @@ import ResultAnnonce from "./components/Rider_Results/ResultAnnonce";
 import MyProfile from "./components/MyProfile/MyProfile";
 import HorseResultAnnonce from './components/Horse_Results/HorseResultAnnonce'
 import HorseResultPage from './components/Horse_Results/HorseResultPage'
+import Favorites from "./components/MyProfile/Favorites";
 import { RiderContext } from "./components/context/RiderContext";
 import { riderProfileContext } from './components/context/RiderContext';
 import { HorseContext } from './components/context/HorseContext';
@@ -49,21 +50,38 @@ const Router = () => {
         <Route exact path="/search-rider" component={SearchRider} />
         <Route exact path="/search-horse" component={SearchHorse} />
         <Route exact path="/my-profile" component={MyProfile} />
+        <Route exact path="/favorites" component={Favorites} />
         <HorseContext.Provider value={providerHorseProfile}>
           <Route exact path="/post-horse" component={PostHorse} />
           <Route exact path="/post-horse-owner" component={OwnerPres} />
-              <RiderContext.Provider value={providerRiderProfile}>
-                  <Route exact path="/post-rider" component={PostRider} />
-                  <Route exact path="/PostRiderPresentation" component={PostRiderPresentation} />
-                <Results_Rider_Context.Provider value={providerResultsRiders}>
-                    <Route exact path="/rider/results" component={ResultPage} />
-                    <Route exact path="/rider/result-annonce/:id" component={ResultAnnonce} />
-                  <Results_Horse_Context.Provider value={providerResultsHorses} >
-                      <Route exact path="/horse/results" component={HorseResultPage} />
-                      <Route exact path="/horse/result-annonce/:id" component={HorseResultAnnonce} />
-                  </Results_Horse_Context.Provider>  
-                </Results_Rider_Context.Provider>
-              </RiderContext.Provider>
+          <RiderContext.Provider value={providerRiderProfile}>
+            <Route exact path="/post-rider" component={PostRider} />
+            <Route
+              exact
+              path="/PostRiderPresentation"
+              component={PostRiderPresentation}
+            />
+            <Results_Rider_Context.Provider value={providerResultsRiders}>
+              <Route exact path="/rider/results" component={ResultPage} />
+              <Route
+                exact
+                path="/rider/result-annonce/:id"
+                component={ResultAnnonce}
+              />
+              <Results_Horse_Context.Provider value={providerResultsHorses}>
+                <Route
+                  exact
+                  path="/horse/results"
+                  component={HorseResultPage}
+                />
+                <Route
+                  exact
+                  path="/horse/result-annonce/:id"
+                  component={HorseResultAnnonce}
+                />
+              </Results_Horse_Context.Provider>
+            </Results_Rider_Context.Provider>
+          </RiderContext.Provider>
         </HorseContext.Provider>
       </Switch>
     </>

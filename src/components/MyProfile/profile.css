@@ -70,3 +70,13 @@
   border-radius: 20px;
   outline: none;
 }
+
+/* Favoris */
+
+.Favorites-Page {
+  display: flex;
+  flex-flow: column wrap;
+  margin-left: 1.5em;
+  padding-bottom: 2em;
+  width: 17.4em;
+}
