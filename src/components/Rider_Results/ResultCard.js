@@ -52,9 +52,9 @@ const ResultCard = (props) => {
             className="resultHeart"
             onClick={
               (favoriteCard(),
-              () => setFavorite(favorite === heart ? heartFull : heart))
+              () => setFavoriteIcon(favoriteIcon === heart ? heartFull : heart))
             }
-            src={(props.src||favorite)}
+            src={(props.src||favoriteIcon)}
             alt="favoris"
           />
         </div>
