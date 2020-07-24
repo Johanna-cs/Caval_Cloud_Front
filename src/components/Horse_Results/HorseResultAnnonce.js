@@ -8,7 +8,7 @@ import Axios from "axios";
 const HorseResultAnnonce = (props) => {
   
     // get the Horse_ID in order to display the specific result
-    const horseId = Number(props.match.params.id)
+    const horseId = 1
 
     // Horse Data information
     const [dataHorse, setDataHorse] = useState([])
