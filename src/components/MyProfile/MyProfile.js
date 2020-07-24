@@ -1,56 +1,62 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./profile.css";
 import Header from "../Header_footer/Header";
 import { storage } from "../Firebase";
+import { UserContext} from '../context/UserContext'
+import Axios from 'axios'
 
 const MyProfile = (props) => {
+
+
+  // Get user data information from its id :
+  const getMyProfile = () => {
+    Axios
+    .get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
+    .then(res => setDataUser(res.data))
+    .catch(err=> console.error(err))
+  }
+
+  // Update user data information from its id :
+  const updateMyProfile = () => {
+    console.log("oui")
+    Axios
+    .put(`http://localhost:4000/api/users/${userProfile.user_ID}`, dataUser)
+    .catch(err=> console.error(err))
+  }
+
+  // User Data storage:
+  const [dataUser, setDataUser] = useState({})
+
+  // Context userProfile in order to simplify user data information management
+  const { userProfile, setUserProfile } = useContext(UserContext)
+
+  // Management of image upload :
   const [image, setImage] = useState(null);
   const [url, setUrl] = useState("");
-  const [modif, setModif] = useState(false);
-  const [profile, setProfile] = useState({
-    nom: "Horsini",
-    prenom: "Fanny",
-    mail: "fanny.horsini@gmail.com",
-    phone: "0606060606",
-    password: "123456",
-    avatar: { url },
-  });
-
-  const [modifiedProfile, setModifiedProfile] = useState({
-    mail: profile.mail,
-    password: profile.password,
-    phone: profile.phone,
-    avatar: { url },
-  });
-
-  const [typedPW, setTypedPW] = useState("");
-  const [validPW, setValidPW] = useState();
-  const changePW = (e) => {
-    return e.target.value !== "" && typedPW !== "" && e.target.value === typedPW
-      ? setValidPW(true) &
-          setModifiedProfile({ ...modifiedProfile, password: e.target.value })
-      : setValidPW(false);
-  };
-  const modifprof = () => {
-    setModif(!modif);
-  };
-  const validprof = () => {
-    setProfile({
-      ...profile,
-      mail: modifiedProfile.mail,
-      password: modifiedProfile.password,
-      phone: modifiedProfile.phone,
-      avatar: { url },
-    });
-    setModif(!modif);
-  };
-
   const handleChange = (e) => {
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
     }
   };
-  console.log(image);
+  // User want to modify profile or not, display page will change :
+  const [modif, setModif] = useState(false);
+  const modifprof = () => {
+    setModif(!modif);
+  };
+  const validprof = () => {
+    setModif(!modif);
+  };
+
+  // Check password confirmation :
+  const [validPW, setValidPW] = useState(null);
+  
+  // Start to catch user info and then, save it in the user context
+  useEffect(() => {
+    getMyProfile()
+    }, 
+  [])
+
+
   const handleUpload = () => {
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
     uploadTask.on(
@@ -64,13 +70,14 @@ const MyProfile = (props) => {
           .ref("images")
           .child(image.name)
           .getDownloadURL()
-          .then((url) => setUrl(url));
+          .then((url) => setUserProfile({...userProfile, user_avatar : url}))
       }
     );
   };
   return (
     <>
       <Header className="header" title="Mon Profil" />
+      {/* <button onClick={() => console.log(dataUser.user_avatar)}>Profile</button> */}
       <div className="Profile-Page">
         <div className="Profile-row">
           {modif ? (
@@ -79,18 +86,18 @@ const MyProfile = (props) => {
               <button onClick={handleUpload} className="upload-button">
                 Valider la photo
               </button>
-              <img src={url} className="Profile-photo" alt="" />
+              <img src={userProfile.user_avatar} className="Profile-photo" alt="" />
             </div>
           ) : (
             <img
-              src={url}
+              src={userProfile.user_avatar}
               className="Profile-photo"
               alt="Vous n'avez pas encore de photo"
             />
           )}
 
           <p className="Profile-infos">
-            {profile.prenom} {profile.nom}
+            {dataUser.user_firstname} {dataUser.user_lastname}
           </p>
         </div>
         <hr />
@@ -99,34 +106,26 @@ const MyProfile = (props) => {
           <input
             id="input"
             type="mail"
-            value={modifiedProfile.mail}
-            onChange={(e) =>
-              setModifiedProfile({
-                ...modifiedProfile,
-                mail: e.target.value,
-              })
-            }
-          />
-        ) : (
-          profile.mail
-        )}
+            placeholder={dataUser.user_email}
+            value={dataUser.user_email}
+            onChange={(e) => setDataUser({...dataUser, user_email: e.target.value})}
+          />) 
+          : 
+          <p>{dataUser.user_email}</p>
+        }
         <hr />
         <h4>Téléphone :</h4>
         {modif ? (
           <input
             id="input"
             type="tel"
-            value={modifiedProfile.phone}
-            onChange={(e) =>
-              setModifiedProfile({
-                ...modifiedProfile,
-                phone: e.target.value,
-              })
+            value={dataUser.user_phone}
+            onChange={(e) => setDataUser({...dataUser, user_phone: e.target.value})
             }
-          />
-        ) : (
-          profile.phone
-        )}
+          />) 
+          : 
+          <p>{dataUser.user_phone}</p>
+        }
         <hr />
         <h4>Mot de passe :</h4>
         {modif ? (
@@ -137,11 +136,11 @@ const MyProfile = (props) => {
                 id="input"
                 type="password"
                 className={validPW ? "valid" : "invalid"}
-                value={typedPW}
-                onChange={(e) => setTypedPW(e.target.value)}
-              />
+                value={dataUser.user_password}
+                onChange={(e) => setDataUser({...dataUser, user_password: e.target.value})}
+                />
             </tr>
-            <tr className="entete">Valider mot de passe </tr>
+            {/* <tr className="entete">Valider mot de passe </tr>
             <tr>
               <input
                 id="input"
@@ -149,14 +148,18 @@ const MyProfile = (props) => {
                 className={validPW ? "valid" : "invalid"}
                 onChange={(e) => changePW(e)}
               />
-            </tr>
+            </tr> */}
           </>
         ) : (
           ""
         )}
         <div>
           {modif ? (
-            <button className="Profile-button" onClick={(e) => validprof(e)}>
+            <button className="Profile-button" onClick={() => {
+              validprof();
+              updateMyProfile();
+              }}
+            >
               Valider mon profil
             </button>
           ) : (
