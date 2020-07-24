@@ -20,7 +20,7 @@ const Register = () => {
   const subscribe = (e) => {
     e.preventDefault();
     Axios.post("http://localhost:4000/api/users/register", dataUser)
-      .catch((err) => console.error(err))
+      .catch(err => console.error(err))
       .finally(setSuccess(true));
   };
 

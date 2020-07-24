@@ -40,8 +40,8 @@ const ImageCarousel = (props) => {
   };
   return (
     <>
-      <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9}>
-        {useUrl.map((imgUrl) => (
+      <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9}>  
+        {useUrl && useUrl.map((imgUrl) => (
           <img src={imgUrl} alt="" />
         ))}
       </Carousel>
