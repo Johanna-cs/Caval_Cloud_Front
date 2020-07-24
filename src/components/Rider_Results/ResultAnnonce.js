@@ -1,6 +1,5 @@
 import React, { useState, useEffect} from "react"
 import "./Result.css"
-import Carousel from "../common/Carousel"
 import logo from "../SVG-icons/cavalcloud-logo.png"
 import { Link } from "react-router-dom"
 
@@ -21,14 +20,15 @@ const ResultAnnonce = (props) => {
       .then(res => setDataRider(res.data[0]))
       .catch(err=> console.error(err))
     }
-    const changeBool = () => dataRider.value === true ? 'oui' : 'non'
+    const changeBool = (bool) => bool === true ? 'oui' : 'non'
+
     // When a result is displayed, the function getRiderInformation starts first in order to query BDD
     useEffect(() => {
-      getRiderInformation()
+      getRiderInformation();
+      changeBool(dataRider);
       }, 
     [])
-  
-
+  console.log(dataRider)
   return (
     <>
       <div className='headerAnnonce'><h3 id='annonceTitle'>Annonce Cavalier</h3> </div>
@@ -44,11 +44,12 @@ const ResultAnnonce = (props) => {
         </div>
         <div className="Result_annonce">
         <div className="annonce_header">
-          <img className="annonce_logo" src={logo} alt="logo" />
+          <img className="annonce_logo" src={dataRider.rider_avatar} alt="logo" />
           <div>
             <h5>
               {dataRider.rider_firstname}, <span>{dataRider.rider_age} ans</span>
             </h5>
+            {/* <img src={dataRider.rider_photos} alt='rider illustration'/> */}
             <p>
               {dataRider.rider_selfWord1}, {dataRider.rider_selfWord2}, {dataRider.rider_selfWord3}
             </p>
@@ -56,7 +57,7 @@ const ResultAnnonce = (props) => {
           <h4>Localisation</h4>
             <p>{dataRider.rider_postal_code}</p>
         </div>
-        <Carousel />
+        
         <div>
           <h4>Equitation</h4>
           <p>
@@ -78,26 +79,27 @@ const ResultAnnonce = (props) => {
         <hr />
         <div>
           <h4>Autonomie</h4>
-          <p>{dataRider.rider_vehiculed}</p>
-          <p>{dataRider.rider_managed_horse}</p>
+          <h5>Est-il véhiculé ? </h5><p>{changeBool(dataRider.rider_vehiculed)}</p>
+          <h5>A déjà eu un cheval sous sa responsabilité ?</h5>
+          <p> {changeBool(dataRider.rider_managed_horse)}</p>
         </div>
         <hr />
         <div>
           <h4>Niveau</h4>
-          <p>{dataRider.rider_years_of_practice}</p>
-          <p>{dataRider.rider_gallop_level}</p>
+          <p>Années de pratique : {dataRider.rider_years_of_practice}</p>
+          <p>Galop : {dataRider.rider_gallop_level}</p>
         </div>
         <hr />
         <div>
           <h4>Discipline</h4>
 
-          <p>Ouvert à d'autres disciplines : {dataRider.rider_agree_other_discipline}</p>
+          <p>Ouvert à d'autres disciplines : {changeBool(dataRider.rider_agree_other_discipline)}</p>
         </div>
         <hr />
         <div>
           <h4>Rythme de venue</h4>
           <p>{dataRider.rider_riding_frequency}</p>
-          <p>Jours fixes souhaités : {dataRider.rider_fixed_day} </p>
+          <p>Jours fixes souhaités : {changeBool(dataRider.rider_fixed_day)} </p>
         </div>
         <hr />
         <div>
@@ -109,12 +111,12 @@ const ResultAnnonce = (props) => {
         </div>
         <hr />
         <h4>Coaching</h4>
-        <p>J'aimerais avoir accès à des cours : {dataRider.rider_coaching_here}</p>
-        <p>J'aimerais faire intervenir un coach de l'extérieur : {dataRider.rider_external_coach}</p>
+        <p>J'aimerais avoir accès à des cours : {changeBool(dataRider.rider_coaching_here)}</p>
+        <p>J'aimerais faire intervenir un coach de l'extérieur : {changeBool(dataRider.rider_external_coach)}</p>
         <hr />
         <div>
           <h4>Concours</h4>
-          <p>{dataRider.doCompetition}</p>
+          <p>{dataRider.rider_competition}</p>
         </div>
       </div>
       <div className="Result-filterbarBot">

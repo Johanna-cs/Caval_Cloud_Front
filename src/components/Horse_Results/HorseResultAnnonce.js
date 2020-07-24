@@ -1,8 +1,7 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect} from "react"
 import "./HorseResult.css";
-import { Link } from "react-router-dom";
-import Carousel from "../common/Carousel";
-import logo from "../SVG-icons/cavalcloud-logo.png";
+import { Link } from "react-router-dom"
+import logo from "../SVG-icons/cavalcloud-logo.png"
 
 import Axios from "axios";
 
@@ -57,9 +56,8 @@ const HorseResultAnnonce = (props) => {
           <h5>Où se trouve t-il ?</h5>
             <p>{dataHorse.horse_localisation}</p>
         </div>
-        <Carousel 
+     
           src={dataHorse.horse_photos}
-        />
         <div>
           <h4>Infos du propriétaire </h4>
           <h5>{dataHorse.horse_owner_firstname}, {dataHorse.horse_owner_age}ans</h5>
