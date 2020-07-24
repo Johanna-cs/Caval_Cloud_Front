@@ -15,6 +15,7 @@ import usePosition from '../common_section/usePosition';
 import Axios from "axios"
 import Competition from "../common_section/Competition"
 import { RiderContext } from "../context/RiderContext"
+import { UserContext } from '../context/UserContext'
 
 const PostRider = () => {
 
@@ -41,6 +42,9 @@ const PostRider = () => {
 
   const { riderProfile, setRiderProfile } = useContext(RiderContext);
 
+  // Context userProfile in order to simplify user data information management
+  const { userProfile, setUserProfile } = useContext(UserContext)
+
   const postDataRider = () => {
     Axios.post(`http://localhost:4000/api/riders`, riderProfile).catch((err) =>
       console.log(err)
@@ -54,7 +58,7 @@ const PostRider = () => {
         <div className="postRider_header">
           <img
             className="postRider_logo"
-            src="https://via.placeholder.com/220x180.png"
+            src={userProfile.user_avatar}
             alt="logo"
           />
           <div className="postRider_forms">
