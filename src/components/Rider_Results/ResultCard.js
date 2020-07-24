@@ -31,23 +31,18 @@ const ResultCard = (props) => {
 
   return (
     <>
-      <div className="resultCard">
+      <div className="resultCardRider">
         <Link
           to={{
             pathname: `/rider/result-annonce/${riderID}`,
           }}
         >
-          <div className="resultCard-container">
-            <img
-              className="resultPhoto"
-              src="https://images.unsplash.com/photo-1579113813543-fa41eb8bf556?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1971&q=80"
-              alt=""
-
-            />
+          <div className="resultCard-containerRider">
+            <img className="resultPhotoRider" src="https://images.unsplash.com/photo-1529989359010-5beae0df8d13?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt={props.firstname} />
           </div>
         </Link>
-        <div className="resultDetails">
-          <h7 id="resultName">{props.firstname}</h7>
+        <div className="resultDetailsRider">
+          <p id="resultName">{props.firstname}</p>
           <img
             className="resultHeart"
             onClick={

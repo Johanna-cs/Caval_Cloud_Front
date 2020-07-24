@@ -144,7 +144,7 @@ const PostRider = () => {
         <hr />
         <div>
           <h4>Mon niveau</h4>
-          <h5> Nombre d'années de pratique : {riderProfile.yearsOfPractice}</h5>
+          <h5> Nombre d'années de pratique : {riderProfile.rider_years_of_practice}</h5>
 
           <div className="divRangeSpan">
             <span>1 an</span>
@@ -160,7 +160,7 @@ const PostRider = () => {
             />
             <span>50 ans</span>
           </div>
-          <h5> Niveau de Galop : {riderProfile.gallopLevel} </h5>
+          <h5> Niveau de Galop : {riderProfile.rider_gallop_level} </h5>
           <div className="divRangeSpan">
             <span>0</span>
             <RangeButton
