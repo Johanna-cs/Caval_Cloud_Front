@@ -44,7 +44,7 @@ const ResultAnnonce = (props) => {
         </div>
         <div className="Result_annonce">
         <div className="annonce_header">
-          <img className="annonce_logo" src={dataRider.rider_avatar} alt="logo" />
+          <img className="annonce_logo" src="" alt="logo" />
           <div>
             <h5>
               {dataRider.rider_firstname}, <span>{dataRider.rider_age} ans</span>
