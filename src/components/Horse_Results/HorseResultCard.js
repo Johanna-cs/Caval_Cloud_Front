@@ -8,39 +8,42 @@ import heartFull from "../SVG-icons/coeur-selection.svg";
 const HorseResultCard = (props) => {
   
   // get the correct riderID in order to pass it to the ResultAnnonce component
-  const horseID = props.horse_ID
+  const userid = 1
+  const horseid = 1
+  const dataBody = {
+    userid : userid,
+    horseid : horseid
+  }
   
   const [favoriteIcon, setFavoriteIcon] = useState(heart)
 
   const [isFavorite, setIsFavorite] = useState(false)
 
-  const addResultInFavorite = () => {
-    Axios
-    .post(`http://localhost:4000/api/horses/favorite`)
-    .catch((err) => console.log(err))
-}
 
-  const favoriteCard = () => {
-    if (favoriteIcon === { heartFull }) {
+  const addInFavorite = () => {
+    if (favoriteIcon === heart) {
+      console.log('add in favorite')
       Axios
-      .post(`http://localhost:4000/api/favorite`)
+      .post(`http://localhost:4000/api/users/addFavoriteHorse`, dataBody)
       .catch((err) => console.error(err)
       );
     }
-    else if (favoriteIcon === { heart }) {
+    else {
+      console.log('delete from favorite')
       Axios
-      .delete(`http://localhost:3010/api/favorite`)
+      .delete(`http://localhost:4000/api/users/deleteFavoriteHorse/${userid}`)
       .catch((err) => console.error(err)
       );
     }
   };
+
 
   return (
     <>
       <div className="resultCard">
         <Link
           to={{
-            pathname: `/horse/result-annonce/${horseID}`,
+            pathname: `/horse/result-annonce/${horseid}`,
           }}
         >
           <div className="resultCard-container">
@@ -58,7 +61,8 @@ const HorseResultCard = (props) => {
             className="resultHeart"
             onClick={ () => {
                 setFavoriteIcon(favoriteIcon === heart ? heartFull : heart);
-                setIsFavorite(!isFavorite)
+                setIsFavorite(!isFavorite);
+                addInFavorite()
             }}
             src={favoriteIcon}
             alt={favoriteIcon}

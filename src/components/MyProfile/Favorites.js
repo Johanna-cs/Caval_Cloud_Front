@@ -7,22 +7,19 @@ import heart from "../SVG-icons/coeur-hors-selection.svg";
 import heartFull from "../SVG-icons/coeur-selection.svg";
 
 const Favorites = (props) => {
+  const userid = 1
   const [favorite, setFavorite] = useState(heartFull);
   const [favoritesRider, setFavoritesRider] = useState([]);
   const [favoritesHorse, setFavoritesHorse] = useState([]);
 
-  const getFavorites = () => {
-    Axios.get(`http://localhost:4000/api/favorites`)
-      .then((res) => setFavoritesRider(res.data))
-      .catch((err) => console.error(err));
-
-    Axios.get(`http://localhost:4000/api/favorites`)
+  const getFavoritesHorses = () => {
+    Axios.get(`http://localhost:4000/api/favorites/horses/${userid}`)
       .then((res) => setFavoritesHorse(res.data))
       .catch((err) => console.error(err));
   };
 
   useEffect(() => {
-    getFavorites();
+    getFavoritesHorses();
   }, []);
 
   return (

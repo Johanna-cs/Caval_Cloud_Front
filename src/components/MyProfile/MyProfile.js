@@ -18,7 +18,6 @@ const MyProfile = (props) => {
 
   // Update user data information from its id :
   const updateMyProfile = () => {
-    console.log("oui")
     Axios
     .put(`http://localhost:4000/api/users/${dataUser.user_ID}`, dataUser)
     .catch(err=> console.error(err))

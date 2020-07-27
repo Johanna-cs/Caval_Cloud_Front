@@ -11,7 +11,7 @@ const HorseResultPage = () => {
 
   const {resultsHorses, setResultsHorses} = useContext(Results_Horse_Context)
 
-
+  // Requête à modifier, actuellement pas de critères pris en compte pour afficher les résultats
   const getHorses = () => {
     Axios
     .get(`http://localhost:4000/api/horses/`)
