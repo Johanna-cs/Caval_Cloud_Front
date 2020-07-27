@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react"
 import "./Result.css"
+import ImageCarousel from "../common/Carousel"
 import { Link } from "react-router-dom"
-
 import Axios from "axios";
 
 const ResultAnnonce = (props) => {
@@ -30,39 +30,47 @@ const ResultAnnonce = (props) => {
   console.log(dataRider)
   return (
     <>
-      <div className='headerAnnonce'><h3 id='annonceTitle'>Annonce Cavalier</h3> </div>
-      
-        <div className="Result-filterbarTop">
-        <Link to ={{
-            pathname: "/rider/results"
-          }}>
+      <div className="headerAnnonce">
+        <h3 id="annonceTitle">Annonce Cavalier</h3>{" "}
+      </div>
+
+      <div className="Result-filterbarTop">
+        <Link
+          to={{
+            pathname: "/rider/results",
+          }}
+        >
           <button className="Result-filterbar-button">
             Retour aux résultats
           </button>
-          </Link>
-        </div>
-        <div className="Result_annonce">
+        </Link>
+      </div>
+      <div className="Result_annonce">
         <div className="annonce_header">
           <img id="annonce_logo" src="https://firebasestorage.googleapis.com/v0/b/caval-cloud.appspot.com/o/images%2Fkelly-sikkema-JN0SUcTOig0-unsplash.jpg?alt=media&token=d141987e-453a-495b-bd56-2c7c59c1b5a4" alt="logo" />
           <div>
             <h5>
-              {dataRider.rider_firstname}, <span>{dataRider.rider_age} ans</span>
+              {dataRider.rider_firstname},{" "}
+              <span>{dataRider.rider_age} ans</span>
             </h5>
             {/* <img src={dataRider.rider_avatar} alt='rider illustration'/> */}
             <p>
-              {dataRider.rider_selfWord1}, {dataRider.rider_selfWord2}, {dataRider.rider_selfWord3}
+              {dataRider.rider_selfWord1}, {dataRider.rider_selfWord2},{" "}
+              {dataRider.rider_selfWord3}
             </p>
             <p>N° de téléphone : {dataRider.rider_phone}</p>
             <p>Mail : {dataRider.rider_mail}</p>
           </div>
           <h4>Localisation</h4>
-            <p>{dataRider.rider_postal_code}</p>
+          <p>{dataRider.rider_postal_code}</p>
         </div>
-        
+        <h4>Quelques photos</h4>
+        <ImageCarousel />
         <div>
           <h4>Equitation</h4>
           <p>
-            {dataRider.rider_ridingWord1}, {dataRider.rider_ridingWord2}, {dataRider.rider_ridingWord3}
+            {dataRider.rider_ridingWord1}, {dataRider.rider_ridingWord2},{" "}
+            {dataRider.rider_ridingWord3}
           </p>
         </div>
         <div>
@@ -127,8 +135,8 @@ const ResultAnnonce = (props) => {
           <button className="Result-filterbar-button">
             Retour aux résultats
           </button>
-          </Link>
-        </div>
+        </Link>
+      </div>
     </>
   );
 };

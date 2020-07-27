@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react"
 import "./postRider.css"
-import { Link } from "react-router-dom"
+import { Link, Redirect } from "react-router-dom"
 import Header from "../Header_footer/Header"
 import SlidingButton from "../common/SlidingButton"
 import RangeButton from '../common/RangeButton'
 import SelectButton from '../common/SelectButton'
-import Carousel from "../common/Carousel"
+import ImageCarousel from "../common/Carousel"
 import FloatingButton from "../common/FloatingButton"
 import Disciplines from "../common_section/Disciplines"
 import BudgetMensuel from "../common_section/BudgetMensuel"
@@ -16,8 +16,9 @@ import Axios from "axios"
 import Competition from "../common_section/Competition"
 import { RiderContext } from "../context/RiderContext"
 import { UserContext } from '../context/UserContext'
+import ModalPost from "../common/ModalPost"
 
-const PostRider = () => {
+const PostRider = (props) => {
 
   // Localisation
   const { latitude, longitude, error } = usePosition();
@@ -28,31 +29,46 @@ const PostRider = () => {
   const [perimeter, setPerimeter] = useState(null);
   // Précédente localisation enregistrée dans le navigateur (si existante) :
   const [lastCitySaved, setLastCitySaved] = useState("");
+  
   const getLocation = () => {
-    Axios.get(
-      `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
-    )
+    Axios.get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
       .then((res) => setCityLocalisation(res.data.address.municipality))
       .catch((err) => console.log(err));
   };
-
-  useEffect(() => {
-    getLocation();
-  });
 
   const { riderProfile, setRiderProfile } = useContext(RiderContext);
 
   // Context userProfile in order to simplify user data information management
   const { userProfile, setUserProfile } = useContext(UserContext)
 
+  // Get user information from its ID and then, update userProfile context
+  const getUserInfo = () => {
+    Axios
+    .get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
+    .then(res => setUserProfile(res.data))
+    .catch(err=> console.error(err))
+  }
+  const [modalShow, setModalShow] = useState(false);
+  const [home, setHome] = useState(false);
+
+
   const postDataRider = () => {
-    Axios.post(`http://localhost:4000/api/riders`, riderProfile).catch((err) =>
+    Axios.post(`http://localhost:4000/api/riders`, riderProfile)
+    .catch((err) =>
       console.log(err)
     );
+    setModalShow(true);
+    setTimeout(()=> setHome(true), 5000)
   };
+
+  useEffect(() => {
+    getLocation();
+    getUserInfo();
+  }, []);
 
   return (
     <>
+    {home ? <Redirect to ="/home"/> : null}
       <Header title="Poster une annonce cavalier" />
       <div className="postRider_page">
         <div className="postRider_header">
@@ -74,7 +90,7 @@ const PostRider = () => {
         </div>
         <hr/>
         <h4>Vos photos</h4>
-        <Carousel />
+        <ImageCarousel search/>
         <div>
           <Localisation
             value={cityLocalisation}
@@ -464,6 +480,7 @@ const PostRider = () => {
           btnName={"Poster mon annonce"}
           onClick={() => postDataRider()}
         />
+        <ModalPost show={modalShow}/>
       </div>
     </>
   );

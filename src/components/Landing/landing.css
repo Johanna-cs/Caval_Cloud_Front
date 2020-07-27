@@ -55,6 +55,8 @@ button {
   font-size: 0.8em;
   font-weight: 750;
   color: #5d5aa4;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 1em;
 }
 /* login page */
 
@@ -108,10 +110,12 @@ body {
   margin-top: -0.2em;
   text-decoration: underline;
   padding: 0.7em;
+  margin-right: 2em;
 }
 .login_low_text {
   color: #5d5aa4;
   font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
 }
 /* register page */
 
@@ -155,6 +159,7 @@ body {
 .register_low_text {
   color: #5d5aa4;
   font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
 }
 .register_mdp {
   background-image: url(../SVG-icons/open-eye.svg);
