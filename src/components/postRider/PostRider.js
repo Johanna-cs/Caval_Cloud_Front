@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react"
 import "./postRider.css"
-import { Link } from "react-router-dom"
+import { Link, Redirect } from "react-router-dom"
 import Header from "../Header_footer/Header"
 import SlidingButton from "../common/SlidingButton"
 import RangeButton from '../common/RangeButton'
@@ -15,6 +15,8 @@ import usePosition from '../common_section/usePosition';
 import Axios from "axios"
 import Competition from "../common_section/Competition"
 import { RiderContext } from "../context/RiderContext"
+import { UserContext } from '../context/UserContext'
+import ModalPost from "../common/ModalPost"
 
 const PostRider = (props) => {
 
@@ -41,20 +43,30 @@ const PostRider = (props) => {
 
   const { riderProfile, setRiderProfile } = useContext(RiderContext);
 
+  // Context userProfile in order to simplify user data information management
+  const { userProfile, setUserProfile } = useContext(UserContext)
+
+  const [modalShow, setModalShow] = useState(false);
+  const [home, setHome] = useState(false);
+
+
   const postDataRider = () => {
     Axios.post(`http://localhost:4000/api/riders`, riderProfile).catch((err) =>
       console.log(err)
     );
+    setModalShow(true);
+    setTimeout(()=> setHome(true), 5000)
   };
 
   return (
     <>
+    {home ? <Redirect to ="/home"/> : null}
       <Header title="Poster une annonce cavalier" />
       <div className="postRider_page">
         <div className="postRider_header">
           <img
             className="postRider_logo"
-            src="https://via.placeholder.com/220x180.png"
+            src={userProfile.user_avatar}
             alt="logo"
           />
           <div className="postRider_forms">
@@ -144,7 +156,7 @@ const PostRider = (props) => {
         <hr />
         <div>
           <h4>Mon niveau</h4>
-          <h5> Nombre d'années de pratique : {riderProfile.yearsOfPractice}</h5>
+          <h5> Nombre d'années de pratique : {riderProfile.rider_years_of_practice}</h5>
 
           <div className="divRangeSpan">
             <span>1 an</span>
@@ -160,7 +172,7 @@ const PostRider = (props) => {
             />
             <span>50 ans</span>
           </div>
-          <h5> Niveau de Galop : {riderProfile.gallopLevel} </h5>
+          <h5> Niveau de Galop : {riderProfile.rider_gallop_level} </h5>
           <div className="divRangeSpan">
             <span>0</span>
             <RangeButton
@@ -458,6 +470,7 @@ const PostRider = (props) => {
           btnName={"Poster mon annonce"}
           onClick={() => postDataRider()}
         />
+        <ModalPost show={modalShow}/>
       </div>
     </>
   );

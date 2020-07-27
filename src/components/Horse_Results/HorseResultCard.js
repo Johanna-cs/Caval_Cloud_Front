@@ -10,17 +10,27 @@ const HorseResultCard = (props) => {
   // get the correct riderID in order to pass it to the ResultAnnonce component
   const horseID = props.horse_ID
   
-  const [favorite, setFavorite] = useState(heart);
+  const [favoriteIcon, setFavoriteIcon] = useState(heart)
+
+  const [isFavorite, setIsFavorite] = useState(false)
+
+  const addResultInFavorite = () => {
+    Axios
+    .post(`http://localhost:4000/api/horses/favorite`)
+    .catch((err) => console.log(err))
+}
 
   const favoriteCard = () => {
-    if (favorite === { heartFull }) {
-      Axios.post("http://localhost:3010/api/favorite", favorite).catch((err) =>
-        console.error(err)
+    if (favoriteIcon === { heartFull }) {
+      Axios
+      .post(`http://localhost:4000/api/favorite`)
+      .catch((err) => console.error(err)
       );
     }
-    else if (favorite === { heart }) {
-      Axios.delete("http://localhost:3010/api/favorite", favorite).catch((err) =>
-        console.error(err)
+    else if (favoriteIcon === { heart }) {
+      Axios
+      .delete(`http://localhost:3010/api/favorite`)
+      .catch((err) => console.error(err)
       );
     }
   };
@@ -36,22 +46,22 @@ const HorseResultCard = (props) => {
           <div className="resultCard-container">
             <img
               className="resultPhoto"
-              src="https://images.unsplash.com/photo-1579113813543-fa41eb8bf556?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1971&q=80"
+              src="https://images.unsplash.com/photo-1504291310234-fdc312c67b04?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
               alt=""
 
             />
           </div>
         </Link>
         <div className="resultDetails">
-          <h7 id="resultName">{props.horse_name}</h7>
+          <h7 id="resultName">{props.firstname}</h7>
           <img
             className="resultHeart"
-            onClick={
-              (favoriteCard(),
-              () => setFavorite(favorite === heart ? heartFull : heart))
-            }
-            src={favorite}
-            alt="favoris"
+            onClick={ () => {
+                setFavoriteIcon(favoriteIcon === heart ? heartFull : heart);
+                setIsFavorite(!isFavorite)
+            }}
+            src={favoriteIcon}
+            alt={favoriteIcon}
           />
         </div>
       </div>

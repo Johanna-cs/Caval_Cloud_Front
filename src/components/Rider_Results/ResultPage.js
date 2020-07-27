@@ -37,12 +37,13 @@ function ResultPage() {
           </button>
           </Link>
         </div>
-        <div className="Result-Page">
+        <div className="Result-PageRider">
       {resultsRiders.map(e=> 
         <ResultCard 
           fullResult={e} 
           firstname={e.rider_firstname}
           rider_ID={e.rider_ID}
+          photo={e.rider_photos}
         />
         )
       }

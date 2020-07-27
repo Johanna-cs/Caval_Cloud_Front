@@ -50,7 +50,7 @@ const Menu = (props)=>{
     <div className='logoM'>
     <img src={Profil} width="30" height="30" alt='home caval cloud'className='logo-profil logo'/>
     </div>
-    <p>Mon Profil</p>
+    <p>Profil</p>
   </Link>
   
 </div>

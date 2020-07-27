@@ -45,6 +45,7 @@ const HorseResultPage = () => {
           fullResult={e} 
           horse_name={e.horse_name}
           horse_ID={e.horse_ID}
+          photo={e.horse_photos}
         />
         )
       }

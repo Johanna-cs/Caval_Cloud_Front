@@ -31,18 +31,10 @@ const Pension = (props) => {
               />
 
             <RadioButton
-              radioButtonText="4 à 5 fois /semaine"
-              radioButtonValue="4/semaine"
+              radioButtonText="5 à 7 fois /semaine"
+              radioButtonValue="5/semaine"
               radioButtonName="frequency"
               radioButtonId="frequency3"
-              onClick={props.onClick}
-            />
-
-            <RadioButton
-              radioButtonText="6 fois /semaine"
-              radioButtonValue="6/semaine"
-              radioButtonName="frequency"
-              radioButtonId="frequency4"
               onClick={props.onClick}
             />
 
