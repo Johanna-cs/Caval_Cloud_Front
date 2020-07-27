@@ -19,7 +19,7 @@ export const horseProfileContext = {
     horse_practice_structure : '',
     horse_disciplines : '',
     horse_stroll_along : 0,
-    horse_competition : '',
+    horse_competition_preferences : '',
     horse_riding_frequency : '',
     horse_fixed_day : 0,
     horse_coaching_here : 0,

@@ -89,13 +89,13 @@ const SearchRider = () => {
                 />
                 <h5> Années de pratique minimum : {yearsOfPractice} </h5>
                     <div className='divRangeSpan'>
-                        <span>0</span>
+                        <span>1</span>
                         <RangeButton 
-                            min="0" 
-                            max="99"
+                            min="1" 
+                            max="50"
                             onChange={(e) => setYearsOfPractice(e.target.value)} 
                         />
-                        <span>99 ans</span>
+                        <span>50 ans</span>
                     </div>
                 
                 <hr />
@@ -115,9 +115,9 @@ const SearchRider = () => {
                 <hr />
                 <h5> Age du cavalier <span>(+/- 2ans)</span>: {riderAge} ans</h5>
                     <div className='divRangeSpan'>
-                        <span>5 ans</span>
+                        <span>5</span>
                         <RangeButton 
-                            min="0" 
+                            min="5" 
                             max="99"
                             onChange={(e) =>setRiderAge(e.target.value)} 
                         />

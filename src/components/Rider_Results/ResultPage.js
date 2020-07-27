@@ -40,6 +40,7 @@ function ResultPage() {
         <div className="Result-PageRider">
       {resultsRiders.map(e=> 
         <ResultCard 
+          key={e.rider_ID}
           fullResult={e} 
           firstname={e.rider_firstname}
           rider_ID={e.rider_ID}

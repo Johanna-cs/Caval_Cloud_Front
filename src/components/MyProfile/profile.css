@@ -1,5 +1,6 @@
 .Profile-Page {
   display: flex;
+  justify-content: center;
   flex-flow: column wrap;
   margin-left: 3em;
   margin-right: 3em;

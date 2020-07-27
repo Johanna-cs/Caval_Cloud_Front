@@ -1,12 +1,16 @@
 @media (min-width: 728px) and (max-width: 1280px), (min-width: 1281px) {
   .mainInput, .competDiv, .priceDiv, .disciplineList, .frequencyDiv, .hebergement, .idealHorse, .idealOwner, .locationDiv, .scuring, .structures  {
   
-  width: 30em;}
+  width: 100%;}
     
   
 
-.competDiv, .priceDiv, .disciplineList, .frequencyDiv, .hebergement, .idealHorse, .idealOwner, .idealRider, .locationDiv, .scuring, .structures {
-  width: 480px;
+.select_compet, .priceDiv, .disciplineList, .frequencyDiv, .hebergtList, .idealHorse, .idealOwner, .idealRider, .locationDiv, .scuringList, .structures {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  flex-flow: row wrap;
+  justify-content: center;
   text-align: left;
 }}
 
@@ -82,7 +86,7 @@
   margin-top: 1em;
   display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-flow: column nowrap;
 }
 /* ***** Frequency ***** */
 .frequencyDiv {
@@ -102,6 +106,6 @@
 .hebergtList, .scuringList {
   display: flex; 
   align-items: center;
-  flex-flow: column wrap;
+  flex-flow: column nowrap;
   
 }

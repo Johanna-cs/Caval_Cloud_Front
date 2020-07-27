@@ -57,15 +57,7 @@ const PostHorse = (props) => {
   useEffect(() => {
     getLocation();
   });
-  // Check if subscribe successfull or not
-  // const [success, setSuccess] = useState(null);
 
-  // const createPostHorse = (e) => {
-  //     e.preventDefault()
-  //     Axios.post('http://localhost:4000/api/horses', dataHorse)
-  //     .catch((err) => console.error(err))
-  //     .finally(setSuccess(true));
-  // }
 
   return (
     <>
@@ -87,7 +79,6 @@ const PostHorse = (props) => {
                     horse_name: event.target.value,
                   })
                 }
-                autoFocus
               />
             </label>
           </form>
@@ -100,6 +91,7 @@ const PostHorse = (props) => {
                 id="ageHorse"
                 min="1"
                 max="30"
+                step='0'
                 radioRangeBtnId="ageHorse"
                 onChange={(e) =>
                   setHorseProfile({
@@ -115,7 +107,7 @@ const PostHorse = (props) => {
           <div className="horse_size">
             <h5> Taille : {horseProfile.horse_height} cm</h5>
             <div className="divRangeSpan">
-              <span>100 cm</span>
+              <span>80 cm</span>
               <RangeButton
                 min="80"
                 max="210"
@@ -314,7 +306,7 @@ const PostHorse = (props) => {
           onClick={(e) =>
             setHorseProfile({
               ...horseProfile,
-              horse_practice_structure: e.target.value,
+              horse_location_type: e.target.value,
             })
           }
         />
@@ -327,7 +319,11 @@ const PostHorse = (props) => {
           }
         />
         <hr />
-        <Structures />
+        <Structures onClick={(e) =>
+            setHorseProfile({
+              ...horseProfile,
+              horse_practice_structure: e.target.value,
+            }) }/>
         <hr />
         <div className="coaching">
           <h4>Coaching</h4>
@@ -413,7 +409,7 @@ const PostHorse = (props) => {
             onClick={(e) =>
               setHorseProfile({
                 ...horseProfile,
-                horse_competition: e.target.value,
+                horse_competition_preferences: e.target.value,
               })
             }
           />
