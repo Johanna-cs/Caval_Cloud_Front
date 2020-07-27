@@ -57,10 +57,12 @@ const HorseResultAnnonce = (props) => {
             <p>{dataHorse.horse_localisation}</p>
         </div>
      
-          src={dataHorse.horse_photos}
+          {/* src={dataHorse.horse_photos} */}
         <div>
           <h4>Infos du propriétaire </h4>
           <h5>{dataHorse.horse_owner_firstname}, {dataHorse.horse_owner_age}ans</h5>
+          <p>N° de téléphone : {dataHorse.horse_owner_phone}</p>
+          <p>Mail : {dataHorse.horse_owner_mail}</p>
           <p>{dataHorse.horse_owner_caracter} </p> 
           <p>Fréquence de communication : {dataHorse.horse_owner_communication_frequency} </p>
           <p>Type de travail du cheval : {dataHorse.horse_owner_work_for_horse}</p>

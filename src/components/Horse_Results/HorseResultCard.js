@@ -53,7 +53,7 @@ const HorseResultCard = (props) => {
           </div>
         </Link>
         <div className="resultDetails">
-          <h7 id="resultName">{props.firstname}</h7>
+          <p id="resultName">{props.horse_name}</p>
           <img
             className="resultHeart"
             onClick={ () => {
