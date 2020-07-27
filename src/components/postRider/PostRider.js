@@ -184,6 +184,7 @@ const PostRider = () => {
 
         <div className="postRider-disc">
           <Disciplines 
+          
           onClick={(e) => setRiderProfile({...riderProfile, rider_disciplines: e.target.value})}/>
         </div>
         <div>
