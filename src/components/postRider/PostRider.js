@@ -5,7 +5,7 @@ import Header from "../Header_footer/Header"
 import SlidingButton from "../common/SlidingButton"
 import RangeButton from '../common/RangeButton'
 import SelectButton from '../common/SelectButton'
-import Carousel from "../common/Carousel"
+import ImageCarousel from "../common/Carousel"
 import FloatingButton from "../common/FloatingButton"
 import Disciplines from "../common_section/Disciplines"
 import BudgetMensuel from "../common_section/BudgetMensuel"
@@ -16,7 +16,7 @@ import Axios from "axios"
 import Competition from "../common_section/Competition"
 import { RiderContext } from "../context/RiderContext"
 
-const PostRider = () => {
+const PostRider = (props) => {
 
   // Localisation
   const { latitude, longitude, error } = usePosition();
@@ -70,7 +70,7 @@ const PostRider = () => {
         </div>
         <hr/>
         <h4>Vos photos</h4>
-        <Carousel />
+        <ImageCarousel search/>
         <div>
           <Localisation
             value={cityLocalisation}

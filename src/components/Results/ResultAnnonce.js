@@ -3,7 +3,7 @@ import "./Result.css";
 import { Link } from "react-router-dom";
 import Header from "../Header_footer/Header";
 import SlidingButton from "../common/SlidingButton";
-import Carousel from "../common/Carousel";
+import ImageCarousel from "../common/Carousel";
 import logo from "../SVG-icons/cavalcloud-logo.png";
 import Disciplines from "../common_section/Disciplines";
 import BudgetMensuel from "../common_section/BudgetMensuel";
@@ -46,7 +46,7 @@ const ResultAnnonce = () => {
           </div>
           <h4>Localisation</h4>
         </div>
-        <Carousel />
+        <ImageCarousel />
         <div>
           <h4>Equitation</h4>
           <p>
