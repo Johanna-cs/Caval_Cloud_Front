@@ -21,7 +21,6 @@ function Home(props) {
         <div className='headerHome'><h3 id='homeTitle'>Accueil</h3> </div>
        <div className='HomePage'> 
             <h3 className='welcome'> Bienvenue sur Cavalcloud ! </h3>
-            <p className='welcomeText'> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod. </p>
 
                 <Link to='/search-horse' style={{ textDecoration: "none" }} >
                     <div className='homeBtn' >

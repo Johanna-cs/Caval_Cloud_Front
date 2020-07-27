@@ -1,4 +1,6 @@
 .menu {
+    position: fixed;
+    bottom: 0em;
     background-color: none;
     height: 4.9em;
     color : white;
@@ -7,7 +9,7 @@
     box-shadow: 1px 0px 3px 0px #77838F65;
     width: 100%;
     margin-top: 0.5em;
-   
+    margin-left: 1em;
 }
 .divBtn {
     display: flex;
@@ -24,7 +26,7 @@
 .menu p {
     text-align: center !important;
     font-weight: 200 !important;
-    font-family: 'open-sans', sans-serif;
+    font-family: 'pen Sans', sans-serif;
     font-size: 0.8em !important;
     margin: auto ;
     padding: 0.2em;
