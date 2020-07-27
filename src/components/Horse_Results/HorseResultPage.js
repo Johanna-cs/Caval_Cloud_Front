@@ -42,6 +42,7 @@ const HorseResultPage = () => {
       <div className="Result-Page">
       {resultsHorses.map(e=> 
         <HorseResultCard 
+          key={e.horse_ID}
           fullResult={e} 
           horse_name={e.horse_name}
           horse_ID={e.horse_ID}

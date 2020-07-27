@@ -314,7 +314,7 @@ const PostHorse = (props) => {
           onClick={(e) =>
             setHorseProfile({
               ...horseProfile,
-              horse_practice_structure: e.target.value,
+              horse_location_type: e.target.value,
             })
           }
         />
@@ -327,7 +327,11 @@ const PostHorse = (props) => {
           }
         />
         <hr />
-        <Structures />
+        <Structures onClick={(e) =>
+            setHorseProfile({
+              ...horseProfile,
+              horse_practice_structure: e.target.value,
+            }) }/>
         <hr />
         <div className="coaching">
           <h4>Coaching</h4>
@@ -413,7 +417,7 @@ const PostHorse = (props) => {
             onClick={(e) =>
               setHorseProfile({
                 ...horseProfile,
-                horse_competition: e.target.value,
+                horse_competition_preferences: e.target.value,
               })
             }
           />

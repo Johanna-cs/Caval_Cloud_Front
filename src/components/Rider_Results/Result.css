@@ -38,6 +38,7 @@ padding-bottom: 1em;
 .resultCardRider {
   width: 20em;
   height: 10em;
+  margin: 2em;
 }
 
 .resultPhotoRider {
@@ -60,6 +61,7 @@ padding-bottom: 1em;
 }
 .resultHeart {
   width: 1.5em;
+  margin-left: 1.2em;
 }
 
 

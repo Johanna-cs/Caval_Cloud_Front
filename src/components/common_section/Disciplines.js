@@ -11,7 +11,6 @@ const Disciplines = (props) => {
             <Checkbox 
                 CheckboxText='Obstacle'
                 CheckboxValue='Obstacle'
-                onChange={props.setObstacle}
                 onClick={props.onClick}/>
             <Checkbox 
                 CheckboxText='Dressage'

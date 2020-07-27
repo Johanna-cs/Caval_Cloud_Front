@@ -19,6 +19,7 @@ const ResultAnnonce = (props) => {
       .then(res => setDataRider(res.data[0]))
       .catch(err=> console.error(err))
     }
+    // Transforme les booléens récupérés de l'annonce en oui ou non 
     const changeBool = (bool) => bool === true ? 'oui' : 'non'
 
     // When a result is displayed, the function getRiderInformation starts first in order to query BDD
@@ -27,7 +28,7 @@ const ResultAnnonce = (props) => {
       changeBool(dataRider);
       }, 
     [])
-  console.log(dataRider)
+  
   return (
     <>
       <div className="headerAnnonce">
