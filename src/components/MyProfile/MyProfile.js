@@ -20,19 +20,25 @@ const MyProfile = (props) => {
   const updateMyProfile = () => {
     console.log("oui")
     Axios
-    .put(`http://localhost:4000/api/users/${userProfile.user_ID}`, dataUser)
+    .put(`http://localhost:4000/api/users/${dataUser.user_ID}`, dataUser)
     .catch(err=> console.error(err))
   }
 
   // User Data storage:
-  const [dataUser, setDataUser] = useState({})
+  const [dataUser, setDataUser] = useState({
+    user_lastname: "",
+    user_firstname: "",
+    user_email: "",
+    user_password: "",
+    user_avatar : "",
+    user_phone : ""
+  });
 
   // Context userProfile in order to simplify user data information management
   const { userProfile, setUserProfile } = useContext(UserContext)
 
   // Management of image upload :
   const [image, setImage] = useState(null);
-  const [url, setUrl] = useState("");
   const handleChange = (e) => {
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
@@ -70,7 +76,7 @@ const MyProfile = (props) => {
           .ref("images")
           .child(image.name)
           .getDownloadURL()
-          .then((url) => setUserProfile({...userProfile, user_avatar : url}))
+          .then((url) => setDataUser({...dataUser, user_avatar : url}))
       }
     );
   };
@@ -86,11 +92,11 @@ const MyProfile = (props) => {
               <button onClick={handleUpload} className="upload-button">
                 Valider la photo
               </button>
-              <img src={userProfile.user_avatar} className="Profile-photo" alt="" />
+              <img src={dataUser.user_avatar} className="Profile-photo" alt="" />
             </div>
           ) : (
             <img
-              src={userProfile.user_avatar}
+              src={dataUser.user_avatar}
               className="Profile-photo"
               alt="Vous n'avez pas encore de photo"
             />

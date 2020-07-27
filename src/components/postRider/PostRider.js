@@ -28,28 +28,38 @@ const PostRider = () => {
   const [perimeter, setPerimeter] = useState(null);
   // Précédente localisation enregistrée dans le navigateur (si existante) :
   const [lastCitySaved, setLastCitySaved] = useState("");
+  
   const getLocation = () => {
-    Axios.get(
-      `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
-    )
+    Axios.get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
       .then((res) => setCityLocalisation(res.data.address.municipality))
       .catch((err) => console.log(err));
   };
-
-  useEffect(() => {
-    getLocation();
-  });
 
   const { riderProfile, setRiderProfile } = useContext(RiderContext);
 
   // Context userProfile in order to simplify user data information management
   const { userProfile, setUserProfile } = useContext(UserContext)
 
+  // Get user information from its ID and then, update userProfile context
+  const getUserInfo = () => {
+    Axios
+    .get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
+    .then(res => setUserProfile(res.data))
+    .catch(err=> console.error(err))
+  }
+
+
   const postDataRider = () => {
-    Axios.post(`http://localhost:4000/api/riders`, riderProfile).catch((err) =>
+    Axios.post(`http://localhost:4000/api/riders`, riderProfile)
+    .catch((err) =>
       console.log(err)
     );
   };
+
+  useEffect(() => {
+    getLocation();
+    getUserInfo();
+  }, []);
 
   return (
     <>
