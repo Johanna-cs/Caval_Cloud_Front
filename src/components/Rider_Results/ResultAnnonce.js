@@ -1,6 +1,5 @@
 import React, { useState, useEffect} from "react"
 import "./Result.css"
-import logo from "../SVG-icons/cavalcloud-logo.png"
 import { Link } from "react-router-dom"
 
 import Axios from "axios";
@@ -44,15 +43,17 @@ const ResultAnnonce = (props) => {
         </div>
         <div className="Result_annonce">
         <div className="annonce_header">
-          <img className="annonce_logo" src="" alt="logo" />
+          <img id="annonce_logo" src="https://firebasestorage.googleapis.com/v0/b/caval-cloud.appspot.com/o/images%2Fkelly-sikkema-JN0SUcTOig0-unsplash.jpg?alt=media&token=d141987e-453a-495b-bd56-2c7c59c1b5a4" alt="logo" />
           <div>
             <h5>
               {dataRider.rider_firstname}, <span>{dataRider.rider_age} ans</span>
             </h5>
-            {/* <img src={dataRider.rider_photos} alt='rider illustration'/> */}
+            {/* <img src={dataRider.rider_avatar} alt='rider illustration'/> */}
             <p>
               {dataRider.rider_selfWord1}, {dataRider.rider_selfWord2}, {dataRider.rider_selfWord3}
             </p>
+            <p>N° de téléphone : {dataRider.rider_phone}</p>
+            <p>Mail : {dataRider.rider_mail}</p>
           </div>
           <h4>Localisation</h4>
             <p>{dataRider.rider_postal_code}</p>
