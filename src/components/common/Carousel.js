@@ -7,6 +7,7 @@ const ImageCarousel = (props) => {
   // Carousel images
   const [imageCarousel, setImageCarousel] = useState({});
   const [useUrl, setUseUrl] = useState([]);
+  const [test, setTest]= useState(false);
 
   const handleChange = (e) => {
     if (e.target.files[0]) {
@@ -18,9 +19,45 @@ const ImageCarousel = (props) => {
     useUrl.push(url);
   };
 
+  const displayCarousel = () => {
+    if (props.search) {
+      return (
+        <>
+          <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9}>
+            {useUrl &&
+              useUrl.map((imgUrl, index) => (
+                <img key={index} src={imgUrl} alt="" />
+              ))}
+          </Carousel>
+          <br />
+          <input type="file" onChange={handleChange} />
+          <button onClick={handleUpload} onEvent={props.onEvent} className="upload-button">
+            Valider la photo
+          </button>
+          <hr />
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9}>
+            {useUrl &&
+              useUrl.map((imgUrl, index) => (
+                <img key={index} src={imgUrl} alt="" />
+              ))}
+          </Carousel>
+          <br />
+          <hr />
+        </>
+      );
+    }
+  }
+
+
+
  useEffect(() => {
-   ;
- }, []);
+   displayCarousel()
+ }, [useUrl[0],test]);
 
   const handleUpload = () => {
     const uploadTask = storage
@@ -37,43 +74,21 @@ const ImageCarousel = (props) => {
           .ref("images")
           .child(imageCarousel.name)
           .getDownloadURL()
-          .then((url) => handlePush(url));
+          .then((url) => handlePush(url)); 
+          setTest(!test);
+
       }
     );
   };
         console.log(useUrl);
+        console.log(test);
 
   
-  if (props.search) {
     return (
       <>
-        <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9}>
-          {useUrl &&
-            useUrl.map((imgUrl, index) => (
-              <img key={index} src={imgUrl} alt="" />
-            ))}
-        </Carousel>
-        <br />
-        <input type="file" onChange={handleChange} />
-        <button onClick={handleUpload} className="upload-button">
-          Valider la photo
-        </button>
-        <hr />
+      {displayCarousel()}
       </>
     );
-  } else {
-    return (
-      <>
-        <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9}>
-          {useUrl &&
-            useUrl.map((imgUrl, index) => (
-              <img key={index} src={imgUrl} alt="" />
-            ))}
-        </Carousel>
-        <br />
-        <hr />
-      </>
-    );
-  }
-};
+}
+;
 export default ImageCarousel;

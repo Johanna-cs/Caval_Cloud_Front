@@ -17,12 +17,9 @@ const MyProfile = (props) => {
 
   // Update user data information from its id :
   const updateMyProfile = () => {
-    console.log("oui");
-    Axios.put(
-      `http://localhost:4000/api/users/${userProfile.user_ID}`,
-      dataUser
-    ).catch((err) => console.error(err));
-  };
+    Axios.put(`http://localhost:4000/api/users/${dataUser.user_ID}`, dataUser)
+    .catch(err=> console.error(err))
+  }
 
   const getRiderPosts = () => {
     Axios.get(`http://localhost:4000/api/riders`)
@@ -32,7 +29,7 @@ const MyProfile = (props) => {
   };
 
   const getHorsePosts = () => {
-    Axios.get(`http://localhost:4000/api/users/${horseAnnonce.user_ID}`)
+    Axios.get(`http://localhost:4000/api/horses`)
       .then((res) => setHorseAnnonce(res.data))
       .catch((err) => console.error(err));
     console.log(horseAnnonce);
@@ -42,14 +39,20 @@ const MyProfile = (props) => {
   const [horseAnnonce, setHorseAnnonce] = useState([]);
 
   // User Data storage:
-  const [dataUser, setDataUser] = useState({});
+  const [dataUser, setDataUser] = useState({
+    user_lastname: "",
+    user_firstname: "",
+    user_email: "",
+    user_password: "",
+    user_avatar : "",
+    user_phone : ""
+  });
 
   // Context userProfile in order to simplify user data information management
   const { userProfile, setUserProfile } = useContext(UserContext);
 
   // Management of image upload :
   const [image, setImage] = useState(null);
-  const [url, setUrl] = useState("");
   const handleChange = (e) => {
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
@@ -87,7 +90,7 @@ const MyProfile = (props) => {
           .ref("images")
           .child(image.name)
           .getDownloadURL()
-          .then((url) => setUserProfile({ ...userProfile, user_avatar: url }));
+          .then((url) => setDataUser({...dataUser, user_avatar : url}))
       }
     );
   };
@@ -104,14 +107,14 @@ const MyProfile = (props) => {
                 Valider la photo
               </button>
               <img
-                src={userProfile.user_avatar}
+                src={dataUser.user_avatar}
                 className="Profile-photo"
                 alt=""
               />
             </div>
           ) : (
             <img
-              src={userProfile.user_avatar}
+              src={dataUser.user_avatar}
               className="Profile-photo"
               alt="Vous n'avez pas encore de photo"
             />
@@ -199,20 +202,36 @@ const MyProfile = (props) => {
       </div>
       <hr />
       <div className="Profile-annonces">
-          <div>
-            {riderAnnonce.map((e) => (
+        <div>
+          {riderAnnonce.length !== 0 ? (
+            riderAnnonce.map((e) => (
               <ResultCard
                 fullResult={e}
                 firstname={e.rider_firstname}
                 rider_ID={e.rider_ID}
                 photo={e.rider_photos}
               />
-            ))}
-          </div>
-     
-          <h3>Vous n'avez pas encore publié d'annonce Cavalier</h3>
-        
-
+            ))
+          ) : (
+            <h3>Vous n'avez pas encore publié d'annonce Cavalier</h3>
+          )}
+        </div>
+        <hr />
+        <div>
+          {horseAnnonce.length !== 0 ? (
+            horseAnnonce.map((e) => (
+              <HorseResultCard
+                key={e.horse_ID}
+                fullResult={e}
+                horse_name={e.horse_name}
+                horse_ID={e.horse_ID}
+                photo={e.horse_photos}
+              />
+            ))
+          ) : (
+            <h3>Vous n'avez pas encore publié d'annonce Equidé</h3>
+          )}
+        </div>
       </div>
     </>
   );

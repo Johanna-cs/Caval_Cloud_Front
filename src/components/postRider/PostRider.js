@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import "./postRider.css"
 import { Link, Redirect } from "react-router-dom"
 import Header from "../Header_footer/Header"
@@ -18,6 +18,7 @@ import { RiderContext } from "../context/RiderContext"
 import { UserContext } from '../context/UserContext'
 import ModalPost from "../common/ModalPost"
 
+
 const PostRider = (props) => {
 
   // Localisation
@@ -29,38 +30,48 @@ const PostRider = (props) => {
   const [perimeter, setPerimeter] = useState(null);
   // Précédente localisation enregistrée dans le navigateur (si existante) :
   const [lastCitySaved, setLastCitySaved] = useState("");
+  
   const getLocation = () => {
-    Axios.get(
-      `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
-    )
+    Axios.get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
       .then((res) => setCityLocalisation(res.data.address.municipality))
       .catch((err) => console.log(err));
   };
-
-  useEffect(() => {
-    getLocation();
-  });
 
   const { riderProfile, setRiderProfile } = useContext(RiderContext);
 
   // Context userProfile in order to simplify user data information management
   const { userProfile, setUserProfile } = useContext(UserContext)
 
+  // Get user information from its ID and then, update userProfile context
+  const getUserInfo = () => {
+    Axios
+    .get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
+    .then(res => setUserProfile(res.data))
+    .catch(err=> console.error(err))
+  }
   const [modalShow, setModalShow] = useState(false);
   const [home, setHome] = useState(false);
 
 
   const postDataRider = () => {
-    Axios.post(`http://localhost:4000/api/riders`, riderProfile).catch((err) =>
+    Axios.post(`http://localhost:4000/api/riders`, riderProfile)
+    .catch((err) =>
       console.log(err)
     );
     setModalShow(true);
     setTimeout(()=> setHome(true), 5000)
   };
 
+
+  useEffect(() => {
+    getLocation();
+    getUserInfo();
+  }, []);
+
+
   return (
     <>
-    {home ? <Redirect to ="/home"/> : null}
+      {home ? <Redirect to="/home" /> : null}
       <Header title="Poster une annonce cavalier" />
       <div className="postRider_page">
         <div className="postRider_header">
@@ -75,13 +86,27 @@ const PostRider = (props) => {
               <span>{riderProfile.rider_age}</span>
             </p>
             <p>
-              {riderProfile.rider_selfWord1} {riderProfile.rider_selfWord2} {riderProfile.rider_selfWord3}
+              {riderProfile.rider_selfWord1} {riderProfile.rider_selfWord2}{" "}
+              {riderProfile.rider_selfWord3}
             </p>
           </div>
         </div>
-        <hr/>
+        <hr />
+        <div className="postRider_pres">
+          <Link
+            to={{
+              pathname: "/PostRiderPresentation",
+              style: { textDecoration: "none" },
+            }}
+          >
+            <button className="postRider_edit-button">
+              Editer votre présentation
+            </button>
+          </Link>
+        </div>
+        <br />
         <h4>Vos photos</h4>
-        <ImageCarousel search/>
+        <ImageCarousel search onEvent />
         <div>
           <Localisation
             value={cityLocalisation}
@@ -96,19 +121,6 @@ const PostRider = (props) => {
           />
         </div>
 
-        <div className="postRider_pres">
-          <Link
-            to={{
-              pathname: "/PostRiderPresentation",
-              style: { textDecoration: "none" },
-            }}
-          >
-            <button className="postRider_edit-button">
-              Editer votre présentation
-            </button>
-          </Link>
-        </div>
-        <hr />
         <div>
           <BudgetMensuel
             budgetTitle="Budget"
@@ -155,7 +167,10 @@ const PostRider = (props) => {
         <hr />
         <div>
           <h4>Mon niveau</h4>
-          <h5> Nombre d'années de pratique : {riderProfile.rider_years_of_practice}</h5>
+          <h5>
+            {" "}
+            Nombre d'années de pratique : {riderProfile.rider_years_of_practice}
+          </h5>
 
           <div className="divRangeSpan">
             <span>1 an</span>
@@ -190,9 +205,14 @@ const PostRider = (props) => {
         </div>
 
         <div className="postRider-disc">
-          <Disciplines 
-          
-          onClick={(e) => setRiderProfile({...riderProfile, rider_disciplines: e.target.value})}/>
+          <Disciplines
+            onClick={(e) =>
+              setRiderProfile({
+                ...riderProfile,
+                rider_disciplines: e.target.value,
+              })
+            }
+          />
         </div>
         <div>
           <SlidingButton
@@ -471,7 +491,7 @@ const PostRider = (props) => {
           btnName={"Poster mon annonce"}
           onClick={() => postDataRider()}
         />
-        <ModalPost show={modalShow}/>
+        <ModalPost show={modalShow} />
       </div>
     </>
   );

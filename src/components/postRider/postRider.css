@@ -1,7 +1,6 @@
 .postRider_page {
   display: flex;
-  
-  flex-flow: column wrap;
+  flex-flow: column nowrap;
   margin-left: 2em;
   margin-right: 2em;
   padding-bottom: 2em;
