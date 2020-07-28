@@ -47,7 +47,16 @@ const PostHorse = (props) => {
   };
 
   const postDataHorse = () => {
-    Axios.post(`http://localhost:4000/api/horses`, horseProfile).catch((err) =>
+    Axios.post(`http://localhost:4000/api/horses`, horseProfile)
+    .catch((err) =>
+      console.log(err)
+    );
+    Axios.post(`http://localhost:4000/api/owners`, horseProfile)
+    .catch((err) =>
+      console.log(err)
+    );
+    Axios.post(`http://localhost:4000/api/idealriders`, horseProfile)
+    .catch((err) =>
       console.log(err)
     );
     setModalShow(true);
@@ -446,37 +455,37 @@ const PostHorse = (props) => {
         <div className="postHorse_idealRider">
           <h4>Cavalier idéal</h4>
           <IdealRider
-            yearPractice={horseProfile.idealRiderYearsOfPractice}
+            yearPractice={horseProfile.ideal_rider_years_of_practice}
             changePractice={(e) =>
               setHorseProfile({
                 ...horseProfile,
-                idealRiderYearsOfPractice: e.target.value,
+                ideal_rider_years_of_practice: e.target.value,
               })
             }
-            gallopLevel={horseProfile.idealRiderGallopLevel}
+            gallopLevel={horseProfile.ideal_rider_gallop_level}
             changeGallop={(e) =>
               setHorseProfile({
                 ...horseProfile,
-                idealRiderGallopLevel: e.target.value,
+                ideal_rider_gallop_level : e.target.value,
               })
             }
-            ageRider={horseProfile.idealRiderAge}
+            ageRider={horseProfile.ideal_rider_age }
             changeAgeRider={(e) =>
               setHorseProfile({
                 ...horseProfile,
-                idealRiderAge: e.target.value,
+                ideal_rider_age : e.target.value,
               })
             }
             isVehiculed={() =>
               setHorseProfile({
                 ...horseProfile,
-                idealRiderIsVehiculed: !horseProfile.idealRiderIsVehiculed,
+                ideal_rider_vehiculed : !horseProfile.ideal_rider_vehiculed ,
               })
             }
             hasManaged={() =>
               setHorseProfile({
                 ...horseProfile,
-                idealRiderHasManaged: !horseProfile.idealRiderHasManaged,
+                ideal_rider_managed_horse: !horseProfile.ideal_rider_managed_horse,
               })
             }
           />
