@@ -62,9 +62,11 @@ const Login = () => {
         </form>
         <p>Mot de passe oublié</p>
       </div>
-      <button className="login_button"  onClick={(e) => login(e)}>
-        Se connecter
-      </button>
+      <Link to="/home" style={{ textDecoration: "none" }}>
+        <button className="login_button"  onClick={(e) => login(e)}>
+          Se connecter
+        </button>
+      </Link>
       <div>
         <p>Pas encore de compte ?</p>
         <Link to="/register" style={{ textDecoration: "none" }}>

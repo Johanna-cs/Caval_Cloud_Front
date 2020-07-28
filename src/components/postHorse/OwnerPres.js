@@ -27,13 +27,13 @@ const OwnerPres = (props) => {
               className="postHorse_input"
               type="text"
               placeholder="Votre prénom"
-              onChange={(event) => setHorseProfile({...horseProfile, horse_owner_firstname : event.target.value}) }
+              onChange={(event) => setHorseProfile({...horseProfile, owner_firstname : event.target.value}) }
               autoFocus
             />
           </label>
         </form>
             <div className='owner_age'>
-            <h5> Votre age : {horseProfile.horse_owner_age} ans</h5>
+            <h5> Votre age : {horseProfile.owner_age} ans</h5>
             <div className='divRangeSpan'>
                     <span>4 ans</span>
                     <RangeButton 
@@ -41,7 +41,7 @@ const OwnerPres = (props) => {
                         min='4'
                         max='99'
                         radioRangeBtnId='ageOwner'
-                        onChange={(event) => setHorseProfile({...horseProfile, horse_owner_age : event.target.value}) }
+                        onChange={(event) => setHorseProfile({...horseProfile, owner_age : event.target.value}) }
                         />
                     <span>99 ans</span>
                     </div>
@@ -55,21 +55,21 @@ const OwnerPres = (props) => {
                         radioSelBtnId='Introverti'
                         radioSelBtnValue='Introverti'
                         radioSelBtnName='caracterOwner'
-                        onClick={(e) => setHorseProfile({...horseProfile, horse_owner_caracter : e.target.value}) }
+                        onClick={(e) => setHorseProfile({...horseProfile, owner_caracter : e.target.value}) }
                     />
 
                     <SelectButton
                         radioSelBtnId='Sociable'
                         radioSelBtnValue='Sociable'
                         radioSelBtnName='caracterOwner'
-                        onClick={(e) => setHorseProfile({...horseProfile, horse_owner_caracter : e.target.value}) }
+                        onClick={(e) => setHorseProfile({...horseProfile, owner_caracter : e.target.value}) }
                     />
 
                     <SelectButton
                         radioSelBtnId='Extraverti'
                         radioSelBtnValue='Extraverti'
                         radioSelBtnName='caracterOwner'
-                        onClick={(e) => setHorseProfile({...horseProfile, horse_owner_caracter : e.target.value}) }
+                        onClick={(e) => setHorseProfile({...horseProfile, owner_caracter : e.target.value}) }
                     />
 
                     <SelectButton   
@@ -85,9 +85,8 @@ const OwnerPres = (props) => {
                     <div className='select_communication'>
                     <Frequency 
                         frequencyTitle='A quelle fréquence aimez-vous communiquer avec le propriétaire ? '
-                        onClick={(e) => setHorseProfile({...horseProfile, horse_owner_communication_frequency : e.target.value}) }
+                        onClick={(e) => setHorseProfile({...horseProfile, owner_communication_frequency : e.target.value}) }
                         frequency={horseProfile.horse_owner_communication_frequency}
-                        changeFixedFrequency={() => setHorseProfile({...horseProfile, horse_owner_communication_fixed_day : !horseProfile.horse_owner_communication_fixed_day}) }
                     />
                     
                 </div>
@@ -99,21 +98,21 @@ const OwnerPres = (props) => {
                         <RadioButton 
                             radioButtonText="Ouvert à la nouveauté" 
                             radioButtonId='openToNew' radioButtonName='horseWork' radioButtonValue='Ouvert à la nouveauté'
-                            onClick={(e) => setHorseProfile({...horseProfile, horse_owner_work_for_horse : e.target.value}) }
+                            onClick={(e) => setHorseProfile({...horseProfile, owner_horse_work : e.target.value}) }
                             // horseWork={horseWork}
                         />
 
                         <RadioButton 
                             radioButtonText="Normal" 
                             radioButtonId='normal' radioButtonName='horseWork' radioButtonValue='Normal'
-                            onClick={(e) => setHorseProfile({...horseProfile, horse_owner_work_for_horse : e.target.value}) }
+                            onClick={(e) => setHorseProfile({...horseProfile, owner_horse_work : e.target.value}) }
                             // horseWork={horseWork}
                         />
 
                         <RadioButton 
                             radioButtonText="Cadré" 
                             radioButtonId='cadre' radioButtonName='horseWork' radioButtonValue='Cadré'
-                            onClick={(e) => setHorseProfile({...horseProfile, horse_owner_work_for_horse : e.target.value}) }
+                            onClick={(e) => setHorseProfile({...horseProfile, owner_horse_work : e.target.value}) }
                             // horseWork={horseWork}
                         />
                     </div>
@@ -126,7 +125,7 @@ const OwnerPres = (props) => {
                     className="postHorse_input"
                     type="text"
                     placeholder="Ajoutez quelques mots"
-                    onChange={(event) => setHorseProfile({...horseProfile, horse_owner_message : event.target.value}) }
+                    onChange={(event) => setHorseProfile({...horseProfile, owner_message : event.target.value}) }
                     />
                 </label>
                 </form>

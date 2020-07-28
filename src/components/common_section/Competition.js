@@ -18,21 +18,21 @@ const Competition = (props) => {
           <div className='select_compet'>
             <RadioButton
               radioButtonText="Possible"
-              radioButtonValue="possible"
+              radioButtonValue="Possible"
               radioButtonName="competition"
               radioButtonId="compet1"
               onClick={props.onClick}
             />
             <RadioButton
               radioButtonText="Obligatoire"
-              radioButtonValue="mandatory"
+              radioButtonValue="Obligatoire"
               radioButtonName="competition"
               radioButtonId="compet2"
               onClick={props.onClick}
             />
             <RadioButton
               radioButtonText="Non"
-              radioButtonValue="no"
+              radioButtonValue="Non"
               radioButtonName="competition"
               radioButtonId="compet3"
               onClick={props.onClick}

@@ -19,6 +19,7 @@ import Competition from "../common_section/Competition";
 import HebergementHorse from "../common_section/HebergementHorse";
 import ImageCarousel from "../common/Carousel";
 import { HorseContext } from "../context/HorseContext";
+import { UserContext } from "../context/UserContext";
 import ModalPost from "../common/ModalPost";
 
 
@@ -32,7 +33,15 @@ const PostHorse = (props) => {
 
   // Selection on perimeter for localisation :
   const [perimeter, setPerimeter] = useState(null);
-
+  // Context userProfile in order to simplify user data information management
+  const { userProfile, setUserProfile } = useContext(UserContext)
+// Get user information from its ID and then, update userProfile context
+  const getUserInfo = () => {
+    Axios
+      .get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
+      .then(res => setUserProfile(res.data))
+      .catch(err=> console.error(err))
+      }
   // Get horseProfile Context in order to get and set information about it
   const { horseProfile, setHorseProfile } = useContext(HorseContext);
   const [modalShow, setModalShow] = useState(false);
@@ -47,7 +56,16 @@ const PostHorse = (props) => {
   };
 
   const postDataHorse = () => {
-    Axios.post(`http://localhost:4000/api/horses`, horseProfile).catch((err) =>
+    Axios.post(`http://localhost:4000/api/horses`, horseProfile)
+    .catch((err) =>
+      console.log(err)
+    );
+    Axios.post(`http://localhost:4000/api/owners`, horseProfile)
+    .catch((err) =>
+      console.log(err)
+    );
+    Axios.post(`http://localhost:4000/api/idealriders`, horseProfile)
+    .catch((err) =>
       console.log(err)
     );
     setModalShow(true);
@@ -56,6 +74,7 @@ const PostHorse = (props) => {
 
   useEffect(() => {
     getLocation();
+    ;
   });
 
 
@@ -446,37 +465,37 @@ const PostHorse = (props) => {
         <div className="postHorse_idealRider">
           <h4>Cavalier idéal</h4>
           <IdealRider
-            yearPractice={horseProfile.idealRiderYearsOfPractice}
+            yearPractice={horseProfile.ideal_rider_years_of_practice}
             changePractice={(e) =>
               setHorseProfile({
                 ...horseProfile,
-                idealRiderYearsOfPractice: e.target.value,
+                ideal_rider_years_of_practice: e.target.value,
               })
             }
-            gallopLevel={horseProfile.idealRiderGallopLevel}
+            gallopLevel={horseProfile.ideal_rider_gallop_level}
             changeGallop={(e) =>
               setHorseProfile({
                 ...horseProfile,
-                idealRiderGallopLevel: e.target.value,
+                ideal_rider_gallop_level : e.target.value,
               })
             }
-            ageRider={horseProfile.idealRiderAge}
+            ageRider={horseProfile.ideal_rider_age }
             changeAgeRider={(e) =>
               setHorseProfile({
                 ...horseProfile,
-                idealRiderAge: e.target.value,
+                ideal_rider_age : e.target.value,
               })
             }
             isVehiculed={() =>
               setHorseProfile({
                 ...horseProfile,
-                idealRiderIsVehiculed: !horseProfile.idealRiderIsVehiculed,
+                ideal_rider_vehiculed : !horseProfile.ideal_rider_vehiculed ,
               })
             }
             hasManaged={() =>
               setHorseProfile({
                 ...horseProfile,
-                idealRiderHasManaged: !horseProfile.idealRiderHasManaged,
+                ideal_rider_managed_horse: !horseProfile.ideal_rider_managed_horse,
               })
             }
           />

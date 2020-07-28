@@ -25,18 +25,17 @@ export const horseProfileContext = {
     horse_coaching_here : 0,
     horse_external_coach : 0,
     horse_material : '',
-    idealRiderYearsOfPractice: null,
-    idealRiderGallopLevel: null,
-    idealRiderAge: null,
-    idealRiderIsVehiculed: false,
-    idealRiderHasManaged: false,
-    horse_owner_firstname : '',
-    horse_owner_age : null,
-    horse_owner_caracter : '',
-    horse_owner_communication_frequency : '',
-    horse_owner_communication_fixed_day : false,
-    horse_owner_work_for_horse : '',
-    horse_owner_message : ''
+    ideal_rider_years_of_practice: null,
+    ideal_rider_gallop_level : null,
+    ideal_rider_age : null,
+    ideal_rider_vehiculed : false,
+    ideal_rider_managed_horse: false,
+    owner_firstname : '',
+    owner_age : null,
+    owner_caracter : '',
+    owner_communication_frequency : '',
+    owner_horse_work : '',
+    owner_message : ''
 
 }
 
