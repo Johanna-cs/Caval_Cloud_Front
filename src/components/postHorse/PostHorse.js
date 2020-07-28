@@ -19,6 +19,7 @@ import Competition from "../common_section/Competition";
 import HebergementHorse from "../common_section/HebergementHorse";
 import ImageCarousel from "../common/Carousel";
 import { HorseContext } from "../context/HorseContext";
+import { UserContext } from "../context/UserContext";
 import ModalPost from "../common/ModalPost";
 
 
@@ -32,7 +33,15 @@ const PostHorse = (props) => {
 
   // Selection on perimeter for localisation :
   const [perimeter, setPerimeter] = useState(null);
-
+  // Context userProfile in order to simplify user data information management
+  const { userProfile, setUserProfile } = useContext(UserContext)
+// Get user information from its ID and then, update userProfile context
+  const getUserInfo = () => {
+    Axios
+      .get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
+      .then(res => setUserProfile(res.data))
+      .catch(err=> console.error(err))
+      }
   // Get horseProfile Context in order to get and set information about it
   const { horseProfile, setHorseProfile } = useContext(HorseContext);
   const [modalShow, setModalShow] = useState(false);
@@ -65,6 +74,7 @@ const PostHorse = (props) => {
 
   useEffect(() => {
     getLocation();
+    ;
   });
 
 

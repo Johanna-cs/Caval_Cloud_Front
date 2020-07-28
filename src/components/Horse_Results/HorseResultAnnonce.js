@@ -10,6 +10,9 @@ const HorseResultAnnonce = (props) => {
     // get the Horse_ID in order to display the specific result
     const horseId = Number(props.match.params.id)
 
+    // get the Horse_ID in order to display the specific result
+    const owner_ID = Number(props.match.ownerPres_id)
+
     // Horse Data information
     const [dataHorse, setDataHorse] = useState([])
     
@@ -19,6 +22,8 @@ const HorseResultAnnonce = (props) => {
       .get(`http://localhost:4000/api/horses/${horseId}`)
       .then(res => setDataHorse(res.data[0]))
       .catch(err=> console.error(err))
+      Axios
+      .get(`http://localhost:4000/api/owners/${owner_ID}`)
     }
     // Transforme les booléens récupérés de l'annonce en oui ou non 
     const changeBool = (bool) => bool === true ? 'oui' : 'non'
