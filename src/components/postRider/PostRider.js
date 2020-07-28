@@ -75,8 +75,7 @@ const PostRider = (props) => {
               <span>{riderProfile.rider_age}</span>
             </p>
             <p>
-              {riderProfile.rider_selfWord1} {riderProfile.rider_selfWord2}
-              {riderProfile.rider_selfWord3}
+              {riderProfile.rider_selfWord1} {riderProfile.rider_selfWord2} {riderProfile.rider_selfWord3}
             </p>
           </div>
         </div>

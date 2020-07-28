@@ -3,11 +3,13 @@ import "./landing.css";
 import { Link } from "react-router-dom";
 import logo from "../SVG-icons/cavalcloud-logo.png";
 import Axios from "axios";
+import { useHistory } from "react-router-dom";
 
 
 
 const Login = () => {
 
+  let history = useHistory();
   const [dataUser, setDataUser] = useState({
     user_email: "",
     user_password: ""
@@ -15,7 +17,13 @@ const Login = () => {
   const login = (e) => {
     e.preventDefault();
     Axios.post("http://localhost:4000/api/users/login", dataUser)
-      .catch((err) => console.error(err))
+      .then((res) => {
+        localStorage.setItem("usertoken", res.data);
+        history.push(`/home`);
+        window.location.reload(false);
+        return res.data;
+      })
+      .catch((err) => console.error(err));      
   };
 
 

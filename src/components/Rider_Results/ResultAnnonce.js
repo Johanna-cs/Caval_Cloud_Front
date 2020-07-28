@@ -55,8 +55,7 @@ const ResultAnnonce = (props) => {
             </h5>
             {/* <img src={dataRider.rider_avatar} alt='rider illustration'/> */}
             <p>
-              {dataRider.rider_selfWord1}, {dataRider.rider_selfWord2},{" "}
-              {dataRider.rider_selfWord3}
+              {dataRider.rider_selfWord1}, {dataRider.rider_selfWord2}, {dataRider.rider_selfWord3}
             </p>
             <p>N° de téléphone : {dataRider.rider_phone}</p>
             <p>Mail : {dataRider.rider_mail}</p>

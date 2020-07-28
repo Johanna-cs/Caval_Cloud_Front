@@ -41,6 +41,7 @@ const ImageCarousel = (props) => {
       }
     );
   };
+        console.log(useUrl);
 
   
   if (props.search) {
