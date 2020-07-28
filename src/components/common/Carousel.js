@@ -18,9 +18,45 @@ const ImageCarousel = (props) => {
     useUrl.push(url);
   };
 
+  const displayCarousel = () => {
+    if (props.search) {
+      return (
+        <>
+          <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9}>
+            {useUrl &&
+              useUrl.map((imgUrl, index) => (
+                <img key={index} src={imgUrl} alt="" />
+              ))}
+          </Carousel>
+          <br />
+          <input type="file" onChange={handleChange} />
+          <button onClick={handleUpload} className="upload-button">
+            Valider la photo
+          </button>
+          <hr />
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9}>
+            {useUrl &&
+              useUrl.map((imgUrl, index) => (
+                <img key={index} src={imgUrl} alt="" />
+              ))}
+          </Carousel>
+          <br />
+          <hr />
+        </>
+      );
+    }
+  }
+
+
+
  useEffect(() => {
-   ;
- }, []);
+   displayCarousel();
+ }, useUrl);
 
   const handleUpload = () => {
     const uploadTask = storage
@@ -43,36 +79,11 @@ const ImageCarousel = (props) => {
   };
 
   
-  if (props.search) {
     return (
       <>
-        <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9}>
-          {useUrl &&
-            useUrl.map((imgUrl, index) => (
-              <img key={index} src={imgUrl} alt="" />
-            ))}
-        </Carousel>
-        <br />
-        <input type="file" onChange={handleChange} />
-        <button onClick={handleUpload} className="upload-button">
-          Valider la photo
-        </button>
-        <hr />
+      {displayCarousel()}
       </>
     );
-  } else {
-    return (
-      <>
-        <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9}>
-          {useUrl &&
-            useUrl.map((imgUrl, index) => (
-              <img key={index} src={imgUrl} alt="" />
-            ))}
-        </Carousel>
-        <br />
-        <hr />
-      </>
-    );
-  }
-};
+}
+;
 export default ImageCarousel;
