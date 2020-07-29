@@ -4,7 +4,9 @@ export const riderProfileContext = {
 
     rider_firstname: '',
     rider_avatar: '',
-    rider_photos: '',
+    rider_photo1: '',
+    rider_photo2: '',
+    rider_photo3: '',
     rider_age: null,
     rider_postal_code: null,
     rider_biography: '',

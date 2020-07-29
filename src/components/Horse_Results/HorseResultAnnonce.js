@@ -56,7 +56,7 @@ const HorseResultAnnonce = (props) => {
               {dataHorse.horse_character}, {dataHorse.horse_body_type}
             </p>
           </div>
-          <ImageCarousel/>
+          <ImageCarousel />
           <h5>Où se trouve t-il ?</h5>
           <p>{dataHorse.horse_localisation}</p>
         </div>

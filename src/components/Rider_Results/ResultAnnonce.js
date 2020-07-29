@@ -1,9 +1,10 @@
-import React, { useState, useEffect} from "react"
+import React, { useState, useEffect, useContext} from "react"
 import "./Result.css"
 import ImageCarousel from "../common/Carousel"
 import { Link } from "react-router-dom"
 import Axios from "axios";
 import ReturnButton from "../common/ReturnButton"
+import { UserContext } from '../context/UserContext'
 
 
 const ResultAnnonce = (props) => {
@@ -13,7 +14,16 @@ const ResultAnnonce = (props) => {
 
     // Rider Data information
     const [dataRider, setDataRider] = useState([])
-    
+
+    // Context userProfile in order to simplify user data information management
+  const { userProfile, setUserProfile } = useContext(UserContext)
+    // Get user information from its ID and then, update userProfile context
+    const getUserInfo = () => {
+      Axios
+      .get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
+      .then(res => setUserProfile(res.data))
+      .catch(err=> console.error(err))
+    }
     // Get information about the selected rider from its ID
     const getRiderInformation = () => {
       Axios
@@ -27,6 +37,7 @@ const ResultAnnonce = (props) => {
     // When a result is displayed, the function getRiderInformation starts first in order to query BDD
     useEffect(() => {
       getRiderInformation();
+      getUserInfo();
       changeBool(dataRider);
       }, 
     [])
@@ -41,7 +52,7 @@ const ResultAnnonce = (props) => {
         <div className="annonce_header">
           <img
             id="annonce_logo"
-            src="https://firebasestorage.googleapis.com/v0/b/caval-cloud.appspot.com/o/images%2Fkelly-sikkema-JN0SUcTOig0-unsplash.jpg?alt=media&token=d141987e-453a-495b-bd56-2c7c59c1b5a4"
+            src={userProfile.user_avatar}
             alt="logo"
           />
           <div>
@@ -49,13 +60,12 @@ const ResultAnnonce = (props) => {
               {dataRider.rider_firstname},{" "}
               <span>{dataRider.rider_age} ans</span>
             </h5>
-            {/* <img src={dataRider.rider_avatar} alt='rider illustration'/> */}
             <p>
               {dataRider.rider_selfWord1}, {dataRider.rider_selfWord2},{" "}
               {dataRider.rider_selfWord3}
             </p>
-            <p>N° de téléphone : {dataRider.rider_phone}</p>
-            <p>Mail : {dataRider.rider_mail}</p>
+            <p>N° de téléphone : {userProfile.user_phone}</p>
+            <p>Mail : {userProfile.user_email}</p>
           </div>
           <h4>Localisation</h4>
           <p>{dataRider.rider_postal_code}</p>
