@@ -1,46 +1,48 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import RadioCheck from '../common/RadioCheck'
 import RangeButton from '../common/RangeButton'
-import { Collapse, Button, Input } from 'reactstrap'
+import './common_section.css'
+
 
 const IdealHorse = (props) => {
 
-    // Taille du cheval idéal
-const [horseSize, setHorseSize] = useState('')
-
-    // Age du cheval idéal
-const [ageHorse, setAgeHorse] = useState('')
+    
 
     return (
 
-        <div className='searchHorse_idealHorse'>
+        <div className='idealHorse'>
             <div className='horse_size'>
-                <h5> Taille : {horseSize} cm</h5>
+                <h5> Taille en cm <span>(+ ou - 5cm)</span>: {props.horseSize}</h5>
+                <div className='divRangeSpan'>
+                    <span>80cm</span>
                     <RangeButton 
                         min='80'
-                        max='200'
+                        max='210'
                         radioRangeBtnId='horseSize'
-                        onChange={(e) => setHorseSize(e.target.value)
-                    }/>
+                        onChange={props.changeSize}
+
+                        />
+                    <span>210cm</span>
+                </div>
             </div>
                 <hr />
             <div className='horse_temper'>
-                    <h5> Tempérament :</h5>
+                    <h5> Tempérament<span>(plusieurs choix possibles)</span></h5>
                     <div className='select_temper'>
                     <RadioCheck 
-                    RadioCheckText1='Calme'
-                    radioCheckId1='Calme'
-                    RadioCheckText2='Dynamique'
-                    radioCheckId2='Dynamique'
-                    RadioCheckText3='Speed'
-                    radioCheckId3='Speed'
-                    RadioCheckText4='A canaliser'
-                    radioCheckId4='A canaliser' />
+                        RadioCheckText1='Calme'
+                        radioCheckId1='Calme'
+                        RadioCheckText2='Dynamique'
+                        radioCheckId2='Dynamique'
+                        RadioCheckText3='Speed'
+                        radioCheckId3='Speed'
+                        RadioCheckText4='A canaliser'
+                        radioCheckId4='A canaliser' />
                     </div>
             </div>
                 <hr />
             <div className='horse_caracter'>
-                    <h5> Caractère :</h5>
+                    <h5> Caractère<span>(plusieurs choix possibles)</span></h5>
                     <div className='select_caracter'>
                     <RadioCheck 
                         RadioCheckText1={'Affectueux'}
@@ -55,7 +57,7 @@ const [ageHorse, setAgeHorse] = useState('')
             </div>
                 <hr />
             <div className='horse_body'>
-                    <h5> Physique :</h5>
+                    <h5> Physique<span>(plusieurs choix possibles)</span></h5>
                     <div className='select_body'>
                     <RadioCheck 
                         RadioCheckText1={'Fin'}
@@ -70,15 +72,17 @@ const [ageHorse, setAgeHorse] = useState('')
             </div>
                 <hr />
             <div className='horse_age'>
-            <h5> Age du cheval : {ageHorse} ans</h5>
+            <h5> Age du cheval <span>(+ ou - 2ans)</span>: {props.ageHorse}</h5>
+            <div className='divRangeSpan'>
                     <span>1 an</span>
                     <RangeButton 
                         id='ageHorse'
                         min='1'
                         max='30'
                         radioRangeBtnId='ageHorse'
-                        onChange={props.onChange}/>
+                        onChange={props.changeAge}/>
                     <span>30 ans</span>
+                </div>
             </div>
             </div>
         

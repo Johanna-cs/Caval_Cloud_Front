@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { Collapse, Button, Input } from 'reactstrap'
-import '../searchHorse/searchHorse.css'
+import React, { useState} from 'react'
+import { Collapse, Button} from 'reactstrap'
+import './common_section.css'
 import geoloc from '../SVG-icons/geolocalisation.svg'
 import RangeButton from '../common/RangeButton'
 import locmap from '../SVG-icons/map-marker-alt-solid.svg'
@@ -16,7 +16,7 @@ function Localisation(props) {
 
         <div className='locationDiv'>
             <div className='toggle_place'>
-            <h4>Localisation </h4>
+            <h4>{props.locTitle}</h4>
                 <input 
                     min="0" 
                     max="200"
@@ -33,7 +33,7 @@ function Localisation(props) {
             <div className='locationDiv'>
                 <Collapse isOpen={isOpen}>
                     <h5>Localisation  :</h5>
-                    <p className='loc_text'>Dans un rayon autour de : {props.perimeter} kms</p>
+                    <p className='loc_text'>Dans un rayon autour de : {props.perimeter} km</p>
                     <div className='rayon_loc'>
                             <span>0</span>
                             <RangeButton 

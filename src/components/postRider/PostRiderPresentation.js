@@ -1,55 +1,35 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import "./postRider.css";
 import { Link } from "react-router-dom";
 import FloatingButton from "../common/FloatingButton";
-import Axios from "axios";
+import Header from "../Header_footer/Header";
+import { RiderContext } from "../context/RiderContext";
+import { UserContext } from '../context/UserContext'
 
 const PostRiderPresentation = (props) => {
-  // const [age, setAge] = useState("");
-  // const [codeP, setCodeP] = useState("");
-  // const [message, setMessage] = useState("");
-  // const [selfWord1, setSelfWord1] = useState("");
-  // const [selfWord2, setSelfWord2] = useState("");
-  // const [selfWord3, setSelfWord3] = useState("");
-  // const [ridingWord1, setRidingWord1] = useState("");
-  // const [ridingWord2, setRidingWord2] = useState("");
-  // const [ridingWord3, setRidingWord3] = useState("");
 
-  const [profile, setProfile] = useState({
-    prenom: "",
-    age: "",
-    codeP: "",
-    message: "",
-    selfWord1: "",
-    selfWord2: "",
-    selfWord3: "",
-    ridingWord1: "",
-    ridingWord2: "",
-    ridingWord3: "",
-  });
+    // Context userProfile in order to simplify user data information management
+    const { userProfile, setUserProfile } = useContext(UserContext)
+    
 
-  const submit = (e) => {
-    e.preventDefault();
-    Axios.post("http://localhost:3010/api/users", profile).catch((err) =>
-      console.error(err)
-    );
-  };
+  const { riderProfile, setRiderProfile } = useContext(RiderContext)
 
   return (
+    <>
+    <Header className="header" title="Ma Présentation" />
     <div className="postRider_page">
       <div className="postRider_forms">
-        <h4>Présentation:</h4>
+        
+        <h4>Présentation: </h4>
         <form className="postRider-form">
           <label>
             <input
               className="postRider_input"
               type="text"
               placeholder="Prénom"
-              onChange={(event) =>
-                setProfile({ ...profile, prenom: event.target.value })
-              }
-              value={profile.prenom}
-              autoFocus
+              onChange={(e) => setRiderProfile({...riderProfile, rider_firstname : e.target.value })}
+              value={riderProfile.rider_firstname}
+              
             />
           </label>
         </form>
@@ -59,10 +39,8 @@ const PostRiderPresentation = (props) => {
               className="postRider_input"
               type="number"
               placeholder="Age"
-              onChange={(event) =>
-                setProfile({ ...profile, age: event.target.value })
-              }
-              value={profile.age}
+              onChange={(event) => setRiderProfile({ ...riderProfile, rider_age: event.target.value })}
+              value={riderProfile.rider_age}
             />
           </label>
         </form>
@@ -72,10 +50,8 @@ const PostRiderPresentation = (props) => {
               className="postRider_input"
               type="number"
               placeholder="Code postal"
-              onChange={(event) =>
-                setProfile({ ...profile, codeP: event.target.value })
-              }
-              value={profile.codeP}
+              onChange={(event) => setRiderProfile({ ...riderProfile, rider_postal_code: Number(event.target.value) })}
+              value={riderProfile.rider_postal_code}
             />
           </label>
         </form>
@@ -87,10 +63,8 @@ const PostRiderPresentation = (props) => {
               className="postRider_input"
               type="text"
               placeholder="Ajoutez quelques mots"
-              onChange={(event) =>
-                setProfile({ ...profile, message: event.target.value })
-              }
-              value={profile.message}
+              onChange={(event) => setRiderProfile({ ...riderProfile, rider_biography: event.target.value })}
+              value={riderProfile.rider_biography}
             />
           </label>
         </form>
@@ -102,10 +76,8 @@ const PostRiderPresentation = (props) => {
               className="postRider_input"
               type="text"
               placeholder="Un"
-              onChange={(event) =>
-                setProfile({ ...profile, selfWord1: event.target.value })
-              }
-              value={profile.selfWord1}
+              onChange={(event) => setRiderProfile({ ...riderProfile, rider_selfWord1: event.target.value })}
+              value={riderProfile.rider_selfWord1}
             />
           </label>
         </form>
@@ -115,10 +87,8 @@ const PostRiderPresentation = (props) => {
               className="postRider_input"
               type="text"
               placeholder="Deux"
-              onChange={(event) =>
-                setProfile({ ...profile, selfWord2: event.target.value })
-              }
-              value={profile.selfWord2}
+              onChange={(event) => setRiderProfile({ ...riderProfile, rider_selfWord2: event.target.value })}
+              value={riderProfile.rider_selfWord2}
             />
           </label>
         </form>
@@ -128,10 +98,8 @@ const PostRiderPresentation = (props) => {
               className="postRider_input"
               type="text"
               placeholder="Trois"
-              onChange={(event) =>
-                setProfile({ ...profile, selfWord3: event.target.value })
-              }
-              value={profile.selfWord3}
+              onChange={(event) => setRiderProfile({ ...riderProfile, rider_selfWord3: event.target.value })}
+              value={riderProfile.rider_selfWord3}
             />
           </label>
         </form>
@@ -143,10 +111,8 @@ const PostRiderPresentation = (props) => {
               className="postRider_input"
               type="text"
               placeholder="Un"
-              onChange={(event) =>
-                setProfile({ ...profile, ridingWord1: event.target.value })
-              }
-              value={profile.ridingWord1}
+              onChange={(event) => setRiderProfile({ ...riderProfile, rider_ridingWord1: event.target.value })}
+              value={riderProfile.rider_ridingWord1}
             />
           </label>
         </form>
@@ -156,10 +122,8 @@ const PostRiderPresentation = (props) => {
               className="postRider_input"
               type="text"
               placeholder="Deux"
-              onChange={(event) =>
-                setProfile({ ...profile, ridingWord2: event.target.value })
-              }
-              value={profile.ridingWord2}
+              onChange={(event) => setRiderProfile({ ...riderProfile, rider_ridingWord2: event.target.value })}
+              value={riderProfile.rider_ridingWord2}
             />
           </label>
         </form>
@@ -169,10 +133,8 @@ const PostRiderPresentation = (props) => {
               className="postRider_input"
               type="text"
               placeholder="Trois"
-              onChange={(event) =>
-                setProfile({ ...profile, ridingWord3: event.target.value })
-              }
-              value={profile.ridingWord3}
+              onChange={(event) => setRiderProfile({ ...riderProfile, rider_ridingWord3: event.target.value })}
+              value={riderProfile.rider_ridingWord3}
             />
           </label>
         </form>
@@ -181,10 +143,10 @@ const PostRiderPresentation = (props) => {
             <FloatingButton
               btnName={"Valider"}
               type="submit"
-              onClick={(e) => submit(e)}
             />
           </Link>
     </div>
+    </>
   );
 };
 export default PostRiderPresentation;

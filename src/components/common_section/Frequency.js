@@ -6,8 +6,6 @@ import SlidingButton from "../common/SlidingButton";
 
 const Frequency = (props) => {
 
-   
-
     return (
       <>
         <div className="frequencyDiv">
@@ -18,17 +16,20 @@ const Frequency = (props) => {
           <div className='select_frequency'>
             <RadioButton
               radioButtonText="1 fois /semaine"
-              radioButtonValue="1 fois /semaine"
+              radioButtonValue="1xsemaine"
               radioButtonName="frequency"
               radioButtonId="frequency4"
               onClick={props.onClick}
+              
+
             />
             <RadioButton
               radioButtonText="Plus de 3 fois /semaine"
-              radioButtonValue="3 /semaine"
+              radioButtonValue="3xsemaine"
               radioButtonName="frequency"
               radioButtonId="frequency2"
               onClick={props.onClick}
+          
             />
           </div>
           <h5>Régularité :</h5>

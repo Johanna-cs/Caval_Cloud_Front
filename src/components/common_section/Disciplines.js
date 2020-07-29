@@ -1,93 +1,71 @@
-import React, { useState, useEffect, useReducer} from "react";
+import React from "react";
 import Checkbox from "../common/Checkbox";
-import "./common_section.css";
-
-
-
-const initialDiscipline = [
-  {
-    id: "a",
-    name: "Obstacle",
-    checked: false,
-  },
-  {
-    id: "b",
-    name: "Dressage",
-    checked: false,
-  },
-  {
-    id: "c",
-    name: "CCE",
-    checked: false,
-  },
-  {
-    id: "d",
-    name: "Ethologie",
-    checked: false,
-  },
-  {
-    id: "e",
-    name: "Attelage",
-    checked: false,
-  },
-  {
-    id: "f",
-    name: "TREC",
-    checked: false,
-  },
-];
-
-const disciplineReducer = (state, action) => {
-  switch (action.type) {
-    case "ADD":
-      return state.map((discipline) => {
-        if (discipline.id === action.id) {
-          return { ...discipline, checked: true };
-        } else {
-          return discipline;
-        }
-      });
-    case "REMOVE":
-      return state.map((discipline) => {
-        if (discipline.id === action.id) {
-          return { ...discipline, checked: false };
-        } else {
-          return discipline;
-        }
-      });
-    default:
-      return state;
-  }
-};
 
 const Disciplines = (props) => {
-  const [disciplines, dispatch] = useReducer(
-    disciplineReducer,
-    initialDiscipline
-  );
 
-  const handleChange = (discipline) => {
-    dispatch({
-      type: discipline.checked ? "REMOVE" : "ADD",
-      id: discipline.id,
-    });
-  };
 
-  return (
-    <>
-      <h4>Disciplines</h4>
-      <div className="disciplineList">
-        {disciplines.map((discipline) => (
-          <Checkbox
-            CheckboxText={discipline.name}
-            type="checkbox"
-            checked={discipline.checked}
-            onChange={() => handleChange(discipline)}
-          />
-        ))}
-      </div>
-    </>
-  );
-};
+
+
+    return (
+        <>
+            <Checkbox 
+                CheckboxText='Obstacle'
+                CheckboxValue='Obstacle'
+                onClick={props.onClick}/>
+            <Checkbox 
+                CheckboxText='Dressage'
+                CheckboxValue='Dressage'
+                onClick={props.onClick}/>
+            <Checkbox 
+                CheckboxText='CCE'
+                CheckboxValue='CCE'
+                onClick={props.onClick}/>
+            <Checkbox 
+                CheckboxText='TREC - Equifun'
+                CheckboxValue='TREC - Equifun'
+                onClick={props.onClick}/>
+            <Checkbox 
+                CheckboxText='Balade - Randonnée'
+                CheckboxValue='Balade - Randonnée'
+                onClick={props.onClick}/>
+            <Checkbox 
+                CheckboxText='Ethologie - Equifeel'
+                CheckboxValue='Ethologie - Equifeel'
+                onClick={props.onClick}/>
+            <Checkbox 
+                CheckboxText='Hunter'
+                CheckboxValue='Hunter'
+                onClick={props.onClick}/>
+            <Checkbox 
+                CheckboxText='Horse-Ball'
+                CheckboxValue='Horse-Ball'
+                onClick={props.onClick}/>
+            <Checkbox 
+                CheckboxText='Pony-Games'
+                CheckboxValue='Pony-Games'
+                onClick={props.onClick}/>
+            <Checkbox 
+                CheckboxText='Reining-Western'
+                CheckboxValue='Reining-Western'
+                onClick={props.onClick}/>
+            <Checkbox 
+                CheckboxText='Endurance'
+                CheckboxValue='Endurance'
+                onClick={props.onClick}/>
+            <Checkbox 
+                CheckboxText='Attelage'
+                CheckboxValue='Attelage'
+                onClick={props.onClick}/>
+            <Checkbox 
+                CheckboxText='Voltige'
+                CheckboxValue='Voltige'
+                onClick={props.onClick}/>
+            <Checkbox 
+                CheckboxText='Disciplines culturelles'
+                CheckboxValue='Disciplines culturelles'
+                onClick={props.onClick}/>
+        </>
+    )
+}
 
 export default Disciplines

@@ -4,7 +4,7 @@
   justify-content: flex-end;
   flex-flow: column nowrap;
   align-items: center;
-  margin-top: 20em;
+  margin-top: 13em;
   padding: 1em;
 }
 
@@ -55,6 +55,8 @@ button {
   font-size: 0.8em;
   font-weight: 750;
   color: #5d5aa4;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 1em;
 }
 /* login page */
 
@@ -108,10 +110,12 @@ body {
   margin-top: -0.2em;
   text-decoration: underline;
   padding: 0.7em;
+  margin-right: 2em;
 }
 .login_low_text {
   color: #5d5aa4;
   font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
 }
 /* register page */
 
@@ -141,6 +145,19 @@ body {
   outline: none;
 }
 
+.register_buttonLocked {
+  background-color: grey;
+  border: none;
+  margin-bottom: 1em;
+  border-style: none;
+  border-radius: 20px;
+  font-family: "Open Sans", sans-serif;
+  color: white;
+  height: 3em;
+  width: 18em;
+  outline: none;
+}
+
 .register_forms {
   padding: 0.2em;
 }
@@ -155,6 +172,7 @@ body {
 .register_low_text {
   color: #5d5aa4;
   font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
 }
 .register_mdp {
   background-image: url(../SVG-icons/open-eye.svg);

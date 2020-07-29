@@ -1,18 +1,23 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
+import { Link } from 'react-router-dom'
 import './searchHorse.css'
 import Header from '../Header_footer/Header';
 import Localisation from '../common_section/Localisation'
 import Disciplines from '../common_section/Disciplines'
 import Structures from '../common_section/Structures'
-import IdealHorse from './IdealHorse'
-import IdealOwner from './IdealOwner'
+import Pension from '../common_section/Pension'
+import IdealHorse from '../common_section/IdealHorse'
+import IdealOwner from '../common_section/IdealOwner'
 import BudgetMensuel from '../common_section/BudgetMensuel'
 import Scuring from '../common_section/Scuring'
-import HebergementHorse from './HebergementHorse'
+import HebergementHorse from '../common_section/HebergementHorse'
 import FloatingButton from '../common/FloatingButton'
 import SlidingButton from '../common/SlidingButton'
 import Axios from 'axios'
 import usePosition from '../common_section/usePosition';
+import Competition from '../common_section/Competition';
+import { Results_Horse_Context} from '../../components/context/Results_Horse_Context'
+
 
 
 
@@ -36,9 +41,18 @@ const SearchHorse = (props) => {
 
     // Taille du cheval idéal
     const [horseSize, setHorseSize] = useState('')
-
     // Age du cheval idéal
     const [ageHorse, setAgeHorse] = useState('')
+
+    // age du proprietaire ideal
+    const [ageOwner, setAgeOwner] = useState(null);
+    // Fréquence :
+    const [frequency, setFrequency] = useState("");
+    // Fréquence jours fixes :
+    const [fixedFrequency, setFixedFrequency] = useState(false);
+    const [horseWork, setHorseWork] = useState("");
+
+
     //Ecurie
     const [scuringType, setScuringType] = useState('')
 
@@ -51,10 +65,14 @@ const SearchHorse = (props) => {
 
     // Materiel selle et de soin :
     const [haveMaterialSaddle, setHaveMaterialSaddle] = useState(false)
-    const [haveMaterialCare, setHaveMaterialCare] = useState(false)
+    
 
     // Concours :
-    const [doCompetition, setDoCompetition] = useState(false)
+    const [doCompetition, setDoCompetition] = useState('')
+
+    // Résultats de la recherche de riders :
+    const { resultsHorses, setResultsHorses } = useContext(Results_Horse_Context)
+
     
 
     const getLocation = () => {
@@ -64,24 +82,28 @@ const SearchHorse = (props) => {
         .catch(err => console.log(err))
     }
 
+
     useEffect(() => {
         getLocation()
     }, )
 
     return (
         <>
-        <Header className='header' title='CHERCHER UN CHEVAL'/>
+        <Header className='header' title='Chercher un équidé'/>
         <div className='searchHorse_page'>
                 <Localisation 
+                locTitle='Où ?'
                 value={cityLocalisation}
                 onChange={(e) => setCityLocalisation(e.target.value)}
                 definePerimeter={(e) => setPerimeter(e.target.value)}
                 perimeter={perimeter} 
                 />
             <hr />
-                <BudgetMensuel budget={budget} 
+                <BudgetMensuel 
+                    budgetTitle='Budget'
+                    budget={budget} 
                     currency={currency}
-                    priceTitle={'prix maximum :'}
+                    priceTitle={'Prix maximum par mois :'}
                     onChange={(e) => setBudget(e.target.value)}
                     onClick={(e) => setCurrency(e.target.value)}/>
             
@@ -89,11 +111,19 @@ const SearchHorse = (props) => {
             <hr />
                 <Structures />
             <hr />
+            <div className='frequency_pension'>
+                <Pension
+                    onClick={(e) => setFrequency(e.target.value)}
+                    frequency={frequency}
+                    changeFixedFrequency={() => setFixedFrequency(!fixedFrequency)}
+                />
+            </div>
+            <hr />
             <div className='searchHorse_bal'>
                 <h4>Balade</h4>
                 <div className='balade'>
                     <SlidingButton 
-                    SlidingButtonText="J'aimerais pouvoir partir seul en balade"
+                    SlidingButtonText="Pouvoir partir seul en balade"
                     SlidingButtonID="baladSwitch"
                     onClick={() => setDoBalad(!doBalad)}
                     />
@@ -102,20 +132,26 @@ const SearchHorse = (props) => {
             <hr />
                 <h4>Cheval idéal</h4>
                 <IdealHorse 
-                    onChange={(e) => setAgeHorse(e.target.value)
-                    }
-                    horseSize={IdealHorse.horseSize}
-                    
+                    horseSize={horseSize}
+                    changeSize={(e) => setHorseSize(e.target.value)}
+                    changeAge={(f) => setAgeHorse(f.target.value)}
+                    ageHorse={ageHorse}
                      />
             <hr />
                 <h4>Propriétaire idéal</h4>
                 <IdealOwner 
-                    ageOwner={IdealOwner.ageOwner}
-                    frequency={IdealOwner.frequency}
-                    horseWork={IdealOwner.horseWork}
+                    ageOwner={ageOwner}
+                    selectAge={(e) => setAgeOwner(e.target.value)}
+
+                    frequency={frequency}
+                    selectFrequency={(e) => setFrequency(e.target.value)}
+                    fixedDay={() => setFixedFrequency(!fixedFrequency)}
+
+                    selectHorseWork={(e) => setHorseWork(e.target.value)}
+                    horseWork={horseWork}
                 />
             
-            <h4>Ecuries et moniteur </h4>
+            <h4>Type d'écurie</h4>
                 <Scuring
                     scuringType={scuringType}
                     onClick={(e) => setScuringType(e.target.value)}/>
@@ -124,7 +160,7 @@ const SearchHorse = (props) => {
                     boxeType={boxeType}
                     onClick={(e) => setBoxeType(e.target.value)}/>
             <hr />
-            <div className='searchHorse_coaching'>
+            <div className='coachingDiv'>
                 <h4>Coaching</h4>
                 <div className='coaching'>
                     <SlidingButton 
@@ -143,7 +179,7 @@ const SearchHorse = (props) => {
                 
                 </div>
             <hr />
-            <div className='searchHorse_materiel'>
+            <div className='materialDiv'>
                 <h4>Materiel</h4>
                 <div className='materiel'>
                         <SlidingButton 
@@ -152,27 +188,20 @@ const SearchHorse = (props) => {
                         onClick={() => setHaveMaterialSaddle(!haveMaterialSaddle)}
                         />
                 </div>
-                <div className='materiel'>
-                    <SlidingButton 
-                        SlidingButtonText="J'ai mon materiel de soin"
-                        SlidingButtonID="materialCareSwitch"
-                        onClick={() => setHaveMaterialCare(!haveMaterialCare)}
-                        />
-                </div>
+
             </div>
             <hr />
-            <div className='searchHorse_compet'>
-                <h4>Concours</h4>
-                <div className='competiton'>
-                <SlidingButton 
-                        SlidingButtonText="J'aimerais pouvoir sortir en concours"
-                        SlidingButtonID="competitionSwitch"
-                        onClick={() => setDoCompetition(!doCompetition)}
-                        />
-                </div>
+            <div className='competition'>
+                <Competition 
+                onClick={(e) => setDoCompetition(e.target.value)}/>
             </div>    
             </div>
-            <FloatingButton btnName={'Lancer la recherche'}/>
+            <Link to={{pathname: "/horse/results"}}>
+            <FloatingButton 
+                btnName={'Lancer la recherche'} 
+                // onClick={async () => { await getRiders()} }
+            />
+        </Link>
         
     </>
     )

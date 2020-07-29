@@ -13,7 +13,8 @@ const Checkbox = (props) => {
               type="checkbox"
               id={props.CheckboxText}
               name={props.CheckboxText}
-              onChange={props.onChange}
+              value={props.CheckboxValue}
+              onClick={props.onClick}
               // ref={props.CheckboxText}
             />
             <span class="checkmark"></span>

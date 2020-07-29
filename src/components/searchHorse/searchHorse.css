@@ -1,7 +1,10 @@
 /* Search page  */
 .searchHorse_page {
+
     display: flex;
+    
     flex-flow: column nowrap;
+    
     margin-left: 2em;
     margin-right: 2em;
     padding-bottom: 5em;
@@ -12,16 +15,33 @@
     width: 100%;
   }
 
-/* ****** Grands button violet ******* */
-/* ideal Horse & ideal Rider */
-.select_temper, .select_caracter, .select_bodys  {
+  /* desktop and tablet */
+  @media (min-width: 728px) and (max-width: 1280px), (min-width: 1281px) {
+  .searchHorse_page {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;}
+  .materialDiv, .coachingDiv{
+    width: 480px;
     display: flex;
-    justify-content: space-evenly;
-    flex-flow: row wrap;
-}
- .hebergtList, .scuringList {
-    display: flex; 
-    align-items: center;
-    flex-flow: column wrap;
-    
-}
+    justify-content: space-around;
+    flex-flow: column nowrap;
+
+  }
+  }
+
+
+.divRangeSpan {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 1em;
+    padding: 0.5em;
+  }
+  span {
+    padding: 0.5em;
+    font-size: smaller;
+  }
+  
