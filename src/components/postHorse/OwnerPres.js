@@ -76,7 +76,7 @@ const OwnerPres = (props) => {
                         radioSelBtnId='Solitaire'
                         radioSelBtnValue='Solitaire'
                         radioSelBtnName='caracterOwner'
-                        onClick={(e) => setHorseProfile({...horseProfile, horse_owner_caracter : e.target.value}) }
+                        onClick={(e) => setHorseProfile({...horseProfile, owner_caracter : e.target.value}) }
                     />
                     </div>
             </div>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext} from "react"
 import "./Result.css"
 import ImageCarousel from "../common/Carousel"
-import { Link } from "react-router-dom"
 import Axios from "axios";
 import ReturnButton from "../common/ReturnButton"
 import { UserContext } from '../context/UserContext'
@@ -70,7 +69,7 @@ const ResultAnnonce = (props) => {
           <h4>Localisation</h4>
           <p>{dataRider.rider_postal_code}</p>
         </div>
-        <h4>Quelques photos</h4>
+        <h5>Quelques photos</h5>
         <ImageCarousel />
         <div>
           <h4>Equitation</h4>
@@ -125,11 +124,11 @@ const ResultAnnonce = (props) => {
         <hr />
         <div>
           <h4>Cheval idéal</h4>
-          <p>Taille :{dataRider.ideal_horse_size}</p>
+          <p>Taille :{dataRider.ideal_horse_size} cm</p>
           <p>Tempérament : {dataRider.ideal_horse_temper}</p>
           <p>Caractère : {dataRider.ideal_horse_caracter}</p>
           <p>Physique : {dataRider.ideal_horse_body_type}</p>
-          <p>Age : {dataRider.ideal_horse_age}</p>
+          <p>Age : {dataRider.ideal_horse_age} ans</p>
         </div>
         <hr />
         <h4>Coaching</h4>

@@ -1,9 +1,9 @@
-import React, { useState, useEffect} from "react"
+import React, { useState, useEffect, useContext} from "react"
 import "./HorseResult.css";
-import logo from "../SVG-icons/cavalcloud-logo.png"
 import ReturnButton from "../common/ReturnButton";
 import Axios from "axios";
 import ImageCarousel from "../common/Carousel";
+import { UserContext } from '../context/UserContext'
 
 
 const HorseResultAnnonce = (props) => {
@@ -17,6 +17,16 @@ const HorseResultAnnonce = (props) => {
     // Horse Data information
     const [dataHorse, setDataHorse] = useState([])
     
+     // Context userProfile in order to simplify user data information management
+  const { userProfile, setUserProfile } = useContext(UserContext)
+  // Get user information from its ID and then, update userProfile context
+  const getUserInfo = () => {
+    Axios
+    .get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
+    .then(res => setUserProfile(res.data))
+    .catch(err=> console.error(err))
+  }
+
     // Get information about the selected horse from its ID
     const getHorseInformation = () => {
       Axios.get(`http://localhost:4000/api/horses/${horseId}`)
@@ -30,6 +40,7 @@ const HorseResultAnnonce = (props) => {
     // When a result is displayed, the function getHorseInformation starts first in order to query BDD
     useEffect(() => {
       getHorseInformation();
+      getUserInfo();
       changeBool(dataHorse);
       }, 
     [])
@@ -45,41 +56,45 @@ const HorseResultAnnonce = (props) => {
 
       <div className="Result_annonce">
         <div className="annonce_header">
-          <img className="annonce_logo" src={logo} alt="logo" />
+          
           <div>
+          <h4>Infos sur l'équidé </h4>
             <h5>
               {dataHorse.horse_name} <span>{dataHorse.horse_age} ans</span>
             </h5>
-            <h5>Infos sur l'équidé </h5>
+            
             <p>
               {dataHorse.horse_height}cm, {dataHorse.horse_temper},{" "}
               {dataHorse.horse_character}, {dataHorse.horse_body_type}
             </p>
           </div>
-          <ImageCarousel />
           <h5>Où se trouve t-il ?</h5>
           <p>{dataHorse.horse_localisation}</p>
+          <h5>Quelques photos</h5>
+          <ImageCarousel />
+
         </div>
 
-        {/* src={dataHorse.horse_photos} */}
+
         <div>
           <h4>Infos du propriétaire </h4>
+          <img className="annonce_logo" src={userProfile.user_avatar} alt="logo" />
           <h5>
-            {dataHorse.horse_owner_firstname}{" "}
-            <span>{dataHorse.horse_owner_age}ans</span>
+            {dataHorse.owner_firstname}{" "}
+            <span>{dataHorse.owner_age}ans</span>
           </h5>
-          <p>N° de téléphone : {dataHorse.horse_owner_phone}</p>
-          <p>Mail : {dataHorse.horse_owner_mail}</p>
-          <p>{dataHorse.horse_owner_caracter} </p>
+          <p>N° de téléphone : {userProfile.user_phone}</p>
+          <p>Mail : {userProfile.user_email}</p>
+          <p>{dataHorse.owner_caracter} </p>
           <p>
             Fréquence de communication :{" "}
-            {dataHorse.horse_owner_communication_frequency}{" "}
+            {dataHorse.owner_communication_frequency}{" "}
           </p>
           <p>
-            Type de travail du cheval : {dataHorse.horse_owner_work_for_horse}
+            Type de travail du cheval : {dataHorse.owner_horse_work}
           </p>
-          <h5>{dataHorse.horse_owner_firstname} en quelques mots :</h5>
-          <p>{dataHorse.horse_owner_message}</p>
+          <h5>{dataHorse.owner_firstname} en quelques mots :</h5>
+          <p>{dataHorse.owner_message}</p>
         </div>
         <hr />
         <div>
@@ -137,19 +152,19 @@ const HorseResultAnnonce = (props) => {
           <h4>Materiel</h4>
           <p>
             Le cavalier doit avoir sa selle :{" "}
-            {changeBool(dataHorse.horse_materiel)}
+            {changeBool(dataHorse.horse_material)}
           </p>
         </div>
         <hr />
         <div>
           <h4>Cavalier ideal</h4>
-          <p>Age : {dataHorse.idealRiderAge}</p>
-          <p>Années de pratique :{dataHorse.idealRiderYearsOfPractice}</p>
-          <p>Niveau de Galop : {dataHorse.idealRiderGallopLevel}</p>
-          <p>Est-il véhiculé ? {changeBool(dataHorse.idealRiderIsVehiculed)}</p>
+          <p>Age : {dataHorse.ideal_rider_age} ans</p>
+          <p>Années de pratique :{dataHorse.ideal_rider_years_of_practice} ans</p>
+          <p>Niveau de Galop : {dataHorse.ideal_rider_gallop_level}</p>
+          <p>Est-il véhiculé ? {changeBool(dataHorse.ideal_rider_vehiculed)}</p>
           <p>
             A-t-il déjà eu un cheval sous sa responsabilite ?{" "}
-            {changeBool(dataHorse.idealRiderHasManaged)}
+            {changeBool(dataHorse.ideal_rider_managed_horse)}
           </p>
         </div>
       </div>
