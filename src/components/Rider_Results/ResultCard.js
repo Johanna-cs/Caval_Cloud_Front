@@ -38,11 +38,11 @@ const ResultCard = (props) => {
           }}
         >
           <div className="resultCard-containerRider">
-            <img className="resultPhotoRider" src={props.rider_photo1} alt={props.rider_firstname} />
+            <img className="resultPhotoRider" src="https://images.unsplash.com/photo-1517344296525-3f2079b011d9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60" alt={props.rider_firstname} />
           </div>
         </Link>
         <div className="resultDetailsRider">
-          <p id="resultName">{props.rider_firstname}</p>
+          <p id="resultName">{props.firstname}</p>
           <img
             className="resultHeart"
             onClick={
