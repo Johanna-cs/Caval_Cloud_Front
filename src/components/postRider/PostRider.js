@@ -1,28 +1,26 @@
-import React, { useState, useEffect, useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { storage } from "../Firebase";
 import Carousel from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
-import "./postRider.css"
-import { Link, Redirect } from "react-router-dom"
-import Header from "../Header_footer/Header"
-import SlidingButton from "../common/SlidingButton"
-import RangeButton from '../common/RangeButton'
-import SelectButton from '../common/SelectButton'
-import FloatingButton from "../common/FloatingButton"
-import Disciplines from "../common_section/Disciplines"
-import BudgetMensuel from "../common_section/BudgetMensuel"
-import Pension from "../common_section/Pension"
-import Localisation from '../common_section/Localisation'
-import usePosition from '../common_section/usePosition';
-import Axios from "axios"
-import Competition from "../common_section/Competition"
-import { RiderContext } from "../context/RiderContext"
-import { UserContext } from '../context/UserContext'
-import ModalPost from "../common/ModalPost"
-
+import "./postRider.css";
+import { Link, Redirect } from "react-router-dom";
+import Header from "../Header_footer/Header";
+import SlidingButton from "../common/SlidingButton";
+import RangeButton from "../common/RangeButton";
+import SelectButton from "../common/SelectButton";
+import FloatingButton from "../common/FloatingButton";
+import Disciplines from "../common_section/Disciplines";
+import BudgetMensuel from "../common_section/BudgetMensuel";
+import Pension from "../common_section/Pension";
+import Localisation from "../common_section/Localisation";
+import usePosition from "../common_section/usePosition";
+import Axios from "axios";
+import Competition from "../common_section/Competition";
+import { RiderContext } from "../context/RiderContext";
+import { UserContext } from "../context/UserContext";
+import ModalPost from "../common/ModalPost";
 
 const PostRider = (props) => {
-
   // Localisation
   const { latitude, longitude, error } = usePosition();
   const [cityLocalisation, setCityLocalisation] = useState("");
@@ -32,9 +30,11 @@ const PostRider = (props) => {
   const [perimeter, setPerimeter] = useState(null);
   // Précédente localisation enregistrée dans le navigateur (si existante) :
   const [lastCitySaved, setLastCitySaved] = useState("");
-  
+
   const getLocation = () => {
-    Axios.get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
+    Axios.get(
+      `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
+    )
       .then((res) => setCityLocalisation(res.data.address.municipality))
       .catch((err) => console.log(err));
   };
@@ -42,13 +42,12 @@ const PostRider = (props) => {
   const { riderProfile, setRiderProfile } = useContext(RiderContext);
 
   // Context userProfile in order to simplify user data information management
-  const { userProfile, setUserProfile } = useContext(UserContext)
+  const { userProfile, setUserProfile } = useContext(UserContext);
 
   // Carousel
 
   const [imageCarousel, setImageCarousel] = useState({});
   const [useUrl, setUseUrl] = useState([]);
-  
 
   const handleChange = (e) => {
     if (e.target.files[0]) {
@@ -70,37 +69,43 @@ const PostRider = (props) => {
           .ref("images")
           .child(imageCarousel.name)
           .getDownloadURL()
-          .then((url) => setUseUrl([...useUrl,url]));
+          .then((url) => {
+            {
+              setUseUrl([...useUrl, url]);
+              if (riderProfile.rider_photo1 === "") {
+                setRiderProfile({ ...riderProfile, rider_photo1: url });
+              } else if (riderProfile.rider_photo2 === "") {
+                setRiderProfile({ ...riderProfile, rider_photo2: url });
+              } else {
+                setRiderProfile({ ...riderProfile, rider_photo3: url });
+              }
+            }
+          });
       }
     );
   };
 
   // Get user information from its ID and then, update userProfile context
   const getUserInfo = () => {
-    Axios
-    .get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
-    .then(res => setUserProfile(res.data))
-    .catch(err=> console.error(err))
-  }
+    Axios.get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
+      .then((res) => setUserProfile(res.data))
+      .catch((err) => console.error(err));
+  };
   const [modalShow, setModalShow] = useState(false);
   const [home, setHome] = useState(false);
 
-
   const postDataRider = () => {
-    Axios.post(`http://localhost:4000/api/riders`, riderProfile)
-    .catch((err) =>
+    Axios.post(`http://localhost:4000/api/riders`, riderProfile).catch((err) =>
       console.log(err)
     );
     setModalShow(true);
-    setTimeout(()=> setHome(true), 5000)
+    setTimeout(() => setHome(true), 5000);
   };
 
-  
   useEffect(() => {
     getLocation();
     getUserInfo();
   }, []);
-
 
   return (
     <>
@@ -115,7 +120,6 @@ const PostRider = (props) => {
           />
           <div className="postRider_forms">
             <p>
-              
               {riderProfile.rider_firstname}
               <span>{riderProfile.rider_age}</span>
             </p>
@@ -125,7 +129,7 @@ const PostRider = (props) => {
             </p>
           </div>
         </div>
-        
+
         <div className="postRider_pres">
           <Link
             to={{
@@ -138,7 +142,7 @@ const PostRider = (props) => {
             </button>
           </Link>
         </div>
-        
+
         <br />
         <h4>Vos photos</h4>
         <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9}>

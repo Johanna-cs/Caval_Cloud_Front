@@ -72,7 +72,18 @@ const PostHorse = (props) => {
           .ref("images")
           .child(imageCarousel.name)
           .getDownloadURL()
-          .then((url) => setUseUrl([...useUrl, url]));
+          .then((url) => {
+            {
+              setUseUrl([...useUrl, url]);
+              if (horseProfile.horse_photo1 === "") {
+                setHorseProfile({ ...horseProfile, horse_photo1: url });
+              } else if (horseProfile.horse_photo2 === "") {
+                setHorseProfile({ ...horseProfile, horse_photo2: url });
+              } else {
+                setHorseProfile({ ...horseProfile, horse_photo3: url });
+              }
+            }
+          });
       }
     );
   };
