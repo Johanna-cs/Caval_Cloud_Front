@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./profile.css";
 import Header from "../Header_footer/Header";
 import ResultCard from "../Rider_Results/ResultCard";
+import HorseResultCard from "../Horse_Results/HorseResultCard";
 import Axios from "axios";
 import heart from "../SVG-icons/coeur-hors-selection.svg";
 import heartFull from "../SVG-icons/coeur-selection.svg";
@@ -13,9 +14,10 @@ const Favorites = (props) => {
   const [favoritesHorse, setFavoritesHorse] = useState([]);
 
   const getFavoritesHorses = () => {
-    Axios.get(`http://localhost:4000/api/favorites/horses/${userid}`)
-      .then((res) => setFavoritesHorse(res.data))
-      .catch((err) => console.error(err));
+    Axios
+    .get(`http://localhost:4000/api/users/favorites/horses/${userid}`)
+    .then((res) => setFavoritesHorse(res.data))
+    .catch((err) => console.error(err));
   };
 
   useEffect(() => {
@@ -26,23 +28,21 @@ const Favorites = (props) => {
     <>
       <Header className="header" title="Annonces sauvegardées" />
       <div className="Favorites-Page">
-        {favoritesHorse.map((e) => (
-          <ResultCard
+        {favoritesHorse.map(e => (
+          <HorseResultCard
             fullResult={e}
-            firstname={e.horse_firstname}
-            horse_ID={e.horse_ID}
             src={favorite}
           />
         ))}
         <hr />
-        {favoritesRider.map((e) => (
+        {/* {favoritesRider.map((e) => (
           <ResultCard
             fullResult={e}
             firstname={e.rider_firstname}
             rider_ID={e.rider_ID}
             src={favorite}
           />
-        ))}
+        ))} */}
       </div>
     </>
   );

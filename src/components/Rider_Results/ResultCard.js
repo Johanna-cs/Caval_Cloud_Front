@@ -38,7 +38,7 @@ const ResultCard = (props) => {
           }}
         >
           <div className="resultCard-containerRider">
-            <img className="resultPhotoRider" src="https://images.unsplash.com/photo-1529989359010-5beae0df8d13?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt={props.firstname} />
+            <img className="resultPhotoRider" src="https://images.unsplash.com/photo-1517344296525-3f2079b011d9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60" alt={props.rider_firstname} />
           </div>
         </Link>
         <div className="resultDetailsRider">
