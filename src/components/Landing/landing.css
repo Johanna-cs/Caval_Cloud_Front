@@ -145,6 +145,19 @@ body {
   outline: none;
 }
 
+.register_buttonLocked {
+  background-color: grey;
+  border: none;
+  margin-bottom: 1em;
+  border-style: none;
+  border-radius: 20px;
+  font-family: "Open Sans", sans-serif;
+  color: white;
+  height: 3em;
+  width: 18em;
+  outline: none;
+}
+
 .register_forms {
   padding: 0.2em;
 }

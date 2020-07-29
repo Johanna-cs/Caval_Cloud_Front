@@ -4,7 +4,9 @@ export const riderProfileContext = {
 
     rider_firstname: '',
     rider_avatar: '',
-    rider_photos: '',
+    rider_photo1: '',
+    rider_photo2: '',
+    rider_photo3: '',
     rider_age: null,
     rider_postal_code: null,
     rider_biography: '',
@@ -19,7 +21,6 @@ export const riderProfileContext = {
     rider_budget: 0,
     rider_currency_budget: '',
     rider_own_saddle: false,
-    rider_own_care_equipement: false,
     rider_disciplines: '',
     rider_agree_other_discipline: false,
     rider_years_of_practice: 0,
@@ -29,11 +30,11 @@ export const riderProfileContext = {
     rider_competition: '',
     rider_coaching_here: false,
     rider_external_coach: false,
-    idealHorseSize: 0,
-    idealHorseTemper: '',
-    idealHorseCaracter: '',
-    idealHorseBody: '',
-    idealHorseAge: '',
+    ideal_horse_size: '',
+    ideal_horse_temper: '',
+    ideal_horse_caracter: '',
+    ideal_horse_body_type: '',
+    ideal_horse_age: '',
 
 }
 

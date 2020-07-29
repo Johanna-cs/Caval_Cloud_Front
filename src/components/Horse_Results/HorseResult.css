@@ -43,7 +43,7 @@
   
   .resultPhoto {
     width: 20em;
-    height: 12em;
+    height: 10em;
     object-fit: cover;
     border-radius: 10px;
     margin: auto;

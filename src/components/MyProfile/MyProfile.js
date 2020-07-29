@@ -2,26 +2,41 @@ import React, { useState, useContext, useEffect } from "react";
 import "./profile.css";
 import Header from "../Header_footer/Header";
 import { storage } from "../Firebase";
-import { UserContext} from '../context/UserContext'
-import Axios from 'axios'
+import { UserContext } from "../context/UserContext";
+import Axios from "axios";
+import HorseResultCard from "../Horse_Results/HorseResultCard";
+import ResultCard from "../Rider_Results/ResultCard";
 
 const MyProfile = (props) => {
-
-
   // Get user data information from its id :
   const getMyProfile = () => {
-    Axios
-    .get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
-    .then(res => setDataUser(res.data))
-    .catch(err=> console.error(err))
-  }
+    Axios.get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
+      .then((res) => setDataUser(res.data))
+      .catch((err) => console.error(err));
+  };
 
   // Update user data information from its id :
   const updateMyProfile = () => {
-    Axios
-    .put(`http://localhost:4000/api/users/${dataUser.user_ID}`, dataUser)
+    Axios.put(`http://localhost:4000/api/users/${dataUser.user_ID}`, dataUser)
     .catch(err=> console.error(err))
   }
+
+  const getRiderPosts = () => {
+    Axios.get(`http://localhost:4000/api/riders`)
+      .then((res) => setRiderAnnonce(res.data))
+      .catch((err) => console.error(err));
+    console.log(riderAnnonce);
+  };
+
+  const getHorsePosts = () => {
+    Axios.get(`http://localhost:4000/api/horses`)
+      .then((res) => setHorseAnnonce(res.data))
+      .catch((err) => console.error(err));
+    console.log(horseAnnonce);
+  };
+
+  const [riderAnnonce, setRiderAnnonce] = useState([]);
+  const [horseAnnonce, setHorseAnnonce] = useState([]);
 
   // User Data storage:
   const [dataUser, setDataUser] = useState({
@@ -34,7 +49,7 @@ const MyProfile = (props) => {
   });
 
   // Context userProfile in order to simplify user data information management
-  const { userProfile, setUserProfile } = useContext(UserContext)
+  const { userProfile, setUserProfile } = useContext(UserContext);
 
   // Management of image upload :
   const [image, setImage] = useState(null);
@@ -54,13 +69,13 @@ const MyProfile = (props) => {
 
   // Check password confirmation :
   const [validPW, setValidPW] = useState(null);
-  
+
   // Start to catch user info and then, save it in the user context
   useEffect(() => {
-    getMyProfile()
-    }, 
-  [])
-
+    getMyProfile();
+    getRiderPosts();
+    getHorsePosts();
+  }, []);
 
   const handleUpload = () => {
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
@@ -91,7 +106,11 @@ const MyProfile = (props) => {
               <button onClick={handleUpload} className="upload-button">
                 Valider la photo
               </button>
-              <img src={dataUser.user_avatar} className="Profile-photo" alt="" />
+              <img
+                src={dataUser.user_avatar}
+                className="Profile-photo"
+                alt=""
+              />
             </div>
           ) : (
             <img
@@ -113,11 +132,13 @@ const MyProfile = (props) => {
             type="mail"
             placeholder={dataUser.user_email}
             value={dataUser.user_email}
-            onChange={(e) => setDataUser({...dataUser, user_email: e.target.value})}
-          />) 
-          : 
+            onChange={(e) =>
+              setDataUser({ ...dataUser, user_email: e.target.value })
+            }
+          />
+        ) : (
           <p>{dataUser.user_email}</p>
-        }
+        )}
         <hr />
         <h4>Téléphone :</h4>
         {modif ? (
@@ -125,12 +146,13 @@ const MyProfile = (props) => {
             id="input"
             type="tel"
             value={dataUser.user_phone}
-            onChange={(e) => setDataUser({...dataUser, user_phone: e.target.value})
+            onChange={(e) =>
+              setDataUser({ ...dataUser, user_phone: e.target.value })
             }
-          />) 
-          : 
+          />
+        ) : (
           <p>{dataUser.user_phone}</p>
-        }
+        )}
         <hr />
         <h4>Mot de passe :</h4>
         {modif ? (
@@ -142,8 +164,10 @@ const MyProfile = (props) => {
                 type="password"
                 className={validPW ? "valid" : "invalid"}
                 value={dataUser.user_password}
-                onChange={(e) => setDataUser({...dataUser, user_password: e.target.value})}
-                />
+                onChange={(e) =>
+                  setDataUser({ ...dataUser, user_password: e.target.value })
+                }
+              />
             </tr>
             {/* <tr className="entete">Valider mot de passe </tr>
             <tr>
@@ -160,9 +184,11 @@ const MyProfile = (props) => {
         )}
         <div>
           {modif ? (
-            <button className="Profile-button" onClick={() => {
-              validprof();
-              updateMyProfile();
+            <button
+              className="Profile-button"
+              onClick={() => {
+                validprof();
+                updateMyProfile();
               }}
             >
               Valider mon profil
@@ -176,7 +202,36 @@ const MyProfile = (props) => {
       </div>
       <hr />
       <div className="Profile-annonces">
-        <h3>Vous n'avez pas encore publié d'annonce.</h3>
+        <div>
+          {riderAnnonce.length !== 0 ? (
+            riderAnnonce.map((e) => (
+              <ResultCard
+                fullResult={e}
+                firstname={e.rider_firstname}
+                rider_ID={e.rider_ID}
+                photo={e.rider_photos}
+              />
+            ))
+          ) : (
+            <h3>Vous n'avez pas encore publié d'annonce Cavalier</h3>
+          )}
+        </div>
+        <hr />
+        <div>
+          {horseAnnonce.length !== 0 ? (
+            horseAnnonce.map((e) => (
+              <HorseResultCard
+                key={e.horse_ID}
+                fullResult={e}
+                horse_name={e.horse_name}
+                horse_ID={e.horse_ID}
+                photo={e.horse_photos}
+              />
+            ))
+          ) : (
+            <h3>Vous n'avez pas encore publié d'annonce Equidé</h3>
+          )}
+        </div>
       </div>
     </>
   );

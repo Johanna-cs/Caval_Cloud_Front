@@ -20,6 +20,7 @@
     "react-geolocated": "^3.0.1",
     "react-images-upload": "^1.2.8",
     "react-router-dom": "^5.2.0",
+    "react-router-hash-link": "^2.0.0",
     "react-scripts": "3.4.1",
     "react-strap": "0.0.1",
     "reactstrap": "^8.4.1",

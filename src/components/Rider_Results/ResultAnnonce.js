@@ -1,8 +1,10 @@
-import React, { useState, useEffect} from "react"
+import React, { useState, useEffect, useContext} from "react"
 import "./Result.css"
 import ImageCarousel from "../common/Carousel"
-import { Link } from "react-router-dom"
 import Axios from "axios";
+import ReturnButton from "../common/ReturnButton"
+import { UserContext } from '../context/UserContext'
+
 
 const ResultAnnonce = (props) => {
   
@@ -11,7 +13,16 @@ const ResultAnnonce = (props) => {
 
     // Rider Data information
     const [dataRider, setDataRider] = useState([])
-    
+
+    // Context userProfile in order to simplify user data information management
+  const { userProfile, setUserProfile } = useContext(UserContext)
+    // Get user information from its ID and then, update userProfile context
+    const getUserInfo = () => {
+      Axios
+      .get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
+      .then(res => setUserProfile(res.data))
+      .catch(err=> console.error(err))
+    }
     // Get information about the selected rider from its ID
     const getRiderInformation = () => {
       Axios
@@ -25,6 +36,7 @@ const ResultAnnonce = (props) => {
     // When a result is displayed, the function getRiderInformation starts first in order to query BDD
     useEffect(() => {
       getRiderInformation();
+      getUserInfo();
       changeBool(dataRider);
       }, 
     [])
@@ -34,38 +46,30 @@ const ResultAnnonce = (props) => {
       <div className="headerAnnonce">
         <h3 id="annonceTitle">Annonce Cavalier</h3>{" "}
       </div>
-
-      <div className="Result-filterbarTop">
-        <Link
-          to={{
-            pathname: "/rider/results",
-          }}
-        >
-          <button className="Result-filterbar-button">
-            Retour aux résultats
-          </button>
-        </Link>
-      </div>
+      <ReturnButton />
       <div className="Result_annonce">
         <div className="annonce_header">
-          <img id="annonce_logo" src="https://firebasestorage.googleapis.com/v0/b/caval-cloud.appspot.com/o/images%2Fkelly-sikkema-JN0SUcTOig0-unsplash.jpg?alt=media&token=d141987e-453a-495b-bd56-2c7c59c1b5a4" alt="logo" />
+          <img
+            id="annonce_logo"
+            src={userProfile.user_avatar}
+            alt="logo"
+          />
           <div>
             <h5>
               {dataRider.rider_firstname},{" "}
               <span>{dataRider.rider_age} ans</span>
             </h5>
-            {/* <img src={dataRider.rider_avatar} alt='rider illustration'/> */}
             <p>
               {dataRider.rider_selfWord1}, {dataRider.rider_selfWord2},{" "}
               {dataRider.rider_selfWord3}
             </p>
-            <p>N° de téléphone : {dataRider.rider_phone}</p>
-            <p>Mail : {dataRider.rider_mail}</p>
+            <p>N° de téléphone : {userProfile.user_phone}</p>
+            <p>Mail : {userProfile.user_email}</p>
           </div>
           <h4>Localisation</h4>
           <p>{dataRider.rider_postal_code}</p>
         </div>
-        <h4>Quelques photos</h4>
+        <h5>Quelques photos</h5>
         <ImageCarousel />
         <div>
           <h4>Equitation</h4>
@@ -89,7 +93,8 @@ const ResultAnnonce = (props) => {
         <hr />
         <div>
           <h4>Autonomie</h4>
-          <h5>Est-il véhiculé ? </h5><p>{changeBool(dataRider.rider_vehiculed)}</p>
+          <h5>Est-il véhiculé ? </h5>
+          <p>{changeBool(dataRider.rider_vehiculed)}</p>
           <h5>A déjà eu un cheval sous sa responsabilité ?</h5>
           <p> {changeBool(dataRider.rider_managed_horse)}</p>
         </div>
@@ -103,26 +108,38 @@ const ResultAnnonce = (props) => {
         <div>
           <h4>Discipline</h4>
 
-          <p>Ouvert à d'autres disciplines : {changeBool(dataRider.rider_agree_other_discipline)}</p>
+          <p>
+            Ouvert à d'autres disciplines :{" "}
+            {changeBool(dataRider.rider_agree_other_discipline)}
+          </p>
         </div>
         <hr />
         <div>
           <h4>Rythme de venue</h4>
           <p>{dataRider.rider_riding_frequency}</p>
-          <p>Jours fixes souhaités : {changeBool(dataRider.rider_fixed_day)} </p>
+          <p>
+            Jours fixes souhaités : {changeBool(dataRider.rider_fixed_day)}{" "}
+          </p>
         </div>
         <hr />
         <div>
           <h4>Cheval idéal</h4>
-          <p>Taille :{dataRider.idealHorseSize}</p>
-          <p>Tempérament : {dataRider.idealHorseTemper}</p>
-          <p>Caractère : {dataRider.idealHorseCaracter}</p>
-          <p>Age : {dataRider.idealHorseAge}</p>
+          <p>Taille :{dataRider.ideal_horse_size} cm</p>
+          <p>Tempérament : {dataRider.ideal_horse_temper}</p>
+          <p>Caractère : {dataRider.ideal_horse_caracter}</p>
+          <p>Physique : {dataRider.ideal_horse_body_type}</p>
+          <p>Age : {dataRider.ideal_horse_age} ans</p>
         </div>
         <hr />
         <h4>Coaching</h4>
-        <p>J'aimerais avoir accès à des cours : {changeBool(dataRider.rider_coaching_here)}</p>
-        <p>J'aimerais faire intervenir un coach de l'extérieur : {changeBool(dataRider.rider_external_coach)}</p>
+        <p>
+          J'aimerais avoir accès à des cours :{" "}
+          {changeBool(dataRider.rider_coaching_here)}
+        </p>
+        <p>
+          J'aimerais faire intervenir un coach de l'extérieur :{" "}
+          {changeBool(dataRider.rider_external_coach)}
+        </p>
         <hr />
         <div>
           <h4>Concours</h4>
@@ -130,13 +147,7 @@ const ResultAnnonce = (props) => {
         </div>
       </div>
       <div className="Result-filterbarBot">
-        <Link to ={{
-            pathname: "/rider/results"
-          }}>
-          <button className="Result-filterbar-button">
-            Retour aux résultats
-          </button>
-        </Link>
+        <ReturnButton />
       </div>
     </>
   );

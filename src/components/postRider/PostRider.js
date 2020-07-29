@@ -1,11 +1,13 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect, useContext} from "react";
+import { storage } from "../Firebase";
+import Carousel from "@brainhubeu/react-carousel";
+import "@brainhubeu/react-carousel/lib/style.css";
 import "./postRider.css"
 import { Link, Redirect } from "react-router-dom"
 import Header from "../Header_footer/Header"
 import SlidingButton from "../common/SlidingButton"
 import RangeButton from '../common/RangeButton'
 import SelectButton from '../common/SelectButton'
-import ImageCarousel from "../common/Carousel"
 import FloatingButton from "../common/FloatingButton"
 import Disciplines from "../common_section/Disciplines"
 import BudgetMensuel from "../common_section/BudgetMensuel"
@@ -17,6 +19,7 @@ import Competition from "../common_section/Competition"
 import { RiderContext } from "../context/RiderContext"
 import { UserContext } from '../context/UserContext'
 import ModalPost from "../common/ModalPost"
+
 
 const PostRider = (props) => {
 
@@ -41,6 +44,37 @@ const PostRider = (props) => {
   // Context userProfile in order to simplify user data information management
   const { userProfile, setUserProfile } = useContext(UserContext)
 
+  // Carousel
+
+  const [imageCarousel, setImageCarousel] = useState({});
+  const [useUrl, setUseUrl] = useState([]);
+  
+
+  const handleChange = (e) => {
+    if (e.target.files[0]) {
+      setImageCarousel(e.target.files[0]);
+    }
+  };
+  const handleUpload = () => {
+    const uploadTask = storage
+      .ref(`images/${imageCarousel.name}`)
+      .put(imageCarousel);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {},
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref("images")
+          .child(imageCarousel.name)
+          .getDownloadURL()
+          .then((url) => setUseUrl([...useUrl,url]));
+      }
+    );
+  };
+
   // Get user information from its ID and then, update userProfile context
   const getUserInfo = () => {
     Axios
@@ -61,14 +95,16 @@ const PostRider = (props) => {
     setTimeout(()=> setHome(true), 5000)
   };
 
+  
   useEffect(() => {
     getLocation();
     getUserInfo();
   }, []);
 
+
   return (
     <>
-    {home ? <Redirect to ="/home"/> : null}
+      {home ? <Redirect to="/home" /> : null}
       <Header title="Poster une annonce cavalier" />
       <div className="postRider_page">
         <div className="postRider_header">
@@ -79,18 +115,48 @@ const PostRider = (props) => {
           />
           <div className="postRider_forms">
             <p>
+              
               {riderProfile.rider_firstname}
               <span>{riderProfile.rider_age}</span>
             </p>
             <p>
-              {riderProfile.rider_selfWord1} {riderProfile.rider_selfWord2}
+              {riderProfile.rider_selfWord1} {riderProfile.rider_selfWord2}{" "}
               {riderProfile.rider_selfWord3}
             </p>
           </div>
         </div>
-        <hr/>
+        
+        <div className="postRider_pres">
+          <Link
+            to={{
+              pathname: "/PostRiderPresentation",
+              style: { textDecoration: "none" },
+            }}
+          >
+            <button className="postRider_edit-button">
+              Editer votre présentation
+            </button>
+          </Link>
+        </div>
+        
+        <br />
         <h4>Vos photos</h4>
-        <ImageCarousel search/>
+        <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9}>
+          {useUrl &&
+            useUrl.map((imgUrl, index) => (
+              <img key={index} src={imgUrl} alt="" />
+            ))}
+        </Carousel>
+        <br />
+        <input type="file" onChange={handleChange} />
+        <button
+          onClick={handleUpload}
+          onEvent={props.onEvent}
+          className="upload-button"
+        >
+          Valider la photo
+        </button>
+        <hr />
         <div>
           <Localisation
             value={cityLocalisation}
@@ -105,19 +171,6 @@ const PostRider = (props) => {
           />
         </div>
 
-        <div className="postRider_pres">
-          <Link
-            to={{
-              pathname: "/PostRiderPresentation",
-              style: { textDecoration: "none" },
-            }}
-          >
-            <button className="postRider_edit-button">
-              Editer votre présentation
-            </button>
-          </Link>
-        </div>
-        <hr />
         <div>
           <BudgetMensuel
             budgetTitle="Budget"
@@ -164,7 +217,10 @@ const PostRider = (props) => {
         <hr />
         <div>
           <h4>Mon niveau</h4>
-          <h5> Nombre d'années de pratique : {riderProfile.rider_years_of_practice}</h5>
+          <h5>
+            {" "}
+            Nombre d'années de pratique : {riderProfile.rider_years_of_practice}
+          </h5>
 
           <div className="divRangeSpan">
             <span>1 an</span>
@@ -174,7 +230,7 @@ const PostRider = (props) => {
               onChange={(e) =>
                 setRiderProfile({
                   ...riderProfile,
-                  yearsOfPractice: e.target.value,
+                  rider_years_of_practice: e.target.value,
                 })
               }
             />
@@ -190,7 +246,7 @@ const PostRider = (props) => {
               onChange={(e) =>
                 setRiderProfile({
                   ...riderProfile,
-                  gallopLevel: e.target.value,
+                  rider_gallop_level: e.target.value,
                 })
               }
             />
@@ -199,9 +255,14 @@ const PostRider = (props) => {
         </div>
 
         <div className="postRider-disc">
-          <Disciplines 
-          
-          onClick={(e) => setRiderProfile({...riderProfile, rider_disciplines: e.target.value})}/>
+          <Disciplines
+            onClick={(e) =>
+              setRiderProfile({
+                ...riderProfile,
+                rider_disciplines: e.target.value,
+              })
+            }
+          />
         </div>
         <div>
           <SlidingButton
@@ -239,7 +300,7 @@ const PostRider = (props) => {
           <h4>Cheval idéal</h4>
           <div className="idealHorse">
             <div className="horse_size">
-              <h5> Taille : {riderProfile.idealHorseSize} cm</h5>
+              <h5> Taille : {riderProfile.ideal_horse_size} cm</h5>
               <div className="divRangeSpan">
                 <span>80cm</span>
                 <RangeButton
@@ -249,7 +310,7 @@ const PostRider = (props) => {
                   onChange={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseSize: e.target.value,
+                      ideal_horse_size: e.target.value,
                     })
                   }
                 />
@@ -267,7 +328,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseTemper: e.target.value,
+                      ideal_horse_temper: e.target.value,
                     })
                   }
                 />
@@ -279,7 +340,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseTemper: e.target.value,
+                      ideal_horse_temper: e.target.value,
                     })
                   }
                 />
@@ -291,7 +352,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseTemper: e.target.value,
+                      ideal_horse_temper: e.target.value,
                     })
                   }
                 />
@@ -303,7 +364,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseTemper: e.target.value,
+                      ideal_horse_temper: e.target.value,
                     })
                   }
                 />
@@ -320,7 +381,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseCaracter: e.target.value,
+                      ideal_horse_caracter: e.target.value,
                     })
                   }
                 />
@@ -332,7 +393,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseCaracter: e.target.value,
+                      ideal_horse_caracter: e.target.value,
                     })
                   }
                 />
@@ -344,7 +405,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseCaracter: e.target.value,
+                      ideal_horse_caracter: e.target.value,
                     })
                   }
                 />
@@ -356,7 +417,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseCaracter: e.target.value,
+                      ideal_horse_caracter: e.target.value,
                     })
                   }
                 />
@@ -373,7 +434,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseBody: e.target.value,
+                      ideal_horse_body_type: e.target.value,
                     })
                   }
                 />
@@ -385,7 +446,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseBody: e.target.value,
+                      ideal_horse_body_type: e.target.value,
                     })
                   }
                 />
@@ -397,7 +458,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseBody: e.target.value,
+                      ideal_horse_body_type: e.target.value,
                     })
                   }
                 />
@@ -409,7 +470,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseBody: e.target.value,
+                      ideal_horse_body_type: e.target.value,
                     })
                   }
                 />
@@ -420,7 +481,7 @@ const PostRider = (props) => {
               <h5>
                 {" "}
                 Age du cheval <span>(+/- 3ans)</span> :{" "}
-                {riderProfile.idealHorseAge} ans
+                {riderProfile.ideal_horse_age} ans
               </h5>
               <div className="divRangeSpan">
                 <span>1 an</span>
@@ -432,7 +493,7 @@ const PostRider = (props) => {
                   onChange={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseAge: e.target.value,
+                      ideal_horse_age: e.target.value,
                     })
                   }
                 />
@@ -480,7 +541,7 @@ const PostRider = (props) => {
           btnName={"Poster mon annonce"}
           onClick={() => postDataRider()}
         />
-        <ModalPost show={modalShow}/>
+        <ModalPost show={modalShow} />
       </div>
     </>
   );

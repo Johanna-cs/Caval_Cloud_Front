@@ -4,8 +4,13 @@ import { Link } from "react-router-dom";
 import FloatingButton from "../common/FloatingButton";
 import Header from "../Header_footer/Header";
 import { RiderContext } from "../context/RiderContext";
+import { UserContext } from '../context/UserContext'
 
 const PostRiderPresentation = (props) => {
+
+    // Context userProfile in order to simplify user data information management
+    const { userProfile, setUserProfile } = useContext(UserContext)
+    
 
   const { riderProfile, setRiderProfile } = useContext(RiderContext)
 

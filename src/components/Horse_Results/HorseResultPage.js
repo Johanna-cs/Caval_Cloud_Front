@@ -8,6 +8,7 @@ import { Results_Horse_Context} from '../context/Results_Horse_Context'
 import { getDistanceFromLatLonInKm } from '../matching/calculDistance'
 
 
+
 const HorseResultPage = () => {
 
   const currentRiderLat = 43.620761599999994
