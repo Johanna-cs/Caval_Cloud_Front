@@ -61,17 +61,19 @@ a {
   text-decoration: none !important;
   color: #77838f !important;
 }
-.logoM:hover, .logoM:focus, .logoM p:hover{
+.logoM:hover,
+.logoM:focus,
+.logoM p:hover,
+.logoM p:focus {
   border-radius: 10px;
-filter: invert(23%) sepia(11%) saturate(3002%) hue-rotate(202deg) brightness(94%) contrast(86%);}
-.logoM :visited {
-  padding: 1.1em;
-  border-radius: 10px;
-  fill: #b0b9d380 !important;
-}
-.logoM :active {
-  padding: 1.1em;
-  border-radius: 10px;
-  fill: #b0b9d380 !important;
+  filter: invert(39%) sepia(40%) saturate(2454%) hue-rotate(213deg)
+    brightness(70%) contrast(100%);
 }
 
+.logoM:visited, .logoM p:visited  {
+  border-radius: 10px;
+  
+}
+.logoM:active, .logoM p:active {
+  border-radius: 10px;
+}
