@@ -22,13 +22,12 @@ import { HorseContext } from "../context/HorseContext";
 import ModalPost from "../common/ModalPost";
 
 
-const PostHorse = (props) => {
+const PostHorse = () => {
   // Get Localisation
   const { latitude, longitude, error } = usePosition();
-  const [cityLocalisation, setCityLocalisation] = useState("");
 
   // Store city in localstorage for next uses
-  localStorage.setItem("lastCitySaved", cityLocalisation);
+  // localStorage.setItem("lastCitySaved", cityLocalisation);
 
   // Selection on perimeter for localisation :
   const [perimeter, setPerimeter] = useState(null);
@@ -38,25 +37,35 @@ const PostHorse = (props) => {
   const [modalShow, setModalShow] = useState(false);
   const [home, setHome] = useState(false);
 
+  // Get the location from reverse geocoding
   const getLocation = () => {
-    Axios.get(
-      `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
-    )
-      .then((res) => setCityLocalisation(res.data.address.municipality))
-      .catch((err) => console.log(err));
+    Axios
+      .get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
+      .then((res) => setHorseProfile({...horseProfile, horse_postal : res.data.address.postcode}))
+      // .then((res) => setHorseProfile({...horseProfile, horse_localisation : res.data.address.municipality}))
+      .catch((err) => console.log(err))
   };
 
+  // Get full and set gps coordinates from postal code within horse Context
+  const getCoordinatesfromPostalCode = (postalcode) => {
+      Axios
+          .get(`https://nominatim.openstreetmap.org/search?state=France&postalcode=${postalcode}&format=json`)
+          .then((res) => { setHorseProfile({...horseProfile, horse_long : res.data[0].lon, horse_lat :res.data[0].lat, horse_localisation : res.data[0].display_name }) })
+          .catch((err) => console.log(err))
+        
+  }
+
   const postDataHorse = () => {
-    Axios.post(`http://localhost:4000/api/horses`, horseProfile).catch((err) =>
-      console.log(err)
-    );
+    Axios
+      .post(`http://localhost:4000/api/horses`, horseProfile)
+      .catch((err) =>console.log(err));
     setModalShow(true);
     setTimeout(() => setHome(true), 5000);
   };
 
   useEffect(() => {
-    getLocation();
-  });
+    getLocation()
+  }, []);
 
 
   return (
@@ -64,6 +73,13 @@ const PostHorse = (props) => {
       {home ? <Redirect to="/home" /> : null}
 
       <Header className="header" title="Poster une annonce cheval" />
+      <button onClick={ () => {
+          getCoordinatesfromPostalCode(horseProfile.horse_postal)
+          }}>
+        Convert
+      </button>
+      <p>Lat : {latitude}</p>
+      <p>Long : {longitude}</p>
       <div className="postHorse_page">
         <div className="postHorse_pres">
           <h4>Présentation :</h4>
@@ -129,14 +145,13 @@ const PostHorse = (props) => {
         <div className="localisation_horse">
           <h5>Où se trouve le cheval ? </h5>
           <Localisation
-            value={cityLocalisation}
-            onChange={(e) => {
-              setCityLocalisation(e.target.value);
+            value={horseProfile.horse_postal}
+            onChange={(e) => 
               setHorseProfile({
                 ...horseProfile,
-                horse_localisation: e.target.value,
-              });
-            }}
+                horse_postal: e.target.value,
+              })
+            }
             definePerimeter={(e) => setPerimeter(e.target.value)}
             perimeter={perimeter}
           />

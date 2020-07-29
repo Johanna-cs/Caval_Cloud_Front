@@ -8,11 +8,16 @@ import heartFull from "../SVG-icons/coeur-selection.svg";
 const HorseResultCard = (props) => {
   
   // get the correct riderID in order to pass it to the ResultAnnonce component
-  const userid = 1
-  const horseid = 1
+  const userid = props.fullResult.userid
+  const horseid = props.fullResult.horseid
+  const horsename = props.fullResult.horsename
+  const urlphoto = props.fullResult.urlphoto
   const dataBody = {
     userid : userid,
-    horseid : horseid
+    horseid : horseid,
+    horsename : horsename,
+    urlphoto : urlphoto,
+
   }
   
   const [favoriteIcon, setFavoriteIcon] = useState(heart)
@@ -22,14 +27,12 @@ const HorseResultCard = (props) => {
 
   const addInFavorite = () => {
     if (favoriteIcon === heart) {
-      console.log('add in favorite')
       Axios
       .post(`http://localhost:4000/api/users/addFavoriteHorse`, dataBody)
       .catch((err) => console.error(err)
       );
     }
     else {
-      console.log('delete from favorite')
       Axios
       .delete(`http://localhost:4000/api/users/deleteFavoriteHorse/${userid}`)
       .catch((err) => console.error(err)
@@ -49,7 +52,7 @@ const HorseResultCard = (props) => {
           <div className="resultCard-container">
             <img
               className="resultPhoto"
-              src="https://images.unsplash.com/photo-1504291310234-fdc312c67b04?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+              src={props.fullResult.urlphoto}
               alt=""
 
             />
