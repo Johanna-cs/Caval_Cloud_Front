@@ -49,8 +49,8 @@ const HorseResultCard = (props) => {
           <div className="resultCard-container">
             <img
               className="resultPhoto"
-              src="https://images.unsplash.com/photo-1504291310234-fdc312c67b04?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-              alt=""
+              src={props.horse_photo1}
+              alt={props.horse_name}
 
             />
           </div>
