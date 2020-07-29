@@ -114,10 +114,11 @@ const ResultAnnonce = (props) => {
         <hr />
         <div>
           <h4>Cheval idéal</h4>
-          <p>Taille :{dataRider.idealHorseSize}</p>
-          <p>Tempérament : {dataRider.idealHorseTemper}</p>
-          <p>Caractère : {dataRider.idealHorseCaracter}</p>
-          <p>Age : {dataRider.idealHorseAge}</p>
+          <p>Taille :{dataRider.ideal_horse_size}</p>
+          <p>Tempérament : {dataRider.ideal_horse_temper}</p>
+          <p>Caractère : {dataRider.ideal_horse_caracter}</p>
+          <p>Physique : {dataRider.ideal_horse_body_type}</p>
+          <p>Age : {dataRider.ideal_horse_age}</p>
         </div>
         <hr />
         <h4>Coaching</h4>
