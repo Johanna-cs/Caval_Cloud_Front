@@ -1,7 +1,7 @@
-import React from 'react'
-import { Modal} from "react-bootstrap";
+import React from "react";
+import { Modal } from "react-bootstrap";
 
-function ModalPost(props) {
+function ModalRedirect(props) {
   return (
     <Modal
       {...props}
@@ -15,14 +15,10 @@ function ModalPost(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p>
-          Votre annonce a bien été enregistrée.
-          Vous allez être automatiquement redirigé vers la page d'accueil.
-        </p>
+        <p>Votre compte a bien été créé !</p>
       </Modal.Body>
     </Modal>
   );
 }
 
-export default ModalPost
-
+export default ModalRedirect;

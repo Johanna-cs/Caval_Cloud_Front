@@ -1,7 +1,7 @@
-import React from 'react'
-import { Modal} from "react-bootstrap";
+import React from "react";
+import { Modal } from "react-bootstrap";
 
-function ModalPost(props) {
+function ModalSoon(props) {
   return (
     <Modal
       {...props}
@@ -16,13 +16,11 @@ function ModalPost(props) {
       </Modal.Header>
       <Modal.Body>
         <p>
-          Votre annonce a bien été enregistrée.
-          Vous allez être automatiquement redirigé vers la page d'accueil.
+          Cette fonctionnalité n'est pas encore disponible.
         </p>
       </Modal.Body>
     </Modal>
   );
 }
 
-export default ModalPost
-
+export default ModalSoon;

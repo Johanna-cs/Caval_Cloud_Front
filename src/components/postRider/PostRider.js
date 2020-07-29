@@ -1,11 +1,13 @@
-import React, { useState, useEffect, useContext, useCallback } from "react";
+import React, { useState, useEffect, useContext} from "react";
+import { storage } from "../Firebase";
+import Carousel from "@brainhubeu/react-carousel";
+import "@brainhubeu/react-carousel/lib/style.css";
 import "./postRider.css"
 import { Link, Redirect } from "react-router-dom"
 import Header from "../Header_footer/Header"
 import SlidingButton from "../common/SlidingButton"
 import RangeButton from '../common/RangeButton'
 import SelectButton from '../common/SelectButton'
-import ImageCarousel from "../common/Carousel"
 import FloatingButton from "../common/FloatingButton"
 import Disciplines from "../common_section/Disciplines"
 import BudgetMensuel from "../common_section/BudgetMensuel"
@@ -42,6 +44,37 @@ const PostRider = (props) => {
   // Context userProfile in order to simplify user data information management
   const { userProfile, setUserProfile } = useContext(UserContext)
 
+  // Carousel
+
+  const [imageCarousel, setImageCarousel] = useState({});
+  const [useUrl, setUseUrl] = useState([]);
+  
+
+  const handleChange = (e) => {
+    if (e.target.files[0]) {
+      setImageCarousel(e.target.files[0]);
+    }
+  };
+  const handleUpload = () => {
+    const uploadTask = storage
+      .ref(`images/${imageCarousel.name}`)
+      .put(imageCarousel);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {},
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref("images")
+          .child(imageCarousel.name)
+          .getDownloadURL()
+          .then((url) => setUseUrl([...useUrl,url]));
+      }
+    );
+  };
+
   // Get user information from its ID and then, update userProfile context
   const getUserInfo = () => {
     Axios
@@ -62,7 +95,7 @@ const PostRider = (props) => {
     setTimeout(()=> setHome(true), 5000)
   };
 
-
+  
   useEffect(() => {
     getLocation();
     getUserInfo();
@@ -106,7 +139,22 @@ const PostRider = (props) => {
         </div>
         <br />
         <h4>Vos photos</h4>
-        <ImageCarousel search onEvent />
+        <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9}>
+          {useUrl &&
+            useUrl.map((imgUrl, index) => (
+              <img key={index} src={imgUrl} alt="" />
+            ))}
+        </Carousel>
+        <br />
+        <input type="file" onChange={handleChange} />
+        <button
+          onClick={handleUpload}
+          onEvent={props.onEvent}
+          className="upload-button"
+        >
+          Valider la photo
+        </button>
+        <hr />
         <div>
           <Localisation
             value={cityLocalisation}

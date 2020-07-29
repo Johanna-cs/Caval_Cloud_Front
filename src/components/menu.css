@@ -1,72 +1,77 @@
 .menu {
-    position: fixed;
-    bottom: 0em;
-    background-color: none;
-    height: 4.9em;
-    color : white;
-    display: flex;
-    justify-content: space-around;
-    box-shadow: 1px 0px 3px 0px #77838F65;
-    width: 100%;
-    margin-top: 0.5em;
-    margin-left: 1em;
+  position: fixed;
+  bottom: 0em;
+  background-color: white;
+  height: 4.9em;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 1px 0px 3px 0px #77838f65;
+  width: 100%;
+  margin-top: 0.5em;
+  margin-left: 0em;
 }
 .divBtn {
-    display: flex;
-    justify-self: center;
-    align-items: baseline;
-    width: 4em;
-    height: 4em;
-    margin: 0.4em;
-    padding: 0.1em;
-    text-align: center;
-    box-sizing: content-box;
+  display: flex;
+  justify-self: center;
+  align-items: baseline;
+  width: 4em;
+  height: 4em;
+  margin: 0.4em;
+  padding: 0.1em;
+  text-align: center;
+  box-sizing: content-box;
 }
 
 .menu p {
-    text-align: center !important;
-    font-weight: 200 !important;
-    font-family: 'pen Sans', sans-serif;
-    font-size: 0.8em !important;
-    margin: auto ;
-    padding: 0.2em;
-    word-break: keep-all;
-  }
+  text-align: center !important;
+  font-weight: 200 !important;
+  font-family: "pen Sans", sans-serif;
+  font-size: 0.8em !important;
+  margin: auto;
+  padding: 0.2em;
+  word-break: keep-all;
+  color: #77838f;
+  margin-left: 1em;
+}
 
 /* logos menu */
 .logo-home {
-    width: 1.7em !important;
-    margin-bottom: 0.4em;
+  width: 1.7em !important;
+  margin-bottom: 0.4em;
+  margin-left: 1em;
 }
 .logo-save {
-    width: 1em !important;
-    margin-bottom: 0.4em;
+  width: 1em !important;
+  margin-bottom: 0.4em;
+  margin-left: 1em;
 }
 .logo-mess {
-    width: 1.6em !important;
-    margin-bottom: 0.4em;
+  width: 1.6em !important;
+  margin-bottom: 0.4em;
+  margin-left: 1em;
 }
 .logo-profil {
-    width: 1.3em !important;
-    margin-bottom: 0.4em;
+  width: 1.3em !important;
+  margin-bottom: 0.4em;
+  margin-left: 1em;
 }
 
 a {
-    text-decoration: none !important; 
-    color: #77838F !important;
+  text-decoration: none !important;
+  color: #77838f !important;
 }
-.logoM :hover{
-    padding: 1.1em;
-    border-radius: 10px;
-    fill: #b0b9d3!important;
-}
+.logoM:hover, .logoM:focus, .logoM p:hover{
+  border-radius: 10px;
+filter: invert(23%) sepia(11%) saturate(3002%) hue-rotate(202deg) brightness(94%) contrast(86%);}
 .logoM :visited {
-    padding: 1.1em;
-    border-radius: 10px;
-    fill: #b0b9d380 !important;
+  padding: 1.1em;
+  border-radius: 10px;
+  fill: #b0b9d380 !important;
 }
 .logoM :active {
-    padding: 1.1em;
-    border-radius: 10px;
-    fill: #b0b9d380 !important;
+  padding: 1.1em;
+  border-radius: 10px;
+  fill: #b0b9d380 !important;
 }
+

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./landing.css";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import logo from "../SVG-icons/cavalcloud-logo.png";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 import Axios from "axios";
+import ModalRedirect from "../common/ModalRedirect";
 
 
 const Register = () => {
@@ -18,14 +19,22 @@ const Register = () => {
     user_accept_CGV: 0,
   });
 
+
   const subscribe = (e) => {
     e.preventDefault();
     Axios.post("http://localhost:4000/api/users/register", dataUser)
       .catch(err => console.error(err))
       .finally(setSuccess(true));
+      setModalShow(true);
+      setTimeout(() => setLogin(true), 3000);
   };
 
+const [modalShow, setModalShow] = useState(false);
+const [login, setLogin] = useState(false);
+
   return (
+    <>
+    {login ? <Redirect to="/login" /> : null}
     <div className="register_page">
       <img className="register_logo" src={logo} alt="logo" />
 
@@ -125,11 +134,10 @@ const Register = () => {
       dataUser.user_firstname &&
       dataUser.user_password &&
       dataUser.user_email !== "" &&
-      dataUser.user_accept_CGV === 1 ? (
+      dataUser.user_accept_CGV  ? (
         <button
           type="submit"
           className="register_button"
-          disabled="false"
           onClick={(e) => subscribe(e)}
         >
           CREER UN COMPTE
@@ -137,14 +145,14 @@ const Register = () => {
       ) : (
         <button
           type="submit"
-          className="register_button"
-          // disabled='true'
+          className="register_buttonLocked"
+          disabled='true'
           onClick={(e) => subscribe(e)}
         >
           CREER UN COMPTE
         </button>
       )}
-
+      <ModalRedirect show={modalShow} />
       <div>
         <p>Vous avez déjà un compte ?</p>
         <Link to="/login" style={{ textDecoration: "none" }}>
@@ -152,6 +160,7 @@ const Register = () => {
         </Link>
       </div>
     </div>
+    </>
   );
 };
 export default Register;

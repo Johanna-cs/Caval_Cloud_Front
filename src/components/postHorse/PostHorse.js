@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
+import { storage } from "../Firebase";
+import Carousel from "@brainhubeu/react-carousel";
+import "@brainhubeu/react-carousel/lib/style.css";
 import Axios from "axios";
 import "./postHorse.css";
 import Header from "../Header_footer/Header";
@@ -17,11 +20,9 @@ import IdealRider from "../common_section/IdealRider";
 import FloatingButton from "../common/FloatingButton";
 import Competition from "../common_section/Competition";
 import HebergementHorse from "../common_section/HebergementHorse";
-import ImageCarousel from "../common/Carousel";
 import { HorseContext } from "../context/HorseContext";
 import { UserContext } from "../context/UserContext";
 import ModalPost from "../common/ModalPost";
-
 
 const PostHorse = (props) => {
   // Get Localisation
@@ -34,18 +35,47 @@ const PostHorse = (props) => {
   // Selection on perimeter for localisation :
   const [perimeter, setPerimeter] = useState(null);
   // Context userProfile in order to simplify user data information management
-  const { userProfile, setUserProfile } = useContext(UserContext)
-// Get user information from its ID and then, update userProfile context
+  const { userProfile, setUserProfile } = useContext(UserContext);
+  // Get user information from its ID and then, update userProfile context
   const getUserInfo = () => {
-    Axios
-      .get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
-      .then(res => setUserProfile(res.data))
-      .catch(err=> console.error(err))
-      }
+    Axios.get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
+      .then((res) => setUserProfile(res.data))
+      .catch((err) => console.error(err));
+  };
   // Get horseProfile Context in order to get and set information about it
   const { horseProfile, setHorseProfile } = useContext(HorseContext);
   const [modalShow, setModalShow] = useState(false);
   const [home, setHome] = useState(false);
+
+  // Carousel
+
+  const [imageCarousel, setImageCarousel] = useState({});
+  const [useUrl, setUseUrl] = useState([]);
+
+  const handleChange = (e) => {
+    if (e.target.files[0]) {
+      setImageCarousel(e.target.files[0]);
+    }
+  };
+  const handleUpload = () => {
+    const uploadTask = storage
+      .ref(`images/${imageCarousel.name}`)
+      .put(imageCarousel);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {},
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref("images")
+          .child(imageCarousel.name)
+          .getDownloadURL()
+          .then((url) => setUseUrl([...useUrl, url]));
+      }
+    );
+  };
 
   const getLocation = () => {
     Axios.get(
@@ -56,27 +86,23 @@ const PostHorse = (props) => {
   };
 
   const postDataHorse = () => {
-    Axios.post(`http://localhost:4000/api/horses`, horseProfile)
-    .catch((err) =>
+    Axios.post(`http://localhost:4000/api/horses`, horseProfile).catch((err) =>
       console.log(err)
     );
-    Axios.post(`http://localhost:4000/api/owners`, horseProfile)
-    .catch((err) =>
+    Axios.post(`http://localhost:4000/api/owners`, horseProfile).catch((err) =>
       console.log(err)
     );
-    Axios.post(`http://localhost:4000/api/idealriders`, horseProfile)
-    .catch((err) =>
-      console.log(err)
-    );
+    Axios.post(
+      `http://localhost:4000/api/idealriders`,
+      horseProfile
+    ).catch((err) => console.log(err));
     setModalShow(true);
     setTimeout(() => setHome(true), 5000);
   };
 
   useEffect(() => {
     getLocation();
-    ;
   });
-
 
   return (
     <>
@@ -110,7 +136,7 @@ const PostHorse = (props) => {
                 id="ageHorse"
                 min="1"
                 max="30"
-                step='0'
+                step="0"
                 radioRangeBtnId="ageHorse"
                 onChange={(e) =>
                   setHorseProfile({
@@ -144,7 +170,22 @@ const PostHorse = (props) => {
         </div>
         <hr />
         <h4>Photos de votre cheval</h4>
-        <ImageCarousel search />
+        <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9}>
+          {useUrl &&
+            useUrl.map((imgUrl, index) => (
+              <img key={index} src={imgUrl} alt="" />
+            ))}
+        </Carousel>
+        <br />
+        <input type="file" onChange={handleChange} />
+        <button
+          onClick={handleUpload}
+          onEvent={props.onEvent}
+          className="upload-button"
+        >
+          Valider la photo
+        </button>
+        <hr />
         <div className="localisation_horse">
           <h5>Où se trouve le cheval ? </h5>
           <Localisation
@@ -338,11 +379,14 @@ const PostHorse = (props) => {
           }
         />
         <hr />
-        <Structures onClick={(e) =>
+        <Structures
+          onClick={(e) =>
             setHorseProfile({
               ...horseProfile,
               horse_practice_structure: e.target.value,
-            }) }/>
+            })
+          }
+        />
         <hr />
         <div className="coaching">
           <h4>Coaching</h4>
@@ -440,7 +484,10 @@ const PostHorse = (props) => {
           currency={horseProfile.horse_currency_budget}
           priceTitle={"Prix maximum par mois :"}
           onChange={(e) =>
-            setHorseProfile({ ...horseProfile, horse_budget: e.target.value })
+            setHorseProfile({
+              ...horseProfile,
+              horse_budget: e.target.value,
+            })
           }
           onClick={(e) =>
             setHorseProfile({
@@ -476,20 +523,20 @@ const PostHorse = (props) => {
             changeGallop={(e) =>
               setHorseProfile({
                 ...horseProfile,
-                ideal_rider_gallop_level : e.target.value,
+                ideal_rider_gallop_level: e.target.value,
               })
             }
-            ageRider={horseProfile.ideal_rider_age }
+            ageRider={horseProfile.ideal_rider_age}
             changeAgeRider={(e) =>
               setHorseProfile({
                 ...horseProfile,
-                ideal_rider_age : e.target.value,
+                ideal_rider_age: e.target.value,
               })
             }
             isVehiculed={() =>
               setHorseProfile({
                 ...horseProfile,
-                ideal_rider_vehiculed : !horseProfile.ideal_rider_vehiculed ,
+                ideal_rider_vehiculed: !horseProfile.ideal_rider_vehiculed,
               })
             }
             hasManaged={() =>

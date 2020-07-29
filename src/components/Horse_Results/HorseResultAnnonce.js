@@ -1,9 +1,10 @@
 import React, { useState, useEffect} from "react"
 import "./HorseResult.css";
-import { Link, useHistory } from "react-router-dom";
 import logo from "../SVG-icons/cavalcloud-logo.png"
 import ReturnButton from "../common/ReturnButton";
 import Axios from "axios";
+import ImageCarousel from "../common/Carousel";
+
 
 const HorseResultAnnonce = (props) => {
   
@@ -33,10 +34,6 @@ const HorseResultAnnonce = (props) => {
       }, 
     [])
     
-  const goBack = () => {
-    window.history.back();
-  };
-  let history = useHistory();
 
   return (
     <>
@@ -59,6 +56,7 @@ const HorseResultAnnonce = (props) => {
               {dataHorse.horse_character}, {dataHorse.horse_body_type}
             </p>
           </div>
+          <ImageCarousel/>
           <h5>Où se trouve t-il ?</h5>
           <p>{dataHorse.horse_localisation}</p>
         </div>

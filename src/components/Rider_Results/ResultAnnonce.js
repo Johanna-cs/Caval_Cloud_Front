@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import Axios from "axios";
 import ReturnButton from "../common/ReturnButton"
 
+
 const ResultAnnonce = (props) => {
   
     // get the rider_ID in order to display the specific result
