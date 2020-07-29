@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import './postHorse.css'
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { HashLink as Link } from 'react-router-hash-link';
 import FloatingButton from "../common/FloatingButton";
 import Header from '../Header_footer/Header'
 import RangeButton from '../common/RangeButton'
@@ -130,7 +131,7 @@ const OwnerPres = (props) => {
                 </label>
                 </form>
 
-            <Link to="/post-horse" style={{ textDecoration: "none" }}>
+            <Link to="/post-horse#anchorIdealRider" style={{ textDecoration: "none" }}>
                 <FloatingButton
                 btnName={"Valider"}
                 type="submit"

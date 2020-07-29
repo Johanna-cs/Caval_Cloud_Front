@@ -115,6 +115,7 @@ const PostRider = (props) => {
           />
           <div className="postRider_forms">
             <p>
+              
               {riderProfile.rider_firstname}
               <span>{riderProfile.rider_age}</span>
             </p>
@@ -124,7 +125,7 @@ const PostRider = (props) => {
             </p>
           </div>
         </div>
-        <hr />
+        
         <div className="postRider_pres">
           <Link
             to={{
@@ -137,6 +138,7 @@ const PostRider = (props) => {
             </button>
           </Link>
         </div>
+        
         <br />
         <h4>Vos photos</h4>
         <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9}>

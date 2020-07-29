@@ -510,7 +510,7 @@ const PostHorse = (props) => {
         </div>
         <hr />
         <div className="postHorse_idealRider">
-          <h4>Cavalier idéal</h4>
+          <h4 id='anchorIdealRider'>Cavalier idéal</h4>
           <IdealRider
             yearPractice={horseProfile.ideal_rider_years_of_practice}
             changePractice={(e) =>
