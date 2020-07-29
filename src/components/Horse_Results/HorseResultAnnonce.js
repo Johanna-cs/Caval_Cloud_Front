@@ -69,9 +69,9 @@ const HorseResultAnnonce = (props) => {
           <p>{dataHorse.horse_localisation}</p>
           <h5>Quelques photos</h5>
           <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9}>
-            <img src={dataHorse.horse_photo1} alt="horse_photo1" />
-            <img src={dataHorse.horse_photo2} alt="horse_photo2" />
-            <img src={dataHorse.horse_photo3} alt="horse_photo3" />
+            <img src={dataHorse.horse_photo1} alt="horse_photo1" className='imagesHorse'/>
+            <img src={dataHorse.horse_photo2} alt="horse_photo2" className='imagesHorse'/>
+            <img src={dataHorse.horse_photo3} alt="horse_photo3" className='imagesHorse'/>
           </Carousel>
           <br />
           <hr />

@@ -68,9 +68,9 @@ const ResultAnnonce = (props) => {
         </div>
         <h5>Quelques photos</h5>
         <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9}>
-          <img src={dataRider.rider_photo1} alt="rider_photo1" />
-          <img src={dataRider.rider_photo2} alt="rider_photo2" />
-          <img src={dataRider.rider_photo3} alt="rider_photo3" />
+          <img src={dataRider.rider_photo1} alt="rider_photo1" className='imagesRider'/>
+          <img src={dataRider.rider_photo2} alt="rider_photo2" className='imagesRider' />
+          <img src={dataRider.rider_photo3} alt="rider_photo3" className='imagesRider'/>
         </Carousel>
         <div>
           <h4>Equitation</h4>

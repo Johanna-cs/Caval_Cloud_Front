@@ -111,3 +111,8 @@
     margin-top: 0.5em !important;
     text-align: center;
   }
+  
+  .imagesHorse {
+    width: 330px;
+    height: auto;
+  }
