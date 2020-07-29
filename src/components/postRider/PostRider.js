@@ -228,7 +228,7 @@ const PostRider = (props) => {
               onChange={(e) =>
                 setRiderProfile({
                   ...riderProfile,
-                  yearsOfPractice: e.target.value,
+                  rider_years_of_practice: e.target.value,
                 })
               }
             />
@@ -244,7 +244,7 @@ const PostRider = (props) => {
               onChange={(e) =>
                 setRiderProfile({
                   ...riderProfile,
-                  gallopLevel: e.target.value,
+                  rider_gallop_level: e.target.value,
                 })
               }
             />
@@ -298,7 +298,7 @@ const PostRider = (props) => {
           <h4>Cheval idéal</h4>
           <div className="idealHorse">
             <div className="horse_size">
-              <h5> Taille : {riderProfile.idealHorseSize} cm</h5>
+              <h5> Taille : {riderProfile.ideal_horse_size} cm</h5>
               <div className="divRangeSpan">
                 <span>80cm</span>
                 <RangeButton
@@ -308,7 +308,7 @@ const PostRider = (props) => {
                   onChange={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseSize: e.target.value,
+                      ideal_horse_size: e.target.value,
                     })
                   }
                 />
@@ -326,7 +326,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseTemper: e.target.value,
+                      ideal_horse_temper: e.target.value,
                     })
                   }
                 />
@@ -338,7 +338,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseTemper: e.target.value,
+                      ideal_horse_temper: e.target.value,
                     })
                   }
                 />
@@ -350,7 +350,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseTemper: e.target.value,
+                      ideal_horse_temper: e.target.value,
                     })
                   }
                 />
@@ -362,7 +362,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseTemper: e.target.value,
+                      ideal_horse_temper: e.target.value,
                     })
                   }
                 />
@@ -379,7 +379,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseCaracter: e.target.value,
+                      ideal_horse_caracter: e.target.value,
                     })
                   }
                 />
@@ -391,7 +391,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseCaracter: e.target.value,
+                      ideal_horse_caracter: e.target.value,
                     })
                   }
                 />
@@ -403,7 +403,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseCaracter: e.target.value,
+                      ideal_horse_caracter: e.target.value,
                     })
                   }
                 />
@@ -415,7 +415,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseCaracter: e.target.value,
+                      ideal_horse_caracter: e.target.value,
                     })
                   }
                 />
@@ -432,7 +432,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseBody: e.target.value,
+                      ideal_horse_body_type: e.target.value,
                     })
                   }
                 />
@@ -444,7 +444,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseBody: e.target.value,
+                      ideal_horse_body_type: e.target.value,
                     })
                   }
                 />
@@ -456,7 +456,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseBody: e.target.value,
+                      ideal_horse_body_type: e.target.value,
                     })
                   }
                 />
@@ -468,7 +468,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseBody: e.target.value,
+                      ideal_horse_body_type: e.target.value,
                     })
                   }
                 />
@@ -479,7 +479,7 @@ const PostRider = (props) => {
               <h5>
                 {" "}
                 Age du cheval <span>(+/- 3ans)</span> :{" "}
-                {riderProfile.idealHorseAge} ans
+                {riderProfile.ideal_horse_age} ans
               </h5>
               <div className="divRangeSpan">
                 <span>1 an</span>
@@ -491,7 +491,7 @@ const PostRider = (props) => {
                   onChange={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      idealHorseAge: e.target.value,
+                      ideal_horse_age: e.target.value,
                     })
                   }
                 />
