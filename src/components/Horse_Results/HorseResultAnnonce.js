@@ -2,8 +2,9 @@ import React, { useState, useEffect, useContext} from "react"
 import "./HorseResult.css";
 import ReturnButton from "../common/ReturnButton";
 import Axios from "axios";
-import ImageCarousel from "../common/Carousel";
 import { UserContext } from '../context/UserContext'
+import Carousel from "@brainhubeu/react-carousel";
+import "@brainhubeu/react-carousel/lib/style.css";
 
 
 const HorseResultAnnonce = (props) => {
@@ -53,13 +54,12 @@ const HorseResultAnnonce = (props) => {
 
       <div className="Result_annonce">
         <div className="annonce_header">
-          
           <div>
-          <h4>Infos sur l'équidé </h4>
+            <h4>Infos sur l'équidé </h4>
             <h5>
               {dataHorse.horse_name} <span>{dataHorse.horse_age} ans</span>
             </h5>
-            
+
             <p>
               {dataHorse.horse_height}cm, {dataHorse.horse_temper},{" "}
               {dataHorse.horse_character}, {dataHorse.horse_body_type}
@@ -68,17 +68,24 @@ const HorseResultAnnonce = (props) => {
           <h5>Où se trouve t-il ?</h5>
           <p>{dataHorse.horse_localisation}</p>
           <h5>Quelques photos</h5>
-          <ImageCarousel />
-
+          <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9}>
+            <img src={dataHorse.horse_photo1} alt="horse_photo1" />
+            <img src={dataHorse.horse_photo2} alt="horse_photo2" />
+            <img src={dataHorse.horse_photo3} alt="horse_photo3" />
+          </Carousel>
+          <br />
+          <hr />
         </div>
-
 
         <div>
           <h4>Infos du propriétaire </h4>
-          <img className="annonce_logo" src={userProfile.user_avatar} alt="logo" />
+          <img
+            className="annonce_logo"
+            src={userProfile.user_avatar}
+            alt="logo"
+          />
           <h5>
-            {dataHorse.owner_firstname}{" "}
-            <span>{dataHorse.owner_age}ans</span>
+            {dataHorse.owner_firstname} <span>{dataHorse.owner_age}ans</span>
           </h5>
           <p>N° de téléphone : {userProfile.user_phone}</p>
           <p>Mail : {userProfile.user_email}</p>
@@ -87,9 +94,7 @@ const HorseResultAnnonce = (props) => {
             Fréquence de communication :{" "}
             {dataHorse.owner_communication_frequency}{" "}
           </p>
-          <p>
-            Type de travail du cheval : {dataHorse.owner_horse_work}
-          </p>
+          <p>Type de travail du cheval : {dataHorse.owner_horse_work}</p>
           <h5>{dataHorse.owner_firstname} en quelques mots :</h5>
           <p>{dataHorse.owner_message}</p>
         </div>
@@ -156,7 +161,9 @@ const HorseResultAnnonce = (props) => {
         <div>
           <h4>Cavalier ideal</h4>
           <p>Age : {dataHorse.ideal_rider_age} ans</p>
-          <p>Années de pratique :{dataHorse.ideal_rider_years_of_practice} ans</p>
+          <p>
+            Années de pratique :{dataHorse.ideal_rider_years_of_practice} ans
+          </p>
           <p>Niveau de Galop : {dataHorse.ideal_rider_gallop_level}</p>
           <p>Est-il véhiculé ? {changeBool(dataHorse.ideal_rider_vehiculed)}</p>
           <p>
