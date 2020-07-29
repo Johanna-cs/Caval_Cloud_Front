@@ -35,6 +35,7 @@ export const riderProfileContext = {
     ideal_horse_caracter: '',
     ideal_horse_body_type: '',
     ideal_horse_age: '',
+    user_ID : 1,
 
 }
 
