@@ -162,7 +162,7 @@ const PostRider = (props) => {
         </button>
         <hr />
         <div>
-          <Localisation
+          {/* <Localisation
             value={cityLocalisation}
             onChange={(e) =>
               setRiderProfile({
@@ -172,7 +172,7 @@ const PostRider = (props) => {
             }
             definePerimeter={(e) => setPerimeter(e.target.value)}
             perimeter={perimeter}
-          />
+          /> */}
         </div>
 
         <div>

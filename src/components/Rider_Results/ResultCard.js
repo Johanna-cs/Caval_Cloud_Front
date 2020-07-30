@@ -14,7 +14,7 @@ const ResultCard = (props) => {
    const rider_firstname = props.fullResult.rider_firstname
    const rider_photo1 = props.fullResult.rider_photo1
    const dataBody = {
-     userid : user_ID,
+     user_ID : 1,
      rider_ID : rider_ID,
      rider_firstname : rider_firstname,
      rider_photo1 : rider_photo1,
@@ -50,7 +50,7 @@ const ResultCard = (props) => {
           }}
         >
           <div className="resultCard-containerRider">
-            <img className="resultPhotoRider" src="https://images.unsplash.com/photo-1517344296525-3f2079b011d9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60" 
+            <img className="resultPhotoRider" src={props.fullResult.rider_photo1} 
             alt={props.rider_firstname} />
           </div>
         </Link>
