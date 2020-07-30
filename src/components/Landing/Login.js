@@ -1,22 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./landing.css";
 import { Link } from "react-router-dom";
 import logo from "../SVG-icons/cavalcloud-logo.png";
 import Axios from "axios";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
+import jwt_decode from 'jwt-decode'
 
 
 
 const Login = () => {
 
   let history = useHistory();
-  const [dataUser, setDataUser] = useState({
-    user_email: "",
-    user_password: ""
-  });
+
+   // Context userProfile in order to simplify user data information management
+  const { userProfile, setUserProfile } = useContext(UserContext);
+  const getUserProfile = () => {
+    Axios
+    .get(`http://localhost:4000/api/users/${userProfile.user_email}`)
+    .then((res)=> setUserProfile(res.data))
+    .catch((err) => console.error(err))
+
+}
+
   const login = (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:4000/api/users/login", dataUser)
+    Axios
+      .post("http://localhost:4000/api/users/login", userProfile)
       .then((res) => {
         localStorage.setItem("usertoken", res.data);
         history.push(`/home`);
@@ -24,8 +34,19 @@ const Login = () => {
         return res.data;
       })
       .catch((err) => console.error(err));      
-  };
+  }
+  //décoder le token
+  useEffect(() => {
+    const token = localStorage.usertoken
+    if (token) {
+        const decoded = jwt_decode(token)
+        setUserProfile({
+            user_ID: decoded.id,
+            user_email : decoded.email
 
+        })
+    }
+  }, [])
 
 
 
@@ -40,9 +61,9 @@ const Login = () => {
               type="email"
               placeholder=" Adresse mail"
               autoFocus
-              value={dataUser.user_email}
+              value={userProfile.user_email}
               onChange={(e) =>
-                setDataUser({ ...dataUser, user_email: e.target.value })
+                setUserProfile({ ...userProfile, user_email: e.target.value })
               }
             />
           </label>
@@ -53,9 +74,9 @@ const Login = () => {
               className="login_input_text"
               type="password"
               placeholder=" Mot de passe"
-              value={dataUser.user_password}
+              value={userProfile.user_password}
               onChange={(e) =>
-                setDataUser({ ...dataUser, user_password: e.target.value })
+                setUserProfile({ ...userProfile, user_password: e.target.value })
               }
             />
           </label>
@@ -63,7 +84,8 @@ const Login = () => {
         <p>Mot de passe oublié</p>
       </div>
       <Link to="/home" style={{ textDecoration: "none" }}>
-        <button className="login_button"  onClick={(e) => login(e)}>
+        <button className="login_button"  
+        onClick={(e) => login(e)}>
           Se connecter
         </button>
       </Link>

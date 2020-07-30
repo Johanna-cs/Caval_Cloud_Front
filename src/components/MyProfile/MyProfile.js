@@ -11,13 +11,13 @@ const MyProfile = (props) => {
   // Get user data information from its id :
   const getMyProfile = () => {
     Axios.get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
-      .then((res) => setDataUser(res.data))
+      .then((res) => setUserProfile(res.data))
       .catch((err) => console.error(err));
   };
 
   // Update user data information from its id :
   const updateMyProfile = () => {
-    Axios.put(`http://localhost:4000/api/users/${dataUser.user_ID}`, dataUser)
+    Axios.put(`http://localhost:4000/api/users/${userProfile.user_ID}`, userProfile)
     .catch(err=> console.error(err))
   }
 
@@ -90,7 +90,7 @@ const MyProfile = (props) => {
           .ref("images")
           .child(image.name)
           .getDownloadURL()
-          .then((url) => setDataUser({...dataUser, user_avatar : url}))
+          .then((url) => setUserProfile({...userProfile, user_avatar : url}))
       }
     );
   };
@@ -107,21 +107,21 @@ const MyProfile = (props) => {
                 Valider la photo
               </button>
               <img
-                src={dataUser.user_avatar}
+                src={userProfile.user_avatar}
                 className="Profile-photo"
                 alt=""
               />
             </div>
           ) : (
             <img
-              src={dataUser.user_avatar}
+              src={userProfile.user_avatar}
               className="Profile-photo"
               alt="Vous n'avez pas encore de photo"
             />
           )}
 
           <p className="Profile-infos">
-            {dataUser.user_firstname} {dataUser.user_lastname}
+            {userProfile.user_firstname} {userProfile.user_lastname}
           </p>
         </div>
         <hr />
@@ -130,14 +130,14 @@ const MyProfile = (props) => {
           <input
             id="input"
             type="mail"
-            placeholder={dataUser.user_email}
-            value={dataUser.user_email}
+            placeholder={userProfile.user_email}
+            value={userProfile.user_email}
             onChange={(e) =>
-              setDataUser({ ...dataUser, user_email: e.target.value })
+              setUserProfile({ ...userProfile, user_email: e.target.value })
             }
           />
         ) : (
-          <p>{dataUser.user_email}</p>
+          <p>{userProfile.user_email}</p>
         )}
         <hr />
         <h4>Téléphone :</h4>
@@ -145,13 +145,13 @@ const MyProfile = (props) => {
           <input
             id="input"
             type="tel"
-            value={dataUser.user_phone}
+            value={userProfile.user_phone}
             onChange={(e) =>
-              setDataUser({ ...dataUser, user_phone: e.target.value })
+              setUserProfile({ ...userProfile, user_phone: e.target.value })
             }
           />
         ) : (
-          <p>{dataUser.user_phone}</p>
+          <p>{userProfile.user_phone}</p>
         )}
         <hr />
         <h4>Mot de passe :</h4>
@@ -163,9 +163,9 @@ const MyProfile = (props) => {
                 id="input"
                 type="password"
                 className={validPW ? "valid" : "invalid"}
-                value={dataUser.user_password}
+                value={userProfile.user_password}
                 onChange={(e) =>
-                  setDataUser({ ...dataUser, user_password: e.target.value })
+                  setUserProfile({ ...userProfile, user_password: e.target.value })
                 }
               />
             </tr>

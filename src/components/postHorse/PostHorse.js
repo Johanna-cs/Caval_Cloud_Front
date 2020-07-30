@@ -116,20 +116,13 @@ const PostHorse = (props) => {
 
   useEffect(() => {
     getLocation()
-  }, []);
+  }, );
 
   return (
     <>
       {home ? <Redirect to="/home" /> : null}
 
       <Header className="header" title="Poster une annonce cheval" />
-      <button onClick={ () => {
-          getCoordinatesfromPostalCode(horseProfile.horse_postal)
-          }}>
-        Convert
-      </button>
-      <p>Lat : {latitude}</p>
-      <p>Long : {longitude}</p>
       <div className="postHorse_page">
         <div className="postHorse_pres">
           <h4>Présentation :</h4>
@@ -220,6 +213,17 @@ const PostHorse = (props) => {
             definePerimeter={(e) => setPerimeter(e.target.value)}
             perimeter={perimeter}
           />
+          <div>
+          <button className="upload-button" onClick={ () => {
+          getCoordinatesfromPostalCode(horseProfile.horse_postal)
+          }}>
+              Valider
+          </button>
+            <div className='cacher'>
+              Lat : {latitude}
+              Long : {longitude}
+              </div>
+            </div>
         </div>
         <hr />
         <div className="horse_temper">

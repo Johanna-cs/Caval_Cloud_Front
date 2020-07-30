@@ -8,7 +8,10 @@ export const riderProfileContext = {
     rider_photo2: '',
     rider_photo3: '',
     rider_age: null,
-    rider_postal_code: null,
+    rider_postal_code: '',
+    rider_localisation : '',
+    rider_long : null,
+    rider_lat : null,
     rider_biography: '',
     rider_selfWord1: '',
     rider_selfWord2: '',
@@ -35,7 +38,7 @@ export const riderProfileContext = {
     ideal_horse_caracter: '',
     ideal_horse_body_type: '',
     ideal_horse_age: '',
-    user_ID : 1,
+    user_ID : '',
 
 }
 

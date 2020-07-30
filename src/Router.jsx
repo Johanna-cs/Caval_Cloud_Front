@@ -60,6 +60,7 @@ const Router = () => {
   ]);
 
   const token = localStorage.usertoken;
+  
 
   return (
     <>
@@ -84,13 +85,14 @@ const Router = () => {
       ) : (
         <Switch>
           <Route exact path="/" component={Landing} />
-          <Route exact path="/login" component={Login} />
+          
           <Route exact path="/register" component={Register} />
           <Route exact path="/home" component={Home} />
           <Route exact path="/search-rider" component={SearchRider} />
           <Route exact path="/search-horse" component={SearchHorse} />
           <Route exact path="/favorites" component={Favorites} />
           <UserContext.Provider value={providerUserProfile}>
+            <Route exact path="/login" component={Login} /> 
             <Route exact path="/my-profile" component={MyProfile} />
             <HorseContext.Provider value={providerHorseProfile}>
               <Route exact path="/post-horse" component={PostHorse} />
