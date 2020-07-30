@@ -73,10 +73,11 @@ const Router = () => {
           <Route exact path="/search-horse" component={SearchHorse} />
           <Results_Rider_Context.Provider value={providerResultsRiders}>
             <Route exact path="/rider/results" component={ResultPage} />
-            <Route exact path="/rider/result-annonce/:id" component={ResultAnnonce} />
+            <Route exact path="/rider/result-annonce/:id" component={ResultAnnonce}/>
             <Results_Horse_Context.Provider value={providerResultsHorses}>
               <Route exact path="/horse/results" component={HorseResultPage} />
-              <Route exact path="/horse/result-annonce/:id" component={HorseResultAnnonce}/>
+              <Route exact path="/horse/result-annonce/:id" component={HorseResultAnnonce}
+              />
             </Results_Horse_Context.Provider>
           </Results_Rider_Context.Provider>
         </Switch>
@@ -96,14 +97,13 @@ const Router = () => {
               <Route exact path="/post-horse-owner" component={OwnerPres} />
               <RiderContext.Provider value={providerRiderProfile}>
                 <Route exact path="/post-rider" component={PostRider} />
-                <Route exact path="/PostRiderPresentation" component={PostRiderPresentation}
-                />
+                <Route exact path="/PostRiderPresentation" component={PostRiderPresentation}/>
                 <Results_Rider_Context.Provider value={providerResultsRiders}>
                   <Route exact path="/rider/results" component={ResultPage} />
-                  <Route exact path="/rider/result-annonce/:id" component={ResultAnnonce}/>
+                  <Route exact path="/rider/result-annonce/:id" component={ResultAnnonce} />
                   <Results_Horse_Context.Provider value={providerResultsHorses}>
                     <Route exact path="/horse/results" component={HorseResultPage}/>
-                    <Route exact path="/horse/result-annonce/:id" component={HorseResultAnnonce} />
+                    <Route exact path="/horse/result-annonce/:id" component={HorseResultAnnonce}/>
                   </Results_Horse_Context.Provider>
                 </Results_Rider_Context.Provider>
               </RiderContext.Provider>

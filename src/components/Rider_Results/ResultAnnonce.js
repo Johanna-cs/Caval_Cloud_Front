@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext} from "react"
 import "./Result.css"
-import ImageCarousel from "../common/Carousel"
 import Axios from "axios";
 import ReturnButton from "../common/ReturnButton"
 import { UserContext } from '../context/UserContext'
+import Carousel from "@brainhubeu/react-carousel";
+import "@brainhubeu/react-carousel/lib/style.css";
 
 
 const ResultAnnonce = (props) => {
@@ -49,11 +50,7 @@ const ResultAnnonce = (props) => {
       <ReturnButton />
       <div className="Result_annonce">
         <div className="annonce_header">
-          <img
-            id="annonce_logo"
-            src={userProfile.user_avatar}
-            alt="logo"
-          />
+          <img id="annonce_logo" src={userProfile.user_avatar} alt="logo" />
           <div>
             <h5>
               {dataRider.rider_firstname},{" "}
@@ -70,7 +67,11 @@ const ResultAnnonce = (props) => {
           <p>{dataRider.rider_postal_code}</p>
         </div>
         <h5>Quelques photos</h5>
-        <ImageCarousel />
+        <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9}>
+          <img src={dataRider.rider_photo1} alt="rider_photo1" className='imagesRider'/>
+          <img src={dataRider.rider_photo2} alt="rider_photo2" className='imagesRider' />
+          <img src={dataRider.rider_photo3} alt="rider_photo3" className='imagesRider'/>
+        </Carousel>
         <div>
           <h4>Equitation</h4>
           <p>

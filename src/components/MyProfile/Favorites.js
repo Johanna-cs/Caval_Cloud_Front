@@ -19,9 +19,16 @@ const Favorites = (props) => {
     .then((res) => setFavoritesHorse(res.data))
     .catch((err) => console.error(err));
   };
+  const getFavoritesRiders = () => {
+    Axios
+    .get(`http://localhost:4000/api/users/favorites/riders/${userid}`)
+    .then((res) => setFavoritesRider(res.data))
+    .catch((err) => console.error(err));
+  };
 
   useEffect(() => {
     getFavoritesHorses();
+    getFavoritesRiders();
   }, []);
 
   return (
@@ -31,18 +38,22 @@ const Favorites = (props) => {
         {favoritesHorse.map(e => (
           <HorseResultCard
             fullResult={e}
+            horse_name={e.horse_name}
+            horse_ID={e.horse_ID}
+            photo={e.horse_photo1}
             src={favorite}
           />
         ))}
         <hr />
-        {/* {favoritesRider.map((e) => (
+        {favoritesRider.map(e => (
           <ResultCard
             fullResult={e}
-            firstname={e.rider_firstname}
+            rider_firstname={e.rider_firstname}
             rider_ID={e.rider_ID}
+            photo={e.rider_photo1}
             src={favorite}
           />
-        ))} */}
+        ))}
       </div>
     </>
   );

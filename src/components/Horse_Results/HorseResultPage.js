@@ -57,7 +57,7 @@ const HorseResultPage = () => {
   return (
     <>
       <Header className="header" title="Résultats de la recherche" />
-      <button onClick={() => getDistanceBetweenRiderAndHorse(resultsHorses)}>action</button>
+      {/* <button onClick={() => getDistanceBetweenRiderAndHorse(resultsHorses)}>action</button> */}
       
         <div className="Result-filterbarTop">
         <Link to={{
@@ -76,7 +76,7 @@ const HorseResultPage = () => {
           fullResult={e} 
           horse_name={e.horse_name}
           horse_ID={e.horse_ID}
-          photo={e.horse_photos}
+          photo={e.horse_photo1}
         />
         )
       }
