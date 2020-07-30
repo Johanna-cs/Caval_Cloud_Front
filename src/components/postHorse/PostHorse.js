@@ -116,7 +116,7 @@ const PostHorse = (props) => {
 
   useEffect(() => {
     getLocation()
-  }, );
+  }, []);
 
   return (
     <>
