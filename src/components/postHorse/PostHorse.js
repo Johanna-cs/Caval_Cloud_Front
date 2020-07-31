@@ -21,26 +21,18 @@ import FloatingButton from "../common/FloatingButton";
 import Competition from "../common_section/Competition";
 import HebergementHorse from "../common_section/HebergementHorse";
 import { HorseContext } from "../context/HorseContext";
-import { UserContext } from "../context/UserContext";
 import ModalPost from "../common/ModalPost";
 
-const PostHorse = (props) => {
+const PostHorse = () => {
   // Get Localisation
-  const { latitude, longitude, error } = usePosition();
+  const { latitude, longitude} = usePosition();
 
   // Store city in localstorage for next uses
   // localStorage.setItem("lastCitySaved", cityLocalisation);
 
   // Selection on perimeter for localisation :
   const [perimeter, setPerimeter] = useState(null);
-  // Context userProfile in order to simplify user data information management
-  const { userProfile, setUserProfile } = useContext(UserContext);
-  // Get user information from its ID and then, update userProfile context
-  const getUserInfo = () => {
-    Axios.get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
-      .then((res) => setUserProfile(res.data))
-      .catch((err) => console.error(err));
-  };
+  
   // Get horseProfile Context in order to get and set information about it
   const { horseProfile, setHorseProfile } = useContext(HorseContext);
   const [modalShow, setModalShow] = useState(false);
@@ -72,15 +64,13 @@ const PostHorse = (props) => {
           .child(imageCarousel.name)
           .getDownloadURL()
           .then((url) => {
-            {
-              setUseUrl([...useUrl, url]);
-              if (horseProfile.horse_photo1 === "") {
-                setHorseProfile({ ...horseProfile, horse_photo1: url });
-              } else if (horseProfile.horse_photo2 === "") {
-                setHorseProfile({ ...horseProfile, horse_photo2: url });
-              } else {
-                setHorseProfile({ ...horseProfile, horse_photo3: url });
-              }
+            setUseUrl([...useUrl, url]);
+            if (horseProfile.horse_photo1 === "") {
+              setHorseProfile({ ...horseProfile, horse_photo1: url });
+            } else if (horseProfile.horse_photo2 === "") {
+              setHorseProfile({ ...horseProfile, horse_photo2: url });
+            } else {
+              setHorseProfile({ ...horseProfile, horse_photo3: url });
             }
           });
       }
@@ -90,32 +80,45 @@ const PostHorse = (props) => {
   // Get the location from reverse geocoding
 
   const getLocation = () => {
-    Axios
-      .get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
-      .then((res) => setHorseProfile({...horseProfile, horse_postal : res.data.address.postcode}))
+    Axios.get(
+      `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
+    )
+      .then((res) =>
+        setHorseProfile({
+          ...horseProfile,
+          horse_postal: res.data.address.postcode,
+        })
+      )
       // .then((res) => setHorseProfile({...horseProfile, horse_localisation : res.data.address.municipality}))
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(err));
   };
 
   // Get full and set gps coordinates from postal code within horse Context
   const getCoordinatesfromPostalCode = (postalcode) => {
-      Axios
-          .get(`https://nominatim.openstreetmap.org/search?state=France&postalcode=${postalcode}&format=json`)
-          .then((res) => { setHorseProfile({...horseProfile, horse_long : res.data[0].lon, horse_lat :res.data[0].lat, horse_localisation : res.data[0].display_name }) })
-          .catch((err) => console.log(err))
-        
-  }
+    Axios.get(
+      `https://nominatim.openstreetmap.org/search?state=France&postalcode=${postalcode}&format=json`
+    )
+      .then((res) => {
+        setHorseProfile({
+          ...horseProfile,
+          horse_long: res.data[0].lon,
+          horse_lat: res.data[0].lat,
+          horse_localisation: res.data[0].display_name,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
 
   const postDataHorse = () => {
-    Axios
-      .post(`http://localhost:4000/api/horses`, horseProfile)
-      .catch((err) =>console.log(err));
+    Axios.post(`http://localhost:4000/api/horses`, horseProfile).catch((err) =>
+      console.log(err)
+    );
     setModalShow(true);
     setTimeout(() => setHome(true), 5000);
   };
 
   useEffect(() => {
-    getLocation()
+    getLocation();
   }, []);
 
   return (
@@ -199,11 +202,7 @@ const PostHorse = (props) => {
         </Carousel>
         <br />
         <input type="file" onChange={handleChange} />
-        <button
-          onClick={handleUpload}
-          onEvent={props.onEvent}
-          className="upload-button"
-        >
+        <button onClick={handleUpload} className="upload-button">
           Valider la photo
         </button>
         <hr />
@@ -211,7 +210,7 @@ const PostHorse = (props) => {
           <h5>Où se trouve le cheval ? </h5>
           <Localisation
             value={horseProfile.horse_postal}
-            onChange={(e) => 
+            onChange={(e) =>
               setHorseProfile({
                 ...horseProfile,
                 horse_postal: e.target.value,
@@ -530,7 +529,7 @@ const PostHorse = (props) => {
         </div>
         <hr />
         <div className="postHorse_idealRider">
-          <h4 id='anchorIdealRider'>Cavalier idéal</h4>
+          <h4 id="anchorIdealRider">Cavalier idéal</h4>
           <IdealRider
             yearPractice={horseProfile.ideal_rider_years_of_practice}
             changePractice={(e) =>

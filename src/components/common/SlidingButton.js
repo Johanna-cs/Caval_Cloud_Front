@@ -17,7 +17,7 @@ const SlidingButton = (props) =>{
           />
           <label
             className="custom-control-label"
-            for={props.SlidingButtonID}
+            htmlFor={props.SlidingButtonID}
           ></label>
         </div>
       </div>

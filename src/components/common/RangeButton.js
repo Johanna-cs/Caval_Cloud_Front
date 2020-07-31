@@ -15,7 +15,7 @@ const RangeButton = (props) => {
                 value={props.onchange} 
                 onChange={props.onChange}
             />
-            <label for={props.radioSelBtnId}>{props.radioSelBtnText}</label>
+            <label htmlFor={props.radioSelBtnId}>{props.radioSelBtnText}</label>
         </div>
         </div>
     

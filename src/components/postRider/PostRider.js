@@ -70,7 +70,6 @@ const PostRider = (props) => {
           .child(imageCarousel.name)
           .getDownloadURL()
           .then((url) => {
-            {
               setUseUrl([...useUrl, url]);
               if (riderProfile.rider_photo1 === "") {
                 setRiderProfile({ ...riderProfile, rider_photo1: url });
@@ -80,7 +79,7 @@ const PostRider = (props) => {
                 setRiderProfile({ ...riderProfile, rider_photo3: url });
               }
             }
-          });
+          );
       }
     );
   };
