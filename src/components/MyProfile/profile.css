@@ -78,7 +78,5 @@
 .Favorites-Page {
   display: flex;
   flex-flow: column wrap;
-  margin-left: 1.5em;
-  padding-bottom: 2em;
-  width: 17.4em;
+  padding-bottom: 1em;
 }

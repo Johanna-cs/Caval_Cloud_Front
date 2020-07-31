@@ -30,11 +30,11 @@ export const riderProfileContext = {
     rider_competition: '',
     rider_coaching_here: false,
     rider_external_coach: false,
-    ideal_horse_size: '',
+    ideal_horse_size: null,
     ideal_horse_temper: '',
     ideal_horse_caracter: '',
     ideal_horse_body_type: '',
-    ideal_horse_age: '',
+    ideal_horse_age: null,
     user_ID : 1,
 
 }

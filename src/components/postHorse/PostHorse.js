@@ -123,13 +123,13 @@ const PostHorse = (props) => {
       {home ? <Redirect to="/home" /> : null}
 
       <Header className="header" title="Poster une annonce cheval" />
-      <button onClick={ () => {
+      {/* <button onClick={ () => {
           getCoordinatesfromPostalCode(horseProfile.horse_postal)
           }}>
         Convert
       </button>
       <p>Lat : {latitude}</p>
-      <p>Long : {longitude}</p>
+      <p>Long : {longitude}</p> */}
       <div className="postHorse_page">
         <div className="postHorse_pres">
           <h4>Présentation :</h4>
