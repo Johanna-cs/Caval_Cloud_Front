@@ -1,58 +1,62 @@
 /* LANDING PAGE */
 .LandingPage {
-    display: flex;
-    justify-content: flex-end;
-    flex-flow: column nowrap;
-    align-items: center;
-    margin-top: 20em;
-    padding: 1em;
+  display: flex;
+  justify-content: flex-end;
+  flex-flow: column nowrap;
+  align-items: center;
+  margin-top: 13em;
+  padding: 1em;
 }
 
 .CavalCloudLogo {
-    height: 9em;
-    width: 9em;
-    padding: 0.5em;
+  height: 9em;
+  width: 9em;
+  padding: 0.5em;
 }
 
 p {
-    font-weight: 200;
-    font-family: 'Open-sans', sans-serif;
-    font-size: 1em;
-}
-.slogan {
-    color: #77838F;
+  font-weight: 200;
+  font-family: "Open-sans", sans-serif;
+  font-size: 1em;
 }
 
-.create, .login {
-    padding : 0.3em;
+.slogan {
+  color: #77838f;
+}
+
+.create,
+.login {
+  padding: 0.3em;
 }
 
 #createBtn {
-    background-color: #59A080;
-    color: white;
-    width: 18em ;
-    height: 3em ;
-    border-radius: 20px;
-    border : none;
+  background-color: #59a080;
+  color: white;
+  width: 18em;
+  height: 3em;
+  border-radius: 20px;
+  border: none;
 }
 
 #loginBtn {
-    background-color: white;
-    color : #59A080;
-    width: 18em ;
-    height: 3em ;
-    border : solid  1px#59A080;
-    border-radius: 20px;
+  background-color: white;
+  color: #59a080;
+  width: 18em;
+  height: 3em;
+  border: solid 1px#59A080;
+  border-radius: 20px;
 }
-button  {
-    border : none ;
-    outline: none;
+button {
+  border: none;
+  outline: none;
 }
 
 #invite {
-    font-size: 0.8em;
-    font-weight: 750;
-    color: #5D5AA4;
+  font-size: 0.8em;
+  font-weight: 750;
+  color: #5d5aa4;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 1em;
 }
 /* login page */
 
@@ -63,6 +67,13 @@ body {
 }
 .login_page {
   margin-top: 12em;
+  text-align: center;
+}
+.login_page p {
+  text-align: center;
+  font-weight: 200;
+  font-family: "Open-sans", sans-serif;
+  font-size: 1em;
 }
 .login_logo {
   height: 9em;
@@ -75,15 +86,15 @@ body {
   border: none;
   border-style: none;
   border-radius: 20px;
+  margin-bottom: 1em;
   font-family: "Open Sans", sans-serif;
-  font-weight: bold;
   color: white;
   height: 3em;
   width: 18em;
   outline: none;
 }
 .login_forms input {
-  background: #b0b9d380;
+  background: #b0b9d370;
   border: none;
   border-radius: 3px;
   height: 3em;
@@ -99,15 +110,21 @@ body {
   margin-top: -0.2em;
   text-decoration: underline;
   padding: 0.7em;
+  margin-right: 2em;
 }
 .login_low_text {
   color: #5d5aa4;
   font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
 }
 /* register page */
 
 .register_page {
-  margin-top: 10em;
+  margin-top: 7em;
+  text-align: center;
+}
+.register_page p {
+  text-align: center;
 }
 .register_logo {
   height: 9em;
@@ -118,10 +135,23 @@ body {
 .register_button {
   background-color: #59a080;
   border: none;
+  margin-bottom: 1em;
   border-style: none;
   border-radius: 20px;
   font-family: "Open Sans", sans-serif;
-  font-weight: bold;
+  color: white;
+  height: 3em;
+  width: 18em;
+  outline: none;
+}
+
+.register_buttonLocked {
+  background-color: grey;
+  border: none;
+  margin-bottom: 1em;
+  border-style: none;
+  border-radius: 20px;
+  font-family: "Open Sans", sans-serif;
   color: white;
   height: 3em;
   width: 18em;
@@ -129,7 +159,7 @@ body {
 }
 
 .register_forms {
-  padding: 0.5em;
+  padding: 0.2em;
 }
 .register_forms input {
   background: #b0b9d380;
@@ -142,6 +172,7 @@ body {
 .register_low_text {
   color: #5d5aa4;
   font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
 }
 .register_mdp {
   background-image: url(../SVG-icons/open-eye.svg);
@@ -152,13 +183,8 @@ body {
 .register_checkbox {
   font-size: 14px;
   padding: 1em;
-  
 }
-/* #register_checkbox_inp:checked{
-  background-color: #5d5aa4 !important;
-<<<<<<< HEAD
-} */
-=======
 
-} */
->>>>>>> 00dd4aaf49b6c493c61fd115c31fb97400266ea3
+#register_checkbox_inp:checked{
+  background-color: #5d5aa4 !important;
+} 

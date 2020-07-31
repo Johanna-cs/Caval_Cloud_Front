@@ -11,3 +11,41 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+h3 {
+  text-align: center;
+  font-size: 2em;
+  font-family: 'Open Sans' sans-serif;
+  font-weight: 400 ;
+}
+h4 {
+  text-align: left;
+  font-size: 1.2em !important;
+  font-family: 'Open Sans' sans-serif;
+  font-weight: 600 !important;
+  margin-bottom: 1em;
+}
+
+h5 {
+  text-align: left;
+  font-size: 1em !important;
+  font-family: 'Open Sans' sans-serif;
+  font-weight: 500 !important;
+  text-align: left;
+}
+
+p {
+  text-align: left;
+  font-weight: 200 !important;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1em !important;
+}
+
+#root {
+  width: 100%;
+}
+
+hr {
+  border-top: 1em thin;
+  width: 100%;
+}

@@ -1,0 +1,108 @@
+/* Home Page : ACCEUIL */
+.HomePage {
+    display: flex;
+    align-items: center;
+    flex-flow: column nowrap;
+  }
+  .welcome {
+    font-size: 1em;
+    color: #77838F;
+    margin-bottom: 2em;
+  }
+  .welcomeText {
+    font-size: 1em;
+    color: #77838F;
+    font-weight: 300;
+    padding: 1em;
+    text-align: center;
+    margin-bottom: 0em;
+  }
+  /* HEADER  */
+  .headerHome {
+    background-color: #5D5AA4;
+    height: 4.5em;
+    color : white;
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    padding: 0.8em;
+    margin-bottom: 1em;
+    word-break: break-all !important;
+   
+}
+
+#homeTitle {
+    font-size: 1.2em !important;
+    font-weight: 200 !important;
+    margin-top: 0.5em !important;
+    text-align: center;
+}
+      /* logos de la HOME PAGE */
+  .logoHorse {
+    width: 5em;
+    padding: 1em;
+  }
+  .logoHelmet {
+    width: 5.2em;
+    padding: 1em;
+  }
+  .logoboot {
+    width: 4.4em;
+    padding: 1em;
+    margin-right: 0.7em;
+  }
+  .logoHorseframe {
+    width: 5em;
+    padding: 1em;
+  }
+  .logoCaval {
+    width: 4em;
+    border-radius: 10px;
+    margin-right: 0.7em;
+    background-color: #ffffff;
+  }
+      /* menu button */
+  .homeBtn {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-flow: row nowrap;
+    padding: 1em;
+    margin: 0.8em;
+    width: 20em;
+    height: 5em;
+    border-radius: 10px;
+    box-shadow: 1px 3px 3px 2px #77838F65;
+  }
+  
+  .textBtn {
+    font-family: 'Montserrat' sans-serif;
+    font-weight: 500;
+    font-size: 1em;
+    color : #77838F;
+    margin-left: 0.2em;
+  }
+      /* about us button*/
+  .textUs {
+    font-family: 'Montserrat' sans-serif;
+    font-weight: 500;
+    font-size: 1em;
+    color : #ffffff;
+    margin-left: 0.6em;
+  }
+  .AboutUSBtn {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-flow: row nowrap;
+    padding: 1em;
+    margin: 1em;
+    height: 5em;
+    width: 20em;
+    border-radius: 10px;
+    box-shadow: 1px 3px 3px 2px #77838F65;
+    background-color: #5D5AA4;
+    
+  }
+  
+  

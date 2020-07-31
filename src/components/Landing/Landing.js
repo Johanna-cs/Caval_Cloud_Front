@@ -25,14 +25,11 @@ const Landing = () => {
                     </Link>
                 </div>
                 <div>
-                    <Link to="/" style={{ textDecoration: "none" }}>
+                    <Link to="/home" style={{ textDecoration: "none" }}>
                             <p id='invite'> Parcourir sans créer de compte </p>
                     </Link>
                 </div>
             </div>
-
-
-
         )
     
 }
