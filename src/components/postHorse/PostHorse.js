@@ -93,7 +93,6 @@ const PostHorse = (props) => {
     Axios
       .get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
       .then((res) => setHorseProfile({...horseProfile, horse_postal : res.data.address.postcode}))
-      // .then((res) => setHorseProfile({...horseProfile, horse_localisation : res.data.address.municipality}))
       .catch((err) => console.log(err))
   };
 
@@ -115,8 +114,9 @@ const PostHorse = (props) => {
   };
 
   useEffect(() => {
-    getLocation()
-  }, []);
+    
+    getCoordinatesfromPostalCode(horseProfile.horse_postal)
+  }, [horseProfile.horse_postal]);
 
   return (
     <>
@@ -204,26 +204,12 @@ const PostHorse = (props) => {
           <h5>Où se trouve le cheval ? </h5>
           <Localisation
             value={horseProfile.horse_postal}
-            onChange={(e) => 
-              setHorseProfile({
-                ...horseProfile,
-                horse_postal: e.target.value,
-              })
-            }
+            getLocation={getLocation}
+            onChange={(e) => setHorseProfile({...horseProfile, horse_postal: e.target.value})}
             definePerimeter={(e) => setPerimeter(e.target.value)}
             perimeter={perimeter}
+            resetvalue={()=> setHorseProfile({...horseProfile, horse_postal:null, horse_long:null, horse_lat:null, horse_localisation:null})}
           />
-          <div>
-          <button className="upload-button" onClick={ () => {
-          getCoordinatesfromPostalCode(horseProfile.horse_postal)
-          }}>
-              Valider
-          </button>
-            <div className='cacher'>
-              Lat : {latitude}
-              Long : {longitude}
-              </div>
-            </div>
         </div>
         <hr />
         <div className="horse_temper">

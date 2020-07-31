@@ -31,12 +31,12 @@ const PostRider = (props) => {
   // Précédente localisation enregistrée dans le navigateur (si existante) :
   const [lastCitySaved, setLastCitySaved] = useState("");
 
-  const getLocation = () => {
+  const getLocation = () => { 
     Axios.get(
       `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
     )
     .then((res) => setRiderProfile({...riderProfile, rider_postal_code : res.data.address.postcode}))
-      .catch((err) => console.log(err));
+    .catch((err) => console.log(err));
   };
     // Get full and set gps coordinates from postal code within horse Context
     const getCoordinatesfromPostalCode = (postalcode) => {
@@ -103,7 +103,9 @@ const PostRider = (props) => {
   const [home, setHome] = useState(false);
 
   const postDataRider = () => {
-    Axios.post(`http://localhost:4000/api/riders`, riderProfile).catch((err) =>
+    Axios
+    .post(`http://localhost:4000/api/riders`, riderProfile)
+    .catch((err) =>
       console.log(err)
     );
     setModalShow(true);
@@ -112,8 +114,8 @@ const PostRider = (props) => {
 
   useEffect(() => {
     getUserInfo();
-    getLocation();
-  }, []);
+    getCoordinatesfromPostalCode(riderProfile.rider_postal_code)
+  }, [riderProfile.rider_postal_code]);
 
   return (
     <>
@@ -172,25 +174,13 @@ const PostRider = (props) => {
         <div>
           <Localisation
             value={riderProfile.rider_postal_code}
-            onChange={(e) =>
-              setRiderProfile({
-                ...riderProfile,
-                rider_postal_code: e.target.value,
-              })
-            }
+            getLocation={getLocation}
+            onChange={(e) => {setRiderProfile({...riderProfile,rider_postal_code: e.target.value})}}
             definePerimeter={(e) => setPerimeter(e.target.value)}
             perimeter={perimeter}
           />
           <div>
-          <button className="upload-button" onClick={ () => {
-          getCoordinatesfromPostalCode(riderProfile.rider_postal_code)
-          }}>
-              Valider
-          </button>
-            <div className='cacher'>
-              Lat : {latitude}
-              Long : {longitude}
-              </div>
+
             </div>
         </div>
         <hr />
@@ -562,7 +552,7 @@ const PostRider = (props) => {
         </div>
         <FloatingButton
           btnName={"Poster mon annonce"}
-          onClick={() => postDataRider()}
+          onClick={() =>  postDataRider()}
         />
         <ModalPost show={modalShow} />
       </div>
