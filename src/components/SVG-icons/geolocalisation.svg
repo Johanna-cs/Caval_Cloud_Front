@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>iconspace_GPS</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Antarmuka_Two-Color-UI-element-1" transform="translate(-628.000000, -436.000000)">
+            <g id="iconspace_GPS" transform="translate(624.000000, 432.000000)">
+                <polygon id="Shape" points="0 0 48 0 48 48 0 48"></polygon>
+                <path d="M22,39.8762125 C14.7625653,38.9737172 9.02628284,33.2374347 8.12378751,26 L4,26 L4,22 L8.12378751,22 C9.02628284,14.7625653 14.7625653,9.02628284 22,8.12378751 L22,4 L26,4 L26,8.12378751 C33.2374347,9.02628284 38.9737172,14.7625653 39.8762125,22 L44,22 L44,26 L39.8762125,26 C38.9737172,33.2374347 33.2374347,38.9737172 26,39.8762125 L26,44 L22,44 L22,39.8762125 L22,39.8762125 Z M24,36 C30.627417,36 36,30.627417 36,24 C36,17.372583 30.627417,12 24,12 C17.372583,12 12,17.372583 12,24 C12,30.627417 17.372583,36 24,36 Z" id="Shape" fill="#77838F" fill-rule="nonzero"></path>
+                <circle id="Shape" fill="#697D99" cx="24" cy="24" r="6"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

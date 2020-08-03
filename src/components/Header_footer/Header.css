@@ -1,0 +1,29 @@
+.main-head {
+  background-color: #5d5aa4;
+  height: 4.5em;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  padding: 0.8em;
+  margin-bottom: 1em;
+  word-break: break-all !important;
+}
+
+#header {
+  margin-top: 0.5em;
+  margin-right: 0em;
+  text-align: center;
+}
+
+h3 {
+  font-size: 1.2em !important;
+  font-weight: 200 !important;
+}
+
+#chevron-header {
+  position: absolute;
+  top: 1.6em;
+  left: 1.5em;
+  color: white !important;
+}

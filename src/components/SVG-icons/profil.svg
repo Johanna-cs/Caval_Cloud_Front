@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="42px" viewBox="0 0 32 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>iconspace_User</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Antarmuka_Two-Color-UI-element-1" transform="translate(-344.000000, -338.000000)">
+            <g id="iconspace_User" transform="translate(336.000000, 336.000000)">
+                <polygon id="Shape" points="0 0 48 0 48 48 0 48"></polygon>
+                <path d="M15.9992677,18 C14.7438897,16.328679 14,14.2512119 14,12 C14,6.4771525 18.4771525,2 24,2 C29.5228475,2 34,6.4771525 34,12 C34,14.2512119 33.2561103,16.328679 32.0007323,18 C36.4186738,18.0003958 40,21.5819661 40,26 L40,38 L8,38 L8,26 C8,21.5819661 11.5813262,18.0003958 15.9992677,18 L15.9992677,18 Z M24,18 C27.3137085,18 30,15.3137085 30,12 C30,8.6862915 27.3137085,6 24,6 C20.6862915,6 18,8.6862915 18,12 C18,15.3137085 20.6862915,18 24,18 Z M36,26 C36,23.790861 34.209139,22 32,22 L16,22 C13.790861,22 12,23.790861 12,26 L12,34 L36,34 L36,26 Z" id="Shape" fill="#77838F" fill-rule="nonzero"></path>
+                <polygon id="Shape" fill="#697D99" fill-rule="nonzero" points="8 44 8 40 40 40 40 44"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
