@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState} from "react";
 import { Link } from "react-router-dom";
 import "./HorseResult.css";
 import Axios from "axios";
@@ -52,7 +52,7 @@ const HorseResultCard = (props) => {
           <div className="resultCard-container">
             <img
               className="resultPhoto"
-              src="https://images.unsplash.com/flagged/photo-1557296126-ae91316e5746?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+              src={props.fullResult.horse_photo1} 
               alt={props.fullResult.horse_name}
 
             />

@@ -78,7 +78,6 @@ const PostRider = (props) => {
           .child(imageCarousel.name)
           .getDownloadURL()
           .then((url) => {
-            {
               setUseUrl([...useUrl, url]);
               if (riderProfile.rider_photo1 === "") {
                 setRiderProfile({ ...riderProfile, rider_photo1: url });
@@ -88,7 +87,7 @@ const PostRider = (props) => {
                 setRiderProfile({ ...riderProfile, rider_photo3: url });
               }
             }
-          });
+          );
       }
     );
   };
@@ -170,8 +169,13 @@ const PostRider = (props) => {
         </button>
         <hr />
         <div>
+<<<<<<< HEAD
           <Localisation
             value={riderProfile.rider_postal_code}
+=======
+          {/* <Localisation
+            value={cityLocalisation}
+>>>>>>> e86c3077f506c9cd5e4397e974ecb7733dcd3f48
             onChange={(e) =>
               setRiderProfile({
                 ...riderProfile,
@@ -180,6 +184,7 @@ const PostRider = (props) => {
             }
             definePerimeter={(e) => setPerimeter(e.target.value)}
             perimeter={perimeter}
+<<<<<<< HEAD
           />
           <div>
           <button className="upload-button" onClick={ () => {
@@ -192,6 +197,9 @@ const PostRider = (props) => {
               Long : {longitude}
               </div>
             </div>
+=======
+          /> */}
+>>>>>>> e86c3077f506c9cd5e4397e974ecb7733dcd3f48
         </div>
         <hr />
         <div>

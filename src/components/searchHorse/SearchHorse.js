@@ -23,7 +23,7 @@ import { Results_Horse_Context} from '../../components/context/Results_Horse_Con
 
 const SearchHorse = (props) => {
     
-    const {latitude, longitude, error} = usePosition();
+    const {latitude, longitude} = usePosition();
     const [cityLocalisation, setCityLocalisation] = useState('')
     // Récupération de l'ancienne ville pour le locale storage
     localStorage.setItem('lastCitySaved',cityLocalisation);
@@ -70,8 +70,8 @@ const SearchHorse = (props) => {
     // Concours :
     const [doCompetition, setDoCompetition] = useState('')
 
-    // Résultats de la recherche de riders :
-    const { resultsHorses, setResultsHorses } = useContext(Results_Horse_Context)
+    // Résultats de la recherche de cheval :
+    // const { resultsHorses, setResultsHorses } = useContext(Results_Horse_Context)
 
     
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import "./landing.css";
 import { Link } from "react-router-dom";
 import logo from "../SVG-icons/cavalcloud-logo.png";
