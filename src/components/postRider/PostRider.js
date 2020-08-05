@@ -22,14 +22,14 @@ import ModalPost from "../common/ModalPost";
 
 const PostRider = (props) => {
   // Localisation
-  const { latitude, longitude, error } = usePosition();
+  const { latitude, longitude} = usePosition();
   const [cityLocalisation, setCityLocalisation] = useState("");
   // Récupération de l'ancienne ville pour le locale storage
   localStorage.setItem("lastCitySaved", cityLocalisation);
   // Choix du rayon de recherche des annonces :
   const [perimeter, setPerimeter] = useState(null);
   // Précédente localisation enregistrée dans le navigateur (si existante) :
-  const [lastCitySaved, setLastCitySaved] = useState("");
+  // const [lastCitySaved, setLastCitySaved] = useState("");
 
   const getLocation = () => {
     Axios.get(
@@ -172,7 +172,6 @@ const PostRider = (props) => {
         <input type="file" onChange={handleChange} />
         <button
           onClick={handleUpload}
-          onEvent={props.onEvent}
           className="upload-button"
         >
           Valider la photo

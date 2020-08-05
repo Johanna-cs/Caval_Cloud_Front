@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { storage } from "../Firebase";
 import Carousel from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
@@ -38,7 +38,6 @@ const PostHorse = () => {
   const { horseProfile, setHorseProfile } = useContext(HorseContext);
   const [modalShow, setModalShow] = useState(false);
   const [home, setHome] = useState(false);
-  const [locValue, setLocValue] = useState(horseProfile.horse_postal);
 
   // Carousel
 
@@ -118,19 +117,6 @@ const PostHorse = () => {
     setTimeout(() => setHome(true), 5000);
   };
 
-  useEffect(() => {
-<<<<<<< HEAD
-    getCoordinatesfromPostalCode(horseProfile.horse_postal);
-  }, [horseProfile.horse_postal]);
-=======
-    
-   
-  }, []);
->>>>>>> 373aa3e3a2c4f808b0cbc04959326ead1b3123df
-
-  const cancelLoc = () => {
-    document.getElementById("localisation").reset();
-  };
 
   return (
     <>
