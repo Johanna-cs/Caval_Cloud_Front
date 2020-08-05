@@ -64,7 +64,7 @@ const ResultAnnonce = (props) => {
             <p>Mail : {userProfile.user_email}</p>
           </div>
           <h4>Localisation</h4>
-          <p>{dataRider.rider_postal_code}</p>
+          <p>{dataRider.rider_postal_code} {" "} {dataRider.rider_localisation}</p>
         </div>
         <h5>Quelques photos</h5>
         <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9}>
