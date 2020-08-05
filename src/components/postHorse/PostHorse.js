@@ -213,10 +213,10 @@ const PostHorse = (props) => {
           />
           <div>
             <p>{horseProfile.horse_localisation}</p>
-          <button className="upload-button" onClick={ () => {
+          {/* <button className="upload-button" onClick={ () => {
             getCoordinatesfromPostalCode(horseProfile.horse_postal)}}>
               Valider
-          </button>
+          </button> */}
             </div>
         </div>
         <hr />
