@@ -38,12 +38,7 @@ const PostHorse = () => {
   const { horseProfile, setHorseProfile } = useContext(HorseContext);
   const [modalShow, setModalShow] = useState(false);
   const [home, setHome] = useState(false);
-<<<<<<< HEAD
   const [locValue, setLocValue] = useState(horseProfile.horse_postal);
-=======
-  const [locValue, setLocValue] = useState("");
-
->>>>>>> 9fedd4c999675440afee8f2be16e96264e06f4cc
 
   // Carousel
 
@@ -221,34 +216,19 @@ const PostHorse = () => {
           <Localisation
             value={horseProfile.horse_postal}
             getLocation={getLocation}
-<<<<<<< HEAD
             onChange={(e) =>
               setHorseProfile({ ...horseProfile, horse_postal: e.target.value })
             }
             definePerimeter={(e) => setPerimeter(e.target.value)}
             perimeter={perimeter}
-            resetvalue={() =>
-              setHorseProfile({
-                ...horseProfile,
-                horse_postal: null,
-                horse_long: null,
-                horse_lat: null,
-                horse_localisation: null,
-              })
-            }
-=======
-            onChange={(e) => setHorseProfile({...horseProfile,horse_postal: e.target.value,})}
-            definePerimeter={(e) => setPerimeter(e.target.value)}
-            perimeter={perimeter}
->>>>>>> 9fedd4c999675440afee8f2be16e96264e06f4cc
           />
           <div>
             <p>{horseProfile.horse_localisation}</p>
-          {/* <button className="upload-button" onClick={ () => {
+            {/* <button className="upload-button" onClick={ () => {
             getCoordinatesfromPostalCode(horseProfile.horse_postal)}}>
               Valider
           </button> */}
-            </div>
+          </div>
         </div>
         <hr />
         <div className="horse_temper">

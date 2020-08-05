@@ -19,8 +19,7 @@ const HorseResultAnnonce = (props) => {
   const { userProfile, setUserProfile } = useContext(UserContext)
   // Get user information from its ID and then, update userProfile context
   const getUserInfo = () => {
-    Axios
-    .get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
+    Axios.get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
     .then(res => setUserProfile(res.data))
     .catch(err=> console.error(err))
   }
@@ -59,23 +58,34 @@ const HorseResultAnnonce = (props) => {
             <h5>
               {dataHorse.horse_name} <span>{dataHorse.horse_age} ans</span>
             </h5>
-
             <p>
               {dataHorse.horse_height}cm, {dataHorse.horse_temper},{" "}
               {dataHorse.horse_character}, {dataHorse.horse_body_type}
             </p>
           </div>
-          <h5>Où se trouve t-il ?</h5>
-          <p>{dataHorse.horse_localisation}</p>
-          <h5>Quelques photos</h5>
-          <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9} animationSpeed={0} style={{transform:"none"}}>
-            <img src={dataHorse.horse_photo1} alt="horse_photo1" className='imagesHorse'/>
-            <img src={dataHorse.horse_photo2} alt="horse_photo2" className='imagesHorse'/>
-            <img src={dataHorse.horse_photo3} alt="horse_photo3" className='imagesHorse'/>
-          </Carousel>
-          <br />
-          <hr />
         </div>
+        <h5>Quelques photos</h5>
+        <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9}>
+          <img
+            src={dataHorse.horse_photo1}
+            alt="horse_photo1"
+            className="imagesHorse"
+          />
+          <img
+            src={dataHorse.horse_photo2}
+            alt="horse_photo2"
+            className="imagesHorse"
+          />
+          <img
+            src={dataHorse.horse_photo3}
+            alt="horse_photo3"
+            className="imagesHorse"
+          />
+        </Carousel>
+        <br />
+        <h5>Où se trouve t-il ?</h5>
+        <p>{dataHorse.horse_localisation}</p>
+        <hr />
 
         <div>
           <h4>Infos du propriétaire </h4>

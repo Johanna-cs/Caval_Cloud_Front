@@ -76,14 +76,12 @@ const SearchHorse = (props) => {
     
 
     const getLocation = () => {
-        Axios
-        .get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
+        Axios.get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
         .then(res => setCityLocalisation(res.data.address.municipality))
         .catch(err => console.log(err))
     }
     const getHorses = async () => {
-        await Axios
-        .get(`http://localhost:4000/api/horses/search/?`)
+        await Axios.get(`http://localhost:4000/api/horses/search/?`)
         .then(res=> setResultsHorses(res))
         .catch(err => console.log(err))
         .finally(console.log(resultsHorses))
