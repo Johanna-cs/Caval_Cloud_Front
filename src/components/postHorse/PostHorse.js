@@ -25,7 +25,7 @@ import ModalPost from "../common/ModalPost";
 
 const PostHorse = () => {
   // Get Localisation
-  const { latitude, longitude} = usePosition();
+  const { latitude, longitude } = usePosition();
 
   // Store city in localstorage for next uses
   // localStorage.setItem("lastCitySaved", cityLocalisation);
@@ -33,10 +33,12 @@ const PostHorse = () => {
   // Selection on perimeter for localisation :
   const [perimeter, setPerimeter] = useState(null);
   
+
   // Get horseProfile Context in order to get and set information about it
   const { horseProfile, setHorseProfile } = useContext(HorseContext);
   const [modalShow, setModalShow] = useState(false);
   const [home, setHome] = useState(false);
+  const [locValue, setLocValue] = useState(horseProfile.horse_postal);
 
   // Carousel
 
@@ -89,7 +91,6 @@ const PostHorse = () => {
           horse_postal: res.data.address.postcode,
         })
       )
-      // .then((res) => setHorseProfile({...horseProfile, horse_localisation : res.data.address.municipality}))
       .catch((err) => console.log(err));
   };
 
@@ -118,8 +119,12 @@ const PostHorse = () => {
   };
 
   useEffect(() => {
-    getLocation();
-  }, []);
+    getCoordinatesfromPostalCode(horseProfile.horse_postal);
+  }, [horseProfile.horse_postal]);
+
+  const cancelLoc = () => {
+    document.getElementById("localisation").reset();
+  };
 
   return (
     <>
@@ -210,26 +215,22 @@ const PostHorse = () => {
           <h5>Où se trouve le cheval ? </h5>
           <Localisation
             value={horseProfile.horse_postal}
+            getLocation={getLocation}
             onChange={(e) =>
-              setHorseProfile({
-                ...horseProfile,
-                horse_postal: e.target.value,
-              })
+              setHorseProfile({ ...horseProfile, horse_postal: e.target.value })
             }
             definePerimeter={(e) => setPerimeter(e.target.value)}
             perimeter={perimeter}
+            resetvalue={() =>
+              setHorseProfile({
+                ...horseProfile,
+                horse_postal: null,
+                horse_long: null,
+                horse_lat: null,
+                horse_localisation: null,
+              })
+            }
           />
-          <div>
-          <button className="upload-button" onClick={ () => {
-          getCoordinatesfromPostalCode(horseProfile.horse_postal)
-          }}>
-              Valider
-          </button>
-            <div className='cacher'>
-              Lat : {latitude}
-              Long : {longitude}
-              </div>
-            </div>
         </div>
         <hr />
         <div className="horse_temper">

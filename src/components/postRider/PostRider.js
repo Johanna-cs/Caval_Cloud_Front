@@ -35,17 +35,29 @@ const PostRider = (props) => {
     Axios.get(
       `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
     )
-    .then((res) => setRiderProfile({...riderProfile, rider_postal_code : res.data.address.postcode}))
+      .then((res) =>
+        setRiderProfile({
+          ...riderProfile,
+          rider_postal_code: res.data.address.postcode,
+        })
+      )
       .catch((err) => console.log(err));
   };
-    // Get full and set gps coordinates from postal code within horse Context
-    const getCoordinatesfromPostalCode = (postalcode) => {
-      Axios
-          .get(`https://nominatim.openstreetmap.org/search?state=France&postalcode=${postalcode}&format=json`)
-          .then((res) => { setRiderProfile({...riderProfile, rider_long : res.data[0].lon, rider_lat :res.data[0].lat, rider_localisation : res.data[0].display_name }) })
-          .catch((err) => console.log(err))
-        
-  }
+  // Get full and set gps coordinates from postal code within horse Context
+  const getCoordinatesfromPostalCode = (postalcode) => {
+    Axios.get(
+      `https://nominatim.openstreetmap.org/search?state=France&postalcode=${postalcode}&format=json`
+    )
+      .then((res) => {
+        setRiderProfile({
+          ...riderProfile,
+          rider_long: res.data[0].lon,
+          rider_lat: res.data[0].lat,
+          rider_localisation: res.data[0].display_name,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
 
   const { riderProfile, setRiderProfile } = useContext(RiderContext);
 
@@ -78,16 +90,15 @@ const PostRider = (props) => {
           .child(imageCarousel.name)
           .getDownloadURL()
           .then((url) => {
-              setUseUrl([...useUrl, url]);
-              if (riderProfile.rider_photo1 === "") {
-                setRiderProfile({ ...riderProfile, rider_photo1: url });
-              } else if (riderProfile.rider_photo2 === "") {
-                setRiderProfile({ ...riderProfile, rider_photo2: url });
-              } else {
-                setRiderProfile({ ...riderProfile, rider_photo3: url });
-              }
+            setUseUrl([...useUrl, url]);
+            if (riderProfile.rider_photo1 === "") {
+              setRiderProfile({ ...riderProfile, rider_photo1: url });
+            } else if (riderProfile.rider_photo2 === "") {
+              setRiderProfile({ ...riderProfile, rider_photo2: url });
+            } else {
+              setRiderProfile({ ...riderProfile, rider_photo3: url });
             }
-          );
+          });
       }
     );
   };
@@ -111,8 +122,8 @@ const PostRider = (props) => {
 
   useEffect(() => {
     getUserInfo();
-    getLocation();
-  }, []);
+    getCoordinatesfromPostalCode(riderProfile.rider_postal_code);
+  }, [riderProfile.rider_postal_code]);
 
   return (
     <>
@@ -169,37 +180,24 @@ const PostRider = (props) => {
         </button>
         <hr />
         <div>
-<<<<<<< HEAD
           <Localisation
-            value={riderProfile.rider_postal_code}
-=======
-          {/* <Localisation
             value={cityLocalisation}
->>>>>>> e86c3077f506c9cd5e4397e974ecb7733dcd3f48
             onChange={(e) =>
               setRiderProfile({
                 ...riderProfile,
                 rider_postal_code: e.target.value,
               })
             }
+            getLocation={getLocation}
+            onChange={(e) => {
+              setRiderProfile({
+                ...riderProfile,
+                rider_postal_code: e.target.value,
+              });
+            }}
             definePerimeter={(e) => setPerimeter(e.target.value)}
             perimeter={perimeter}
-<<<<<<< HEAD
           />
-          <div>
-          <button className="upload-button" onClick={ () => {
-          getCoordinatesfromPostalCode(riderProfile.rider_postal_code)
-          }}>
-              Valider
-          </button>
-            <div className='cacher'>
-              Lat : {latitude}
-              Long : {longitude}
-              </div>
-            </div>
-=======
-          /> */}
->>>>>>> e86c3077f506c9cd5e4397e974ecb7733dcd3f48
         </div>
         <hr />
         <div>
