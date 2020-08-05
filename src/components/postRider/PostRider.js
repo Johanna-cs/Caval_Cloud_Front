@@ -180,8 +180,13 @@ const PostRider = (props) => {
             perimeter={perimeter}
           />
           <div>
-
+          <p>{riderProfile.rider_localisation}</p>
+          <button className="upload-button" onClick={ () => {
+            getCoordinatesfromPostalCode(riderProfile.rider__postal_code)}}>
+              Valider
+          </button>
             </div>
+
         </div>
         <hr />
         <div>

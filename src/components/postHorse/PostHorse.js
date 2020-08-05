@@ -45,6 +45,8 @@ const PostHorse = (props) => {
   const { horseProfile, setHorseProfile } = useContext(HorseContext);
   const [modalShow, setModalShow] = useState(false);
   const [home, setHome] = useState(false);
+  const [locValue, setLocValue] = useState("");
+
 
   // Carousel
 
@@ -205,11 +207,17 @@ const PostHorse = (props) => {
           <Localisation
             value={horseProfile.horse_postal}
             getLocation={getLocation}
-            onChange={(e) => setHorseProfile({...horseProfile, horse_postal: e.target.value})}
+            onChange={(e) => setHorseProfile({...horseProfile,horse_postal: e.target.value,})}
             definePerimeter={(e) => setPerimeter(e.target.value)}
             perimeter={perimeter}
-            resetvalue={()=> setHorseProfile({...horseProfile, horse_postal:null, horse_long:null, horse_lat:null, horse_localisation:null})}
           />
+          <div>
+            <p>{horseProfile.horse_localisation}</p>
+          <button className="upload-button" onClick={ () => {
+            getCoordinatesfromPostalCode(horseProfile.horse_postal)}}>
+              Valider
+          </button>
+            </div>
         </div>
         <hr />
         <div className="horse_temper">
