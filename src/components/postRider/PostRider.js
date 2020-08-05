@@ -114,8 +114,7 @@ const PostRider = (props) => {
 
   useEffect(() => {
     getUserInfo();
-    getCoordinatesfromPostalCode(riderProfile.rider_postal_code)
-  }, [riderProfile.rider_postal_code]);
+  }, []);
 
   return (
     <>
@@ -172,6 +171,7 @@ const PostRider = (props) => {
         </button>
         <hr />
         <div>
+        <h4>Localisation </h4>
           <Localisation
             value={riderProfile.rider_postal_code}
             getLocation={getLocation}
@@ -179,12 +179,12 @@ const PostRider = (props) => {
             definePerimeter={(e) => setPerimeter(e.target.value)}
             perimeter={perimeter}
           />
+            <button className="upload-button" id='setPosition' onClick={ () => {
+              getCoordinatesfromPostalCode(riderProfile.rider_postal_code)}}>
+              Valider ma position
+          </button>
           <div>
           <p>{riderProfile.rider_localisation}</p>
-          <button className="upload-button" onClick={ () => {
-            getCoordinatesfromPostalCode(riderProfile.rider__postal_code)}}>
-              Valider
-          </button>
             </div>
 
         </div>

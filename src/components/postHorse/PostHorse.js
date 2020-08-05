@@ -117,8 +117,8 @@ const PostHorse = (props) => {
 
   useEffect(() => {
     
-    getCoordinatesfromPostalCode(horseProfile.horse_postal)
-  }, [horseProfile.horse_postal]);
+   
+  }, []);
 
   return (
     <>
@@ -211,12 +211,12 @@ const PostHorse = (props) => {
             definePerimeter={(e) => setPerimeter(e.target.value)}
             perimeter={perimeter}
           />
-          <div>
-            <p>{horseProfile.horse_localisation}</p>
-          {/* <button className="upload-button" onClick={ () => {
+           <button className="upload-button" id='setPosition'onClick={ () => {
             getCoordinatesfromPostalCode(horseProfile.horse_postal)}}>
-              Valider
-          </button> */}
+              Valider ma position
+          </button>
+          <div>
+          <p>{horseProfile.horse_localisation}</p>
             </div>
         </div>
         <hr />
