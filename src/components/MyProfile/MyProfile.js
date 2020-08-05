@@ -109,14 +109,14 @@ const MyProfile = (props) => {
               <img
                 src={dataUser.user_avatar}
                 className="Profile-photo"
-                alt="user"
+                alt="Ajouter"
               />
             </div>
           ) : (
             <img
               src={dataUser.user_avatar}
               className="Profile-photo"
-              alt="user"
+              alt="Ajouter"
             />
           )}
           <p className="Profile-infos">

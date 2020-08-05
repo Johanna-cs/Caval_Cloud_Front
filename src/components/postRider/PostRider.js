@@ -198,6 +198,17 @@ const PostRider = (props) => {
             definePerimeter={(e) => setPerimeter(e.target.value)}
             perimeter={perimeter}
           />
+<<<<<<< HEAD
+=======
+          <div>
+          <p>{riderProfile.rider_localisation}</p>
+          <button className="upload-button" onClick={ () => {
+            getCoordinatesfromPostalCode(riderProfile.rider__postal_code)}}>
+              Valider
+          </button>
+            </div>
+
+>>>>>>> 9fedd4c999675440afee8f2be16e96264e06f4cc
         </div>
         <hr />
         <div>
