@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { storage } from "../Firebase";
 import Carousel from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
@@ -25,7 +25,7 @@ import ModalPost from "../common/ModalPost";
 
 const PostHorse = () => {
   // Get Localisation
-  const { latitude, longitude} = usePosition();
+  const { latitude, longitude } = usePosition();
 
   // Store city in localstorage for next uses
   // localStorage.setItem("lastCitySaved", cityLocalisation);
@@ -33,6 +33,7 @@ const PostHorse = () => {
   // Selection on perimeter for localisation :
   const [perimeter, setPerimeter] = useState(null);
   
+
   // Get horseProfile Context in order to get and set information about it
   const { horseProfile, setHorseProfile } = useContext(HorseContext);
   const [modalShow, setModalShow] = useState(false);
@@ -89,7 +90,6 @@ const PostHorse = () => {
           horse_postal: res.data.address.postcode,
         })
       )
-      // .then((res) => setHorseProfile({...horseProfile, horse_localisation : res.data.address.municipality}))
       .catch((err) => console.log(err));
   };
 
@@ -117,9 +117,6 @@ const PostHorse = () => {
     setTimeout(() => setHome(true), 5000);
   };
 
-  useEffect(() => {
-    getLocation();
-  }, []);
 
   return (
     <>
@@ -210,15 +207,20 @@ const PostHorse = () => {
           <h5>Où se trouve le cheval ? </h5>
           <Localisation
             value={horseProfile.horse_postal}
+            getLocation={getLocation}
             onChange={(e) =>
-              setHorseProfile({
-                ...horseProfile,
-                horse_postal: e.target.value,
-              })
+              setHorseProfile({ ...horseProfile, horse_postal: e.target.value })
             }
             definePerimeter={(e) => setPerimeter(e.target.value)}
             perimeter={perimeter}
           />
+           <button className="upload-button" id='setPosition'onClick={ () => {
+            getCoordinatesfromPostalCode(horseProfile.horse_postal)}}>
+              Valider ma position
+          </button>
+          <div>
+          <p>{horseProfile.horse_localisation}</p>
+            </div>
         </div>
         <hr />
         <div className="horse_temper">

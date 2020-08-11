@@ -17,13 +17,18 @@ function Localisation(props) {
         <div className='locationDiv'>
             <div className='toggle_place'>
             <h4>{props.locTitle}</h4>
+            <div className='aroundMe' onClick={() =>  props.getLocation()}>
+                <img src={geoloc} alt='logo loc' className='loc_map'/>
+                <p> Autour de moi </p>
+            </div>
                 <input 
                     min="0" 
                     max="200"
                     className='mainInput' 
-                    placeholder='Localisation' 
+                    placeholder='Code postal' 
                     value={props.value}
                     onChange={props.onChange}
+                    // onClick={props.resetvalue}
                 />
                 </div>
                 <Button id='toggle_btn_chev'color="transparent" onClick={toggle} style={{ marginBottom: '1rem' }}><svg className="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -50,10 +55,7 @@ function Localisation(props) {
                         <img src={locmap} alt='logo loc' className='loc_map'/>
                         <p> {myLastCitySaved}</p>
                     </div>
-                    <div className='aroundMe'>
-                        <img src={geoloc} alt='logo loc' className='loc_map'/>
-                        <p> Autour de moi </p>
-                    </div>
+                    
                     </div>
                 </Collapse>
             </div>

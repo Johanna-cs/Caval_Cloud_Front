@@ -7,9 +7,9 @@ export const userProfileContext = {
     user_lastname : '',
     user_email : '',
     user_password : '',
-    user_accept_CGV : 0,
+    user_accept_CGV : null,
     user_avatar : '',
-    user_is_admin : 0,
+    user_is_admin : '',
     user_phone : '',
 
 }

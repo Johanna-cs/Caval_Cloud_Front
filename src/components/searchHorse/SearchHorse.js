@@ -71,21 +71,27 @@ const SearchHorse = (props) => {
     const [doCompetition, setDoCompetition] = useState('')
 
     // Résultats de la recherche de cheval :
-    // const { resultsHorses, setResultsHorses } = useContext(Results_Horse_Context)
+    const { resultsHorses, setResultsHorses } = useContext(Results_Horse_Context)
 
     
 
     const getLocation = () => {
-        Axios
-        .get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
+        Axios.get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
         .then(res => setCityLocalisation(res.data.address.municipality))
         .catch(err => console.log(err))
     }
-
+    const getHorses = async () => {
+        await Axios.get(`http://localhost:4000/api/horses/search/?`)
+        .then(res=> setResultsHorses(res))
+        .catch(err => console.log(err))
+        .finally(console.log(resultsHorses))
+    }
+    //http://localhost:4000/api/horses/search/?localisation=${cityLocalisation}&budget=${budget}&discipline=${}&structure=${}&rythme=${frequency}&stroll=${doBalad}&temper=&character=&type=&horseage=${ageHorse}&height=${horseSize}&ownerage=&ownercaracter=&communication=${frequency}&fixed=${fixedFrequency}&work=${horseWork}&loctype=${scuringType}&accomodation=${boxeType}&coachhere=${coachingHere}&coachext=${externalCoach}&competition=${doCompetition}&material=${haveMaterialSaddle}
 
     useEffect(() => {
-        getLocation()
-    }, )
+        getLocation();
+        getHorses();
+    }, [])
 
     return (
         <>
