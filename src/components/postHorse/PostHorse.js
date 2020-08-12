@@ -225,6 +225,17 @@ const PostHorse = (props) => {
             definePerimeter={(e) => setPerimeter(e.target.value)}
             perimeter={perimeter}
           />
+          <div>
+          <button className="upload-button" onClick={ () => {
+          getCoordinatesfromPostalCode(horseProfile.horse_postal)
+          }}>
+              Valider
+          </button>
+            <div className='cacher'>
+              Lat : {latitude}
+              Long : {longitude}
+              </div>
+            </div>
         </div>
         <hr />
         <div className="horse_temper">

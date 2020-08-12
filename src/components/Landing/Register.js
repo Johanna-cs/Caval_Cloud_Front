@@ -16,7 +16,7 @@ const Register = () => {
     user_firstname: "",
     user_email: "",
     user_password: "",
-    user_accept_CGV: 0,
+    user_accept_CGV: null,
   });
 
 
@@ -140,7 +140,7 @@ const [login, setLogin] = useState(false);
           className="register_button"
           onClick={(e) => subscribe(e)}
         >
-          CREER UN COMPTE
+          Créer un compte
         </button>
       ) : (
         <button
@@ -149,7 +149,7 @@ const [login, setLogin] = useState(false);
           disabled='true'
           onClick={(e) => subscribe(e)}
         >
-          CREER UN COMPTE
+          Créer un compte
         </button>
       )}
       <ModalRedirect show={modalShow} />

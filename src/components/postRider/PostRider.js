@@ -35,9 +35,17 @@ const PostRider = (props) => {
     Axios.get(
       `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
     )
-      .then((res) => setCityLocalisation(res.data.address.municipality))
+    .then((res) => setRiderProfile({...riderProfile, rider_postal_code : res.data.address.postcode}))
       .catch((err) => console.log(err));
   };
+    // Get full and set gps coordinates from postal code within horse Context
+    const getCoordinatesfromPostalCode = (postalcode) => {
+      Axios
+          .get(`https://nominatim.openstreetmap.org/search?state=France&postalcode=${postalcode}&format=json`)
+          .then((res) => { setRiderProfile({...riderProfile, rider_long : res.data[0].lon, rider_lat :res.data[0].lat, rider_localisation : res.data[0].display_name }) })
+          .catch((err) => console.log(err))
+        
+  }
 
   const { riderProfile, setRiderProfile } = useContext(RiderContext);
 
@@ -103,8 +111,8 @@ const PostRider = (props) => {
   };
 
   useEffect(() => {
-    getLocation();
     getUserInfo();
+    getLocation();
   }, []);
 
   return (
@@ -163,7 +171,7 @@ const PostRider = (props) => {
         <hr />
         <div>
           <Localisation
-            value={cityLocalisation}
+            value={riderProfile.rider_postal_code}
             onChange={(e) =>
               setRiderProfile({
                 ...riderProfile,
@@ -173,8 +181,19 @@ const PostRider = (props) => {
             definePerimeter={(e) => setPerimeter(e.target.value)}
             perimeter={perimeter}
           />
+          <div>
+          <button className="upload-button" onClick={ () => {
+          getCoordinatesfromPostalCode(riderProfile.rider_postal_code)
+          }}>
+              Valider
+          </button>
+            <div className='cacher'>
+              Lat : {latitude}
+              Long : {longitude}
+              </div>
+            </div>
         </div>
-
+        <hr />
         <div>
           <BudgetMensuel
             budgetTitle="Budget"

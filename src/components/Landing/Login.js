@@ -1,19 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./landing.css";
 import { Link } from "react-router-dom";
 import logo from "../SVG-icons/cavalcloud-logo.png";
 import Axios from "axios";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
+import jwt_decode from 'jwt-decode'
 
 
 
 const Login = () => {
 
   let history = useHistory();
+
+//    // Context userProfile in order to simplify user data information management
+//   const { userProfile, setUserProfile } = useContext(UserContext);
+//   const getUserProfile = () => {
+//     Axios
+//     .get(`http://localhost:4000/api/users/${userProfile.user_email}`)
+//     .then((res)=> setDataUser(res.data))
+//     .catch((err) => console.error(err))
+
+// }
   const [dataUser, setDataUser] = useState({
-    user_email: "",
-    user_password: ""
-  });
+    user_email:'',
+    user_password: ''
+  })
+
   const login = (e) => {
     e.preventDefault();
     Axios.post("http://localhost:4000/api/users/login", dataUser)
@@ -25,7 +38,20 @@ const Login = () => {
       })
       .catch((err) => console.error(err));      
   };
+  
+  
+  // //décoder le token
+  // useEffect(() => {
+  //   const token = localStorage.usertoken
+  //   if (token) {
+  //       const decoded = jwt_decode(token)
+  //       setUserProfile({
+  //           user_ID: decoded.id,
+  //           user_email : decoded.email
 
+  //       })
+  //   }
+  // }, [])
 
 
 

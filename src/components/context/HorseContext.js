@@ -42,7 +42,7 @@ export const horseProfileContext = {
     owner_communication_frequency : '',
     owner_horse_work : '',
     owner_message : '',
-    user_ID : 1,
+    user_ID : '',
 
 }
 
