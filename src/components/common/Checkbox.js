@@ -6,7 +6,7 @@ const Checkbox = (props) => {
     <>
       <div className="checkboxList">
         <div className="checkboxObject">
-          <label className="container" for={props.CheckboxText}>
+          <label className="container" htmlFor={props.CheckboxText}>
             {props.CheckboxText}
             <input
               className="checkboxInput"
@@ -17,7 +17,7 @@ const Checkbox = (props) => {
               onClick={props.onClick}
               // ref={props.CheckboxText}
             />
-            <span class="checkmark"></span>
+            <span className="checkmark"></span>
           </label>
         </div>
       </div>

@@ -109,14 +109,14 @@ const MyProfile = (props) => {
               <img
                 src={dataUser.user_avatar}
                 className="Profile-photo"
-                alt="user"
+                alt="Ajouter"
               />
             </div>
           ) : (
             <img
               src={dataUser.user_avatar}
               className="Profile-photo"
-              alt="user"
+              alt="Ajouter"
             />
           )}
           <p className="Profile-infos">
@@ -203,8 +203,9 @@ const MyProfile = (props) => {
       <div className="Profile-annonces">
         <div>
           {riderAnnonce.length !== 0 ? (
-            riderAnnonce.map((e) => (
+            riderAnnonce.map((e,) => (
               <ResultCard
+                key={e.rider_ID}
                 fullResult={e}
                 firstname={e.rider_firstname}
                 rider_ID={e.rider_ID}

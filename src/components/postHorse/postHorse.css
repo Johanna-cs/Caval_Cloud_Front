@@ -64,7 +64,6 @@ span {
     padding: 0.5em;
     font-size: smaller;
 }
-.cacher {
-  font-size: xx-small;
-  color: transparent;
+#setPosition {
+  margin-top: -1.5em;
 }

@@ -17,17 +17,22 @@ function Localisation(props) {
         <div className='locationDiv'>
             <div className='toggle_place'>
             <h4>{props.locTitle}</h4>
+            <div className='aroundMe' onClick={() =>  props.getLocation()}>
+                <img src={geoloc} alt='logo loc' className='loc_map'/>
+                <p> Autour de moi </p>
+            </div>
                 <input 
                     min="0" 
                     max="200"
                     className='mainInput' 
-                    placeholder='Localisation' 
+                    placeholder='Code postal' 
                     value={props.value}
                     onChange={props.onChange}
+                    // onClick={props.resetvalue}
                 />
                 </div>
-                <Button id='toggle_btn_chev'color="transparent" onClick={toggle} style={{ marginBottom: '1rem' }}><svg class="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                <Button id='toggle_btn_chev'color="transparent" onClick={toggle} style={{ marginBottom: '1rem' }}><svg className="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fillRule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg></Button>
                 </div>
             <div className='locationDiv'>
@@ -50,10 +55,7 @@ function Localisation(props) {
                         <img src={locmap} alt='logo loc' className='loc_map'/>
                         <p> {myLastCitySaved}</p>
                     </div>
-                    <div className='aroundMe'>
-                        <img src={geoloc} alt='logo loc' className='loc_map'/>
-                        <p> Autour de moi </p>
-                    </div>
+                    
                     </div>
                 </Collapse>
             </div>

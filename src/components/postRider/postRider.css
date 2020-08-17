@@ -83,7 +83,6 @@
   text-align: left;
 }
 
-.cacher {
-  font-size: xx-small;
-  color: transparent;
+#setPosition {
+  margin-top: -1.5em;
 }

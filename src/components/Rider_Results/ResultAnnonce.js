@@ -19,15 +19,13 @@ const ResultAnnonce = (props) => {
   const { userProfile, setUserProfile } = useContext(UserContext)
     // Get user information from its ID and then, update userProfile context
     const getUserInfo = () => {
-      Axios
-      .get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
+      Axios.get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
       .then(res => setUserProfile(res.data))
       .catch(err=> console.error(err))
     }
     // Get information about the selected rider from its ID
     const getRiderInformation = () => {
-      Axios
-      .get(`http://localhost:4000/api/riders/${riderId}`)
+      Axios.get(`http://localhost:4000/api/riders/${riderId}`)
       .then(res => setDataRider(res.data[0]))
       .catch(err=> console.error(err))
     }
@@ -47,7 +45,9 @@ const ResultAnnonce = (props) => {
       <div className="headerAnnonce">
         <h3 id="annonceTitle">Annonce Cavalier</h3>{" "}
       </div>
+
       <ReturnButton />
+      
       <div className="Result_annonce">
         <div className="annonce_header">
           <img id="annonce_logo" src={userProfile.user_avatar} alt="logo" />
@@ -64,7 +64,7 @@ const ResultAnnonce = (props) => {
             <p>Mail : {userProfile.user_email}</p>
           </div>
           <h4>Localisation</h4>
-          <p>{dataRider.rider_postal_code}</p>
+          <p>{dataRider.rider_postal_code} {" "} {dataRider.rider_localisation}</p>
         </div>
         <h5>Quelques photos</h5>
         <Carousel dots itemWidth={330} itemHeight={200} centered offset={-9}>
