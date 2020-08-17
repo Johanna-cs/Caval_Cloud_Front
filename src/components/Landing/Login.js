@@ -13,15 +13,15 @@ const Login = () => {
 
   let history = useHistory();
 
-//    // Context userProfile in order to simplify user data information management
-//   const { userProfile, setUserProfile } = useContext(UserContext);
-//   const getUserProfile = () => {
-//     Axios
-//     .get(`http://localhost:4000/api/users/${userProfile.user_email}`)
-//     .then((res)=> setDataUser(res.data))
-//     .catch((err) => console.error(err))
+   // Context userProfile in order to simplify user data information management
+  const { userProfile, setUserProfile } = useContext(UserContext);
+  const getUserProfile = () => {
+    Axios
+    .get(`http://localhost:4000/api/users/${userProfile.user_email}`)
+    .then((res)=> setUserProfile(res.data))
+    .catch((err) => console.error(err))
 
-// }
+}
   const [dataUser, setDataUser] = useState({
     user_email:'',
     user_password: ''
@@ -40,18 +40,22 @@ const Login = () => {
   };
   
   
-  // //décoder le token
-  // useEffect(() => {
-  //   const token = localStorage.usertoken
-  //   if (token) {
-  //       const decoded = jwt_decode(token)
-  //       setUserProfile({
-  //           user_ID: decoded.id,
-  //           user_email : decoded.email
+  //décoder le token
+  useEffect(() => {
+    const token = localStorage.usertoken
+    if (token) {
+        const decoded = jwt_decode(token)
+        setUserProfile({
+            user_ID: decoded.user_ID,
+            user_email : decoded.user_email,
+            user_lastname: decoded.user_lastname,
+            user_firstname: decoded.user_firstname,
+            user_avatar : decoded.user_avatar,
+            user_phone : decoded.user_phone,
 
-  //       })
-  //   }
-  // }, [])
+        })
+    }
+  }, [])
 
 
 
