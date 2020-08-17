@@ -12,7 +12,7 @@ import FloatingButton from "../common/FloatingButton";
 import Disciplines from "../common_section/Disciplines";
 import BudgetMensuel from "../common_section/BudgetMensuel";
 import Pension from "../common_section/Pension";
-import Localisation from "../common_section/Localisation";
+import Localisation2 from "../common_section/Localisation2";
 import usePosition from "../common_section/usePosition";
 import Axios from "axios";
 import Competition from "../common_section/Competition";
@@ -179,21 +179,10 @@ const PostRider = (props) => {
         <hr />
         <div>
         <h4>Localisation </h4>
-          <Localisation
-            value={cityLocalisation}
-            onChange={(e) =>
-              setRiderProfile({
-                ...riderProfile,
-                rider_postal_code: e.target.value,
-              })
-            }
+          <Localisation2
+            value={riderProfile.rider_postal_code}
+            onChange={(e) =>setRiderProfile({...riderProfile,rider_postal_code: e.target.value})}
             getLocation={getLocation}
-            onChange={(e) => {
-              setRiderProfile({
-                ...riderProfile,
-                rider_postal_code: e.target.value,
-              });
-            }}
             definePerimeter={(e) => setPerimeter(e.target.value)}
             perimeter={perimeter}
           />
