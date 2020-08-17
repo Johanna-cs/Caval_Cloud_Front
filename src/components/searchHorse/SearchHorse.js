@@ -103,6 +103,7 @@ const SearchHorse = (props) => {
                 onChange={(e) => setCityLocalisation(e.target.value)}
                 definePerimeter={(e) => setPerimeter(e.target.value)}
                 perimeter={perimeter} 
+                getLocation={getLocation}
                 />
             <hr />
                 <BudgetMensuel 
