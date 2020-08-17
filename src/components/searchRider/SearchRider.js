@@ -8,7 +8,6 @@ import Disciplines from '../common_section/Disciplines'
 import Localisation from '../common_section/Localisation';
 import SlidingButton from '../common/SlidingButton'
 import BudgetMensuel from '../common_section/BudgetMensuel'
-import Frequency from '../common_section/Frequency'
 import RangeButton from '../common/RangeButton'
 import Competition from '../common_section/Competition'
 import { Link } from 'react-router-dom'
@@ -19,13 +18,13 @@ import Pension from '../common_section/Pension';
 
 const SearchRider = () => {
     // Localisation des coordonnées GPS via le hook "usePosition" :
-    const {latitude, longitude, error} = usePosition();    
+    const {latitude, longitude} = usePosition();    
     // Récupération de la ville géolocalisée depuis l'API OpenStreetMap :
     const [cityLocalisation, setCityLocalisation] = useState('');
     // Récupération de l'ancienne ville pour le locale storage
     localStorage.setItem('lastCitySaved',cityLocalisation);
     //Récupération du CP 
-    const [postal, setPostal] = useState(null);
+    const [postal, ] = useState(null);
     // Choix du rayon de recherche des annonces :
     const [perimeter, setPerimeter] = useState(20);
     // Années de pratique :
@@ -37,7 +36,7 @@ const SearchRider = () => {
     // Personne véhiculée ou non :
     const [isVehiculed, setIsVehiculed] = useState(false)
     // Disciplines :
-    const [disciplines, setDisciplines] = useState([])
+    // const [disciplines, setDisciplines] = useState([])
     // Budget mensuel :
     const [budget, setBudget] = useState('')
     // Choix de la devise :

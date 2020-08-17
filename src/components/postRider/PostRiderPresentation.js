@@ -9,7 +9,7 @@ import { UserContext } from '../context/UserContext'
 const PostRiderPresentation = (props) => {
 
     // Context userProfile in order to simplify user data information management
-    const { userProfile, setUserProfile } = useContext(UserContext)
+    // const { userProfile, setUserProfile } = useContext(UserContext)
     
 
   const { riderProfile, setRiderProfile } = useContext(RiderContext)

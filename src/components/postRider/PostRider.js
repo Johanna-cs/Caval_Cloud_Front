@@ -22,30 +22,42 @@ import ModalPost from "../common/ModalPost";
 
 const PostRider = (props) => {
   // Localisation
-  const { latitude, longitude, error } = usePosition();
+  const { latitude, longitude} = usePosition();
   const [cityLocalisation, setCityLocalisation] = useState("");
   // Récupération de l'ancienne ville pour le locale storage
   localStorage.setItem("lastCitySaved", cityLocalisation);
   // Choix du rayon de recherche des annonces :
   const [perimeter, setPerimeter] = useState(null);
   // Précédente localisation enregistrée dans le navigateur (si existante) :
-  const [lastCitySaved, setLastCitySaved] = useState("");
+  // const [lastCitySaved, setLastCitySaved] = useState("");
 
-  const getLocation = () => { 
+  const getLocation = () => {
     Axios.get(
       `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
     )
-    .then((res) => setRiderProfile({...riderProfile, rider_postal_code : res.data.address.postcode}))
-    .catch((err) => console.log(err));
+      .then((res) =>
+        setRiderProfile({
+          ...riderProfile,
+          rider_postal_code: res.data.address.postcode,
+        })
+      )
+      .catch((err) => console.log(err));
   };
-    // Get full and set gps coordinates from postal code within horse Context
-    const getCoordinatesfromPostalCode = (postalcode) => {
-      Axios
-          .get(`https://nominatim.openstreetmap.org/search?state=France&postalcode=${postalcode}&format=json`)
-          .then((res) => { setRiderProfile({...riderProfile, rider_long : res.data[0].lon, rider_lat :res.data[0].lat, rider_localisation : res.data[0].display_name }) })
-          .catch((err) => console.log(err))
-        
-  }
+  // Get full and set gps coordinates from postal code within horse Context
+  const getCoordinatesfromPostalCode = (postalcode) => {
+    Axios.get(
+      `https://nominatim.openstreetmap.org/search?state=France&postalcode=${postalcode}&format=json`
+    )
+      .then((res) => {
+        setRiderProfile({
+          ...riderProfile,
+          rider_long: res.data[0].lon,
+          rider_lat: res.data[0].lat,
+          rider_localisation: res.data[0].display_name,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
 
   const { riderProfile, setRiderProfile } = useContext(RiderContext);
 
@@ -78,15 +90,13 @@ const PostRider = (props) => {
           .child(imageCarousel.name)
           .getDownloadURL()
           .then((url) => {
-            {
-              setUseUrl([...useUrl, url]);
-              if (riderProfile.rider_photo1 === "") {
-                setRiderProfile({ ...riderProfile, rider_photo1: url });
-              } else if (riderProfile.rider_photo2 === "") {
-                setRiderProfile({ ...riderProfile, rider_photo2: url });
-              } else {
-                setRiderProfile({ ...riderProfile, rider_photo3: url });
-              }
+            setUseUrl([...useUrl, url]);
+            if (riderProfile.rider_photo1 === "") {
+              setRiderProfile({ ...riderProfile, rider_photo1: url });
+            } else if (riderProfile.rider_photo2 === "") {
+              setRiderProfile({ ...riderProfile, rider_photo2: url });
+            } else {
+              setRiderProfile({ ...riderProfile, rider_photo3: url });
             }
           });
       }
@@ -103,9 +113,7 @@ const PostRider = (props) => {
   const [home, setHome] = useState(false);
 
   const postDataRider = () => {
-    Axios
-    .post(`http://localhost:4000/api/riders`, riderProfile)
-    .catch((err) =>
+    Axios.post(`http://localhost:4000/api/riders`, riderProfile).catch((err) =>
       console.log(err)
     );
     setModalShow(true);
@@ -164,7 +172,6 @@ const PostRider = (props) => {
         <input type="file" onChange={handleChange} />
         <button
           onClick={handleUpload}
-          onEvent={props.onEvent}
           className="upload-button"
         >
           Valider la photo
@@ -173,9 +180,20 @@ const PostRider = (props) => {
         <div>
         <h4>Localisation </h4>
           <Localisation
-            value={riderProfile.rider_postal_code}
+            value={cityLocalisation}
+            onChange={(e) =>
+              setRiderProfile({
+                ...riderProfile,
+                rider_postal_code: e.target.value,
+              })
+            }
             getLocation={getLocation}
-            onChange={(e) => {setRiderProfile({...riderProfile,rider_postal_code: e.target.value})}}
+            onChange={(e) => {
+              setRiderProfile({
+                ...riderProfile,
+                rider_postal_code: e.target.value,
+              });
+            }}
             definePerimeter={(e) => setPerimeter(e.target.value)}
             perimeter={perimeter}
           />
@@ -557,7 +575,7 @@ const PostRider = (props) => {
         </div>
         <FloatingButton
           btnName={"Poster mon annonce"}
-          onClick={() =>  postDataRider()}
+          onClick={() => postDataRider()}
         />
         <ModalPost show={modalShow} />
       </div>

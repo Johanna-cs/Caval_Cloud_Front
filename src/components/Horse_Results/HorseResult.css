@@ -39,6 +39,7 @@
     width: 20em;
     height: 10em;
     margin: 2em;
+   
   }
   
   .resultPhoto {
@@ -87,8 +88,7 @@
     width: 9em;
     padding: 0.5em;
     border-radius: 50%;
-    margin-top: 1.5em;
-    margin-bottom: 2em;
+    margin: 1.5em 4.5em 2em 4.5em;
     object-fit: cover;
   }
     /* HEADER Annonce */
@@ -116,3 +116,4 @@
     width: 330px;
     height: auto;
   }
+  
