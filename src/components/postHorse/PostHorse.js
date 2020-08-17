@@ -11,7 +11,7 @@ import SelectButton from "../common/SelectButton";
 import SlidingButton from "../common/SlidingButton";
 import Scuring from "../common_section/Scuring";
 import Structures from "../common_section/Structures";
-import Localisation from "../common_section/Localisation";
+import Localisation2 from "../common_section/Localisation2";
 import usePosition from "../common_section/usePosition";
 import Disciplines from "../common_section/Disciplines";
 import Pension from "../common_section/Pension";
@@ -205,12 +205,10 @@ const PostHorse = () => {
         <hr />
         <div className="localisation_horse">
           <h5>Où se trouve le cheval ? </h5>
-          <Localisation
+          <Localisation2
             value={horseProfile.horse_postal}
             getLocation={getLocation}
-            onChange={(e) =>
-              setHorseProfile({ ...horseProfile, horse_postal: e.target.value })
-            }
+            onChange={(e) =>setHorseProfile({ ...horseProfile, horse_postal: e.target.value })}
             definePerimeter={(e) => setPerimeter(e.target.value)}
             perimeter={perimeter}
           />
