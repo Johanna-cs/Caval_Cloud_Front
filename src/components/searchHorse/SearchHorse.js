@@ -52,7 +52,6 @@ const SearchHorse = (props) => {
     const [fixedFrequency, setFixedFrequency] = useState(false);
     const [horseWork, setHorseWork] = useState("");
 
-
     //Ecurie
     const [scuringType, setScuringType] = useState('')
 
@@ -66,7 +65,6 @@ const SearchHorse = (props) => {
     // Materiel selle et de soin :
     const [haveMaterialSaddle, setHaveMaterialSaddle] = useState(false)
     
-
     // Concours :
     const [doCompetition, setDoCompetition] = useState('')
 
@@ -97,7 +95,7 @@ const SearchHorse = (props) => {
         <>
         <Header className='header' title='Chercher un équidé'/>
         <div className='searchHorse_page'>
-                <Localisation 
+            <Localisation 
                 locTitle='Où ?'
                 value={cityLocalisation}
                 onChange={(e) => setCityLocalisation(e.target.value)}
@@ -106,7 +104,7 @@ const SearchHorse = (props) => {
                 getLocation={getLocation}
                 />
             <hr />
-                <BudgetMensuel 
+            <BudgetMensuel 
                     budgetTitle='Budget'
                     budget={budget} 
                     currency={currency}

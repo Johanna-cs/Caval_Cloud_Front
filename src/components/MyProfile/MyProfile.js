@@ -1,35 +1,74 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./profile.css";
 import Header from "../Header_footer/Header";
 import { storage } from "../Firebase";
-import { UserContext } from "../context/UserContext";
 import Axios from "axios";
 import HorseResultCard from "../Horse_Results/HorseResultCard";
 import ResultCard from "../Rider_Results/ResultCard";
+import jwt_decode from 'jwt-decode'
+import { useHistory } from "react-router-dom";
 
 const MyProfile = (props) => {
-  // Get user data information from its id :
+
+    // User Data storage:
+    const [dataUser, setDataUser] = useState({
+      user_lastname: "",
+      user_firstname: "",
+      user_email: "",
+      user_password: "",
+      user_avatar : "",
+      user_phone : ""
+    })
+
+  // Decode token
   const getMyProfile = () => {
-    Axios.get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
-      .then((res) => setDataUser(res.data))
-      .catch((err) => console.error(err));
-  };
+    const token = localStorage.usertoken 
+      console.log(token)
+    const decoded = jwt_decode(token)
+      setDataUser({
+        user_ID: decoded.user_ID,
+        user_lastname: decoded.user_lastname,
+        user_firstname: decoded.user_firstname,
+        user_email: decoded.user_email,
+        user_avatar :  decoded.user_avatar,
+        user_phone :  decoded.user_phone
+
+    })
+  }
 
   // Update user data information from its id :
   const updateMyProfile = () => {
-    Axios.put(`http://localhost:4000/api/users/${dataUser.user_ID}`, dataUser)
+    Axios
+    .put(`http://localhost:4000/api/users/${dataUser.user_ID}`, dataUser)
     .catch(err=> console.error(err))
   }
 
+  let history = useHistory()
+  const setDataToken = (e) => {
+    e.preventDefault();
+    Axios
+      .put("http://localhost:4000/api/users/profileToken", dataUser)
+      .then((res) => {
+        localStorage.setItem("usertoken", res.data);
+        history.push(`/my-profile`);
+        window.location.reload(false);
+        return res.data;
+      })
+      .catch((err) => console.error(err))      
+  };
+
+  //annonces horseriders or horses in favorite section :
   const getRiderPosts = () => {
-    Axios.get(`http://localhost:4000/api/riders`)
+    Axios
+      .get(`http://localhost:4000/api/riders`)
       .then((res) => setRiderAnnonce(res.data))
       .catch((err) => console.error(err));
     console.log(riderAnnonce);
   };
 
   const getHorsePosts = () => {
-    Axios.get(`http://localhost:4000/api/horses`)
+    Axios
+      .get(`http://localhost:4000/api/horses`)
       .then((res) => setHorseAnnonce(res.data))
       .catch((err) => console.error(err));
     console.log(horseAnnonce);
@@ -38,18 +77,6 @@ const MyProfile = (props) => {
   const [riderAnnonce, setRiderAnnonce] = useState([]);
   const [horseAnnonce, setHorseAnnonce] = useState([]);
 
-  // User Data storage:
-  const [dataUser, setDataUser] = useState({
-    user_lastname: "",
-    user_firstname: "",
-    user_email: "",
-    user_password: "",
-    user_avatar : "",
-    user_phone : ""
-  });
-
-  // Context userProfile in order to simplify user data information management
-  const { userProfile, setUserProfile } = useContext(UserContext);
 
   // Management of image upload :
   const [image, setImage] = useState(null);
@@ -72,9 +99,9 @@ const MyProfile = (props) => {
 
   // Start to catch user info and then, save it in the user context
   useEffect(() => {
-    getMyProfile();
-    getRiderPosts();
-    getHorsePosts();
+    getMyProfile()
+    getRiderPosts()
+    getHorsePosts()
   }, []);
 
   const handleUpload = () => {
@@ -186,8 +213,9 @@ const MyProfile = (props) => {
             <button
               className="Profile-button"
               onClick={() => {
-                validprof();
-                updateMyProfile();
+                validprof()
+                updateMyProfile()
+                setDataToken()
               }}
             >
               Valider mon profil
