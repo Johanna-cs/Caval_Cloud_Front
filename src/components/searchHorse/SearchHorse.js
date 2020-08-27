@@ -53,7 +53,6 @@ const SearchHorse = () => {
     const [fixedFrequency, setFixedFrequency] = useState(false);
     const [horseWork, setHorseWork] = useState("");
 
-
     //Ecurie
     const [scuringType, setScuringType] = useState('')
 
@@ -67,7 +66,6 @@ const SearchHorse = () => {
     // Materiel selle et de soin :
     const [haveMaterialSaddle, setHaveMaterialSaddle] = useState(false)
     
-
     // Concours :
     const [doCompetition, setDoCompetition] = useState('')
 
@@ -101,7 +99,7 @@ const SearchHorse = () => {
 
         <button onClick={() => getDistanceFromLatLonInKm(1,1,{latitude},{longitude})}>clic</button>
         <div className='searchHorse_page'>
-                <Localisation 
+            <Localisation 
                 locTitle='Où ?'
                 value={cityLocalisation}
                 onChange={(e) => setCityLocalisation(e.target.value)}
@@ -110,7 +108,7 @@ const SearchHorse = () => {
                 getLocation={getLocation}
                 />
             <hr />
-                <BudgetMensuel 
+            <BudgetMensuel 
                     budgetTitle='Budget'
                     budget={budget} 
                     currency={currency}

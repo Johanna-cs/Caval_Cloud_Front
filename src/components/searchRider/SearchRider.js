@@ -71,7 +71,7 @@ const SearchRider = () => {
 
     useEffect(() => {
         getLocation()
-    }, )
+    }, [])
 
 
     return (

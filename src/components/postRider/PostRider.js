@@ -19,6 +19,7 @@ import Competition from "../common_section/Competition";
 import { RiderContext } from "../context/RiderContext";
 import { UserContext } from "../context/UserContext";
 import ModalPost from "../common/ModalPost";
+import jwt_decode from 'jwt-decode'
 
 const PostRider = (props) => {
   // Localisation
@@ -35,12 +36,7 @@ const PostRider = (props) => {
     Axios.get(
       `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
     )
-      .then((res) =>
-        setRiderProfile({
-          ...riderProfile,
-          rider_postal_code: res.data.address.postcode,
-        })
-      )
+      .then((res) => setRiderProfile({...riderProfile,rider_postal_code: res.data.address.postcode }))
       .catch((err) => console.log(err));
   };
   // Get full and set gps coordinates from postal code within horse Context
@@ -62,10 +58,35 @@ const PostRider = (props) => {
   const { riderProfile, setRiderProfile } = useContext(RiderContext);
 
   // Context userProfile in order to simplify user data information management
-  const { userProfile, setUserProfile } = useContext(UserContext);
+  // const { userProfile, setUserProfile } = useContext(UserContext)
+
+  // Decode token
+  const getMyProfile = () => {
+    const token = localStorage.usertoken 
+      console.log(token)
+    const decoded = jwt_decode(token)
+      setDataUser({
+        user_ID: decoded.user_ID,
+        user_lastname: decoded.user_lastname,
+        user_firstname: decoded.user_firstname,
+        user_email: decoded.user_email,
+        user_avatar :  decoded.user_avatar,
+        user_phone :  decoded.user_phone
+
+    })
+  }
+    // User Data storage:
+    const [dataUser, setDataUser] = useState({
+      user_lastname: "",
+      user_firstname: "",
+      user_email: "",
+      user_password: "",
+      user_avatar : "",
+      user_phone : ""
+    })
+
 
   // Carousel
-
   const [imageCarousel, setImageCarousel] = useState({});
   const [useUrl, setUseUrl] = useState([]);
 
@@ -103,25 +124,20 @@ const PostRider = (props) => {
     );
   };
 
-  // Get user information from its ID and then, update userProfile context
-  const getUserInfo = () => {
-    Axios.get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
-      .then((res) => setUserProfile(res.data))
-      .catch((err) => console.error(err));
-  };
   const [modalShow, setModalShow] = useState(false);
   const [home, setHome] = useState(false);
 
   const postDataRider = () => {
-    Axios.post(`http://localhost:4000/api/riders`, riderProfile).catch((err) =>
-      console.log(err)
-    );
+    Axios
+    .post(`http://localhost:4000/api/riders`, riderProfile)
+    .catch((err) =>
+      console.log(err));
     setModalShow(true);
     setTimeout(() => setHome(true), 5000);
   };
 
   useEffect(() => {
-    getUserInfo();
+    getMyProfile();
   }, []);
 
   return (
@@ -132,7 +148,7 @@ const PostRider = (props) => {
         <div className="postRider_header">
           <img
             className="postRider_logo"
-            src={userProfile.user_avatar}
+            src={dataUser.user_avatar}
             alt="logo"
           />
           <div className="postRider_forms">

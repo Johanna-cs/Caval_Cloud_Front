@@ -5,11 +5,8 @@ import geoloc from '../SVG-icons/geolocalisation.svg'
 import RangeButton from '../common/RangeButton'
 import locmap from '../SVG-icons/map-marker-alt-solid.svg'
 
-function Localisation(props) {
-    
-    const [isOpen, setIsOpen] = useState(false)
-    const toggle = () => setIsOpen(!isOpen)
-    let myLastCitySaved = localStorage.getItem('lastCitySaved')
+function Localisation2(props) {
+
 
     return (
         <>
@@ -38,4 +35,4 @@ function Localisation(props) {
         </>
     )}
 
-export default Localisation
+export default Localisation2
