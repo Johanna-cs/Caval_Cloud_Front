@@ -17,11 +17,12 @@ import Axios from 'axios'
 import usePosition from '../common_section/usePosition';
 import Competition from '../common_section/Competition';
 import { Results_Horse_Context} from '../../components/context/Results_Horse_Context'
+import { getDistanceFromLatLonInKm } from '../matching/calculDistance'
 
 
 
 
-const SearchHorse = (props) => {
+const SearchHorse = () => {
     
     const {latitude, longitude} = usePosition();
     const [cityLocalisation, setCityLocalisation] = useState('')
@@ -89,13 +90,16 @@ const SearchHorse = (props) => {
     //http://localhost:4000/api/horses/search/?localisation=${cityLocalisation}&budget=${budget}&discipline=${}&structure=${}&rythme=${frequency}&stroll=${doBalad}&temper=&character=&type=&horseage=${ageHorse}&height=${horseSize}&ownerage=&ownercaracter=&communication=${frequency}&fixed=${fixedFrequency}&work=${horseWork}&loctype=${scuringType}&accomodation=${boxeType}&coachhere=${coachingHere}&coachext=${externalCoach}&competition=${doCompetition}&material=${haveMaterialSaddle}
 
     useEffect(() => {
-        getLocation();
         getHorses();
     }, [])
 
     return (
         <>
         <Header className='header' title='Chercher un équidé'/>
+        <button onClick={() => console.log(Number.latitude)}>lat</button>
+        <button onClick={() => console.log(longitude)}>long</button>
+
+        <button onClick={() => getDistanceFromLatLonInKm(1,1,{latitude},{longitude})}>clic</button>
         <div className='searchHorse_page'>
                 <Localisation 
                 locTitle='Où ?'
@@ -204,11 +208,11 @@ const SearchHorse = (props) => {
             </div>    
             </div>
             <Link to={{pathname: "/horse/results"}}>
-            <FloatingButton 
-                btnName={'Lancer la recherche'} 
-                // onClick={async () => { await getRiders()} }
-            />
-        </Link>
+                <FloatingButton 
+                    btnName={'Lancer la recherche'} 
+                    // onClick={async () => { await getRiders()} }
+                />
+             </Link>
         
     </>
     )

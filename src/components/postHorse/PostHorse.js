@@ -104,6 +104,7 @@ const PostHorse = () => {
           horse_long: res.data[0].lon,
           horse_lat: res.data[0].lat,
           horse_localisation: res.data[0].display_name,
+          horse_geolocation : [res.data[0].lon, res.data[0].lat]
         });
       })
       .catch((err) => console.log(err));
