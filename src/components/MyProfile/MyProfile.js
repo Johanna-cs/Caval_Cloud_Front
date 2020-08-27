@@ -6,9 +6,8 @@ import Axios from "axios";
 import HorseResultCard from "../Horse_Results/HorseResultCard";
 import ResultCard from "../Rider_Results/ResultCard";
 import jwt_decode from 'jwt-decode'
-import { useHistory } from "react-router-dom";
 
-const MyProfile = (props) => {
+const MyProfile = () => {
 
     // User Data storage:
     const [dataUser, setDataUser] = useState({
@@ -19,44 +18,26 @@ const MyProfile = (props) => {
       user_avatar : "",
       user_phone : ""
     })
-
-  // Decode token
+    const token = localStorage.token 
+    
+  // Get user profil
   const getMyProfile = () => {
-    const token = localStorage.usertoken 
-      console.log(token)
-    const decoded = jwt_decode(token)
-      setDataUser({
-        user_ID: decoded.user_ID,
-        user_lastname: decoded.user_lastname,
-        user_firstname: decoded.user_firstname,
-        user_email: decoded.user_email,
-        user_avatar :  decoded.user_avatar,
-        user_phone :  decoded.user_phone
-
+    Axios.get('http://localhost:4000/api/users/profile', { 
+      headers : { 'Authorization' : 'Bearer ' + token}
     })
+    .then((res) => setDataUser(res.data))
+    .catch((error)=> console.log(error))
   }
-
-  // Update user data information from its id :
+  // Update user data information 
   const updateMyProfile = () => {
     Axios
-    .put(`http://localhost:4000/api/users/${dataUser.user_ID}`, dataUser)
+    .put('http://localhost:4000/api/users/profile', dataUser, 
+    { 
+      headers : { 'Authorization' : 'Bearer ' + token}
+    })
     .catch(err=> console.error(err))
   }
-
-  let history = useHistory()
-  const setDataToken = (e) => {
-    e.preventDefault();
-    Axios
-      .put("http://localhost:4000/api/users/profileToken", dataUser)
-      .then((res) => {
-        localStorage.setItem("usertoken", res.data);
-        history.push(`/my-profile`);
-        window.location.reload(false);
-        return res.data;
-      })
-      .catch((err) => console.error(err))      
-  };
-
+  
   //annonces horseriders or horses in favorite section :
   const getRiderPosts = () => {
     Axios
@@ -124,7 +105,6 @@ const MyProfile = (props) => {
   return (
     <>
       <Header className="header" title="Mon Profil" />
-      {/* <button onClick={() => console.log(dataUser.user_avatar)}>Profile</button> */}
       <div className="Profile-Page">
         <div className="Profile-row">
           {modif ? (
@@ -152,19 +132,8 @@ const MyProfile = (props) => {
         </div>
         <hr />
         <h4>Email :</h4>
-        {modif ? (
-          <input
-            id="input"
-            type="mail"
-            placeholder={dataUser.user_email}
-            value={dataUser.user_email}
-            onChange={(e) =>
-              setDataUser({ ...dataUser, user_email: e.target.value })
-            }
-          />
-        ) : (
           <p>{dataUser.user_email}</p>
-        )}
+        
         <hr />
         <h4>Téléphone :</h4>
         {modif ? (
@@ -195,15 +164,6 @@ const MyProfile = (props) => {
                 }
               />
             </tr>
-            {/* <tr className="entete">Valider mot de passe </tr>
-            <tr>
-              <input
-                id="input"
-                type="password"
-                className={validPW ? "valid" : "invalid"}
-                onChange={(e) => changePW(e)}
-              />
-            </tr> */}
           </>
         ) : (
           ""
@@ -215,7 +175,7 @@ const MyProfile = (props) => {
               onClick={() => {
                 validprof()
                 updateMyProfile()
-                setDataToken()
+                
               }}
             >
               Valider mon profil

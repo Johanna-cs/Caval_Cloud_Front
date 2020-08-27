@@ -14,7 +14,6 @@ export const horseProfileContext = {
     horse_long : null,
     horse_lat : null,
     horse_geolocation : null,
-    horse_photos : '',
     horse_photo1 : '',
     horse_photo2 : '',
     horse_photo3 : '',

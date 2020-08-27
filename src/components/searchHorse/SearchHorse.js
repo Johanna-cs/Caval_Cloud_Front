@@ -94,10 +94,6 @@ const SearchHorse = () => {
     return (
         <>
         <Header className='header' title='Chercher un équidé'/>
-        <button onClick={() => console.log(Number.latitude)}>lat</button>
-        <button onClick={() => console.log(longitude)}>long</button>
-
-        <button onClick={() => getDistanceFromLatLonInKm(1,1,{latitude},{longitude})}>clic</button>
         <div className='searchHorse_page'>
             <Localisation 
                 locTitle='Où ?'

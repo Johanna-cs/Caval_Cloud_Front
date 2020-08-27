@@ -82,6 +82,7 @@ const SearchRider = () => {
                 <Localisation 
                     locTitle='Où ?'
                     value={cityLocalisation}
+                    getLocation={getLocation}
                     onChange={(e) => setCityLocalisation(e.target.value)}
                     definePerimeter={(e) => setPerimeter(e.target.value)}
                     perimeter={perimeter}

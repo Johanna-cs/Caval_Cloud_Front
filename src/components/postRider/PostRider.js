@@ -17,11 +17,10 @@ import usePosition from "../common_section/usePosition";
 import Axios from "axios";
 import Competition from "../common_section/Competition";
 import { RiderContext } from "../context/RiderContext";
-import { UserContext } from "../context/UserContext";
 import ModalPost from "../common/ModalPost";
 import jwt_decode from 'jwt-decode'
 
-const PostRider = (props) => {
+const PostRider = () => {
   // Localisation
   const { latitude, longitude} = usePosition();
   const [cityLocalisation, setCityLocalisation] = useState("");
@@ -57,24 +56,6 @@ const PostRider = (props) => {
 
   const { riderProfile, setRiderProfile } = useContext(RiderContext);
 
-  // Context userProfile in order to simplify user data information management
-  // const { userProfile, setUserProfile } = useContext(UserContext)
-
-  // Decode token
-  const getMyProfile = () => {
-    const token = localStorage.usertoken 
-      console.log(token)
-    const decoded = jwt_decode(token)
-      setDataUser({
-        user_ID: decoded.user_ID,
-        user_lastname: decoded.user_lastname,
-        user_firstname: decoded.user_firstname,
-        user_email: decoded.user_email,
-        user_avatar :  decoded.user_avatar,
-        user_phone :  decoded.user_phone
-
-    })
-  }
     // User Data storage:
     const [dataUser, setDataUser] = useState({
       user_lastname: "",
@@ -84,6 +65,17 @@ const PostRider = (props) => {
       user_avatar : "",
       user_phone : ""
     })
+    
+  const token = localStorage.token 
+    
+  // Get user profil
+  const getMyProfile = () => {
+    Axios.get('http://localhost:4000/api/users/profile', { 
+      headers : { 'Authorization' : 'Bearer ' + token}
+    })
+    .then((res) => setDataUser(res.data))
+    .catch((error)=> console.log(error))
+  }
 
 
   // Carousel

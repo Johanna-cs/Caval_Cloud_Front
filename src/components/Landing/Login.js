@@ -1,34 +1,26 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useState } from "react";
 import "./landing.css";
 import { Link } from "react-router-dom";
 import logo from "../SVG-icons/cavalcloud-logo.png";
 import Axios from "axios";
-import { useHistory } from "react-router-dom";
+
 
 const Login = () => {
-
-  let history = useHistory();
 
   const [dataUser, setDataUser] = useState({
     user_email:'',
     user_password: ''
   })
 
-  const login = (e) => {
-    e.preventDefault();
+  const login = () => {
     Axios
       .post("http://localhost:4000/api/users/login", dataUser)
       .then((res) => {
-        localStorage.setItem("usertoken", res.data);
-        history.push(`/home`);
-        window.location.reload(false);
+        localStorage.setItem("token", res.data.token);
         return res.data;
-      })
+      }) 
       .catch((err) => console.error(err));      
   };
-  
-
-
 
 
   return (
@@ -65,7 +57,7 @@ const Login = () => {
         <p>Mot de passe oublié</p>
       </div>
       <Link to="/home" style={{ textDecoration: "none" }}>
-        <button className="login_button"  onClick={(e) => login(e)}>
+        <button className="login_button"  onClick={() => login()}>
           Se connecter
         </button>
       </Link>
