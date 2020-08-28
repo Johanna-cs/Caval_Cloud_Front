@@ -9,48 +9,57 @@ import "@brainhubeu/react-carousel/lib/style.css";
 
 const HorseResultAnnonce = (props) => {
   
-    // get the Horse_ID in order to display the specific result
-    const horseId = Number(props.match.params.id)
+  // Get the Horse_ID in order to display the specific result
+  const horseId = Number(props.match.params.id)
 
-    // Horse Data information
-    const [dataHorse, setDataHorse] = useState([])
+  // Horse Data information
+  const [dataHorse, setDataHorse] = useState([])
     
-     // Context userProfile in order to simplify user data information management
+  // Context userProfile in order to simplify user data information management
   const { userProfile, setUserProfile } = useContext(UserContext)
-  // Get user information from its ID and then, update userProfile context
-  const getUserInfo = () => {
-    Axios.get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
-    .then(res => setUserProfile(res.data))
+  
+  // Data User to display information regarding horse owner
+  const [dataUser, setDataUser] = useState(null)
+ 
+  // Get information about the selected horse from its ID
+  const getHorseInformation = () => {
+    Axios
+    .get(`http://localhost:4000/api/horses/${horseId}`)
+    .then(res => setDataHorse(res.data[0]))
     .catch(err=> console.error(err))
   }
 
-    // Get information about the selected horse from its ID
-    const getHorseInformation = () => {
-      Axios.get(`http://localhost:4000/api/horses/${horseId}`)
-      .then(res => setDataHorse(res.data[0]))
-      .catch(err=> console.error(err))
-    }
-    // Transforme les booléens récupérés de l'annonce en oui ou non 
-    const changeBool = (bool) => bool === true ? 'oui' : 'non'
 
-    // const changefreq1 = ()
-    // When a result is displayed, the function getHorseInformation starts first in order to query BDD
-    useEffect(() => {
-      getHorseInformation();
-      getUserInfo();
-      changeBool(dataHorse);
-      }, 
-    [])
+   // Get user information from its ID and then, update userProfile context
+   const getUserInfo = () => {
+    Axios.get(`http://localhost:4000/api/users/${dataHorse.user_ID}`)
+    .then(res => setDataUser(res))
+    .catch(err=> console.error(err))
+  }
+
+
+  // Transforme les booléens récupérés de l'annonce en oui ou non 
+  const changeBool = (bool) => bool === true ? 'oui' : 'non'
+
+  // When a result is displayed, the function getHorseInformation starts first in order to query BDD
+  useEffect(() => {
+    getHorseInformation();
+    getUserInfo();
+    changeBool(dataHorse);
+    }, 
+  [])
     
 
   return (
     <>
+
       <div className="headerAnnonce">
         <h3 id="annonceTitle">Annonce Equidé</h3>{" "}
       </div>
 
       <ReturnButton />
 
+<button onClick={() => console.log(dataUser)}>DATA USER</button>
       <div className="Result_annonce">
         <div className="annonce_header">
           <div>

@@ -5,7 +5,6 @@ import { storage } from "../Firebase";
 import Axios from "axios";
 import HorseResultCard from "../Horse_Results/HorseResultCard";
 import ResultCard from "../Rider_Results/ResultCard";
-import jwt_decode from 'jwt-decode'
 
 const MyProfile = () => {
 
