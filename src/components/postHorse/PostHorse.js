@@ -24,6 +24,12 @@ import { HorseContext } from "../context/HorseContext";
 import ModalPost from "../common/ModalPost";
 
 const PostHorse = () => {
+
+  // Authentification 
+
+  const token = localStorage.token 
+
+
   // Get Localisation
   const { latitude, longitude } = usePosition();
 
@@ -111,9 +117,13 @@ const PostHorse = () => {
   };
 
   const postDataHorse = () => {
-    Axios.post(`http://localhost:4000/api/horses`, horseProfile).catch((err) =>
-      console.log(err)
-    );
+    // Post Data
+    Axios
+    .post(`http://localhost:4000/api/horses`, horseProfile, {
+        headers : { 'Authorization' : 'Bearer ' + token}})
+    .catch((err) =>console.log(err));
+
+    // Display modal before going back Home
     setModalShow(true);
     setTimeout(() => setHome(true), 5000);
   };

@@ -24,10 +24,13 @@ const PostRider = () => {
   // Localisation
   const { latitude, longitude} = usePosition();
   const [cityLocalisation, setCityLocalisation] = useState("");
-  // Récupération de l'ancienne ville pour le locale storage
+ 
+  // Enregistrement de la ville dans le local storage
   localStorage.setItem("lastCitySaved", cityLocalisation);
+  
   // Choix du rayon de recherche des annonces :
   const [perimeter, setPerimeter] = useState(null);
+ 
   // Précédente localisation enregistrée dans le navigateur (si existante) :
   // const [lastCitySaved, setLastCitySaved] = useState("");
 
@@ -49,6 +52,7 @@ const PostRider = () => {
           rider_long: res.data[0].lon,
           rider_lat: res.data[0].lat,
           rider_localisation: res.data[0].display_name,
+          rider_geolocation : [res.data[0].lon, res.data[0].lat]
         });
       })
       .catch((err) => console.log(err));
@@ -56,12 +60,11 @@ const PostRider = () => {
 
   const { riderProfile, setRiderProfile } = useContext(RiderContext);
 
-    // User Data storage:
-    const [dataUser, setDataUser] = useState({
+  // User Data storage:
+  const [dataUser, setDataUser] = useState({
       user_lastname: "",
       user_firstname: "",
       user_email: "",
-      user_password: "",
       user_avatar : "",
       user_phone : ""
     })
@@ -120,10 +123,13 @@ const PostRider = () => {
   const [home, setHome] = useState(false);
 
   const postDataRider = () => {
-    Axios
-    .post(`http://localhost:4000/api/riders`, riderProfile)
-    .catch((err) =>
-      console.log(err));
+    // Post new Rider
+      Axios
+      .post(`http://localhost:4000/api/riders`, riderProfile, 
+          { headers : { 'Authorization' : 'Bearer ' + token}})
+      .catch((err) =>console.log(err));
+    
+    // Display modal before going back Home
     setModalShow(true);
     setTimeout(() => setHome(true), 5000);
   };
@@ -414,7 +420,7 @@ const PostRider = () => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      ideal_horse_caracter: e.target.value,
+                      ideal_horse_character: e.target.value,
                     })
                   }
                 />
@@ -426,7 +432,7 @@ const PostRider = () => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      ideal_horse_caracter: e.target.value,
+                      ideal_horse_character: e.target.value,
                     })
                   }
                 />
@@ -438,7 +444,7 @@ const PostRider = () => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      ideal_horse_caracter: e.target.value,
+                      ideal_horse_character: e.target.value,
                     })
                   }
                 />
@@ -450,7 +456,7 @@ const PostRider = () => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      ideal_horse_caracter: e.target.value,
+                      ideal_horse_character: e.target.value,
                     })
                   }
                 />

@@ -21,9 +21,10 @@ function ResultPage() {
 
   useEffect(() => {
     getRiders()
-}, [])
+    }, 
+    []
+  )
   
-
   return (
     <>
       <Header className="header" title="Résultats de la recherche" />

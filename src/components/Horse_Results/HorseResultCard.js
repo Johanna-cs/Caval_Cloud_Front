@@ -8,12 +8,13 @@ import heartFull from "../SVG-icons/coeur-selection.svg";
 const HorseResultCard = (props) => {
   
   // get the correct user ID in order to pass it to the ResultAnnonce component
-  const user_ID = props.fullResult.user_ID
+  const token = localStorage.token 
+
   const horse_ID = props.fullResult.horse_ID
   const horse_name = props.fullResult.horse_name
   const horse_photo1 = props.fullResult.horse_photo1
+
   const dataBody = {
-    user_ID : user_ID,
     horse_ID : horse_ID,
     horse_name : horse_name,
     horse_photo1 : horse_photo1,
@@ -28,17 +29,19 @@ const HorseResultCard = (props) => {
   const addInFavorite = () => {
     if (favoriteIcon === heart) {
       Axios
-      .post(`http://localhost:4000/api/users/addFavoriteHorse`, dataBody)
+      .post(`http://localhost:4000/api/users/addFavoriteHorse`, dataBody, {
+           headers : { 'Authorization' : 'Bearer ' + token} })
       .catch((err) => console.error(err)
       );
     }
     else {
       Axios
-      .delete(`http://localhost:4000/api/users/deleteFavoriteHorse/${user_ID}`)
+      .delete(`http://localhost:4000/api/users/deleteFavoriteHorse/`,{
+        headers : { 'Authorization' : 'Bearer ' + token}})
       .catch((err) => console.error(err)
       );
     }
-  };
+  }
 
 
   return (
