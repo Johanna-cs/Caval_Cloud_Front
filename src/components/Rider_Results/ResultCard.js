@@ -14,6 +14,7 @@ const ResultCard = (props) => {
    const rider_ID = props.fullResult.rider_ID
    const rider_firstname = props.fullResult.rider_firstname
    const rider_photo1 = props.fullResult.rider_photo1
+   const statusFavorite = props.statusFavorite
   
    const dataBody = {
      rider_ID : rider_ID,
@@ -22,7 +23,7 @@ const ResultCard = (props) => {
  
    }
    
-   const [favoriteIcon, setFavoriteIcon] = useState(heart)
+   const [favoriteIcon, setFavoriteIcon] = useState(statusFavorite === false ? heart : heartFull)
  
    const [isFavorite, setIsFavorite] = useState(false)
  
@@ -37,7 +38,7 @@ const ResultCard = (props) => {
       }
       else {
         Axios
-        .delete(`http://localhost:4000/api/users/deleteFavoriteRider/`,{
+        .delete(`http://localhost:4000/api/users/deleteFavoriteRider/${rider_ID}`,{
           headers : { 'Authorization' : 'Bearer ' + token}})
         .catch((err) => console.error(err)
         );

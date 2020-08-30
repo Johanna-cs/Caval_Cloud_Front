@@ -13,15 +13,15 @@ const HorseResultCard = (props) => {
   const horse_ID = props.fullResult.horse_ID
   const horse_name = props.fullResult.horse_name
   const horse_photo1 = props.fullResult.horse_photo1
+  const statusFavorite = props.statusFavorite
 
   const dataBody = {
     horse_ID : horse_ID,
     horse_name : horse_name,
     horse_photo1 : horse_photo1,
-
   }
   
-  const [favoriteIcon, setFavoriteIcon] = useState(heart)
+  const [favoriteIcon, setFavoriteIcon] = useState(statusFavorite === false ? heart : heartFull)
 
   const [isFavorite, setIsFavorite] = useState(false)
 
@@ -36,7 +36,7 @@ const HorseResultCard = (props) => {
     }
     else {
       Axios
-      .delete(`http://localhost:4000/api/users/deleteFavoriteHorse/`,{
+      .delete(`http://localhost:4000/api/users/deleteFavoriteHorse/${horse_ID}`,{
         headers : { 'Authorization' : 'Bearer ' + token}})
       .catch((err) => console.error(err)
       );

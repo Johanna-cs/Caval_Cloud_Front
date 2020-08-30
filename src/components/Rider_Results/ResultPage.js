@@ -44,6 +44,7 @@ function ResultPage() {
           key={e.rider_ID}
           fullResult={e} 
           firstname={e.rider_firstname}
+          statusFavorite={false}
           rider_ID={e.rider_ID}
           photo={e.rider_photos}
         />

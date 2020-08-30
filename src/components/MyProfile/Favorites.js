@@ -35,6 +35,7 @@ const Favorites = () => {
     .catch((err) => console.error(err));
   };
 
+
   useEffect(() => {
     getFavoritesHorses();
     getFavoritesRiders();
@@ -58,6 +59,7 @@ const Favorites = () => {
               horse_name={e.horse_name}
               horse_ID={e.horse_ID}
               photo={e.horse_photo1}
+              statusFavorite={true}
               src={favorite}
             />))
           : null
@@ -70,6 +72,7 @@ const Favorites = () => {
               rider_firstname={e.rider_firstname}
               rider_ID={e.rider_ID}
               photo={e.rider_photo1}
+              statusFavorite={true}
               src={favorite}
             />))
           : null 

@@ -75,6 +75,7 @@ const HorseResultPage = () => {
           key={e.horse_ID}
           fullResult={e} 
           horse_name={e.horse_name}
+          statusFavorite={false}
           horse_ID={e.horse_ID}
           photo={e.horse_photo1}
         />
