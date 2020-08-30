@@ -3,6 +3,7 @@ import "./profile.css";
 import Header from "../Header_footer/Header";
 import { storage } from "../Firebase";
 import Axios from "axios";
+import { Link } from "react-router-dom";
 import HorseResultCard from "../Horse_Results/HorseResultCard";
 import ResultCard from "../Rider_Results/ResultCard";
 
@@ -104,6 +105,25 @@ const MyProfile = () => {
   return (
     <>
       <Header className="header" title="Mon Profil" />
+
+      {token === undefined ? 
+      <div className="Profile-Page">
+        <p style={{'text-align' : 'center'}}>Vous devez être connecté(e) pour accéder à votre profil.</p> 
+        <div className='login' > 
+          <Link to='/login' style={{ textDecoration: "none" }}>
+              <button type='button' id='loginBtn' > Se connecter </button>
+          </Link>
+          </div>
+          <p style={{'text-align' : 'center'}}>Pas encore de compte ? Créer un compte gratuitement</p>
+        <div className='create' >
+          <Link to='/register' style={{ textDecoration: "none" }}>
+              <button type='button' id='createBtn' > Créer un compte </button>
+          </Link>
+        </div>
+      </div>
+      :
+        
+      <div>
       <div className="Profile-Page">
         <div className="Profile-row">
           {modif ? (
@@ -220,6 +240,8 @@ const MyProfile = () => {
           )}
         </div>
       </div>
+    </div>
+    }
     </>
   );
 };

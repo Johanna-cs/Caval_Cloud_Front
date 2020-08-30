@@ -68,7 +68,8 @@ const PostRider = () => {
       user_avatar : "",
       user_phone : ""
     })
-    
+
+  // Authentification -> if not token (undefined), cannot acces to post hose
   const token = localStorage.token 
     
   // Get user profil
@@ -141,7 +142,26 @@ const PostRider = () => {
   return (
     <>
       {home ? <Redirect to="/home" /> : null}
+
       <Header title="Poster une annonce cavalier" />
+
+      {token === undefined ? 
+        <div className="postHorse_page">
+          <p style={{'text-align' : 'center'}}>Vous devez être connecté(e) pour accéder à cette fonctionnalité.</p> 
+          <div className='login' > 
+            <Link to='/login' style={{ textDecoration: "none" }}>
+                <button type='button' id='loginBtn' > Se connecter </button>
+            </Link>
+          </div>
+          <p style={{'text-align' : 'center'}}>Pas encore de compte ? Créer un compte gratuitement</p>
+          <div className='create' >
+            <Link to='/register' style={{ textDecoration: "none" }}>
+                <button type='button' id='createBtn' > Créer un compte </button>
+            </Link>
+          </div>
+        </div>
+      :
+
       <div className="postRider_page">
         <div className="postRider_header">
           <img
@@ -580,8 +600,12 @@ const PostRider = () => {
           btnName={"Poster mon annonce"}
           onClick={() => postDataRider()}
         />
-        <ModalPost show={modalShow} />
       </div>
+
+      }
+
+      <ModalPost show={modalShow} />
+      
     </>
   );
 };
