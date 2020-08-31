@@ -45,7 +45,6 @@ const PostHorse = () => {
   const [home, setHome] = useState(false);
 
   // Carousel
-
   const [imageCarousel, setImageCarousel] = useState({});
   const [useUrl, setUseUrl] = useState([]);
 
@@ -84,7 +83,6 @@ const PostHorse = () => {
   };
 
   // Get the location from reverse geocoding
-
   const getLocation = () => {
     Axios.get(
       `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
@@ -220,7 +218,7 @@ const PostHorse = () => {
           </Carousel>
           <br />
           <input type="file" onChange={handleChange} />
-          <button onClick={handleUpload} className="upload-button">
+          <button onClick={handleUpload} id="upload-button" >
             Valider la photo
           </button>
           <hr />
@@ -233,7 +231,7 @@ const PostHorse = () => {
               definePerimeter={(e) => setPerimeter(e.target.value)}
               perimeter={perimeter}
             />
-            <button className="upload-button" id='setPosition'onClick={ () => {
+            <button id="upload-button" onClick={ () => {
               getCoordinatesfromPostalCode(horseProfile.horse_postal)}}>
                 Valider ma position
             </button>
@@ -588,12 +586,19 @@ const PostHorse = () => {
             />
           </div>
         
-          <div>        
+        {horseProfile.horse_localisation ? (
             <FloatingButton
             btnName={"Poster mon annonce"}
             onClick={() => postDataHorse()}
             />
-          </div>
+        ):(
+            <FloatingButton
+            btnName={"Veuillez valider la localisation"}
+            disabled='true'
+            />
+
+        )}
+
         </div>
       }
 

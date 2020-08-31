@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import FloatingButton from "../common/FloatingButton";
 import Header from "../Header_footer/Header";
 import { RiderContext } from "../context/RiderContext";
-import { UserContext } from '../context/UserContext'
+// import { Link } from "react-router-dom";
+import { HashLink as HashLink } from 'react-router-hash-link';
 
 const PostRiderPresentation = (props) => {
 
@@ -41,17 +42,6 @@ const PostRiderPresentation = (props) => {
               placeholder="Age"
               onChange={(event) => setRiderProfile({ ...riderProfile, rider_age: event.target.value })}
               value={riderProfile.rider_age}
-            />
-          </label>
-        </form>
-        <form className="postRider-form">
-          <label>
-            <input
-              className="postRider_input"
-              type="number"
-              placeholder="Code postal"
-              onChange={(event) => setRiderProfile({ ...riderProfile, rider_postal_code: Number(event.target.value) })}
-              value={riderProfile.rider_postal_code}
             />
           </label>
         </form>
@@ -139,12 +129,12 @@ const PostRiderPresentation = (props) => {
           </label>
         </form>
       </div>
-          <Link to="/post-rider" style={{ textDecoration: "none" }}>
+          <HashLink to="/post-rider#anchorRider_header" style={{ textDecoration: "none" }}>
             <FloatingButton
               btnName={"Valider"}
               type="submit"
             />
-          </Link>
+          </HashLink>
     </div>
     </>
   );

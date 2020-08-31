@@ -164,13 +164,12 @@ const PostRider = () => {
 
       <div className="postRider_page">
         <div className="postRider_header">
-          <img
-            className="postRider_logo"
-            src={dataUser.user_avatar}
+          <img id='anchorRider_header'className="postRider_logo"
+           src={dataUser.user_avatar}
             alt="logo"
           />
           <div className="postRider_forms">
-            <p>
+            <p >
               {riderProfile.rider_firstname}
               <span>{riderProfile.rider_age}</span>
             </p>
@@ -206,7 +205,7 @@ const PostRider = () => {
         <input type="file" onChange={handleChange} />
         <button
           onClick={handleUpload}
-          className="upload-button"
+          id="upload-button"
         >
           Valider la photo
         </button>
@@ -220,7 +219,7 @@ const PostRider = () => {
             definePerimeter={(e) => setPerimeter(e.target.value)}
             perimeter={perimeter}
           />
-            <button className="upload-button" id='setPosition' onClick={ () => {
+            <button id="upload-button" onClick={ () => {
               getCoordinatesfromPostalCode(riderProfile.rider_postal_code)}}>
               Valider ma position
           </button>
@@ -596,12 +595,19 @@ const PostRider = () => {
             }
           />
         </div>
-        <FloatingButton
-          btnName={"Poster mon annonce"}
-          onClick={() => postDataRider()}
+        {riderProfile.rider_localisation ? ( 
+          <FloatingButton
+            btnName={"Poster mon annonce"}
+            onClick={() => postDataRider()}
+          />
+        ):(
+          <FloatingButton
+          btnName={"Veuillez valider la localisation"}
+          disabled='true'
         />
-      </div>
+        )}
 
+      </div>
       }
 
       <ModalPost show={modalShow} />

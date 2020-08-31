@@ -129,7 +129,7 @@ const MyProfile = () => {
           {modif ? (
             <div className="Profile-image">
               <input type="file" onChange={handleChange} />
-              <button onClick={handleUpload} className="upload-button">
+              <button onClick={handleUpload} id="upload-button">
                 Valider la photo
               </button>
               <img
@@ -217,6 +217,7 @@ const MyProfile = () => {
                 firstname={e.rider_firstname}
                 rider_ID={e.rider_ID}
                 photo={e.rider_photos}
+                statusFavorite={false}
               />
             ))
           ) : (
@@ -233,6 +234,7 @@ const MyProfile = () => {
                 horse_name={e.horse_name}
                 horse_ID={e.horse_ID}
                 photo={e.horse_photos}
+                statusFavorite={false}
               />
             ))
           ) : (
