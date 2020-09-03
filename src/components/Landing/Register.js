@@ -16,17 +16,18 @@ const Register = () => {
     user_firstname: "",
     user_email: "",
     user_password: "",
-    user_accept_CGV: 0,
+    user_accept_CGV: null,
   });
 
 
   const subscribe = (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:4000/api/users/register", dataUser)
+    Axios
+      .post("http://localhost:4000/api/users/register", dataUser)
       .catch(err => console.error(err))
       .finally(setSuccess(true));
-      setModalShow(true);
-      setTimeout(() => setLogin(true), 3000);
+    setModalShow(true);
+    setTimeout(() => setLogin(true), 3000);
   };
 
 const [modalShow, setModalShow] = useState(false);
@@ -140,7 +141,7 @@ const [login, setLogin] = useState(false);
           className="register_button"
           onClick={(e) => subscribe(e)}
         >
-          CREER UN COMPTE
+          Créer un compte
         </button>
       ) : (
         <button
@@ -149,7 +150,7 @@ const [login, setLogin] = useState(false);
           disabled='true'
           onClick={(e) => subscribe(e)}
         >
-          CREER UN COMPTE
+          Créer un compte
         </button>
       )}
       <ModalRedirect show={modalShow} />

@@ -13,7 +13,7 @@ export const horseProfileContext = {
     horse_localisation : '',
     horse_long : null,
     horse_lat : null,
-    horse_photos : '',
+    horse_geolocation : null,
     horse_photo1 : '',
     horse_photo2 : '',
     horse_photo3 : '',
@@ -38,11 +38,11 @@ export const horseProfileContext = {
     ideal_rider_managed_horse: false,
     owner_firstname : '',
     owner_age : null,
-    owner_caracter : '',
+    owner_character : '',
     owner_communication_frequency : '',
     owner_horse_work : '',
     owner_message : '',
-    user_ID : 1,
+    user_ID : null,
 
 }
 

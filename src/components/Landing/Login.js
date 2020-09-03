@@ -1,37 +1,42 @@
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
 import "./landing.css";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import logo from "../SVG-icons/cavalcloud-logo.png";
 import Axios from "axios";
-import { useHistory } from "react-router-dom";
-
 
 
 const Login = () => {
 
-  let history = useHistory();
+  // Params user for logging
   const [dataUser, setDataUser] = useState({
-    user_email: "",
-    user_password: ""
-  });
-  const login = (e) => {
-    e.preventDefault();
-    Axios.post("http://localhost:4000/api/users/login", dataUser)
+    user_email:'',
+    user_password: ''
+  })
+
+  // By default, user is not logged
+  const [logged, setLogged] = useState(false)
+
+
+  // Récupération des erreurs serveur (status 400) lors du login (si erreur existante)
+  const [error, setError] = useState(null)
+
+
+  const login = () => {
+    Axios
+      .post("http://localhost:4000/api/users/login", dataUser)
       .then((res) => {
-        localStorage.setItem("usertoken", res.data);
-        history.push(`/home`);
-        window.location.reload(false);
-        return res.data;
-      })
-      .catch((err) => console.error(err));      
-  };
-
-
-
+        localStorage.setItem("token", res.data.token)
+        setLogged(true)
+      }) 
+      .catch((err) => setError(err.response.data.error))
+  }
 
   return (
+    <>
+    {logged ? <Redirect to="/home" /> : null}
     <div className="login_page">
       <img className="login_logo" src={logo} alt="logo" />
+      {error != null ? <div class="alert alert-danger" role="alert">{error}</div> : null}
       <div className="login_forms">
         <form>
           <label>
@@ -62,11 +67,11 @@ const Login = () => {
         </form>
         <p>Mot de passe oublié</p>
       </div>
-      <Link to="/home" style={{ textDecoration: "none" }}>
-        <button className="login_button"  onClick={(e) => login(e)}>
+      {/* <Link to="/home" style={{ textDecoration: "none" }}> */}
+        <button className="login_button"  onClick={() => login()}>
           Se connecter
         </button>
-      </Link>
+      {/* </Link> */}
       <div>
         <p>Pas encore de compte ?</p>
         <Link to="/register" style={{ textDecoration: "none" }}>
@@ -74,6 +79,7 @@ const Login = () => {
         </Link>
       </div>
     </div>
+    </>
   );
 };
 export default Login;
