@@ -17,11 +17,15 @@ function Localisation(props) {
         <div className='locationDiv'>
             <div className='toggle_place'>
             <h4>{props.locTitle}</h4>
+            <div className='aroundMe' onClick={() =>  props.getLocation()}>
+                <img src={geoloc} alt='logo loc' className='loc_map'/>
+                <p> Autour de moi </p>
+            </div>
                 <input 
                     min="0" 
                     max="200"
                     className='mainInput' 
-                    placeholder='Localisation' 
+                    placeholder='Code postal' 
                     value={props.value}
                     onChange={props.onChange}
                 />
@@ -43,18 +47,15 @@ function Localisation(props) {
                             />
                             <span>200</span>
                     </div>
-                    <div className='last_loc'>
+                    {/* <div className='last_loc'>
                     <h5>Localisations récentes :</h5>
                     
                     <div className='lastLoc'>
                         <img src={locmap} alt='logo loc' className='loc_map'/>
                         <p> {myLastCitySaved}</p>
                     </div>
-                    <div className='aroundMe'>
-                        <img src={geoloc} alt='logo loc' className='loc_map'/>
-                        <p> Autour de moi </p>
-                    </div>
-                    </div>
+                    
+                    </div> */}
                 </Collapse>
             </div>
         

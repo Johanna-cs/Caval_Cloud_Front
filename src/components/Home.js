@@ -21,7 +21,7 @@ const [modalShow, setModalShow] = useState(false);
 
 const modalSoon = () => {
   setModalShow(true);
-  setTimeout(() => setModalShow(false), 3000);
+  setTimeout(() => setModalShow(false), 2000);
 };
 
     return (
@@ -71,7 +71,7 @@ const modalSoon = () => {
                 src={cavalCloudLogo}
                 alt="caval cloud logo"
               />
-              <p className="textUs"> Qui sommes-nous ? </p>
+              <p className="textUs"> Plus d’infos sur Cavalcloud - CGU – CGV </p>
             </div>
           <ModalSoon show={modalShow} />
 

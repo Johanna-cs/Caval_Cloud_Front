@@ -7,24 +7,38 @@ import Axios from "axios";
 import heart from "../SVG-icons/coeur-hors-selection.svg";
 import heartFull from "../SVG-icons/coeur-selection.svg";
 
-const Favorites = (props) => {
-  const userid = 1
+const Favorites = () => {
+
+  // Verify is user is registered
+  const token = localStorage.token 
+
+  // By default, heartIcon is setted because these are favorites
   const [favorite, setFavorite] = useState(heartFull);
+  
   const [favoritesRider, setFavoritesRider] = useState([]);
   const [favoritesHorse, setFavoritesHorse] = useState([]);
 
+  // If this boolean is updated, display is rerender from useEffect
+  const [isDeleted, setIsDeleted] = useState(false) 
+
   const getFavoritesHorses = () => {
     Axios
-    .get(`http://localhost:4000/api/users/favorites/horses/${userid}`)
+    .get(`http://localhost:4000/api/users/myfavorites/horses/`, { 
+      headers : { 'Authorization' : 'Bearer ' + token}
+    })
     .then((res) => setFavoritesHorse(res.data))
     .catch((err) => console.error(err));
   };
+  
   const getFavoritesRiders = () => {
     Axios
-    .get(`http://localhost:4000/api/users/favorites/riders/${userid}`)
+    .get(`http://localhost:4000/api/users/myfavorites/riders/`, {
+      headers : { 'Authorization' : 'Bearer ' + token} 
+    })
     .then((res) => setFavoritesRider(res.data))
     .catch((err) => console.error(err));
   };
+
 
   useEffect(() => {
     getFavoritesHorses();
@@ -34,27 +48,40 @@ const Favorites = (props) => {
   return (
     <>
       <Header className="header" title="Annonces sauvegardées" />
+
       <div className="Favorites-Page">
-        {favoritesHorse.map(e => (
-          <HorseResultCard
-            fullResult={e}
-            horse_name={e.horse_name}
-            horse_ID={e.horse_ID}
-            photo={e.horse_photo1}
-            src={favorite}
-          />
-        ))}
+
+        {favoritesRider.length === 0 && favoritesHorse.length === 0 ? 
+            <p style={{'text-align' : 'center'}}>Aucune annonce sauvegardée dans vos favoris</p>
+          : null 
+        }
+
+        {favoritesHorse.length !== 0  ? 
+          favoritesHorse.map(e => (
+            <HorseResultCard
+              fullResult={e}
+              horse_name={e.horse_name}
+              horse_ID={e.horse_ID}
+              photo={e.horse_photo1}
+              statusFavorite={true}
+              src={favorite}
+            />))
+          : null
+        }
         <hr />
-        {favoritesRider.map(e => (
-          <ResultCard
-            fullResult={e}
-            rider_firstname={e.rider_firstname}
-            rider_ID={e.rider_ID}
-            photo={e.rider_photo1}
-            src={favorite}
-          />
-        ))}
-      </div>
+        {favoritesRider.length !== 0 ? 
+          favoritesRider.map(e => (
+            <ResultCard
+              fullResult={e}
+              rider_firstname={e.rider_firstname}
+              rider_ID={e.rider_ID}
+              photo={e.rider_photo1}
+              statusFavorite={true}
+              src={favorite}
+            />))
+          : null 
+        }
+    </div>
     </>
   );
 };

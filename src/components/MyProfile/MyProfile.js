@@ -1,35 +1,59 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./profile.css";
 import Header from "../Header_footer/Header";
 import { storage } from "../Firebase";
-import { UserContext } from "../context/UserContext";
 import Axios from "axios";
+import { Link } from "react-router-dom";
 import HorseResultCard from "../Horse_Results/HorseResultCard";
 import ResultCard from "../Rider_Results/ResultCard";
 
-const MyProfile = (props) => {
-  // Get user data information from its id :
-  const getMyProfile = () => {
-    Axios.get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
-      .then((res) => setDataUser(res.data))
-      .catch((err) => console.error(err));
-  };
+const MyProfile = () => {
 
-  // Update user data information from its id :
+    // User Data storage:
+    const [dataUser, setDataUser] = useState({
+      user_lastname: "",
+      user_firstname: "",
+      user_email: "",
+      user_password: "",
+      user_avatar : "",
+      user_phone : ""
+    })
+    const token = localStorage.token 
+    
+  // Get user profil
+  const getMyProfile = () => {
+    Axios.get('http://localhost:4000/api/users/profile', { 
+      headers : { 'Authorization' : 'Bearer ' + token}
+    })
+    .then((res) => setDataUser(res.data))
+    .catch((error)=> console.log(error))
+  }
+  // Update user data information 
   const updateMyProfile = () => {
-    Axios.put(`http://localhost:4000/api/users/${dataUser.user_ID}`, dataUser)
+    Axios
+    .put('http://localhost:4000/api/users/profile', dataUser, 
+    { 
+      headers : { 'Authorization' : 'Bearer ' + token}
+    })
     .catch(err=> console.error(err))
   }
-
+  
+  //annonces horseriders or horses in favorite section :
   const getRiderPosts = () => {
-    Axios.get(`http://localhost:4000/api/riders`)
+    Axios
+      .get(`http://localhost:4000/api/users/mypost/rider`, {
+        headers : { 'Authorization' : 'Bearer ' + token}
+      })
       .then((res) => setRiderAnnonce(res.data))
       .catch((err) => console.error(err));
     console.log(riderAnnonce);
   };
 
   const getHorsePosts = () => {
-    Axios.get(`http://localhost:4000/api/horses`)
+    Axios
+      .get(`http://localhost:4000/api/users/mypost/horse`, {
+        headers : { 'Authorization' : 'Bearer ' + token}
+      })
       .then((res) => setHorseAnnonce(res.data))
       .catch((err) => console.error(err));
     console.log(horseAnnonce);
@@ -38,18 +62,6 @@ const MyProfile = (props) => {
   const [riderAnnonce, setRiderAnnonce] = useState([]);
   const [horseAnnonce, setHorseAnnonce] = useState([]);
 
-  // User Data storage:
-  const [dataUser, setDataUser] = useState({
-    user_lastname: "",
-    user_firstname: "",
-    user_email: "",
-    user_password: "",
-    user_avatar : "",
-    user_phone : ""
-  });
-
-  // Context userProfile in order to simplify user data information management
-  const { userProfile, setUserProfile } = useContext(UserContext);
 
   // Management of image upload :
   const [image, setImage] = useState(null);
@@ -72,9 +84,9 @@ const MyProfile = (props) => {
 
   // Start to catch user info and then, save it in the user context
   useEffect(() => {
-    getMyProfile();
-    getRiderPosts();
-    getHorsePosts();
+    getMyProfile()
+    getRiderPosts()
+    getHorsePosts()
   }, []);
 
   const handleUpload = () => {
@@ -97,48 +109,54 @@ const MyProfile = (props) => {
   return (
     <>
       <Header className="header" title="Mon Profil" />
-      {/* <button onClick={() => console.log(dataUser.user_avatar)}>Profile</button> */}
+
+      {token === undefined ? 
+      <div className="Profile-Page">
+        <p style={{'text-align' : 'center'}}>Vous devez être connecté(e) pour accéder à votre profil.</p> 
+        <div className='login' > 
+          <Link to='/login' style={{ textDecoration: "none" }}>
+              <button type='button' id='loginBtn' > Se connecter </button>
+          </Link>
+          </div>
+          <p style={{'text-align' : 'center'}}>Pas encore de compte ? Créer un compte gratuitement</p>
+        <div className='create' >
+          <Link to='/register' style={{ textDecoration: "none" }}>
+              <button type='button' id='createBtn' > Créer un compte </button>
+          </Link>
+        </div>
+      </div>
+      :
+        
+      <div>
       <div className="Profile-Page">
         <div className="Profile-row">
           {modif ? (
             <div className="Profile-image">
               <input type="file" onChange={handleChange} />
-              <button onClick={handleUpload} className="upload-button">
+              <button onClick={handleUpload} id="upload-button">
                 Valider la photo
               </button>
               <img
                 src={dataUser.user_avatar}
                 className="Profile-photo"
-                alt=""
+                alt="Ajouter"
               />
             </div>
           ) : (
             <img
               src={dataUser.user_avatar}
               className="Profile-photo"
-              alt="Vous n'avez pas encore de photo"
+              alt="Ajouter"
             />
           )}
-
           <p className="Profile-infos">
             {dataUser.user_firstname} {dataUser.user_lastname}
           </p>
         </div>
         <hr />
         <h4>Email :</h4>
-        {modif ? (
-          <input
-            id="input"
-            type="mail"
-            placeholder={dataUser.user_email}
-            value={dataUser.user_email}
-            onChange={(e) =>
-              setDataUser({ ...dataUser, user_email: e.target.value })
-            }
-          />
-        ) : (
           <p>{dataUser.user_email}</p>
-        )}
+        
         <hr />
         <h4>Téléphone :</h4>
         {modif ? (
@@ -169,15 +187,6 @@ const MyProfile = (props) => {
                 }
               />
             </tr>
-            {/* <tr className="entete">Valider mot de passe </tr>
-            <tr>
-              <input
-                id="input"
-                type="password"
-                className={validPW ? "valid" : "invalid"}
-                onChange={(e) => changePW(e)}
-              />
-            </tr> */}
           </>
         ) : (
           ""
@@ -187,8 +196,9 @@ const MyProfile = (props) => {
             <button
               className="Profile-button"
               onClick={() => {
-                validprof();
-                updateMyProfile();
+                validprof()
+                updateMyProfile()
+                
               }}
             >
               Valider mon profil
@@ -204,12 +214,14 @@ const MyProfile = (props) => {
       <div className="Profile-annonces">
         <div>
           {riderAnnonce.length !== 0 ? (
-            riderAnnonce.map((e) => (
+            riderAnnonce.map((e,) => (
               <ResultCard
+                key={e.rider_ID}
                 fullResult={e}
                 firstname={e.rider_firstname}
                 rider_ID={e.rider_ID}
                 photo={e.rider_photos}
+                statusFavorite={false}
               />
             ))
           ) : (
@@ -226,6 +238,7 @@ const MyProfile = (props) => {
                 horse_name={e.horse_name}
                 horse_ID={e.horse_ID}
                 photo={e.horse_photos}
+                statusFavorite={false}
               />
             ))
           ) : (
@@ -233,6 +246,8 @@ const MyProfile = (props) => {
           )}
         </div>
       </div>
+    </div>
+    }
     </>
   );
 };

@@ -62,7 +62,7 @@
   outline: none;
 }
 
-.upload-button {
+#upload-button {
   background-color: white;
   color: #59a080;
   width: 10em;
@@ -71,6 +71,8 @@
   margin: 1.5em 0em 1em 4em;
   border-radius: 20px;
   outline: none;
+  padding: 0.2em;
+  
 }
 
 /* Favoris */
