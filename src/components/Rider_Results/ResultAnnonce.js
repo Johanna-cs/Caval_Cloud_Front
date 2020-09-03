@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useContext} from "react"
+import React, { useState, useEffect } from "react"
 import "./Result.css"
 import Axios from "axios";
 import ReturnButton from "../common/ReturnButton"
-import { UserContext } from '../context/UserContext'
 import Carousel from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
 
@@ -13,16 +12,8 @@ const ResultAnnonce = (props) => {
     const riderId = Number(props.match.params.id)
 
     // Rider Data information
-    const [dataRider, setDataRider] = useState([])
-
-    // Context userProfile in order to simplify user data information management
-  const { userProfile, setUserProfile } = useContext(UserContext)
-    // Get user information from its ID and then, update userProfile context
-    const getUserInfo = () => {
-      Axios.get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
-      .then(res => setUserProfile(res.data))
-      .catch(err=> console.error(err))
-    }
+    const [dataRider, setDataRider] = useState(null)
+    
     // Get information about the selected rider from its ID
     const getRiderInformation = () => {
       Axios.get(`http://localhost:4000/api/riders/${riderId}`)
@@ -35,7 +26,6 @@ const ResultAnnonce = (props) => {
     // When a result is displayed, the function getRiderInformation starts first in order to query BDD
     useEffect(() => {
       getRiderInformation();
-      getUserInfo();
       changeBool(dataRider);
       }, 
     [])
@@ -47,10 +37,14 @@ const ResultAnnonce = (props) => {
       </div>
 
       <ReturnButton />
+
+      {dataRider != null ? 
+
+      <>
       
       <div className="Result_annonce">
         <div className="annonce_header">
-          <img id="annonce_logo" src={userProfile.user_avatar} alt="logo" />
+          <img id="annonce_logo" src={dataRider.User.user_avatar} alt="logo" />
           <div>
             <h5>
               {dataRider.rider_firstname},{" "}
@@ -60,8 +54,8 @@ const ResultAnnonce = (props) => {
               {dataRider.rider_selfWord1}, {dataRider.rider_selfWord2},{" "}
               {dataRider.rider_selfWord3}
             </p>
-            <p>N° de téléphone : {userProfile.user_phone}</p>
-            <p>Mail : {userProfile.user_email}</p>
+            <p>N° de téléphone : {dataRider.User.user_phone}</p>
+            <p>Mail : {dataRider.User.user_email}</p>
           </div>
           <h4>Localisation</h4>
           <p>{dataRider.rider_postal_code} {" "} {dataRider.rider_localisation}</p>
@@ -148,8 +142,16 @@ const ResultAnnonce = (props) => {
         </div>
       </div>
       <div className="Result-filterbarBot">
-        <ReturnButton />
       </div>
+      </>
+
+      : 
+
+      <div className="Result_annonce">
+        <p>Cette annonce n'est pas accessible ou n'existe plus.</p>
+      </div>
+
+    } 
     </>
   );
 };

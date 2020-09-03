@@ -12,22 +12,25 @@ import FloatingButton from "../common/FloatingButton";
 import Disciplines from "../common_section/Disciplines";
 import BudgetMensuel from "../common_section/BudgetMensuel";
 import Pension from "../common_section/Pension";
-import Localisation from "../common_section/Localisation";
+import Localisation2 from "../common_section/Localisation2";
 import usePosition from "../common_section/usePosition";
 import Axios from "axios";
 import Competition from "../common_section/Competition";
 import { RiderContext } from "../context/RiderContext";
-import { UserContext } from "../context/UserContext";
 import ModalPost from "../common/ModalPost";
+import jwt_decode from 'jwt-decode'
 
-const PostRider = (props) => {
+const PostRider = () => {
   // Localisation
   const { latitude, longitude} = usePosition();
   const [cityLocalisation, setCityLocalisation] = useState("");
-  // Récupération de l'ancienne ville pour le locale storage
+ 
+  // Enregistrement de la ville dans le local storage
   localStorage.setItem("lastCitySaved", cityLocalisation);
+  
   // Choix du rayon de recherche des annonces :
   const [perimeter, setPerimeter] = useState(null);
+ 
   // Précédente localisation enregistrée dans le navigateur (si existante) :
   // const [lastCitySaved, setLastCitySaved] = useState("");
 
@@ -35,12 +38,7 @@ const PostRider = (props) => {
     Axios.get(
       `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
     )
-      .then((res) =>
-        setRiderProfile({
-          ...riderProfile,
-          rider_postal_code: res.data.address.postcode,
-        })
-      )
+      .then((res) => setRiderProfile({...riderProfile,rider_postal_code: res.data.address.postcode }))
       .catch((err) => console.log(err));
   };
   // Get full and set gps coordinates from postal code within horse Context
@@ -54,6 +52,7 @@ const PostRider = (props) => {
           rider_long: res.data[0].lon,
           rider_lat: res.data[0].lat,
           rider_localisation: res.data[0].display_name,
+          rider_geolocation : [res.data[0].lon, res.data[0].lat]
         });
       })
       .catch((err) => console.log(err));
@@ -61,11 +60,29 @@ const PostRider = (props) => {
 
   const { riderProfile, setRiderProfile } = useContext(RiderContext);
 
-  // Context userProfile in order to simplify user data information management
-  const { userProfile, setUserProfile } = useContext(UserContext);
+  // User Data storage:
+  const [dataUser, setDataUser] = useState({
+      user_lastname: "",
+      user_firstname: "",
+      user_email: "",
+      user_avatar : "",
+      user_phone : ""
+    })
+
+  // Authentification -> if not token (undefined), cannot acces to post hose
+  const token = localStorage.token 
+    
+  // Get user profil
+  const getMyProfile = () => {
+    Axios.get('http://localhost:4000/api/users/profile', { 
+      headers : { 'Authorization' : 'Bearer ' + token}
+    })
+    .then((res) => setDataUser(res.data))
+    .catch((error)=> console.log(error))
+  }
+
 
   // Carousel
-
   const [imageCarousel, setImageCarousel] = useState({});
   const [useUrl, setUseUrl] = useState([]);
 
@@ -103,40 +120,57 @@ const PostRider = (props) => {
     );
   };
 
-  // Get user information from its ID and then, update userProfile context
-  const getUserInfo = () => {
-    Axios.get(`http://localhost:4000/api/users/${userProfile.user_ID}`)
-      .then((res) => setUserProfile(res.data))
-      .catch((err) => console.error(err));
-  };
   const [modalShow, setModalShow] = useState(false);
   const [home, setHome] = useState(false);
 
   const postDataRider = () => {
-    Axios.post(`http://localhost:4000/api/riders`, riderProfile).catch((err) =>
-      console.log(err)
-    );
+    // Post new Rider
+      Axios
+      .post(`http://localhost:4000/api/riders`, riderProfile, 
+          { headers : { 'Authorization' : 'Bearer ' + token}})
+      .catch((err) =>console.log(err));
+    
+    // Display modal before going back Home
     setModalShow(true);
     setTimeout(() => setHome(true), 5000);
   };
 
   useEffect(() => {
-    getUserInfo();
+    getMyProfile();
   }, []);
 
   return (
     <>
       {home ? <Redirect to="/home" /> : null}
+
       <Header title="Poster une annonce cavalier" />
+
+      {token === undefined ? 
+        <div className="postHorse_page">
+          <p style={{'text-align' : 'center'}}>Vous devez être connecté(e) pour accéder à cette fonctionnalité.</p> 
+          <div className='login' > 
+            <Link to='/login' style={{ textDecoration: "none" }}>
+                <button type='button' id='loginBtn' > Se connecter </button>
+            </Link>
+          </div>
+          <p style={{'text-align' : 'center'}}>Pas encore de compte ? Créer un compte gratuitement</p>
+          <div className='create' >
+            <Link to='/register' style={{ textDecoration: "none" }}>
+                <button type='button' id='createBtn' > Créer un compte </button>
+            </Link>
+          </div>
+        </div>
+        
+      :
+
       <div className="postRider_page">
         <div className="postRider_header">
-          <img
-            className="postRider_logo"
-            src={userProfile.user_avatar}
+          <img id='anchorRider_header'className="postRider_logo"
+           src={dataUser.user_avatar}
             alt="logo"
           />
           <div className="postRider_forms">
-            <p>
+            <p >
               {riderProfile.rider_firstname}
               <span>{riderProfile.rider_age}</span>
             </p>
@@ -172,38 +206,27 @@ const PostRider = (props) => {
         <input type="file" onChange={handleChange} />
         <button
           onClick={handleUpload}
-          className="upload-button"
+          id="upload-button"
         >
           Valider la photo
         </button>
         <hr />
         <div>
         <h4>Localisation </h4>
-          <Localisation
-            value={cityLocalisation}
-            onChange={(e) =>
-              setRiderProfile({
-                ...riderProfile,
-                rider_postal_code: e.target.value,
-              })
-            }
+          <Localisation2
+            value={riderProfile.rider_postal_code}
+            onChange={(e) =>setRiderProfile({...riderProfile,rider_postal_code: e.target.value})}
             getLocation={getLocation}
-            onChange={(e) => {
-              setRiderProfile({
-                ...riderProfile,
-                rider_postal_code: e.target.value,
-              });
-            }}
             definePerimeter={(e) => setPerimeter(e.target.value)}
             perimeter={perimeter}
           />
-            <button className="upload-button" id='setPosition' onClick={ () => {
-              getCoordinatesfromPostalCode(riderProfile.rider_postal_code)}}>
+            <button id="upload-button" onClick={ () => {
+              getCoordinatesfromPostalCode(Number(riderProfile.rider_postal_code))}}>
               Valider ma position
           </button>
           <div>
-          <p>{riderProfile.rider_localisation}</p>
-            </div>
+            <p>{riderProfile.rider_localisation}</p>
+          </div>
 
         </div>
         <hr />
@@ -417,7 +440,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      ideal_horse_caracter: e.target.value,
+                      ideal_horse_character: e.target.value,
                     })
                   }
                 />
@@ -429,7 +452,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      ideal_horse_caracter: e.target.value,
+                      ideal_horse_character: e.target.value,
                     })
                   }
                 />
@@ -441,7 +464,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      ideal_horse_caracter: e.target.value,
+                      ideal_horse_character: e.target.value,
                     })
                   }
                 />
@@ -453,7 +476,7 @@ const PostRider = (props) => {
                   onClick={(e) =>
                     setRiderProfile({
                       ...riderProfile,
-                      ideal_horse_caracter: e.target.value,
+                      ideal_horse_character: e.target.value,
                     })
                   }
                 />
@@ -573,12 +596,23 @@ const PostRider = (props) => {
             }
           />
         </div>
-        <FloatingButton
-          btnName={"Poster mon annonce"}
-          onClick={() => postDataRider()}
+        {riderProfile.rider_localisation ? ( 
+          <FloatingButton
+            btnName={"Poster mon annonce"}
+            onClick={() => postDataRider()}
+          />
+        ):(
+          <FloatingButton
+          btnName={"Veuillez valider la localisation"}
+          disabled='true'
         />
-        <ModalPost show={modalShow} />
+        )}
+
       </div>
+      }
+
+      <ModalPost show={modalShow} />
+      
     </>
   );
 };

@@ -17,11 +17,16 @@ import Axios from 'axios'
 import usePosition from '../common_section/usePosition';
 import Competition from '../common_section/Competition';
 import { Results_Horse_Context} from '../../components/context/Results_Horse_Context'
+import { getDistanceFromLatLonInKm } from '../matching/calculDistance'
+import { UserContext } from '../context/UserContext'
 
 
 
+const SearchHorse = () => {
 
-const SearchHorse = (props) => {
+    // Chargement des informations de localisation du user dans le "UserContext" :
+    const { userPosition, setUserPosition } = useContext(UserContext)
+
     
     const {latitude, longitude} = usePosition();
     const [cityLocalisation, setCityLocalisation] = useState('')
@@ -52,7 +57,6 @@ const SearchHorse = (props) => {
     const [fixedFrequency, setFixedFrequency] = useState(false);
     const [horseWork, setHorseWork] = useState("");
 
-
     //Ecurie
     const [scuringType, setScuringType] = useState('')
 
@@ -66,7 +70,6 @@ const SearchHorse = (props) => {
     // Materiel selle et de soin :
     const [haveMaterialSaddle, setHaveMaterialSaddle] = useState(false)
     
-
     // Concours :
     const [doCompetition, setDoCompetition] = useState('')
 
@@ -80,32 +83,55 @@ const SearchHorse = (props) => {
         .then(res => setCityLocalisation(res.data.address.municipality))
         .catch(err => console.log(err))
     }
-    const getHorses = async () => {
-        await Axios.get(`http://localhost:4000/api/horses/search/?`)
-        .then(res=> setResultsHorses(res))
-        .catch(err => console.log(err))
-        .finally(console.log(resultsHorses))
-    }
-    //http://localhost:4000/api/horses/search/?localisation=${cityLocalisation}&budget=${budget}&discipline=${}&structure=${}&rythme=${frequency}&stroll=${doBalad}&temper=&character=&type=&horseage=${ageHorse}&height=${horseSize}&ownerage=&ownercaracter=&communication=${frequency}&fixed=${fixedFrequency}&work=${horseWork}&loctype=${scuringType}&accomodation=${boxeType}&coachhere=${coachingHere}&coachext=${externalCoach}&competition=${doCompetition}&material=${haveMaterialSaddle}
+      
+    // Get full and set gps coordinates from postal code within UserContext
+      const getCoordinatesfromPostalCode = (postalcode) => {
+        Axios
+            .get(`https://nominatim.openstreetmap.org/search?state=France&postalcode=${postalcode}&format=json`)
+            .then((res) => {
+                setUserPosition({
+                ...userPosition,
+                user_longitude: res.data[0].lon,
+                user_latitude: res.data[0].lat,
+                user_localisation: res.data[0].display_name,
+                });
+            })
+          .catch((err) => console.log(err));
+      };
+    
+    
 
     useEffect(() => {
-        getLocation();
-        getHorses();
+        // getHorses();
     }, [])
 
     return (
         <>
         <Header className='header' title='Chercher un équidé'/>
         <div className='searchHorse_page'>
-                <Localisation 
-                locTitle='Où ?'
-                value={cityLocalisation}
-                onChange={(e) => setCityLocalisation(e.target.value)}
-                definePerimeter={(e) => setPerimeter(e.target.value)}
-                perimeter={perimeter} 
+        <Localisation 
+                    locTitle='Où ?'
+                    value={userPosition.user_postal_code}
+                    getLocation={getLocation}
+                    onChange={(e) => setUserPosition({...userPosition, 
+                        user_postal_code : e.target.value
+                        })}
+                    definePerimeter={(e) => setUserPosition({...userPosition, 
+                        user_perimeter : e.target.value})}
+                    perimeter={userPosition.user_perimeter}
                 />
+            
+            <button id="upload-button" onClick={ () => {
+                getCoordinatesfromPostalCode(userPosition.user_postal_code)}}>
+                Valider ma position
+            </button>
+            <div>
+                <p>{userPosition.user_localisation}</p>
+            </div>
+
+
             <hr />
-                <BudgetMensuel 
+            <BudgetMensuel 
                     budgetTitle='Budget'
                     budget={budget} 
                     currency={currency}
@@ -203,11 +229,11 @@ const SearchHorse = (props) => {
             </div>    
             </div>
             <Link to={{pathname: "/horse/results"}}>
-            <FloatingButton 
-                btnName={'Lancer la recherche'} 
-                // onClick={async () => { await getRiders()} }
-            />
-        </Link>
+                <FloatingButton 
+                    btnName={'Lancer la recherche'} 
+                    // onClick={async () => { await getRiders()} }
+                />
+             </Link>
         
     </>
     )
