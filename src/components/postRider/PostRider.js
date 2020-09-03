@@ -160,6 +160,7 @@ const PostRider = () => {
             </Link>
           </div>
         </div>
+        
       :
 
       <div className="postRider_page">
@@ -220,12 +221,12 @@ const PostRider = () => {
             perimeter={perimeter}
           />
             <button id="upload-button" onClick={ () => {
-              getCoordinatesfromPostalCode(riderProfile.rider_postal_code)}}>
+              getCoordinatesfromPostalCode(Number(riderProfile.rider_postal_code))}}>
               Valider ma position
           </button>
           <div>
-          <p>{riderProfile.rider_localisation}</p>
-            </div>
+            <p>{riderProfile.rider_localisation}</p>
+          </div>
 
         </div>
         <hr />

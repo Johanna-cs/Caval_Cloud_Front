@@ -1,77 +1,64 @@
 import React, {useState, useEffect, useContext} from 'react'
-import Header from '../Header_footer/Header';
+import { Link } from 'react-router-dom'
+import Header from '../Header_footer/Header'
 import Axios from 'axios'
-import usePosition from '../common_section/usePosition';
+import usePosition from '../common_section/usePosition'
 import './SearchRider.css';
 import FloatingButton from '../common/FloatingButton'
 import Disciplines from '../common_section/Disciplines'
-import Localisation from '../common_section/Localisation';
+import Localisation from '../common_section/Localisation'
 import SlidingButton from '../common/SlidingButton'
 import BudgetMensuel from '../common_section/BudgetMensuel'
 import RangeButton from '../common/RangeButton'
 import Competition from '../common_section/Competition'
-import { Link } from 'react-router-dom'
-import { Results_Rider_Context} from '../../components/context/Results_Rider_Context'
-import Pension from '../common_section/Pension';
+import Pension from '../common_section/Pension'
+import { UserContext } from '../context/UserContext'
+import { SearchRiderContext } from '../context/SearchRiderContext'
 
 
 
 const SearchRider = () => {
-    // Localisation des coordonnées GPS via le hook "usePosition" :
-    const {latitude, longitude} = usePosition();    
-    // Récupération de la ville géolocalisée depuis l'API OpenStreetMap :
-    const [cityLocalisation, setCityLocalisation] = useState('');
-    // Récupération de l'ancienne ville pour le locale storage
-    localStorage.setItem('lastCitySaved',cityLocalisation);
-    //Récupération du CP 
-    const [postal, ] = useState(null);
-    // Choix du rayon de recherche des annonces :
-    const [perimeter, setPerimeter] = useState(20);
-    // Années de pratique :
-    const [yearsOfPractice, setYearsOfPractice] = useState(null);
-    // Niveau de galop : 
-    const [galopLevel, setGalopLevel] = useState(null)
-    // Age du cavalier :
-    const [riderAge, setRiderAge] = useState(null)
-    // Personne véhiculée ou non :
-    const [isVehiculed, setIsVehiculed] = useState(false)
-    // Disciplines :
-    // const [disciplines, setDisciplines] = useState([])
-    // Budget mensuel :
-    const [budget, setBudget] = useState('')
-    // Choix de la devise :
-    const [currency, setCurrency] = useState('')
-    // Fréquence de la demi-pension :
-    const [frequency, setFrequency] = useState('')
-    // Fréquence de la demi-pension, jours fixes :
-    const [fixedFrequency, setFixedFrequency] = useState(false)
-    // Concours ou pas :
-    const [doCompetition, setDoCompetition] = useState('')
-    // Materiel selle :
-    const [haveMaterialSaddle, setHaveMaterialSaddle] = useState(false)
-    // Résultats de la recherche de riders :
-    const { resultsRiders, setResultsRiders } = useContext(Results_Rider_Context)
-    // Rider a déjà managé des chevaux :
-    const [hasManaged, setHasManaged] = useState(false)
 
+    // Chargement des informations de recherche dans le "SearchRiderContext" :
+    const { searchRiders, setSearchRiders } = useContext(SearchRiderContext)
+
+    // Chargement des informations de localisation du user dans le "UserContext" :
+    const { userPosition, setUserPosition } = useContext(UserContext)
+
+    // Localisation des coordonnées GPS via "usePosition" :
+    const {latitude, longitude} = usePosition();    
+   
+    // Get the location from reverse geocoding
     const getLocation = () => {
+
         Axios
         .get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
-        .then(res => setCityLocalisation(res.data.address.municipality))
+        .then(res => setUserPosition({
+            ...userPosition,
+            user_postal_code : res.data.address.postalcode}))
         .catch(err => console.log(err))
     }
 
-    const getRiders = async () => {
-        await Axios
-        .get(`http://localhost:4000/api/riders/search/?age=${riderAge}&postal=${postal}&level=${galopLevel}&vehiculed=${isVehiculed}&budget=${budget}&competition=${doCompetition}&years=${yearsOfPractice}&frequency=${frequency}&regularity=${fixedFrequency}`)
-        .then(res=> setResultsRiders(res))
-        .catch(err => console.log(err))
-        .finally(console.log(resultsRiders))
-    }
 
-    useEffect(() => {
-        getLocation()
-    }, [])
+      // Get full and set gps coordinates from postal code within UserContext
+     const getCoordinatesfromPostalCode = (postalcode) => {
+    Axios
+        .get(`https://nominatim.openstreetmap.org/search?state=France&postalcode=${postalcode}&format=json`)
+        .then((res) => {
+            setUserPosition({
+            ...userPosition,
+            user_longitude: res.data[0].lon,
+            user_latitude: res.data[0].lat,
+            user_localisation: res.data[0].display_name,
+            });
+        })
+      .catch((err) => console.log(err));
+  };
+
+
+    // useEffect(() => {
+    //     getLocation()
+    // }, [])
 
 
     return (
@@ -81,45 +68,64 @@ const SearchRider = () => {
             <div className="localisation">   
                 <Localisation 
                     locTitle='Où ?'
-                    value={cityLocalisation}
+                    value={userPosition.user_postal_code}
                     getLocation={getLocation}
-                    onChange={(e) => setCityLocalisation(e.target.value)}
-                    definePerimeter={(e) => setPerimeter(e.target.value)}
-                    perimeter={perimeter}
+                    onChange={(e) => setUserPosition({...userPosition, 
+                        user_postal_code : e.target.value
+                        })}
+                    definePerimeter={(e) => setUserPosition({...userPosition, 
+                        user_perimeter : e.target.value})}
+                    perimeter={userPosition.user_perimeter}
                 />
-                <h5> Années de pratique minimum : {yearsOfPractice} </h5>
+                <button id="upload-button" onClick={ () => {
+                    getCoordinatesfromPostalCode(userPosition.user_postal_code)}}>
+                    Valider ma position
+                </button>
+                <div>
+                    <p>{userPosition.user_localisation}</p>
+                </div>
+                <h5> Années de pratique minimum : {searchRiders.rider_years_of_practice} </h5>
                     <div className='divRangeSpan'>
                         <span>1</span>
                         <RangeButton 
                             min="1" 
                             max="50"
-                            onChange={(e) => setYearsOfPractice(e.target.value)} 
+                            onChange={(e) => setSearchRiders({
+                                ...searchRiders, 
+                                rider_years_of_practice : e.target.value})
+                                } 
                         />
                         <span>50 ans</span>
                     </div>
                 
                 <hr />
-                <h5> Niveau de Galop minimum : {galopLevel} </h5>
+                <h5> Niveau de Galop minimum : {searchRiders.rider_gallop_level} </h5>
                     <div className='divRangeSpan'>
                         <span>0</span>                   
                         <RangeButton 
                             min="0" 
                             max="7" 
                             list='niveau_galop'
-                            onChange={(e) => setGalopLevel(e.target.value)} 
+                            onChange={(e) => setSearchRiders({
+                                ...searchRiders, 
+                                rider_gallop_level : e.target.value})
+                            } 
                         />
                         <span>7</span>
                     </div>
                 
 
                 <hr />
-                <h5> Age du cavalier <span>(+/- 2ans)</span>: {riderAge} ans</h5>
+                <h5> Age du cavalier <span>(+/- 2ans)</span>: {searchRiders.rider_age} ans</h5>
                     <div className='divRangeSpan'>
                         <span>5</span>
                         <RangeButton 
                             min="5" 
                             max="99"
-                            onChange={(e) =>setRiderAge(e.target.value)} 
+                            onChange={(e) => setSearchRiders({
+                                ...searchRiders, 
+                                rider_age : e.target.value})
+                            } 
                         />
                         <span>99 ans</span>
                     </div>
@@ -127,37 +133,51 @@ const SearchRider = () => {
                 <SlidingButton
                     SlidingButtonText='Personne véhiculée' 
                     SlidingButtonID='vehiculed' 
-                    onClick={() => setIsVehiculed(!isVehiculed)}
+                    onClick={() => setSearchRiders({
+                        ...searchRiders,
+                        rider_vehiculed : !searchRiders.rider_vehiculed
+                    })}
                 />
                 <SlidingButton
                     SlidingButtonText='Le cavalier a déjà eu un cheval sous sa responsabilité' 
                     SlidingButtonID='experience' 
-                    onClick={() => setHasManaged(!hasManaged)}
+                    onClick={() => setSearchRiders({
+                        ...searchRiders,
+                        rider_managed_horse : !searchRiders.rider_managed_horse
+                    })}
                     />
             </div>
             <hr />
                 <Disciplines
-                    // onChange={(e) => manageDisciplines(e.target.name)}
-                    // onlog = {console.log(disciplines)}
-                    // onChange = {(e) => Checkboxes(e.target.name)}
-                    
                 />
             <hr />
                 <BudgetMensuel 
                     budgetTitle='Budget'
-                    budget={budget} 
-                    currency={currency}
+                    budget={searchRiders.rider_budget} 
+                    currency={searchRiders.currency_budget}
                     priceTitle={'Prix maximum par mois :'}
-                    onChange={(e) => setBudget(e.target.value)}
-                    onClick={(e) => setCurrency(e.target.value)}
+                    onChange={(e) => setSearchRiders({
+                        ...searchRiders, 
+                        rider_budget : e.target.value
+                    })}
+                    onClick={(e) => setSearchRiders({
+                        ...searchRiders, 
+                        rider_currency_budget : e.target.value
+                        })}
                 />
             
             
             <div className='frequency_pension'>
                 <Pension
-                    onClick={(e) => setFrequency(e.target.value)}
-                    frequency={frequency}
-                    changeFixedFrequency={() => setFixedFrequency(!fixedFrequency)}
+                    onClick={(e) => setSearchRiders({
+                        ...searchRiders, 
+                        rider_riding_frequency : e.target.value
+                        })}
+                    frequency={searchRiders.rider_riding_frequency}
+                    changeFixedFrequency={() => setSearchRiders({
+                            ...searchRiders, 
+                            rider_fixed_day : !searchRiders.fixed_day
+                            })}
                 />
             </div>
             <hr />
@@ -167,7 +187,11 @@ const SearchRider = () => {
                         <SlidingButton 
                         SlidingButtonText="Le cavalier doit avoir sa selle"
                         SlidingButtonID="materialSwitch"
-                        onClick={() => setHaveMaterialSaddle(!haveMaterialSaddle)}
+                        onClick={() => setSearchRiders({
+                            ...searchRiders, 
+                            rider_own_saddle : !searchRiders.rider_own_saddle
+                            })}
+
                         />
                 </div>
                 
@@ -175,14 +199,16 @@ const SearchRider = () => {
             <hr />
             <div className='competition'>
             <Competition 
-                    onClick={(e) => setDoCompetition(e.target.value)}
+                    onClick={(e) => setSearchRiders({
+                        ...searchRiders, 
+                        rider_do_competition : e.target.value
+                        })}
             />
             </div>
         </div>
         <Link to={{pathname: "/rider/results"}}>
             <FloatingButton 
                 btnName={'Lancer la recherche'} 
-                onClick={async () => { await getRiders()} }
             />
         </Link>
 

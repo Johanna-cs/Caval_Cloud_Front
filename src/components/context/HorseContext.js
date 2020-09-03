@@ -9,7 +9,7 @@ export const horseProfileContext = {
     horse_temper : '',
     horse_character : '',
     horse_body_type : '',
-    horse_postal : null,
+    horse_postal : '',
     horse_localisation : '',
     horse_long : null,
     horse_lat : null,

@@ -28,7 +28,6 @@ function Localisation(props) {
                     placeholder='Code postal' 
                     value={props.value}
                     onChange={props.onChange}
-                    // onClick={props.resetvalue}
                 />
                 </div>
                 <Button id='toggle_btn_chev'color="transparent" onClick={toggle} style={{ marginBottom: '1rem' }}><svg className="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -48,7 +47,7 @@ function Localisation(props) {
                             />
                             <span>200</span>
                     </div>
-                    <div className='last_loc'>
+                    {/* <div className='last_loc'>
                     <h5>Localisations récentes :</h5>
                     
                     <div className='lastLoc'>
@@ -56,7 +55,7 @@ function Localisation(props) {
                         <p> {myLastCitySaved}</p>
                     </div>
                     
-                    </div>
+                    </div> */}
                 </Collapse>
             </div>
         

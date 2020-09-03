@@ -1,53 +1,41 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import "./HorseResult.css";
 import Header from "../Header_footer/Header";
 import HorseResultCard from "../Horse_Results/HorseResultCard";
 import Axios from "axios";
 import { Results_Horse_Context} from '../context/Results_Horse_Context'
-import { getDistanceFromLatLonInKm } from '../matching/calculDistance'
+import { UserContext } from '../context/UserContext'
 
 
 
 const HorseResultPage = () => {
 
-  const currentRiderLat = 43.620761599999994
-  const currentRiderLong = 5.308415999999999 
+  // Chargement des informations de localisation du user dans le "UserContext" :
+  const { userPosition, setUserPosition } = useContext(UserContext)
 
-  const {resultsHorses, setResultsHorses} = useContext(Results_Horse_Context)
+  // Chargement des réssultats dans le context ResultsHorse
+  const { resultsHorses, setResultsHorses } = useContext(Results_Horse_Context)
+
+  // Data stored ?
+  const [ dataStored, setDataStored ] = useState(false)
+
+  // Préparation de getRiders  :
+  const longitude = Number(userPosition.user_longitude) || 2.33902 // Paris 1er
+  const latitude = Number(userPosition.user_latitude) || 48.8635 // Paris 1er
+  const distanceMax = Number(userPosition.user_perimeter) * 1000 || 1000000 // Si pas précisé, par défaut le rayon est de 10000 KM (unité de base en mètres)
+  
 
   // Requête à modifier, actuellement pas de critères pris en compte pour afficher les résultats
   const getHorses = () => {
     Axios
-    .get(`http://localhost:4000/api/horses/`)
+    .get(`http://localhost:4000/api/horses/search/?longitude=${longitude}&latitude=${latitude}&distanceMax=${distanceMax}`)
     .then(res => setResultsHorses(res.data))
+    .finally(setDataStored(true))
     .catch(err=> console.error(err))
   }
 
-  const getDistanceFromLatLonInKm = (lat1, lon1, lat2, lon2) => {
-    const R = 6371; // Radius of the earth in km
-    let dLat = deg2rad(lat2-lat1);  // deg2rad below
-    let dLon = deg2rad(lon2-lon1); 
-    let a = 
-      Math.sin(dLat/2) * Math.sin(dLat/2) +
-      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
-      Math.sin(dLon/2) * Math.sin(dLon/2)
-    
-    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-    let d = R * c; // Distance in km
-    return d;
-  }
-  
-  const deg2rad = (deg) => {
-    return deg * (Math.PI/180)
-  }
-  
-  const getDistanceBetweenRiderAndHorse = (arrayOfresults) => {
-    return (
-    arrayOfresults.map(result => getDistanceFromLatLonInKm(currentRiderLat, currentRiderLong, result.horse_lat, result.horse_long)))
-
-  }
-
+ 
   useEffect(() => {
     getHorses()
   }, 
@@ -57,7 +45,6 @@ const HorseResultPage = () => {
   return (
     <>
       <Header className="header" title="Résultats de la recherche" />
-      {/* <button onClick={() => getDistanceBetweenRiderAndHorse(resultsHorses)}>action</button> */}
       
         <div className="Result-filterbarTop">
         <Link to={{
@@ -69,6 +56,9 @@ const HorseResultPage = () => {
           </button>
         </Link>
         </div>
+
+      { dataStored === true ? 
+
       <div className="Result-Page">
       {resultsHorses.map(e=> 
         <HorseResultCard 
@@ -81,8 +71,11 @@ const HorseResultPage = () => {
         />
         )
       }
-
       </div>
+
+      : 
+      null }
+      
     </>
   );
 }

@@ -9,13 +9,17 @@ import heartFull from "../SVG-icons/coeur-selection.svg";
 
 const Favorites = () => {
 
-
+  // Verify is user is registered
   const token = localStorage.token 
 
+  // By default, heartIcon is setted because these are favorites
   const [favorite, setFavorite] = useState(heartFull);
   
   const [favoritesRider, setFavoritesRider] = useState([]);
   const [favoritesHorse, setFavoritesHorse] = useState([]);
+
+  // If this boolean is updated, display is rerender from useEffect
+  const [isDeleted, setIsDeleted] = useState(false) 
 
   const getFavoritesHorses = () => {
     Axios

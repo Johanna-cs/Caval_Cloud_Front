@@ -25,7 +25,6 @@ function Localisation2(props) {
                     placeholder='Code postal' 
                     value={props.value}
                     onChange={props.onChange}
-                    // onClick={props.resetvalue}
                 />
                 </div>
                 

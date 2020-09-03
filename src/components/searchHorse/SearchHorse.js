@@ -18,11 +18,15 @@ import usePosition from '../common_section/usePosition';
 import Competition from '../common_section/Competition';
 import { Results_Horse_Context} from '../../components/context/Results_Horse_Context'
 import { getDistanceFromLatLonInKm } from '../matching/calculDistance'
-
+import { UserContext } from '../context/UserContext'
 
 
 
 const SearchHorse = () => {
+
+    // Chargement des informations de localisation du user dans le "UserContext" :
+    const { userPosition, setUserPosition } = useContext(UserContext)
+
     
     const {latitude, longitude} = usePosition();
     const [cityLocalisation, setCityLocalisation] = useState('')
@@ -79,30 +83,53 @@ const SearchHorse = () => {
         .then(res => setCityLocalisation(res.data.address.municipality))
         .catch(err => console.log(err))
     }
-    const getHorses = async () => {
-        await Axios.get(`http://localhost:4000/api/horses/search/?`)
-        .then(res=> setResultsHorses(res))
-        .catch(err => console.log(err))
-        .finally(console.log(resultsHorses))
-    }
-    //http://localhost:4000/api/horses/search/?localisation=${cityLocalisation}&budget=${budget}&discipline=${}&structure=${}&rythme=${frequency}&stroll=${doBalad}&temper=&character=&type=&horseage=${ageHorse}&height=${horseSize}&ownerage=&ownercaracter=&communication=${frequency}&fixed=${fixedFrequency}&work=${horseWork}&loctype=${scuringType}&accomodation=${boxeType}&coachhere=${coachingHere}&coachext=${externalCoach}&competition=${doCompetition}&material=${haveMaterialSaddle}
+      
+    // Get full and set gps coordinates from postal code within UserContext
+      const getCoordinatesfromPostalCode = (postalcode) => {
+        Axios
+            .get(`https://nominatim.openstreetmap.org/search?state=France&postalcode=${postalcode}&format=json`)
+            .then((res) => {
+                setUserPosition({
+                ...userPosition,
+                user_longitude: res.data[0].lon,
+                user_latitude: res.data[0].lat,
+                user_localisation: res.data[0].display_name,
+                });
+            })
+          .catch((err) => console.log(err));
+      };
+    
+    
 
     useEffect(() => {
-        getHorses();
+        // getHorses();
     }, [])
 
     return (
         <>
         <Header className='header' title='Chercher un équidé'/>
         <div className='searchHorse_page'>
-            <Localisation 
-                locTitle='Où ?'
-                value={cityLocalisation}
-                onChange={(e) => setCityLocalisation(e.target.value)}
-                definePerimeter={(e) => setPerimeter(e.target.value)}
-                perimeter={perimeter} 
-                getLocation={getLocation}
+        <Localisation 
+                    locTitle='Où ?'
+                    value={userPosition.user_postal_code}
+                    getLocation={getLocation}
+                    onChange={(e) => setUserPosition({...userPosition, 
+                        user_postal_code : e.target.value
+                        })}
+                    definePerimeter={(e) => setUserPosition({...userPosition, 
+                        user_perimeter : e.target.value})}
+                    perimeter={userPosition.user_perimeter}
                 />
+            
+            <button id="upload-button" onClick={ () => {
+                getCoordinatesfromPostalCode(userPosition.user_postal_code)}}>
+                Valider ma position
+            </button>
+            <div>
+                <p>{userPosition.user_localisation}</p>
+            </div>
+
+
             <hr />
             <BudgetMensuel 
                     budgetTitle='Budget'

@@ -147,7 +147,8 @@ const PostHorse = () => {
           </Link>
         </div>
       </div>
-        :
+       
+      :
 
         <div className="postHorse_page">
           <div className="postHorse_pres">
@@ -232,7 +233,7 @@ const PostHorse = () => {
               perimeter={perimeter}
             />
             <button id="upload-button" onClick={ () => {
-              getCoordinatesfromPostalCode(horseProfile.horse_postal)}}>
+              getCoordinatesfromPostalCode(Number(horseProfile.horse_postal))}}>
                 Valider ma position
             </button>
             <div>

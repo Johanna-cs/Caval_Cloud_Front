@@ -41,7 +41,9 @@ const MyProfile = () => {
   //annonces horseriders or horses in favorite section :
   const getRiderPosts = () => {
     Axios
-      .get(`http://localhost:4000/api/riders`)
+      .get(`http://localhost:4000/api/users/mypost/rider`, {
+        headers : { 'Authorization' : 'Bearer ' + token}
+      })
       .then((res) => setRiderAnnonce(res.data))
       .catch((err) => console.error(err));
     console.log(riderAnnonce);
@@ -49,7 +51,9 @@ const MyProfile = () => {
 
   const getHorsePosts = () => {
     Axios
-      .get(`http://localhost:4000/api/horses`)
+      .get(`http://localhost:4000/api/users/mypost/horse`, {
+        headers : { 'Authorization' : 'Bearer ' + token}
+      })
       .then((res) => setHorseAnnonce(res.data))
       .catch((err) => console.error(err));
     console.log(horseAnnonce);
