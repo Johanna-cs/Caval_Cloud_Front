@@ -23,7 +23,7 @@ const Login = () => {
 
   const login = () => {
     Axios
-      .post("http://localhost:4000/api/users/login", dataUser)
+      .post("https://mrs-js-p3-cavalcloud-back.jsrover.wilders.dev/api/users/login", dataUser)
       .then((res) => {
         localStorage.setItem("token", res.data.token)
         setLogged(true)

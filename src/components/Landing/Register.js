@@ -23,7 +23,7 @@ const Register = () => {
   const subscribe = (e) => {
     e.preventDefault();
     Axios
-      .post("http://localhost:4000/api/users/register", dataUser)
+      .post("https://mrs-js-p3-cavalcloud-back.jsrover.wilders.dev/api/users/register", dataUser)
       .catch(err => console.error(err))
       .finally(setSuccess(true));
     setModalShow(true);

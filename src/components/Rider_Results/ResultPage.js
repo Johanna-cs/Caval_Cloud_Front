@@ -31,7 +31,7 @@ function ResultPage() {
 
   const getRiders = () => {
     Axios
-    .get(`http://localhost:4000/api/riders/search/?longitude=${longitude}&latitude=${latitude}&distanceMax=${distanceMax}`)
+    .get(`https://mrs-js-p3-cavalcloud-back.jsrover.wilders.dev/api/riders/search/?longitude=${longitude}&latitude=${latitude}&distanceMax=${distanceMax}`)
     .then(res => setResultsRiders(res.data))
     .finally(setDataStored(true))
     .catch(err=> console.error(err))

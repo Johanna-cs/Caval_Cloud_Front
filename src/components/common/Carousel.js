@@ -7,7 +7,7 @@ const ImageCarousel = (props) => {
   const [useUrl, setUseUrl] = useState([]);
 
   const getAnnonceImages = () => {
-    Axios.get(`http://localhost:4000/api/users/`)
+    Axios.get(`https://mrs-js-p3-cavalcloud-back.jsrover.wilders.dev/api/users/`)
       .then((res) => setUseUrl(res.data))
       .catch((err) => console.error(err));
   };

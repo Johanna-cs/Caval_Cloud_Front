@@ -23,7 +23,7 @@ const Favorites = () => {
 
   const getFavoritesHorses = () => {
     Axios
-    .get(`http://localhost:4000/api/users/myfavorites/horses/`, { 
+    .get(`https://mrs-js-p3-cavalcloud-back.jsrover.wilders.dev/api/users/myfavorites/horses/`, { 
       headers : { 'Authorization' : 'Bearer ' + token}
     })
     .then((res) => setFavoritesHorse(res.data))
@@ -32,7 +32,7 @@ const Favorites = () => {
   
   const getFavoritesRiders = () => {
     Axios
-    .get(`http://localhost:4000/api/users/myfavorites/riders/`, {
+    .get(`https://mrs-js-p3-cavalcloud-back.jsrover.wilders.dev/api/users/myfavorites/riders/`, {
       headers : { 'Authorization' : 'Bearer ' + token} 
     })
     .then((res) => setFavoritesRider(res.data))

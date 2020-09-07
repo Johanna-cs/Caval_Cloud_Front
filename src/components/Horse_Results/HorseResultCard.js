@@ -29,14 +29,14 @@ const HorseResultCard = (props) => {
   const addInFavorite = () => {
     if (favoriteIcon === heart) {
       Axios
-      .post(`http://localhost:4000/api/users/addFavoriteHorse`, dataBody, {
+      .post(`https://mrs-js-p3-cavalcloud-back.jsrover.wilders.dev/api/users/addFavoriteHorse`, dataBody, {
            headers : { 'Authorization' : 'Bearer ' + token} })
       .catch((err) => console.error(err)
       );
     }
     else {
       Axios
-      .delete(`http://localhost:4000/api/users/deleteFavoriteHorse/${horse_ID}`,{
+      .delete(`https://mrs-js-p3-cavalcloud-back.jsrover.wilders.dev/api/users/deleteFavoriteHorse/${horse_ID}`,{
         headers : { 'Authorization' : 'Bearer ' + token}})
       .catch((err) => console.error(err)
       );

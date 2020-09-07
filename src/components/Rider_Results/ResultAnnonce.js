@@ -16,7 +16,7 @@ const ResultAnnonce = (props) => {
     
     // Get information about the selected rider from its ID
     const getRiderInformation = () => {
-      Axios.get(`http://localhost:4000/api/riders/${riderId}`)
+      Axios.get(`https://mrs-js-p3-cavalcloud-back.jsrover.wilders.dev/api/riders/${riderId}`)
       .then(res => setDataRider(res.data[0]))
       .catch(err=> console.error(err))
     }

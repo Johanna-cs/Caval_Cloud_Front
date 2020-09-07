@@ -74,7 +74,7 @@ const PostRider = () => {
     
   // Get user profil
   const getMyProfile = () => {
-    Axios.get('http://localhost:4000/api/users/profile', { 
+    Axios.get('https://mrs-js-p3-cavalcloud-back.jsrover.wilders.dev/api/users/profile', { 
       headers : { 'Authorization' : 'Bearer ' + token}
     })
     .then((res) => setDataUser(res.data))
@@ -126,7 +126,7 @@ const PostRider = () => {
   const postDataRider = () => {
     // Post new Rider
       Axios
-      .post(`http://localhost:4000/api/riders`, riderProfile, 
+      .post(`https://mrs-js-p3-cavalcloud-back.jsrover.wilders.dev/api/riders`, riderProfile, 
           { headers : { 'Authorization' : 'Bearer ' + token}})
       .catch((err) =>console.log(err));
     

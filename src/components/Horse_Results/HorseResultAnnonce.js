@@ -17,7 +17,7 @@ const HorseResultAnnonce = (props) => {
   // Get information about the selected horse from its ID
   const getHorseInformation = () => {
     Axios
-    .get(`http://localhost:4000/api/horses/${horseId}`)
+    .get(`https://mrs-js-p3-cavalcloud-back.jsrover.wilders.dev/api/horses/${horseId}`)
     .then(res => setDataHorse(res.data[0]))
     .catch(err=> console.error(err))
   }

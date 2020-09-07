@@ -29,7 +29,7 @@ const HorseResultPage = () => {
   // Requête à modifier, actuellement pas de critères pris en compte pour afficher les résultats
   const getHorses = () => {
     Axios
-    .get(`http://localhost:4000/api/horses/search/?longitude=${longitude}&latitude=${latitude}&distanceMax=${distanceMax}`)
+    .get(`https://mrs-js-p3-cavalcloud-back.jsrover.wilders.dev/api/horses/search/?longitude=${longitude}&latitude=${latitude}&distanceMax=${distanceMax}`)
     .then(res => setResultsHorses(res.data))
     .finally(setDataStored(true))
     .catch(err=> console.error(err))

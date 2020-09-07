@@ -116,7 +116,7 @@ const PostHorse = () => {
   const postDataHorse = () => {
     // Post Data
     Axios
-    .post(`http://localhost:4000/api/horses`, horseProfile, {
+    .post(`https://mrs-js-p3-cavalcloud-back.jsrover.wilders.dev/api/horses`, horseProfile, {
         headers : { 'Authorization' : 'Bearer ' + token}})
     .catch((err) =>console.log(err));
 

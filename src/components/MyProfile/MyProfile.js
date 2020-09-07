@@ -22,7 +22,7 @@ const MyProfile = () => {
     
   // Get user profil
   const getMyProfile = () => {
-    Axios.get('http://localhost:4000/api/users/profile', { 
+    Axios.get('https://mrs-js-p3-cavalcloud-back.jsrover.wilders.dev/api/users/profile', { 
       headers : { 'Authorization' : 'Bearer ' + token}
     })
     .then((res) => setDataUser(res.data))
@@ -31,7 +31,7 @@ const MyProfile = () => {
   // Update user data information 
   const updateMyProfile = () => {
     Axios
-    .put('http://localhost:4000/api/users/profile', dataUser, 
+    .put('https://mrs-js-p3-cavalcloud-back.jsrover.wilders.dev/api/users/profile', dataUser, 
     { 
       headers : { 'Authorization' : 'Bearer ' + token}
     })
@@ -41,7 +41,7 @@ const MyProfile = () => {
   //annonces horseriders or horses in favorite section :
   const getRiderPosts = () => {
     Axios
-      .get(`http://localhost:4000/api/users/mypost/rider`, {
+      .get(`https://mrs-js-p3-cavalcloud-back.jsrover.wilders.dev/api/users/mypost/rider`, {
         headers : { 'Authorization' : 'Bearer ' + token}
       })
       .then((res) => setRiderAnnonce(res.data))
@@ -51,7 +51,7 @@ const MyProfile = () => {
 
   const getHorsePosts = () => {
     Axios
-      .get(`http://localhost:4000/api/users/mypost/horse`, {
+      .get(`https://mrs-js-p3-cavalcloud-back.jsrover.wilders.dev/api/users/mypost/horse`, {
         headers : { 'Authorization' : 'Bearer ' + token}
       })
       .then((res) => setHorseAnnonce(res.data))
