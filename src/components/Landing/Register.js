@@ -16,7 +16,7 @@ const Register = () => {
     user_firstname: "",
     user_email: "",
     user_password: "",
-    user_accept_CGV: null,
+    user_accept_CGV: false,
   });
 
 
