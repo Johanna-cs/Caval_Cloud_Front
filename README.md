@@ -1,6 +1,4 @@
-![image](screenshot.png)
-<img src="./screenshot.png" height="400" alignSelf="center>
-
+![image du logo](cavalcloud-logoV2.png)
 # CavalCloud, la demi-pension simple :racehorse:
 ### Résumé
 CavalCloud est une application web destinée à devenir une Progressiv Web App, elle a donc été pensé en mobile first au vu de son utilisation finale. La cliente a imaginé une plateforme de location de chevaux entre particuliers et propriétaires afin d’améliorer le lien entre eux. CavalCloud est basée, à l’image de la très connue application « Air bnb », sur des critères de géolocalisation et d’autres filtres de correspondances selon les utilisateurs.
@@ -27,3 +25,4 @@ La création s’est déroulée sur React.js pour la partie front-end, et en Nod
 Projet réalisé pour [CavalCloud:copyright:](https://sites.google.com/cavalcloud.com/cavalcloud/accueil) tous droits réservés. 
 
 Ce repo n'est pas celui utilisé aujourd'hui par la marque, c'est une ébauvhe pour présenter mon code et mes compétences. 
+![image de maquette mobile](maquette.png)
