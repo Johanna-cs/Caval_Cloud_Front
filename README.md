@@ -1,4 +1,5 @@
 ![image du logo](cavalcloud-logoV2.png)
+<img src="./cavalcloud-logoV2.png" width="40%">
 # CavalCloud, la demi-pension simple :racehorse:
 ### Résumé
 CavalCloud est une application web destinée à devenir une Progressiv Web App, elle a donc été pensé en mobile first au vu de son utilisation finale. La cliente a imaginé une plateforme de location de chevaux entre particuliers et propriétaires afin d’améliorer le lien entre eux. CavalCloud est basée, à l’image de la très connue application « Air bnb », sur des critères de géolocalisation et d’autres filtres de correspondances selon les utilisateurs.
