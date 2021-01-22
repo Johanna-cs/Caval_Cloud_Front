@@ -1,4 +1,4 @@
-<img src="./cavalcloud-logoV2.png" width="20%">
+<img src="./cavalcloud-logoV2.png" width="20%" align='right'>
 
 
 # CavalCloud, la demi-pension simple :racehorse:
@@ -26,5 +26,6 @@ La création s’est déroulée sur React.js pour la partie front-end, et en Nod
 ## License 
 Projet réalisé pour [CavalCloud:copyright:](https://sites.google.com/cavalcloud.com/cavalcloud/accueil) tous droits réservés. 
 
-Ce repo n'est pas celui utilisé aujourd'hui par la marque, c'est une ébauvhe pour présenter mon code et mes compétences. 
+Ce repo n'est pas celui utilisé aujourd'hui par la marque, c'est une ébauche pour présenter mon code et mes compétences. 
+
 ![image de maquette mobile](maquette.png)
