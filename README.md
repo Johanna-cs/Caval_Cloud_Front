@@ -1,4 +1,4 @@
-<img src="./screenshot.jpg" height="400" alignSelf="center>
+<img src="./screenshot.png" height="400" alignSelf="center>
 
 # CavalCloud, la demi-pension simple :racehorse:
 ### Résumé
