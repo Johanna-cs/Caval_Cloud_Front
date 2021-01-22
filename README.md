@@ -1,4 +1,4 @@
-
+![image](screenshot.png)
 
 # CavalCloud, la demi-pension simple :racehorse:
 ### Résumé
