@@ -1,4 +1,4 @@
-<img src="./screenshot.png" height="400" alignSelf="center>
+![image](screenshot.png)
 
 # CavalCloud, la demi-pension simple :racehorse:
 ### Résumé
@@ -20,8 +20,7 @@ La création s’est déroulée sur React.js pour la partie front-end, et en Nod
 
 
 ## Compétences :roller_coaster:
-Formée en JavaScript, j'ai relevé le défi d'approcher le développement de WordPress avec Php.:elephant: 
-Une avancée en autodidacte, j'ai beaucoup appris via [Capitaine WP](https://capitainewp.io/) et ses cours très complets. 
+
 
 ## License 
 Projet réalisé pour [CavalCloud:copyright:](https://sites.google.com/cavalcloud.com/cavalcloud/accueil) tous droits réservés. 
